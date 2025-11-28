@@ -7,6 +7,7 @@ This script:
 2. Extracts top 2500 players by market value (includes market_value column)
 3. Filters transfer history for top 2500 players (removes youth team transfers)
 4. Adds country information to transfer history
+5. Finds and merges prestigious players (MAX value >= 10M, < 19M) who played for Barcelona, AC Milan, Real Madrid, Arsenal, or Chelsea
 """
 
 import argparse
@@ -107,6 +108,30 @@ def is_european_country(place_of_birth):
     ]
     
     return any(country in place_str for country in european_countries)
+
+
+def get_prestigious_teams():
+    """
+    Return list of prestigious team names to check for.
+    Only includes: Barcelona, AC Milan, Real Madrid, Arsenal, and Chelsea.
+    Includes exact matches and common variations.
+    """
+    return [
+        'Arsenal',  # Note: Will match "Arsenal" but need to exclude "Arsenal Sarandí", "Arsenal Kyiv", etc.
+        'AC Milan',
+        'Real Madrid',
+        'FC Barcelona',
+        'Barcelona',  # Note: Will match "Barcelona" but need to exclude "Barcelona SC", "Barcelona B", etc.
+        'Chelsea',
+        'Chelsea FC'
+    ]
+
+
+def normalize_team_name(team_name):
+    """Normalize team name for comparison."""
+    if pd.isna(team_name):
+        return ''
+    return str(team_name).strip()
 
 
 def extract_top_players(market_value_df, player_profiles_file, output_dir):
@@ -300,6 +325,161 @@ def add_country_columns(filtered_transfers_df, team_details_file, output_dir):
     print(f"  ✓ Added country columns and saved to transfer_history_filtered.csv")
 
 
+def find_and_merge_prestigious_players(market_value_file, player_profiles_file, 
+                                       transfer_history_file, main_players_file):
+    """
+    Find players with MAXIMUM market value >= 10M who have played for prestigious teams
+    and merge them into the main players file.
+    
+    Args:
+        market_value_file: Path to player_market_value.csv (historical values)
+        player_profiles_file: Path to player_profiles.csv
+        transfer_history_file: Path to transfer_history.csv
+        main_players_file: Path to main players file (player_profiles_top2500.csv)
+    """
+    print("\n[Step 5/5] Finding and merging prestigious players...")
+    print("  Checking for: Barcelona, AC Milan, Real Madrid, Arsenal, Chelsea")
+    print("  Minimum MAX market value: 10,000,000")
+    
+    # Load and process market values - calculate MAX for each player
+    print("  Loading market values and calculating MAX per player...")
+    market_value_df = pd.read_csv(market_value_file)
+    print(f"  - Loaded {len(market_value_df):,} market value records")
+    
+    # Calculate maximum market value for each player across all time
+    max_values = market_value_df.groupby('player_id')['value'].max().reset_index()
+    max_values.columns = ['player_id', 'max_market_value']
+    print(f"  - Found {len(max_values):,} unique players")
+    
+    # Filter players with MAX market value >= 10,000,000 and < 19,000,000
+    prestigious_value_players = max_values[
+        (max_values['max_market_value'] >= 10000000) & 
+        (max_values['max_market_value'] < 19000000)
+    ].copy()
+    print(f"  - Found {len(prestigious_value_players):,} players with MAX market value >= 10M and < 19M")
+    
+    # Load player profiles
+    profiles_df = pd.read_csv(player_profiles_file, low_memory=False)
+    
+    # Load transfer history
+    transfers_df = pd.read_csv(transfer_history_file)
+    
+    # Get prestigious team names
+    prestigious_teams = get_prestigious_teams()
+    
+    # Filter transfers for prestigious value players
+    prestigious_player_ids = set(prestigious_value_players['player_id'].unique())
+    player_transfers = transfers_df[transfers_df['player_id'].isin(prestigious_player_ids)].copy()
+    print(f"  - Found {len(player_transfers):,} transfer records for these players")
+    
+    # Normalize team names in transfer history
+    player_transfers['from_team_normalized'] = player_transfers['from_team_name'].apply(normalize_team_name)
+    player_transfers['to_team_normalized'] = player_transfers['to_team_name'].apply(normalize_team_name)
+    
+    # Check if any team matches prestigious teams
+    def matches_prestigious_team(team_name):
+        """Check if team name matches any prestigious team."""
+        if not team_name:
+            return False
+        
+        team_normalized = normalize_team_name(team_name)
+        team_lower = team_normalized.lower()
+        
+        # Exact matches
+        prestigious_lower = [t.lower() for t in prestigious_teams]
+        if team_lower in prestigious_lower:
+            return True
+        
+        # Special handling for teams that might have suffixes
+        # Arsenal (but not Arsenal Sarandí, Arsenal Kyiv, Arsenal U18, etc.)
+        if team_lower == 'arsenal' and not any(x in team_lower for x in ['sarandí', 'kyiv', 'u18', 'u19', 'u21', 'youth', 'b']):
+            return True
+        
+        # Barcelona (but not Barcelona SC, Barcelona B, Barcelona C, etc.)
+        if team_lower == 'barcelona' and not any(x in team_lower for x in [' sc', ' b', ' c', 'u18', 'u19', 'youth']):
+            return True
+        
+        # AC Milan (but not AC Milan Youth, etc.)
+        if team_lower == 'ac milan' and not any(x in team_lower for x in ['youth', 'u17', 'u19', 'b']):
+            return True
+        
+        # Real Madrid (but not Real Madrid B, Real Madrid C, etc.)
+        if team_lower == 'real madrid' and not any(x in team_lower for x in [' b', ' c', 'u19', 'youth']):
+            return True
+        
+        # Chelsea / Chelsea FC
+        if team_lower in ['chelsea', 'chelsea fc'] and not any(x in team_lower for x in ['u18', 'u19', 'u21', 'youth', 'b']):
+            return True
+        
+        return False
+    
+    player_transfers['from_prestigious'] = player_transfers['from_team_normalized'].apply(matches_prestigious_team)
+    player_transfers['to_prestigious'] = player_transfers['to_team_normalized'].apply(matches_prestigious_team)
+    player_transfers['played_for_prestigious'] = player_transfers['from_prestigious'] | player_transfers['to_prestigious']
+    
+    # Get players who have played for prestigious teams
+    players_with_prestigious = player_transfers[
+        player_transfers['played_for_prestigious']
+    ]['player_id'].unique()
+    
+    print(f"  - Found {len(players_with_prestigious):,} players who played for prestigious teams")
+    
+    # Get full player profiles for these players
+    prestigious_players = profiles_df[profiles_df['player_id'].isin(players_with_prestigious)].copy()
+    
+    # Add max_market_value column
+    prestigious_players = prestigious_players.merge(
+        max_values[['player_id', 'max_market_value']], 
+        on='player_id', 
+        how='left'
+    )
+    
+    # Rename max_market_value to market_value to match main file structure
+    prestigious_players['market_value'] = prestigious_players['max_market_value']
+    prestigious_players = prestigious_players.drop(columns=['max_market_value'])
+    
+    # Normalize player names
+    if 'player_name' in prestigious_players.columns:
+        prestigious_players['player_name'] = prestigious_players['player_name'].apply(normalize_player_name)
+    
+    print(f"  - Found {len(prestigious_players):,} prestigious players to merge")
+    
+    # Load main players file and merge
+    if not os.path.exists(main_players_file):
+        print(f"  - Main players file not found: {main_players_file}")
+        print(f"  - Creating new file with prestigious players only")
+        main_players = prestigious_players.copy()
+    else:
+        main_players = pd.read_csv(main_players_file, low_memory=False)
+        print(f"  - Loaded {len(main_players):,} players from main file")
+        
+        # Get player IDs already in main file
+        existing_player_ids = set(main_players['player_id'].unique())
+        new_prestigious_ids = set(prestigious_players['player_id'].unique())
+        
+        # Find players to add (not already in main file)
+        players_to_add = prestigious_players[
+            ~prestigious_players['player_id'].isin(existing_player_ids)
+        ].copy()
+        
+        print(f"  - Found {len(players_to_add):,} new prestigious players to add")
+        print(f"  - {len(new_prestigious_ids) - len(players_to_add):,} prestigious players already in main file")
+        
+        # Merge: add new players
+        if len(players_to_add) > 0:
+            main_players = pd.concat([main_players, players_to_add], ignore_index=True)
+            print(f"  - Added {len(players_to_add):,} new players")
+    
+    # Sort by market_value descending
+    main_players = main_players.sort_values('market_value', ascending=False)
+    
+    # Save updated main players file
+    main_players.to_csv(main_players_file, index=False)
+    
+    print(f"  ✓ Updated main players file: {main_players_file}")
+    print(f"    Total players: {len(main_players):,}")
+
+
 def main():
     """Main execution function."""
     print("=" * 60)
@@ -348,11 +528,20 @@ def main():
     # Step 4: Add country columns
     add_country_columns(filtered_transfers, args.team_details, args.output_dir)
     
+    # Step 5: Find and merge prestigious players
+    main_players_file = os.path.join(args.output_dir, 'player_profiles_top2500.csv')
+    find_and_merge_prestigious_players(
+        args.player_market_value,
+        args.player_profiles,
+        args.transfer_history,
+        main_players_file
+    )
+    
     print("\n" + "=" * 60)
     print("✓ Processing complete!")
     print("=" * 60)
     print(f"\nOutput files saved to: {args.output_dir}")
-    print("  - player_profiles_top2500.csv (with market_value column)")
+    print("  - player_profiles_top2500.csv (with market_value column, includes prestigious players)")
     print("  - transfer_history_filtered.csv (with country columns, youth teams filtered)")
     print()
 
