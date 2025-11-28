@@ -1,3 +1,5 @@
 .DS_Store
 dataset/.DS_Store
 scripts/.DS_Store
+scripts/output/player_profiles_top2500.csv
+scripts/output/transfer_history_filtered.csv
