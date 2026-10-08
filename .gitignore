@@ -1,5 +1,17 @@
 .DS_Store
-dataset/.DS_Store
-scripts/.DS_Store
-scripts/output/player_profiles_top2500.csv
-scripts/output/transfer_history_filtered.csv
+__pycache__/
+
+# Downloaded and generated data (re-create with the scripts, see README)
+dataset/*.csv
+dataset/*.csv.gz
+dataset/*.part
+cache/
+output/
+scripts/output/
+
+# Credentials
+*service-account*.json
+*-firebase-adminsdk-*.json
+
+# Firestore backups made by sync_firestore.py --apply
+backups/
