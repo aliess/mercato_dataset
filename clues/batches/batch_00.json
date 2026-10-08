@@ -6,6 +6,7 @@
    "clue2_ar": "سجّلت بعد 24 ثانية في كامب نو بدوري الأبطال. كما ارتبطت بابنة مالك ناديي.",
    "clue3_en": "I joined AC Milan from Brazil as a teenager in 2007. Later, I played for Corinthians, Chelsea and Villarreal.",
    "clue3_ar": "انضممت إلى ميلان قادماً من البرازيل وأنا مراهق عام 2007. ولاحقاً لعبت لكورينثيانز وتشيلسي وفياريال.",
+   "status": "approved",
    "notes": "verify: 2006 Club World Cup goal vs Al Ahly (Pelé 1958 record); 2011 Camp Nou goal; relationship with Barbara Berlusconi"},
   {"player_id": "85314", "name": "Oscar",
    "clue1_en": "As a teenager, I went to court to leave my first club. A year later, I scored a hat-trick in the U-20 World Cup final.",
@@ -14,5 +15,6 @@
    "clue2_ar": "سجّلت هدفين أمام يوفنتوس في أول مباراة لي بدوري الأبطال. وبعد عامين، أحرزت هدف بلادي الوحيد في الخسارة 7–1 بكأس العالم.",
    "clue3_en": "In 2017, I left Chelsea and moved to China for €60m.",
    "clue3_ar": "في 2017، تركت تشيلسي وانتقلت إلى الصين مقابل 60 مليون يورو.",
+   "status": "approved",
    "notes": "verify: 2010 court case vs São Paulo; 2011 U-20 final hat-trick vs Portugal; 2012 brace vs Juventus; 2014 semi-final goal vs Germany"}
 ]
