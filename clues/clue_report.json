@@ -1,0 +1,513 @@
+[
+  {
+    "file": "batch_01.json",
+    "player_id": "418560",
+    "name": "Erling Haaland",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue3_ar"
+    ]
+  },
+  {
+    "file": "batch_01.json",
+    "player_id": "28003",
+    "name": "Lionel Messi",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue2_ar"
+    ]
+  },
+  {
+    "file": "batch_04.json",
+    "player_id": "357498",
+    "name": "Dusan Vlahovic",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue2_ar"
+    ]
+  },
+  {
+    "file": "batch_05.json",
+    "player_id": "39153",
+    "name": "Gonzalo Higuain",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue2_ar"
+    ]
+  },
+  {
+    "file": "batch_09.json",
+    "player_id": "192279",
+    "name": "Kepa Arrizabalaga",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue2_ar"
+    ]
+  },
+  {
+    "file": "batch_11.json",
+    "player_id": "35664",
+    "name": "Mesut Ozil",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_15.json",
+    "player_id": "1168219",
+    "name": "Said El Mala",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_15.json",
+    "player_id": "102226",
+    "name": "Thorgan Hazard",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_16.json",
+    "player_id": "198008",
+    "name": "Andre Silva",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_16.json",
+    "player_id": "284730",
+    "name": "Manuel Akanji",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_16.json",
+    "player_id": "319745",
+    "name": "Dani Ceballos",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_18.json",
+    "player_id": "77100",
+    "name": "Lucas Moura",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_19.json",
+    "player_id": "166237",
+    "name": "Leandro Paredes",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_19.json",
+    "player_id": "177467",
+    "name": "Gerard Moreno",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_20.json",
+    "player_id": "354361",
+    "name": "Frank Anguissa",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_22.json",
+    "player_id": "181579",
+    "name": "James Ward-Prowse",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_22.json",
+    "player_id": "215599",
+    "name": "Lukas Klostermann",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_22.json",
+    "player_id": "227081",
+    "name": "Joaquin Correa",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_23.json",
+    "player_id": "41384",
+    "name": "Marko Arnautovic",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_23.json",
+    "player_id": "74418",
+    "name": "Jackson Martinez",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_24.json",
+    "player_id": "260827",
+    "name": "Joachim Andersen",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_24.json",
+    "player_id": "265088",
+    "name": "Manuel Locatelli",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_24.json",
+    "player_id": "272999",
+    "name": "Miguel Almiron",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_25.json",
+    "player_id": "467437",
+    "name": "Malik Tillman",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1",
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_29.json",
+    "player_id": "99343",
+    "name": "Ander Herrera",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_30.json",
+    "player_id": "125165",
+    "name": "Jesus Corona",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_31.json",
+    "player_id": "319859",
+    "name": "Mathias Jensen",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_31.json",
+    "player_id": "332697",
+    "name": "Weston McKennie",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_33.json",
+    "player_id": "743515",
+    "name": "Robin Risser",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_34.json",
+    "player_id": "51152",
+    "name": "Aleksandar Mitrovic",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "shirt_number_clue2_ar"
+    ]
+  },
+  {
+    "file": "batch_35.json",
+    "player_id": "371256",
+    "name": "Tete",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_36.json",
+    "player_id": "91849",
+    "name": "Thomas Delaney",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_37.json",
+    "player_id": "244275",
+    "name": "Gabriel Barbosa",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_38.json",
+    "player_id": "12282",
+    "name": "Daley Blind",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_38.json",
+    "player_id": "69015",
+    "name": "Andriy Yarmolenko",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_38.json",
+    "player_id": "86792",
+    "name": "Xherdan Shaqiri",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_39.json",
+    "player_id": "162038",
+    "name": "Raul de Tomas",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_39.json",
+    "player_id": "188911",
+    "name": "Shoya Nakajima",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_40.json",
+    "player_id": "238407",
+    "name": "Alexander Sorloth",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_40.json",
+    "player_id": "251106",
+    "name": "Enes Unal",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_41.json",
+    "player_id": "368482",
+    "name": "Riccardo Orsolini",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_41.json",
+    "player_id": "374139",
+    "name": "Junior Firpo",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_43.json",
+    "player_id": "627221",
+    "name": "Gabriel Veron",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_43.json",
+    "player_id": "651580",
+    "name": "Matvey Kislyak",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_43.json",
+    "player_id": "709372",
+    "name": "Carlos Romero",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_43.json",
+    "player_id": "859035",
+    "name": "Kees Smit",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_44.json",
+    "player_id": "1155723",
+    "name": "Gilberto Mora",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_45.json",
+    "player_id": "401529",
+    "name": "Dodo",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_46.json",
+    "player_id": "283196",
+    "name": "Kasper Dolberg",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  },
+  {
+    "file": "batch_46.json",
+    "player_id": "331401",
+    "name": "Manuel Lazzari",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue2"
+    ]
+  },
+  {
+    "file": "batch_46.json",
+    "player_id": "887638",
+    "name": "Davide Bartesaghi",
+    "ok": true,
+    "errors": [],
+    "warnings": [
+      "current_club_in_clue1"
+    ]
+  }
+]
