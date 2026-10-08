@@ -30,7 +30,7 @@ from tm_api import TransfermarktAPI
 ROOT = Path(__file__).resolve().parent.parent
 
 # ── Player selection ──
-# Stars: highest-ever market value above this.
+# Stars: highest-ever market value at or above this (Jamie Vardy peaked at exactly 20M).
 STAR_MIN_VALUE = 20_000_000
 # Lesser players are kept if they played for one of these clubs and peaked at or above this.
 PRESTIGIOUS_MIN_VALUE = 10_000_000
@@ -319,11 +319,11 @@ def main():
     ])
     prestigious_ids = set(clubs_played_for[clubs_played_for['club_id'].isin(PRESTIGIOUS_CLUB_IDS)]['player_id'])
 
-    stars = {pid for pid in candidate_ids if highest[pid] > STAR_MIN_VALUE}
+    stars = {pid for pid in candidate_ids if highest[pid] >= STAR_MIN_VALUE}
     prestigious = {pid for pid in candidate_ids
                    if pid not in stars and highest[pid] >= PRESTIGIOUS_MIN_VALUE and pid in prestigious_ids}
     selected = stars | prestigious
-    print(f'\nSelected {len(selected):,} players: {len(stars):,} peaked above €{STAR_MIN_VALUE / 1e6:.0f}M, '
+    print(f'\nSelected {len(selected):,} players: {len(stars):,} peaked at or above €{STAR_MIN_VALUE / 1e6:.0f}M, '
           f'{len(prestigious):,} more played for {", ".join(PRESTIGIOUS_CLUB_IDS.values())}')
 
     # ── Profiles ──
