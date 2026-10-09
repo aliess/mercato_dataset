@@ -28,17 +28,28 @@ report URL) to `famous_matches.json` and rebuild. To add a competition, add a ro
 
 ## Difficulty
 
-By team, as a first guess; the lists are constants at the top of `build_lineups.py`.
+By team and by year; the lists and steps are constants at the top of `build_lineups.py`.
 
-| Difficulty | Clubs | National teams |
+1. **Team** sets the starting level:
+
+| Level | Clubs | National teams |
 |---|---|---|
 | `beginner` | Real Madrid, Barcelona, Bayern, Man Utd, Liverpool, Chelsea, Arsenal, Man City, Juventus, AC Milan, Inter, PSG | Brazil, Argentina, France, Germany, Spain, Italy, England, Netherlands, Portugal |
 | `intermediate` | Other clubs from the top five leagues | Every other nation |
 | `expert` | Clubs from other leagues | — |
 
-The year is not part of it yet: Bayern's 1999 lineup is `beginner` like their 2020 one. Each
-lineup carries `year`, `round` and `famous` (finals and the extra matches), so the split can
-be refined without refetching.
+2. **Year** makes it harder, because older lineups have to be studied, not remembered:
+
+| Match year | Quarter-finals and semi-finals | Finals and famous matches |
+|---|---|---|
+| 2010 or later | no change | no change |
+| 2000–2009 | one level harder | no change |
+| Before 2000 | two levels harder (always `expert`) | one level harder |
+
+So nothing before 2000 is `beginner`. Examples: France in the 1998 World Cup final is
+`intermediate`; Dortmund in the 1997 final is `expert`; Real Madrid in a 1996 quarter-final is
+`expert`; Barcelona in a 2008 semi-final is `intermediate`; Liverpool in the 2005 final is
+`beginner`.
 
 ## File layout
 

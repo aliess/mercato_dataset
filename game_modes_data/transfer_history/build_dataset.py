@@ -45,6 +45,12 @@ PRESTIGIOUS_CLUB_IDS = {
     631: 'Chelsea',
 }
 
+# Players whose history shows fewer first-team clubs than this are left out: a one-club
+# player (Koke, Iñaki Williams) has no transfer path to guess.
+MIN_CLUBS = 2
+# Not clubs: they stay in a history but don't count towards MIN_CLUBS.
+SPECIAL_CLUB_NAMES = {'Without Club', 'Retired', 'Career break', 'Unknown', 'Disqualification', 'Own Youth'}
+
 # Transfers TO youth and reserve sides are dropped. The API says which clubs those are
 # (see is_reserve_side). These name endings are only the fallback for clubs the API didn't
 # return, e.g. with --offline; on their own they also catch real clubs (Willem II, Esbjerg fB).
@@ -212,7 +218,8 @@ def fetch_live_data(api, dataset, candidate_ids):
     """Refresh candidates from the Transfermarkt API.
 
     Returns (profiles by player id, transfers DataFrame in output schema,
-    {club id: is it a youth/reserve side, None when only the name can tell}).
+    {club id: is it a youth/reserve side, None when only the name can tell},
+    ids of special clubs like "Retired").
     """
     print(f'\nFetching {len(candidate_ids):,} player profiles from Transfermarkt...')
     profiles = api.players(candidate_ids)
@@ -315,7 +322,8 @@ def fetch_live_data(api, dataset, candidate_ids):
             'highest_value': highest,
         }
     reserve_sides = {int(club_id): is_reserve_side(club) for club_id, club in clubs.items()}
-    return live_profiles, pd.DataFrame(rows, columns=TRANSFERS_COLUMNS), reserve_sides
+    special_clubs = {int(club_id) for club_id, club in clubs.items() if club.get('isSpecialClub')}
+    return live_profiles, pd.DataFrame(rows, columns=TRANSFERS_COLUMNS), reserve_sides, special_clubs
 
 
 # ── Main ──
@@ -331,10 +339,10 @@ def main():
     print(f'\n{len(candidate_ids):,} candidates peaked at €{PRESTIGIOUS_MIN_VALUE / 1e6:.0f}M or more')
 
     transfers = dataset.transfers_in_output_schema()
-    live_profiles, reserve_sides = {}, {}
+    live_profiles, reserve_sides, special_clubs = {}, {}, set()
     if not args.offline:
         api = TransfermarktAPI(args.cache_dir, max_age_hours=args.max_age_hours, workers=args.workers)
-        live_profiles, live_transfers, reserve_sides = fetch_live_data(api, dataset, candidate_ids)
+        live_profiles, live_transfers, reserve_sides, special_clubs = fetch_live_data(api, dataset, candidate_ids)
         # The API history replaces the dataset's for every player it returned.
         live_ids = set(live_transfers['player_id'])
         transfers = pd.concat([transfers[~transfers['player_id'].isin(live_ids)], live_transfers],
@@ -358,6 +366,36 @@ def main():
     print(f'\nSelected {len(selected):,} players: {len(stars):,} peaked at or above €{STAR_MIN_VALUE / 1e6:.0f}M, '
           f'{len(prestigious):,} more played for {", ".join(PRESTIGIOUS_CLUB_IDS.values())}')
 
+    # ── Transfers ──
+    def to_reserve_side(ids, names):
+        by_name = names.map(is_youth_team)
+        return ids.map(lambda club_id: reserve_sides.get(club_id)).combine(
+            by_name, lambda flag, name: name if flag is None or pd.isna(flag) else flag).astype(bool)
+
+    out = transfers[transfers['player_id'].isin(selected)]
+    to_reserve = to_reserve_side(out['to_team_id'], out['to_team_name'])
+    print(f'  dropped {to_reserve.sum():,} transfers to youth and reserve sides')
+    out = out[~to_reserve].copy()
+
+    # First-team clubs per player: every destination, and where a move started from when
+    # that is a first team too.
+    def real_clubs(ids, names):
+        special = ids.isin(special_clubs) | names.isin(SPECIAL_CLUB_NAMES)
+        return ~special & ~to_reserve_side(ids, names) & names.notna()
+
+    club_rows = pd.concat([
+        out.loc[real_clubs(out[f'{side}_team_id'], out[f'{side}_team_name']), ['player_id', f'{side}_team_id']]
+           .set_axis(['player_id', 'club_id'], axis=1)
+        for side in ('from', 'to')])
+    club_count = club_rows.groupby('player_id')['club_id'].nunique()
+    few_clubs = {pid for pid in selected if club_count.get(pid, 0) < MIN_CLUBS}
+    if few_clubs:
+        names = dataset.players.set_index('player_id')['name'].reindex(sorted(few_clubs, key=lambda pid: -highest[pid]))
+        print(f'  left out {len(few_clubs):,} players with fewer than {MIN_CLUBS} clubs in their history, '
+              f'e.g. {", ".join(names.head(12))}')
+        selected -= few_clubs
+        out = out[out['player_id'].isin(selected)]
+
     # ── Profiles ──
     profiles = dataset.profiles_in_output_schema(selected)
     profiles['market_value'] = profiles['player_id'].map(highest).astype('int64')
@@ -367,13 +405,6 @@ def main():
     profiles['current_club_id'] = profiles['current_club_id'].astype('Int64')
     profiles = profiles.sort_values(['market_value', 'player_id'], ascending=[False, True])
 
-    # ── Transfers ──
-    out = transfers[transfers['player_id'].isin(selected)]
-    by_name = out['to_team_name'].map(is_youth_team)
-    to_reserve = out['to_team_id'].map(lambda club_id: reserve_sides.get(club_id)).combine(
-        by_name, lambda flag, name: name if flag is None or pd.isna(flag) else flag).astype(bool)
-    print(f'  dropped {to_reserve.sum():,} transfers to youth and reserve sides')
-    out = out[~to_reserve].copy()
     for side in ('from', 'to'):
         missing = out[f'{side}_team_country'].isna()
         out.loc[missing, f'{side}_team_country'] = out.loc[missing, f'{side}_team_id'].map(dataset.club_country)

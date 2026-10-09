@@ -432,38 +432,8 @@
   },
   {
     "file": "batch_43.json",
-    "player_id": "651580",
-    "name": "Matvey Kislyak",
-    "ok": true,
-    "errors": [],
-    "warnings": [
-      "current_club_in_clue1"
-    ]
-  },
-  {
-    "file": "batch_43.json",
     "player_id": "709372",
     "name": "Carlos Romero",
-    "ok": true,
-    "errors": [],
-    "warnings": [
-      "current_club_in_clue1"
-    ]
-  },
-  {
-    "file": "batch_43.json",
-    "player_id": "859035",
-    "name": "Kees Smit",
-    "ok": true,
-    "errors": [],
-    "warnings": [
-      "current_club_in_clue1"
-    ]
-  },
-  {
-    "file": "batch_44.json",
-    "player_id": "1155723",
-    "name": "Gilberto Mora",
     "ok": true,
     "errors": [],
     "warnings": [
@@ -498,16 +468,6 @@
     "errors": [],
     "warnings": [
       "current_club_in_clue2"
-    ]
-  },
-  {
-    "file": "batch_46.json",
-    "player_id": "887638",
-    "name": "Davide Bartesaghi",
-    "ok": true,
-    "errors": [],
-    "warnings": [
-      "current_club_in_clue1"
     ]
   }
 ]

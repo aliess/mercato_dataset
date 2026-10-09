@@ -20,10 +20,15 @@ const facts = new Map(fs.readFileSync(path.join(CLUES, "facts.jsonl"), "utf8")
 
 const batchDir = path.join(CLUES, "batches");
 const docs = {};
+const notInPool = [];
 const report = [];
 for (const file of fs.readdirSync(batchDir).filter((f) => f.endsWith(".json")).sort()) {
   for (const doc of JSON.parse(fs.readFileSync(path.join(batchDir, file), "utf8"))) {
     const p = facts.get(doc.player_id);
+    if (!p) {  // no longer in the player pool (see transfer_history/build_dataset.py)
+      notInPool.push(doc.name);
+      continue;
+    }
     const check = checkClueDoc(doc, p && {
       name: p.name, nativeName: p.native_name, currentClub: p.current_club,
     });
@@ -54,6 +59,9 @@ const written = Object.keys(docs).map((id) => facts.get(id).difficulty);
 const total = [...facts.values()].map((p) => p.difficulty);
 console.log(`${Object.keys(docs).length} valid, ${report.filter((r) => !r.ok).length} with errors, ` +
   `${report.filter((r) => r.ok).length} with warnings only`);
+if (notInPool.length) {
+  console.log(`  ${notInPool.length} clue sets left out, player not in the pool: ${notInPool.slice(0, 8).join(", ")}…`);
+}
 for (const t of tiers) {
   console.log(`  ${t}: ${written.filter((x) => x === t).length} / ${total.filter((x) => x === t).length}`);
 }

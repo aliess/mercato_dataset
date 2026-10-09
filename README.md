@@ -128,6 +128,10 @@ After new players are added, give them clues: see [game_modes_data/clues/README.
 - **Big-club players**: peaked at €10M–20M and played for Arsenal, AC Milan, Real Madrid,
   Barcelona or Chelsea (first team, by club id).
 
+- **At least two clubs**: players whose history shows a single first-team club (Lamine Yamal,
+  Saka, Totti) are left out, because there is no transfer path to guess. This also takes them
+  out of Three Clues, since both modes share the player pool.
+
 Thresholds and clubs are constants at the top of `game_modes_data/transfer_history/build_dataset.py`.
 Candidates come from the dataset tables, so a player who first reached €10M after June 2026 is
 not picked up until the dataset updates again or the candidate list gets another source.

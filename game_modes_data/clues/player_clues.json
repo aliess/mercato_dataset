@@ -307,28 +307,6 @@
     "status": "approved",
     "notes": ""
   },
-  "3397": {
-    "name": "Paul Scholes",
-    "clue1_en": "I had asthma and a knee condition as a boy, and joined my local club's academy.",
-    "clue1_ar": "عانيت من الربو ومشكلة في الركبة وأنا صغير، وانضممت إلى أكاديمية النادي المحلي.",
-    "clue2_en": "I came out of retirement in 2012 to play again for my only club.",
-    "clue2_ar": "عدت من الاعتزال عام 2012 لألعب مجدداً لناديي الوحيد.",
-    "clue3_en": "I'm an English midfielder who spent my whole career at Manchester United.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي قضيت مسيرتي كلها في مانشستر يونايتد.",
-    "status": "approved",
-    "notes": ""
-  },
-  "3406": {
-    "name": "Ryan Giggs",
-    "clue1_en": "I played for Manchester City's youth team before joining their rivals at 14.",
-    "clue1_ar": "لعبت لفريق شباب مانشستر سيتي قبل انضمامي إلى غريمه في الرابعة عشرة.",
-    "clue2_en": "I scored a famous solo goal against Arsenal in the 1999 FA Cup semi-final replay.",
-    "clue2_ar": "سجّلت هدفاً فردياً شهيراً أمام أرسنال في إعادة نصف نهائي كأس الاتحاد الإنجليزي 1999.",
-    "clue3_en": "I'm a Welsh winger who won 13 Premier League titles with Manchester United.",
-    "clue3_ar": "أنا جناح ويلزي فزت بالدوري الإنجليزي 13 مرة مع مانشستر يونايتد.",
-    "status": "approved",
-    "notes": ""
-  },
   "3411": {
     "name": "Pablo Aimar",
     "clue1_en": "I came through River Plate and was Lionel Messi's childhood idol.",
@@ -868,17 +846,6 @@
     "status": "approved",
     "notes": ""
   },
-  "5958": {
-    "name": "Francesco Totti",
-    "clue1_en": "My mother turned down AC Milan for me as a boy, so I stayed in my home city.",
-    "clue1_ar": "رفضت والدتي عرض ميلان لي وأنا صغير، فبقيت في مدينتي.",
-    "clue2_en": "I won the 2006 World Cup and the European Golden Shoe in 2007.",
-    "clue2_ar": "فزت بكأس العالم 2006، وبالحذاء الذهبي الأوروبي عام 2007.",
-    "clue3_en": "I'm an Italian forward who spent my whole 25-year career at Roma.",
-    "clue3_ar": "أنا مهاجم إيطالي قضيت مسيرتي كلها، 25 عاماً، في روما.",
-    "status": "approved",
-    "notes": ""
-  },
   "5962": {
     "name": "Antonio Cassano",
     "clue1_en": "At 17, I scored a famous solo goal against Inter for my hometown club, Bari.",
@@ -1019,17 +986,6 @@
     "clue2_ar": "انضممت إلى مايوركا مقابل 6 ملايين يورو عام 2006، وفزت بيورو 2008 لاعباً احتياطياً.",
     "clue3_en": "I'm a Spanish left-back who spent seven years at Sevilla and won two Europa Leagues.",
     "clue3_ar": "أنا ظهير أيسر إسباني قضيت سبع سنوات في إشبيلية وفزت بالدوري الأوروبي مرتين.",
-    "status": "approved",
-    "notes": ""
-  },
-  "7594": {
-    "name": "Carles Puyol",
-    "clue1_en": "I grew up in a small Pyrenees village and played in goal and up front before joining La Masia.",
-    "clue1_ar": "نشأت في قرية صغيرة بجبال البرانس، ولعبت حارساً ومهاجماً قبل انضمامي إلى لاماسيا.",
-    "clue2_en": "My header won the 2010 World Cup semi-final against Germany.",
-    "clue2_ar": "حسمت رأسيتي نصف نهائي كأس العالم 2010 أمام ألمانيا.",
-    "clue3_en": "I'm a Spanish centre-back who captained Barcelona for years.",
-    "clue3_ar": "أنا قلب دفاع إسباني كنت قائداً لبرشلونة لسنوات.",
     "status": "approved",
     "notes": ""
   },
@@ -4146,17 +4102,6 @@
     "status": "approved",
     "notes": ""
   },
-  "74229": {
-    "name": "Koke",
-    "clue1_en": "I joined my club's academy at eight and made my first-team debut at 17.",
-    "clue1_ar": "انضممت إلى أكاديمية ناديي في الثامنة، وخضت أول مباراة مع الفريق الأول في السابعة عشرة.",
-    "clue2_en": "I won La Liga in 2014 and 2021 as a midfielder at the same club.",
-    "clue2_ar": "فزت بالدوري الإسباني عامي 2014 و2021 كلاعب وسط مع النادي نفسه.",
-    "clue3_en": "I'm a Spanish midfielder who has spent my whole career at Atlético Madrid and holds its appearance record.",
-    "clue3_ar": "أنا لاعب وسط إسباني قضيت مسيرتي كلها في أتلتيكو مدريد، وأحمل رقم أكثر عدد من المباريات معه.",
-    "status": "approved",
-    "notes": ""
-  },
   "74230": {
     "name": "Pablo Sarabia",
     "clue1_en": "I came through Real Madrid's academy and made my name at Getafe.",
@@ -7237,17 +7182,6 @@
     "status": "approved",
     "notes": "verify: PFA Young Player 2016 and 2017"
   },
-  "209212": {
-    "name": "Solly March",
-    "clue1_en": "I started at Lewes in non-league football.",
-    "clue1_ar": "بدأت مع لويس في دوري الهواة.",
-    "clue2_en": "I spent my whole professional career at one club on England's south coast.",
-    "clue2_ar": "قضيت مسيرتي الاحترافية كلها في نادٍ واحد على الساحل الجنوبي لإنجلترا.",
-    "clue3_en": "I'm an English winger who played for Brighton for over a decade.",
-    "clue3_ar": "أنا جناح إنجليزي لعبت لبرايتون لأكثر من عقد.",
-    "status": "approved",
-    "notes": ""
-  },
   "212723": {
     "name": "Djibril Sow",
     "clue1_en": "I left Zürich for Borussia Mönchengladbach, then came home to play for Young Boys.",
@@ -7399,17 +7333,6 @@
     "clue2_ar": "فزت بدوري الأبطال خمس مرات، ولعبت جناحاً وظهيراً أيمن.",
     "clue3_en": "I'm a Spanish player who left Real Madrid for Leverkusen in 2025.",
     "clue3_ar": "أنا لاعب إسباني تركت ريال مدريد إلى ليفركوزن عام 2025.",
-    "status": "approved",
-    "notes": ""
-  },
-  "221322": {
-    "name": "Jose Gaya",
-    "clue1_en": "I joined my club's academy at 12 and made my first-team debut at 17.",
-    "clue1_ar": "انضممت إلى أكاديمية ناديي في الثانية عشرة، وخضت أول مباراة مع الفريق الأول في السابعة عشرة.",
-    "clue2_en": "I won the Copa del Rey with my club in 2019 and later became captain.",
-    "clue2_ar": "فزت بكأس الملك مع ناديي عام 2019، وأصبحت قائده لاحقاً.",
-    "clue3_en": "I'm a Spanish left-back who has spent my whole career at Valencia.",
-    "clue3_ar": "أنا ظهير أيسر إسباني قضيت مسيرتي كلها في فالنسيا.",
     "status": "approved",
     "notes": ""
   },
@@ -7974,28 +7897,6 @@
     "status": "approved",
     "notes": ""
   },
-  "255488": {
-    "name": "Yeray Alvarez",
-    "clue1_en": "I came through my club's academy and beat testicular cancer twice in 2016 and 2017.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي، وتغلّبت على سرطان الخصية مرتين عامي 2016 و2017.",
-    "clue2_en": "I won the 2024 Copa del Rey.",
-    "clue2_ar": "فزت بكأس الملك 2024.",
-    "clue3_en": "I'm a Spanish centre-back who has spent my career at Athletic Club.",
-    "clue3_ar": "أنا قلب دفاع إسباني قضيت مسيرتي في أتلتيك بلباو.",
-    "status": "approved",
-    "notes": ""
-  },
-  "255508": {
-    "name": "Inaki Williams",
-    "clue1_en": "My parents crossed the Sahara from Ghana, and I was born in the Basque Country. My younger brother plays for Spain.",
-    "clue1_ar": "عبر والداي الصحراء الكبرى من غانا، ووُلدت في إقليم الباسك. وأخي الأصغر يلعب لمنتخب إسبانيا.",
-    "clue2_en": "I played 251 La Liga games in a row, a league record.",
-    "clue2_ar": "لعبت 251 مباراة متتالية في الدوري الإسباني، وهو رقم قياسي.",
-    "clue3_en": "I'm a forward who chose to play for Ghana and has spent my career at Athletic Club.",
-    "clue3_ar": "أنا مهاجم اخترت تمثيل غانا، وقضيت مسيرتي في أتلتيك بلباو.",
-    "status": "approved",
-    "notes": ""
-  },
   "255653": {
     "name": "Santi Mina",
     "clue1_en": "I came through my hometown club, Celta Vigo.",
@@ -8257,17 +8158,6 @@
     "clue2_ar": "فزت بكأس الاتحاد الإنجليزي مع ليستر عام 2021.",
     "clue3_en": "I'm a Belgian full-back who plays for Fulham.",
     "clue3_ar": "أنا ظهير بلجيكي ألعب لفولهام.",
-    "status": "approved",
-    "notes": ""
-  },
-  "262396": {
-    "name": "Unai Simon",
-    "clue1_en": "I came through my club's academy in the Basque Country.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في إقليم الباسك.",
-    "clue2_en": "I saved two penalties in Spain's Euro 2020 shootout against Switzerland and won Euro 2024.",
-    "clue2_ar": "تصدّيت لركلتي ترجيح في مباراة إسبانيا أمام سويسرا بيورو 2020، وفزت بيورو 2024.",
-    "clue3_en": "I'm a Spanish goalkeeper who plays for Athletic Club.",
-    "clue3_ar": "أنا حارس مرمى إسباني ألعب لأتلتيك بلباو.",
     "status": "approved",
     "notes": ""
   },
@@ -10427,17 +10317,6 @@
     "status": "approved",
     "notes": ""
   },
-  "351478": {
-    "name": "Mikel Oyarzabal",
-    "clue1_en": "I was born in Eibar and joined my club's academy at 14.",
-    "clue1_ar": "وُلدت في إيبار، وانضممت إلى أكاديمية ناديي في الرابعة عشرة.",
-    "clue2_en": "I scored the winning penalty in a Copa del Rey final against our Basque rivals.",
-    "clue2_ar": "سجّلت ركلة الجزاء الحاسمة في نهائي كأس الملك أمام غريمنا الباسكي.",
-    "clue3_en": "I'm a Spanish forward who has spent my career at Real Sociedad and scored the winner in the Euro 2024 final.",
-    "clue3_ar": "أنا مهاجم إسباني قضيت مسيرتي في ريال سوسيداد، وسجّلت هدف الفوز في نهائي يورو 2024.",
-    "status": "approved",
-    "notes": ""
-  },
   "351749": {
     "name": "Kalvin Phillips",
     "clue1_en": "I grew up in Leeds and came through my hometown club's academy.",
@@ -10537,17 +10416,6 @@
     "status": "approved",
     "notes": ""
   },
-  "355628": {
-    "name": "Igor Zubeldia",
-    "clue1_en": "I came through my club's academy in the Basque Country.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في إقليم الباسك.",
-    "clue2_en": "I won the Copa del Rey in 2021, in the final against our Basque rivals.",
-    "clue2_ar": "فزت بكأس الملك عام 2021 في النهائي أمام غريمنا الباسكي.",
-    "clue3_en": "I'm a Spanish centre-back who has spent my career at Real Sociedad.",
-    "clue3_ar": "أنا قلب دفاع إسباني قضيت مسيرتي في ريال سوسيداد.",
-    "status": "approved",
-    "notes": ""
-  },
   "355861": {
     "name": "Arnaut Danjuma",
     "clue1_en": "I was born in Lagos, grew up in the Netherlands and started at NEC Nijmegen.",
@@ -10611,17 +10479,6 @@
     "clue2_ar": "قضيت موسماً معاراً في ميلان عام 2020-21.",
     "clue3_en": "I'm a Portuguese full-back who plays for Manchester United.",
     "clue3_ar": "أنا ظهير برتغالي ألعب لمانشستر يونايتد.",
-    "status": "approved",
-    "notes": ""
-  },
-  "357153": {
-    "name": "Diogo Costa",
-    "clue1_en": "I was born in Switzerland to Portuguese parents and joined my club's academy as a boy.",
-    "clue1_ar": "وُلدت في سويسرا لأبوين برتغاليين، وانضممت إلى أكاديمية ناديي وأنا طفل.",
-    "clue2_en": "I saved three penalties in a shootout against Slovenia at Euro 2024.",
-    "clue2_ar": "تصدّيت لثلاث ركلات ترجيح أمام سلوفينيا في يورو 2024.",
-    "clue3_en": "I'm a Portuguese goalkeeper who came through Porto's academy.",
-    "clue3_ar": "أنا حارس مرمى برتغالي تخرّجت في أكاديمية بورتو.",
     "status": "approved",
     "notes": ""
   },
@@ -11648,17 +11505,6 @@
     "status": "approved",
     "notes": ""
   },
-  "406635": {
-    "name": "Phil Foden",
-    "clue1_en": "I supported my only club as a boy. At 17, I won the Golden Ball as my country won the U-17 World Cup.",
-    "clue1_ar": "شجّعت ناديي الوحيد منذ طفولتي. وفي السابعة عشرة، فزت بالكرة الذهبية حين توّجت بلادي بكأس العالم تحت 17 عاماً.",
-    "clue2_en": "In 2024, I was named both Premier League Player of the Season and the Football Writers' Footballer of the Year.",
-    "clue2_ar": "في 2024، اختِرت أفضل لاعب في الدوري الإنجليزي وأفضل لاعب لدى رابطة كتّاب كرة القدم.",
-    "clue3_en": "I'm an England midfielder from Stockport who came through Manchester City's academy and won the 2023 treble.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي من ستوكبورت تخرّج في أكاديمية مانشستر سيتي وفاز بثلاثية 2023.",
-    "status": "approved",
-    "notes": "verify: 2017 U-17 WC Golden Ball"
-  },
   "406640": {
     "name": "Felix Nmecha",
     "clue1_en": "I was born in Germany, grew up in Manchester and came through Manchester City's academy. My brother is a striker.",
@@ -12197,17 +12043,6 @@
     "clue3_ar": "أنا مهاجم مغربي فزت بالدوري الأوروبي مرتين مع إشبيلية.",
     "status": "approved",
     "notes": ""
-  },
-  "433177": {
-    "name": "Bukayo Saka",
-    "clue1_en": "My parents are Nigerian. I joined my only club's academy at seven and finished school with top grades.",
-    "clue1_ar": "والداي نيجيريان. انضممت إلى أكاديمية ناديي الوحيد في السابعة، وأنهيت دراستي بدرجات ممتازة.",
-    "clue2_en": "I missed the last penalty in the Euro 2020 final shootout. I then won my country's Player of the Year twice in a row.",
-    "clue2_ar": "أهدرت ركلة الترجيح الأخيرة في نهائي يورو 2020. ثم فزت بجائزة أفضل لاعب في بلادي مرتين متتاليتين.",
-    "clue3_en": "I'm an England winger who came through Arsenal's academy and plays on the right wing at the Emirates.",
-    "clue3_ar": "أنا جناح إنجليزي تخرّج في أكاديمية أرسنال ويلعب على الجهة اليمنى في ملعب الإمارات.",
-    "status": "approved",
-    "notes": "verify: England Men's Player of the Year 2022 and 2023"
   },
   "433188": {
     "name": "Curtis Jones",
@@ -14145,17 +13980,6 @@
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
   },
-  "549006": {
-    "name": "Goncalo Inacio",
-    "clue1_en": "I came through my club's academy and won the Portuguese league in 2021 as a teenager.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي، وفزت بالدوري البرتغالي عام 2021 وأنا مراهق.",
-    "clue2_en": "I'm a left-footed centre-back who played for Portugal at Euro 2024.",
-    "clue2_ar": "أنا قلب دفاع أعسر لعبت للبرتغال في يورو 2024.",
-    "clue3_en": "I'm a Portuguese centre-back who came through Sporting's academy.",
-    "clue3_ar": "أنا قلب دفاع برتغالي تخرّجت في أكاديمية سبورتينغ.",
-    "status": "approved",
-    "notes": ""
-  },
   "550550": {
     "name": "Goncalo Ramos",
     "clue1_en": "I came through Benfica's academy and broke into the first team at 19.",
@@ -14486,28 +14310,6 @@
     "status": "approved",
     "notes": "dataset says Sevilla 2026, not used"
   },
-  "571020": {
-    "name": "Oihan Sancet",
-    "clue1_en": "I was born in Pamplona and came through my club's academy at Lezama.",
-    "clue1_ar": "وُلدت في بامبلونا، وتخرّجت في أكاديمية ناديي في ليثاما.",
-    "clue2_en": "In 2024, I won the Copa del Rey, my club's first trophy in 40 years.",
-    "clue2_ar": "في 2024، فزت بكأس الملك، وهو أول لقب لناديي منذ 40 عاماً.",
-    "clue3_en": "I'm a Spanish attacking midfielder who has spent my career at Athletic Club.",
-    "clue3_ar": "أنا لاعب وسط هجومي إسباني قضيت مسيرتي في أتلتيك بلباو.",
-    "status": "approved",
-    "notes": ""
-  },
-  "571604": {
-    "name": "Giorgio Scalvini",
-    "clue1_en": "I came through my club's academy and made my Serie A debut at 17.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي، وخضت أول مباراة لي في الدوري الإيطالي في السابعة عشرة.",
-    "clue2_en": "I won the Europa League with my club in 2024.",
-    "clue2_ar": "فزت بالدوري الأوروبي مع ناديي عام 2024.",
-    "clue3_en": "I'm an Italian centre-back who has spent my career at Atalanta.",
-    "clue3_ar": "أنا قلب دفاع إيطالي قضيت مسيرتي في أتالانتا.",
-    "status": "approved",
-    "notes": ""
-  },
   "571743": {
     "name": "Armando Broja",
     "clue1_en": "I was born in England but play for Albania. Chelsea loaned me to Vitesse and Southampton.",
@@ -14640,17 +14442,6 @@
     "status": "approved",
     "notes": ""
   },
-  "580195": {
-    "name": "Jamal Musiala",
-    "clue1_en": "I moved to England at seven and played in Chelsea's academy. I played for England's youth teams before choosing Germany.",
-    "clue1_ar": "انتقلت إلى إنجلترا في السابعة ولعبت في أكاديمية تشيلسي. ومثّلت منتخبات إنجلترا للشباب قبل أن أختار ألمانيا.",
-    "clue2_en": "At 17, I became my club's youngest ever Bundesliga scorer.",
-    "clue2_ar": "في السابعة عشرة، أصبحت أصغر هداف في تاريخ ناديي بالبوندسليغا.",
-    "clue3_en": "I'm a German playmaker, born in Stuttgart, who joined Bayern Munich from Chelsea's academy in 2019.",
-    "clue3_ar": "أنا صانع ألعاب ألماني وُلد في شتوتغارت، وانضم إلى بايرن ميونخ من أكاديمية تشيلسي عام 2019.",
-    "status": "approved",
-    "notes": ""
-  },
   "580451": {
     "name": "Martin Baturina",
     "clue1_en": "I was born in Zürich and came through Dinamo Zagreb's academy.",
@@ -14780,17 +14571,6 @@
     "clue2_ar": "جعلني مارسيليا أغلى صفقة في تاريخه بـ32 مليون يورو في يناير 2023.",
     "clue3_en": "I'm a Portuguese striker at Genoa who shares a nickname with a PSG midfielder.",
     "clue3_ar": "أنا مهاجم برتغالي في جنوى أحمل اللقب نفسه الذي يحمله لاعب وسط في باريس سان جيرمان.",
-    "status": "approved",
-    "notes": ""
-  },
-  "591916": {
-    "name": "Aitor Paredes",
-    "clue1_en": "I started at Basconia, my club's feeder team, in the fourth tier.",
-    "clue1_ar": "بدأت مع باسكونيا، الفريق الرديف لناديي، في الدرجة الرابعة.",
-    "clue2_en": "I won the 2024 Copa del Rey, my club's first in 40 years.",
-    "clue2_ar": "فزت بكأس ملك إسبانيا 2024، الأولى لناديي منذ 40 عاماً.",
-    "clue3_en": "I'm a Spanish centre-back who has only ever played for Athletic Club.",
-    "clue3_ar": "أنا قلب دفاع إسباني لم ألعب إلا لأتلتيك بلباو.",
     "status": "approved",
     "notes": ""
   },
@@ -15344,17 +15124,6 @@
     "status": "approved",
     "notes": ""
   },
-  "636688": {
-    "name": "Alejandro Balde",
-    "clue1_en": "I was born in Catalonia to a father from Guinea-Bissau and a Dominican mother.",
-    "clue1_ar": "وُلدت في كتالونيا لأب من غينيا بيساو وأم دومينيكانية.",
-    "clue2_en": "I came through La Masia and played at the 2022 World Cup at 19.",
-    "clue2_ar": "تخرّجت في لاماسيا، ولعبت في كأس العالم 2022 وأنا في التاسعة عشرة.",
-    "clue3_en": "I'm a Spanish left-back who broke into Barcelona's first team in 2022.",
-    "clue3_ar": "أنا ظهير أيسر إسباني دخلت الفريق الأول لبرشلونة عام 2022.",
-    "status": "approved",
-    "notes": ""
-  },
   "636695": {
     "name": "Marc Casado",
     "clue1_en": "I came through La Masia and captained the reserve team.",
@@ -15432,17 +15201,6 @@
     "status": "approved",
     "notes": "dataset says permanent Coventry move 2026, not used"
   },
-  "646740": {
-    "name": "Gavi",
-    "clue1_en": "I left Real Betis's academy for a Spanish giant at 11. At 17, I became Spain's youngest ever international.",
-    "clue1_ar": "تركت أكاديمية ريال بيتيس إلى نادٍ إسباني عملاق في الحادية عشرة. وفي السابعة عشرة، أصبحت أصغر لاعب دولي في تاريخ إسبانيا.",
-    "clue2_en": "In 2022, I won the Golden Boy and the Kopa Trophy.",
-    "clue2_ar": "في 2022، فزت بجائزتي الفتى الذهبي وكوبا.",
-    "clue3_en": "I'm a Spanish midfielder who came through La Masia and broke into Barcelona's first team in 2021.",
-    "clue3_ar": "أنا لاعب وسط إسباني تخرّجت في لاماسيا ودخلت الفريق الأول لبرشلونة عام 2021.",
-    "status": "approved",
-    "notes": ""
-  },
   "646750": {
     "name": "Cristhian Mosquera",
     "clue1_en": "I was born in Alicante to Colombian parents and came through Valencia's academy.",
@@ -15519,17 +15277,6 @@
     "clue3_ar": "أنا قلب دفاع برتغالي انضممت إلى بورنموث من بنفيكا عام 2026.",
     "status": "approved",
     "notes": "verify: 2026 Bournemouth move from the dataset"
-  },
-  "651580": {
-    "name": "Matvey Kislyak",
-    "clue1_en": "I came through CSKA Moscow's academy.",
-    "clue1_ar": "تخرّجت في أكاديمية سسكا موسكو.",
-    "clue2_en": "I broke into my club's midfield as a teenager in 2024.",
-    "clue2_ar": "دخلت خط وسط ناديي الأساسي وأنا مراهق عام 2024.",
-    "clue3_en": "I'm a young Russian midfielder who plays for CSKA Moscow.",
-    "clue3_ar": "أنا لاعب وسط روسي شاب ألعب لسسكا موسكو.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
   },
   "652275": {
     "name": "Hakon Arnar Haraldsson",
@@ -16081,17 +15828,6 @@
     "status": "approved",
     "notes": "verify: 2026 Leipzig move from the dataset"
   },
-  "701057": {
-    "name": "Rico Lewis",
-    "clue1_en": "I joined my boyhood club's academy at eight.",
-    "clue1_ar": "انضممت إلى أكاديمية نادي طفولتي في الثامنة.",
-    "clue2_en": "At 17, I scored on my Champions League debut.",
-    "clue2_ar": "في السابعة عشرة، سجّلت في أول مباراة لي بدوري الأبطال.",
-    "clue3_en": "I'm an England full-back from Manchester City's academy who won the 2023 treble.",
-    "clue3_ar": "أنا ظهير إنجليزي من أكاديمية مانشستر سيتي فزت بثلاثية 2023.",
-    "status": "approved",
-    "notes": ""
-  },
   "701979": {
     "name": "Geny Catamo",
     "clue1_en": "I was born in Mozambique and started in Portugal's lower leagues at Amora.",
@@ -16146,17 +15882,6 @@
     "clue3_ar": "أنا جناح فرنسي انضممت إلى ليفربول من باريس سان جيرمان عام 2026 مقابل 125 مليون يورو.",
     "status": "approved",
     "notes": "verify: brother Malcolm; 2026 Liverpool move from the dataset"
-  },
-  "709187": {
-    "name": "Nico Williams",
-    "clue1_en": "My parents crossed the Sahara from Ghana. My older brother plays for Ghana, and we play together for our club.",
-    "clue1_ar": "عبر والداي الصحراء الكبرى من غانا. وأخي الأكبر يلعب لمنتخب غانا، ونلعب معاً في ناديينا.",
-    "clue2_en": "I scored in the Euro 2024 final and was named player of the match.",
-    "clue2_ar": "سجّلت في نهائي يورو 2024، واختِرت رجل المباراة.",
-    "clue3_en": "I'm a Spanish winger who has spent my career at Athletic Club in Bilbao.",
-    "clue3_ar": "أنا جناح إسباني قضيت مسيرتي في أتلتيك بلباو.",
-    "status": "approved",
-    "notes": ""
   },
   "709372": {
     "name": "Carlos Romero",
@@ -16356,17 +16081,6 @@
     "status": "approved",
     "notes": ""
   },
-  "730893": {
-    "name": "Tyrick Mitchell",
-    "clue1_en": "I was released when Brentford closed their academy, so I joined a south London club.",
-    "clue1_ar": "استُغني عني حين أغلق برينتفورد أكاديميته، فانضممت إلى نادٍ في جنوب لندن.",
-    "clue2_en": "I won the 2025 FA Cup and made my England debut in 2022.",
-    "clue2_ar": "فزت بكأس الاتحاد الإنجليزي 2025، وخضت أول مباراة مع إنجلترا عام 2022.",
-    "clue3_en": "I'm an English left-back who has spent my career at Crystal Palace.",
-    "clue3_ar": "أنا ظهير أيسر إنجليزي قضيت مسيرتي في كريستال بالاس.",
-    "status": "approved",
-    "notes": "verify: Brentford academy release"
-  },
   "733576": {
     "name": "Alberto Moleiro",
     "clue1_en": "I was born in Tenerife and came through Las Palmas' academy.",
@@ -16487,17 +16201,6 @@
     "clue3_ar": "أنا جناح بلجيكي انضممت إلى سندرلاند من ليون عام 2026.",
     "status": "approved",
     "notes": "verify: 2026 Sunderland move from the dataset"
-  },
-  "743413": {
-    "name": "Nico O'Reilly",
-    "clue1_en": "I joined my hometown club's academy as a young boy. I started out in midfield.",
-    "clue1_ar": "انضممت إلى أكاديمية نادي مدينتي وأنا طفل صغير. وبدأت لاعب وسط.",
-    "clue2_en": "I broke into the first team in 2024 and was converted to left-back.",
-    "clue2_ar": "دخلت الفريق الأول عام 2024، وتحوّلت إلى مركز الظهير الأيسر.",
-    "clue3_en": "I'm an England left-back from Manchester City's academy.",
-    "clue3_ar": "أنا ظهير أيسر إنجليزي من أكاديمية مانشستر سيتي.",
-    "status": "approved",
-    "notes": "little-known player: check all facts"
   },
   "743498": {
     "name": "Wilson Odobert",
@@ -16653,17 +16356,6 @@
     "status": "approved",
     "notes": ""
   },
-  "775605": {
-    "name": "Pablo Barrios",
-    "clue1_en": "I spent years in my city rivals' academy before switching clubs as a teenager.",
-    "clue1_ar": "قضيت سنوات في أكاديمية غريم مدينتنا قبل أن أنتقل وأنا مراهق.",
-    "clue2_en": "I broke into Diego Simeone's midfield in 2023.",
-    "clue2_ar": "دخلت خط وسط دييغو سيميوني عام 2023.",
-    "clue3_en": "I'm a Spanish midfielder who came through Atlético Madrid's academy.",
-    "clue3_ar": "أنا لاعب وسط إسباني تخرّجت في أكاديمية أتلتيكو مدريد.",
-    "status": "approved",
-    "notes": "verify: Real Madrid academy before Atlético"
-  },
   "776890": {
     "name": "Nicolas Jackson",
     "clue1_en": "I was born in Gambia, grew up in Senegal and started in Spain's second tier at Mirandés.",
@@ -16707,17 +16399,6 @@
     "clue3_ar": "أنا جناح سويدي انضممت إلى برشلونة مقابل 2.5 مليون يورو عام 2025.",
     "status": "approved",
     "notes": ""
-  },
-  "792380": {
-    "name": "Aleksandar Pavlovic",
-    "clue1_en": "I was born in Munich, and my father was a Serbian footballer. I joined my local giant's academy at seven.",
-    "clue1_ar": "وُلدت في ميونخ، وكان والدي لاعب كرة صربياً. وانضممت إلى أكاديمية النادي الكبير في مدينتي في السابعة.",
-    "clue2_en": "Thomas Tuchel gave me my first-team chance in 2023, and I played for Germany a year later.",
-    "clue2_ar": "منحني توماس توخيل فرصتي الأولى مع الفريق الأول عام 2023، ولعبت لمنتخب ألمانيا بعد عام.",
-    "clue3_en": "I'm a German midfielder from Munich who came through Bayern's academy.",
-    "clue3_ar": "أنا لاعب وسط ألماني من ميونخ تخرّجت في أكاديمية بايرن.",
-    "status": "approved",
-    "notes": "verify: joined Bayern academy aged 7"
   },
   "796297": {
     "name": "Jobe Bellingham",
@@ -16818,17 +16499,6 @@
     "status": "approved",
     "notes": "this is the midfielder (born 2001), not the defender"
   },
-  "810092": {
-    "name": "Warren Zaire-Emery",
-    "clue1_en": "I grew up in Montreuil. At 16, I became the youngest player ever to appear for my club.",
-    "clue1_ar": "نشأت في مونتروي. وفي السادسة عشرة، أصبحت أصغر لاعب يشارك في تاريخ ناديي.",
-    "clue2_en": "At 17, I became France's youngest international since 1914.",
-    "clue2_ar": "في السابعة عشرة، أصبحت أصغر لاعب دولي في تاريخ فرنسا منذ عام 1914.",
-    "clue3_en": "I'm a French midfielder from PSG's academy who won the Champions League in 2025.",
-    "clue3_ar": "أنا لاعب وسط فرنسي من أكاديمية باريس سان جيرمان فزت بدوري الأبطال عام 2025.",
-    "status": "approved",
-    "notes": "verify: PSG youngest player; France youngest since 1914 (2023)"
-  },
   "810895": {
     "name": "Eliesse Ben Seghir",
     "clue1_en": "I was born in Saint-Tropez and came through Monaco's academy.",
@@ -16862,17 +16532,6 @@
     "status": "approved",
     "notes": "dataset says Aston Villa 2026, not used"
   },
-  "813137": {
-    "name": "Niccolo Pisilli",
-    "clue1_en": "I came through my hometown club's academy in Rome.",
-    "clue1_ar": "تخرّجت في أكاديمية نادي مدينتي في روما.",
-    "clue2_en": "I scored in the Europa League as a teenager in 2024.",
-    "clue2_ar": "سجّلت في الدوري الأوروبي وأنا مراهق عام 2024.",
-    "clue3_en": "I'm an Italian midfielder from Roma's academy.",
-    "clue3_ar": "أنا لاعب وسط إيطالي من أكاديمية روما.",
-    "status": "approved",
-    "notes": ""
-  },
   "816585": {
     "name": "Can Uzun",
     "clue1_en": "I was born in Germany and started at Nürnberg, scoring often as a teenager.",
@@ -16894,17 +16553,6 @@
     "clue3_ar": "أنا مهاجم ألماني انضممت إلى شتوتغارت عام 2026.",
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
-  },
-  "820374": {
-    "name": "Kobbie Mainoo",
-    "clue1_en": "I was born in Stockport to Ghanaian parents and joined my club's academy as a young boy.",
-    "clue1_ar": "وُلدت في ستوكبورت لأبوين غانيين، وانضممت إلى أكاديمية ناديي وأنا طفل صغير.",
-    "clue2_en": "I scored in the 2024 FA Cup final win against our city rivals and started the Euro 2024 final.",
-    "clue2_ar": "سجّلت في نهائي كأس الاتحاد الإنجليزي 2024 الذي فزنا به على جارنا في المدينة، وبدأت أساسياً في نهائي يورو 2024.",
-    "clue3_en": "I'm an England midfielder who came through Manchester United's academy.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي تخرّجت في أكاديمية مانشستر يونايتد.",
-    "status": "approved",
-    "notes": ""
   },
   "822959": {
     "name": "Tom Bischof",
@@ -16972,17 +16620,6 @@
     "status": "approved",
     "notes": ""
   },
-  "834764": {
-    "name": "Javi Guerra",
-    "clue1_en": "I came through my hometown club's academy.",
-    "clue1_ar": "تخرّجت في أكاديمية نادي مدينتي.",
-    "clue2_en": "I broke into the first team in 2023 and became a key midfielder.",
-    "clue2_ar": "دخلت الفريق الأول عام 2023، وأصبحت لاعب وسط أساسياً.",
-    "clue3_en": "I'm a Spanish midfielder who plays for Valencia.",
-    "clue3_ar": "أنا لاعب وسط إسباني ألعب لفالنسيا.",
-    "status": "approved",
-    "notes": ""
-  },
   "842341": {
     "name": "Maxime Esteve",
     "clue1_en": "I came through my hometown club, Montpellier.",
@@ -17013,17 +16650,6 @@
     "clue2_ar": "انتقلت إلى البرازيل عام 2022.",
     "clue3_en": "I'm an Argentine striker who plays for Palmeiras.",
     "clue3_ar": "أنا مهاجم أرجنتيني ألعب لبالميراس.",
-    "status": "approved",
-    "notes": ""
-  },
-  "845654": {
-    "name": "Kenan Yildiz",
-    "clue1_en": "I was born in Germany and left Bayern Munich's academy for Italy at 17.",
-    "clue1_ar": "وُلدت في ألمانيا، وتركت أكاديمية بايرن ميونخ إلى إيطاليا في السابعة عشرة.",
-    "clue2_en": "I chose to play for Türkiye over Germany and played at Euro 2024.",
-    "clue2_ar": "اخترت تمثيل تركيا بدلاً من ألمانيا، ولعبت في يورو 2024.",
-    "clue3_en": "I'm a Turkish forward who broke into Juventus's first team in 2023.",
-    "clue3_ar": "أنا مهاجم تركي دخلت الفريق الأول ليوفنتوس عام 2023.",
     "status": "approved",
     "notes": ""
   },
@@ -17093,17 +16719,6 @@
     "status": "approved",
     "notes": "dataset says Fiorentina 2026, not used"
   },
-  "859035": {
-    "name": "Kees Smit",
-    "clue1_en": "I came through AZ Alkmaar's academy.",
-    "clue1_ar": "تخرّجت في أكاديمية ألكمار.",
-    "clue2_en": "I broke into the first team as a teenager in 2024.",
-    "clue2_ar": "دخلت الفريق الأول وأنا مراهق عام 2024.",
-    "clue3_en": "I'm a Dutch midfielder who plays for AZ.",
-    "clue3_ar": "أنا لاعب وسط هولندي ألعب لألكمار.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
   "861410": {
     "name": "Arda Guler",
     "clue1_en": "I grew up in Ankara and played in Gençlerbirliği's youth teams before moving to Istanbul.",
@@ -17159,17 +16774,6 @@
     "status": "approved",
     "notes": ""
   },
-  "867688": {
-    "name": "Jack Hinshelwood",
-    "clue1_en": "My father and grandfather were also footballers, and I came through my local club's academy.",
-    "clue1_ar": "كان والدي وجدي لاعبي كرة أيضاً، وتخرّجت في أكاديمية النادي المحلي.",
-    "clue2_en": "I broke into the first team as a teenager in 2023-24.",
-    "clue2_ar": "دخلت الفريق الأول وأنا مراهق في موسم 2023-24.",
-    "clue3_en": "I'm an English midfielder who plays for Brighton.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي ألعب لبرايتون.",
-    "status": "approved",
-    "notes": "little-known player: verify family"
-  },
   "872171": {
     "name": "Lucas Beraldo",
     "clue1_en": "I came through São Paulo's academy.",
@@ -17203,17 +16807,6 @@
     "status": "approved",
     "notes": "facts from the dataset"
   },
-  "887638": {
-    "name": "Davide Bartesaghi",
-    "clue1_en": "I came through my club's academy in Milan.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في ميلانو.",
-    "clue2_en": "I played for the club's second team, then broke into the first team in 2025.",
-    "clue2_ar": "لعبت للفريق الثاني للنادي، ثم دخلت الفريق الأول عام 2025.",
-    "clue3_en": "I'm an Italian left-back who plays for AC Milan.",
-    "clue3_ar": "أنا ظهير أيسر إيطالي ألعب لميلان.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
   "890290": {
     "name": "Dean Huijsen",
     "clue1_en": "I was born in Amsterdam and grew up in Málaga. I joined Juventus's academy at 16.",
@@ -17233,17 +16826,6 @@
     "clue2_ar": "سجّلت أولى أهدافي في الدوري الإنجليزي موسم 2024-25 وأنا في السابعة عشرة.",
     "clue3_en": "I'm an England attacking midfielder from Arsenal's academy.",
     "clue3_ar": "أنا لاعب وسط هجومي إنجليزي من أكاديمية أرسنال.",
-    "status": "approved",
-    "notes": ""
-  },
-  "890721": {
-    "name": "Myles Lewis-Skelly",
-    "clue1_en": "I joined my club's academy as a boy and made my first-team debut at 18.",
-    "clue1_ar": "انضممت إلى أكاديمية ناديي وأنا طفل، وخضت أول مباراة مع الفريق الأول في الثامنة عشرة.",
-    "clue2_en": "I scored on my England debut at Wembley in 2025.",
-    "clue2_ar": "سجّلت في أول مباراة لي مع إنجلترا على ملعب ويمبلي عام 2025.",
-    "clue3_en": "I'm an England left-back who came through Arsenal's academy.",
-    "clue3_ar": "أنا ظهير أيسر إنجليزي تخرّجت في أكاديمية أرسنال.",
     "status": "approved",
     "notes": ""
   },
@@ -17334,17 +16916,6 @@
     "clue3_ar": "أنا لاعب وسط مغربي انضممت إلى روما من لانس عام 2025.",
     "status": "approved",
     "notes": "dataset says Leipzig 2026, not used"
-  },
-  "903693": {
-    "name": "Senny Mayulu",
-    "clue1_en": "I joined my club's academy from a local side in Épinay.",
-    "clue1_ar": "انضممت إلى أكاديمية ناديي قادماً من فريق محلي في إبيناي.",
-    "clue2_en": "I came off the bench and scored the fifth goal in a 5–0 Champions League final win in 2025.",
-    "clue2_ar": "دخلت بديلاً وسجّلت الهدف الخامس في الفوز 5–0 بنهائي دوري الأبطال 2025.",
-    "clue3_en": "I'm a French midfielder from PSG's academy.",
-    "clue3_ar": "أنا لاعب وسط فرنسي من أكاديمية باريس سان جيرمان.",
-    "status": "approved",
-    "notes": ""
   },
   "904802": {
     "name": "Jorrel Hato",
@@ -17456,17 +17027,6 @@
     "status": "approved",
     "notes": "verify: family (Frank, Eddie and Andy Gray)"
   },
-  "922769": {
-    "name": "Lewis Miley",
-    "clue1_en": "I grew up in County Durham and joined my local club's academy.",
-    "clue1_ar": "نشأت في مقاطعة دورهام، وانضممت إلى أكاديمية النادي المحلي.",
-    "clue2_en": "At 17, I became one of my club's youngest ever Premier League starters.",
-    "clue2_ar": "في السابعة عشرة، أصبحت من أصغر اللاعبين الأساسيين في تاريخ ناديي بالدوري الإنجليزي.",
-    "clue3_en": "I'm an English midfielder from Newcastle's academy.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي من أكاديمية نيوكاسل.",
-    "status": "approved",
-    "notes": ""
-  },
   "923831": {
     "name": "Leny Yoro",
     "clue1_en": "I made my debut for Lille at 16 and became a starter at 18.",
@@ -17477,17 +17037,6 @@
     "clue3_ar": "أنا قلب دفاع فرنسي انضممت إلى مانشستر يونايتد من ليل عام 2024 مقابل 62 مليون يورو.",
     "status": "approved",
     "notes": ""
-  },
-  "923945": {
-    "name": "Noahkai Banks",
-    "clue1_en": "I was born in Hawaii and moved to Germany as a boy.",
-    "clue1_ar": "وُلدت في هاواي، وانتقلت إلى ألمانيا وأنا صغير.",
-    "clue2_en": "I came through my club's academy and made my Bundesliga debut as a teenager.",
-    "clue2_ar": "تخرّجت في أكاديمية ناديي، وخضت أول مباراة في البوندسليغا وأنا مراهق.",
-    "clue3_en": "I'm an American centre-back who plays for Augsburg.",
-    "clue3_ar": "أنا قلب دفاع أمريكي ألعب لأوغسبورغ.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
   },
   "924117": {
     "name": "Finn Jeltsch",
@@ -17621,17 +17170,6 @@
     "status": "approved",
     "notes": "facts mostly from the dataset"
   },
-  "935245": {
-    "name": "Raul Asencio",
-    "clue1_en": "I grew up in Gran Canaria and joined a big academy in Spain's capital as a teenager.",
-    "clue1_ar": "نشأت في غران كناريا، وانضممت إلى أكاديمية كبيرة في العاصمة الإسبانية وأنا مراهق.",
-    "clue2_en": "I broke into the first team in 2024-25 during a defensive injury crisis.",
-    "clue2_ar": "دخلت الفريق الأول في موسم 2024-25 خلال أزمة إصابات في الدفاع.",
-    "clue3_en": "I'm a Spanish centre-back from Real Madrid's academy.",
-    "clue3_ar": "أنا قلب دفاع إسباني من أكاديمية ريال مدريد.",
-    "status": "approved",
-    "notes": ""
-  },
   "936874": {
     "name": "Tyrique George",
     "clue1_en": "I came through Chelsea's academy.",
@@ -17665,17 +17203,6 @@
     "status": "approved",
     "notes": "dataset says Real Sociedad 2026, not used"
   },
-  "937958": {
-    "name": "Lamine Yamal",
-    "clue1_en": "As a baby, I was bathed by a future world champion for a charity calendar photo. My father is Moroccan and my mother is from Equatorial Guinea.",
-    "clue1_ar": "وأنا رضيع، حمّمني بطل عالم مستقبلي في صورة لتقويم خيري. والدي مغربي ووالدتي من غينيا الاستوائية.",
-    "clue2_en": "At 16, I became the youngest scorer in European Championship history with a long-range strike against France.",
-    "clue2_ar": "في السادسة عشرة، أصبحت أصغر هداف في تاريخ بطولة أمم أوروبا بتسديدة بعيدة أمام فرنسا.",
-    "clue3_en": "A La Masia winger, I broke into Barcelona's first team at 15 and won Euro 2024 with Spain.",
-    "clue3_ar": "جناح من أكاديمية لاماسيا، دخلت الفريق الأول لبرشلونة في الخامسة عشرة وفزت بيورو 2024 مع إسبانيا.",
-    "status": "approved",
-    "notes": "verify: 2007 UNICEF calendar photo with Messi; Euro 2024 semi-final goal vs France"
-  },
   "938158": {
     "name": "Marc Guiu",
     "clue1_en": "I was born in Granollers and joined La Masia at seven.",
@@ -17686,17 +17213,6 @@
     "clue3_ar": "أنا مهاجم إسباني انضممت إلى تشيلسي مقابل 6 ملايين يورو عام 2024.",
     "status": "approved",
     "notes": "dataset says Leipzig 2026, not used"
-  },
-  "938729": {
-    "name": "Mikel Jauregizar",
-    "clue1_en": "I come from the fishing town of Bermeo and came through my club's academy.",
-    "clue1_ar": "أنحدر من بلدة الصيد بيرميو، وتخرّجت في أكاديمية ناديي.",
-    "clue2_en": "I broke into the first team in 2024-25 as we reached the Europa League semi-finals.",
-    "clue2_ar": "دخلت الفريق الأول موسم 2024-25 حين بلغنا نصف نهائي الدوري الأوروبي.",
-    "clue3_en": "I'm a Spanish midfielder who plays for Athletic Club.",
-    "clue3_ar": "أنا لاعب وسط إسباني ألعب لأتلتيك بلباو.",
-    "status": "approved",
-    "notes": ""
   },
   "939964": {
     "name": "Jean-Matteo Bahoya",
@@ -17731,17 +17247,6 @@
     "status": "approved",
     "notes": "verify: 2026 Palace move from the dataset"
   },
-  "947411": {
-    "name": "Chris Rigg",
-    "clue1_en": "At 16, I became my club's youngest ever scorer.",
-    "clue1_ar": "في السادسة عشرة، أصبحت أصغر هداف في تاريخ ناديي.",
-    "clue2_en": "I helped my club win promotion to the Premier League in 2025.",
-    "clue2_ar": "ساعدت ناديي على الصعود إلى الدوري الإنجليزي عام 2025.",
-    "clue3_en": "I'm an English midfielder from Sunderland's academy.",
-    "clue3_ar": "أنا لاعب وسط إنجليزي من أكاديمية سندرلاند.",
-    "status": "approved",
-    "notes": ""
-  },
   "948273": {
     "name": "Mario Martin",
     "clue1_en": "I was born in Sonseca near Toledo and came through Real Madrid's academy.",
@@ -17763,17 +17268,6 @@
     "clue3_ar": "أنا مهاجم طويل القامة خرجت معاراً إلى خيتافي وانضممت إلى إلتشي عام 2025.",
     "status": "approved",
     "notes": "dataset says Bournemouth 2026, not used"
-  },
-  "948278": {
-    "name": "Jacobo Ramon",
-    "clue1_en": "I came through Real Madrid's academy and played for their reserve team, Castilla.",
-    "clue1_ar": "تخرّجت في أكاديمية ريال مدريد، ولعبت لفريقه الرديف كاستيا.",
-    "clue2_en": "I made my first-team debut in 2025 and moved to Italy soon after.",
-    "clue2_ar": "خضت أول مباراة مع الفريق الأول عام 2025، وانتقلت إلى إيطاليا بعدها بقليل.",
-    "clue3_en": "I'm a Spanish centre-back who joined Como from Real Madrid in 2025.",
-    "clue3_ar": "أنا قلب دفاع إسباني انضممت إلى كومو من ريال مدريد عام 2025.",
-    "status": "approved",
-    "notes": "little-known player: check all facts"
   },
   "948279": {
     "name": "Chema Andres",
@@ -17851,17 +17345,6 @@
     "clue3_ar": "أنا مهاجم برازيلي انضممت إلى لايبزيغ عام 2025.",
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
-  },
-  "962110": {
-    "name": "Pau Cubarsi",
-    "clue1_en": "I come from a small village near Girona. I joined my club's academy at 11.",
-    "clue1_ar": "أنحدر من قرية صغيرة قرب جيرونا. وانضممت إلى أكاديمية ناديي في الحادية عشرة.",
-    "clue2_en": "At 16, I made my first-team debut and was soon starting in the Champions League.",
-    "clue2_ar": "في السادسة عشرة، خضت أول مباراة مع الفريق الأول، وسرعان ما صرت أساسياً في دوري الأبطال.",
-    "clue3_en": "I'm a Spanish centre-back who broke into Barcelona's first team at 16 in 2024.",
-    "clue3_ar": "أنا قلب دفاع إسباني دخلت الفريق الأول لبرشلونة في السادسة عشرة عام 2024.",
-    "status": "approved",
-    "notes": "verify: joined La Masia aged 11"
   },
   "964426": {
     "name": "Christos Mouzakitis",
@@ -18039,17 +17522,6 @@
     "status": "approved",
     "notes": ""
   },
-  "997903": {
-    "name": "Givairo Read",
-    "clue1_en": "I came through my club's academy in Rotterdam.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في روتردام.",
-    "clue2_en": "I broke into the first team at 18 in 2024.",
-    "clue2_ar": "دخلت الفريق الأول في الثامنة عشرة عام 2024.",
-    "clue3_en": "I'm a Dutch right-back who plays for Feyenoord.",
-    "clue3_ar": "أنا ظهير أيمن هولندي ألعب لفينورد.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
   "1000674": {
     "name": "Gianluca Prestianni",
     "clue1_en": "I made my debut for Vélez Sarsfield at 16.",
@@ -18071,17 +17543,6 @@
     "clue3_ar": "أنا قلب دفاع فرنسي انضممت إلى ليفربول من رين عام 2026.",
     "status": "approved",
     "notes": "facts from the dataset"
-  },
-  "1004708": {
-    "name": "Josh Acheampong",
-    "clue1_en": "I came through my club's academy in London.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في لندن.",
-    "clue2_en": "I made my first-team debut in 2024 at 18.",
-    "clue2_ar": "خضت أول مباراة مع الفريق الأول عام 2024 في الثامنة عشرة.",
-    "clue3_en": "I'm an English defender from Chelsea's academy.",
-    "clue3_ar": "أنا مدافع إنجليزي من أكاديمية تشيلسي.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
   },
   "1004725": {
     "name": "William Gomes",
@@ -18138,17 +17599,6 @@
     "status": "approved",
     "notes": "dataset says Toulouse 2026, not used"
   },
-  "1011131": {
-    "name": "Josh King",
-    "clue1_en": "I joined my club's academy as a boy and made my first-team debut at 17.",
-    "clue1_ar": "انضممت إلى أكاديمية ناديي وأنا طفل، وخضت أول مباراة مع الفريق الأول في السابعة عشرة.",
-    "clue2_en": "I made my Premier League debut in 2024.",
-    "clue2_ar": "خضت أول مباراة لي في الدوري الإنجليزي عام 2024.",
-    "clue3_en": "I'm an English attacking midfielder from Fulham's academy.",
-    "clue3_ar": "أنا لاعب وسط هجومي إنجليزي من أكاديمية فولهام.",
-    "status": "approved",
-    "notes": "little-known player: check all facts"
-  },
   "1012534": {
     "name": "Yankuba Minteh",
     "clue1_en": "I left Gambia for Odense in Denmark at 17.",
@@ -18171,28 +17621,6 @@
     "status": "approved",
     "notes": "little-known player: facts from the dataset, check clue 2"
   },
-  "1018920": {
-    "name": "Marc Bernal",
-    "clue1_en": "I came through La Masia from the town of Berga.",
-    "clue1_ar": "تخرّجت في لاماسيا قادماً من بلدة بيرغا.",
-    "clue2_en": "At 17, I started three league games before tearing my knee ligaments in 2024.",
-    "clue2_ar": "في السابعة عشرة، بدأت ثلاث مباريات في الدوري قبل أن تتمزق أربطة ركبتي عام 2024.",
-    "clue3_en": "I'm a Spanish midfielder who broke into Barcelona's first team in 2024.",
-    "clue3_ar": "أنا لاعب وسط إسباني دخلت الفريق الأول لبرشلونة عام 2024.",
-    "status": "approved",
-    "notes": ""
-  },
-  "1018938": {
-    "name": "Jon Martin",
-    "clue1_en": "I came through my hometown club's academy in San Sebastián.",
-    "clue1_ar": "تخرّجت في أكاديمية نادي مدينتي سان سيباستيان.",
-    "clue2_en": "I broke into the first team at 18.",
-    "clue2_ar": "دخلت الفريق الأول في الثامنة عشرة.",
-    "clue3_en": "I'm a Spanish centre-back who plays for Real Sociedad.",
-    "clue3_ar": "أنا قلب دفاع إسباني ألعب لريال سوسيداد.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
   "1020191": {
     "name": "Ismaelo Ganiou",
     "clue1_en": "I came through my club's academy and went on loan to Padova and Annecy.",
@@ -18201,17 +17629,6 @@
     "clue2_ar": "عدت إلى ناديي عام 2025.",
     "clue3_en": "I'm a French centre-back who plays for Lens.",
     "clue3_ar": "أنا قلب دفاع فرنسي ألعب للانس.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
-  "1029227": {
-    "name": "Breno Bidon",
-    "clue1_en": "I came through my club's academy in São Paulo.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في ساو باولو.",
-    "clue2_en": "I broke into the first team in 2024.",
-    "clue2_ar": "دخلت الفريق الأول عام 2024.",
-    "clue3_en": "I'm a Brazilian midfielder who plays for Corinthians.",
-    "clue3_ar": "أنا لاعب وسط برازيلي ألعب لكورينثيانز.",
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
   },
@@ -18325,28 +17742,6 @@
     "status": "approved",
     "notes": "verify: Filipino mother; 2026 PSG move is from the dataset"
   },
-  "1073632": {
-    "name": "Vasilije Kostov",
-    "clue1_en": "I came through my hometown club's academy in Belgrade.",
-    "clue1_ar": "تخرّجت في أكاديمية نادي مدينتي في بلغراد.",
-    "clue2_en": "I broke into the first team at 16 in 2025.",
-    "clue2_ar": "دخلت الفريق الأول في السادسة عشرة عام 2025.",
-    "clue3_en": "I'm a Serbian playmaker who plays for Red Star Belgrade.",
-    "clue3_ar": "أنا صانع ألعاب صربي ألعب للنجم الأحمر بلغراد.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
-  "1075147": {
-    "name": "Lennart Karl",
-    "clue1_en": "I was born in 2008 near Frankfurt and joined a big Bavarian academy as a young teenager.",
-    "clue1_ar": "وُلدت عام 2008 قرب فرانكفورت، وانضممت إلى أكاديمية بافارية كبيرة وأنا في بداية المراهقة.",
-    "clue2_en": "I made my Bundesliga debut at 17 in 2025.",
-    "clue2_ar": "خضت أول مباراة لي في البوندسليغا في السابعة عشرة عام 2025.",
-    "clue3_en": "I'm a German attacking midfielder who broke into Bayern Munich's first team in 2025.",
-    "clue3_ar": "أنا لاعب وسط هجومي ألماني دخلت الفريق الأول لبايرن ميونخ عام 2025.",
-    "status": "approved",
-    "notes": "little-known player: check all facts"
-  },
   "1075577": {
     "name": "Joane Gadou",
     "clue1_en": "I left the Paris region for Salzburg at 17.",
@@ -18368,17 +17763,6 @@
     "clue3_ar": "أنا قلب دفاع إيطالي انضممت إلى كريستال بالاس من أتالانتا عام 2026.",
     "status": "approved",
     "notes": "facts mostly from the dataset"
-  },
-  "1078163": {
-    "name": "Ayden Heaven",
-    "clue1_en": "I came through Arsenal's academy.",
-    "clue1_ar": "تخرّجت في أكاديمية أرسنال.",
-    "clue2_en": "I made my Arsenal debut in 2024, then moved north in 2025.",
-    "clue2_ar": "خضت أول مباراة مع أرسنال عام 2024، ثم انتقلت شمالاً عام 2025.",
-    "clue3_en": "I'm an English centre-back who plays for Manchester United.",
-    "clue3_ar": "أنا قلب دفاع إنجليزي ألعب لمانشستر يونايتد.",
-    "status": "approved",
-    "notes": ""
   },
   "1082631": {
     "name": "Allan",
@@ -18446,17 +17830,6 @@
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
   },
-  "1108466": {
-    "name": "Rio Ngumoha",
-    "clue1_en": "I left Chelsea's academy for a northern club at 15.",
-    "clue1_ar": "تركت أكاديمية تشيلسي إلى نادٍ في الشمال في الخامسة عشرة.",
-    "clue2_en": "At 16, I came off the bench on my Premier League debut and scored a stoppage-time winner at Newcastle.",
-    "clue2_ar": "في السادسة عشرة، دخلت بديلاً في أول مباراة لي بالدوري الإنجليزي، وسجّلت هدف الفوز في الوقت بدل الضائع بملعب نيوكاسل.",
-    "clue3_en": "I'm an England winger who became Liverpool's youngest ever Premier League scorer in 2025.",
-    "clue3_ar": "أنا جناح إنجليزي أصبحت أصغر هداف في تاريخ ليفربول بالدوري الإنجليزي عام 2025.",
-    "status": "approved",
-    "notes": "verify: debut goal at Newcastle, August 2025"
-  },
   "1111589": {
     "name": "El Hadji Malick Diouf",
     "clue1_en": "I left Senegal for Tromsø in Norway.",
@@ -18467,17 +17840,6 @@
     "clue3_ar": "أنا ظهير أيسر سنغالي انضممت إلى وست هام من سلافيا براغ عام 2025.",
     "status": "approved",
     "notes": "dataset says Brentford 2026, not used"
-  },
-  "1130514": {
-    "name": "Samir El Mourabet",
-    "clue1_en": "I was born in the city where I play and joined my club's academy as a boy.",
-    "clue1_ar": "وُلدت في المدينة التي ألعب فيها، وانضممت إلى أكاديمية ناديي صغيراً.",
-    "clue2_en": "I made my Ligue 1 debut in 2025.",
-    "clue2_ar": "خضت أول مباراة لي في الدوري الفرنسي عام 2025.",
-    "clue3_en": "I'm a Moroccan midfielder who plays for Strasbourg, my hometown club.",
-    "clue3_ar": "أنا لاعب وسط مغربي ألعب لستراسبورغ، نادي مدينتي.",
-    "status": "approved",
-    "notes": "little-known player; facts from the dataset"
   },
   "1138758": {
     "name": "Geovany Quenda",
@@ -18500,17 +17862,6 @@
     "clue3_ar": "أنا قلب دفاع أرجنتيني من تشيلسي خرجت معاراً إلى دورتموند عام 2025.",
     "status": "approved",
     "notes": ""
-  },
-  "1155723": {
-    "name": "Gilberto Mora",
-    "clue1_en": "I made my debut for Club Tijuana at 15.",
-    "clue1_ar": "خضت أول مباراة مع نادي تيخوانا في الخامسة عشرة.",
-    "clue2_en": "At 16, I won the 2025 Gold Cup with Mexico.",
-    "clue2_ar": "في السادسة عشرة، فزت بالكأس الذهبية 2025 مع المكسيك.",
-    "clue3_en": "I'm a Mexican playmaker who plays for Tijuana.",
-    "clue3_ar": "أنا صانع ألعاب مكسيكي ألعب لتيخوانا.",
-    "status": "approved",
-    "notes": "verify: 2025 Gold Cup squad"
   },
   "1162012": {
     "name": "Oskar Pietuszewski",
@@ -18556,17 +17907,6 @@
     "status": "approved",
     "notes": "facts mostly from the dataset"
   },
-  "1187629": {
-    "name": "Max Dowman",
-    "clue1_en": "I was born on the last day of 2009 and joined my club's academy as a young boy.",
-    "clue1_ar": "وُلدت في آخر يوم من عام 2009، وانضممت إلى أكاديمية ناديي وأنا طفل صغير.",
-    "clue2_en": "I made my Premier League debut at 15 in 2025.",
-    "clue2_ar": "خضت أول مباراة لي في الدوري الإنجليزي في الخامسة عشرة عام 2025.",
-    "clue3_en": "I'm an England winger who became one of Arsenal's youngest ever players.",
-    "clue3_ar": "أنا جناح إنجليزي أصبحت من أصغر اللاعبين في تاريخ أرسنال.",
-    "status": "approved",
-    "notes": "verify: PL debut vs Leeds, August 2025"
-  },
   "1190411": {
     "name": "Jesus Rodriguez",
     "clue1_en": "I came through Real Betis's academy in my home city.",
@@ -18600,17 +17940,6 @@
     "status": "approved",
     "notes": "little-known player; verify: Luxembourg upbringing; 2026 move is from the dataset"
   },
-  "1230661": {
-    "name": "Mateus Mane",
-    "clue1_en": "I was born in Portugal and joined an English academy as a teenager.",
-    "clue1_ar": "وُلدت في البرتغال، وانضممت إلى أكاديمية إنجليزية وأنا مراهق.",
-    "clue2_en": "I broke into my club's first team at 17 in 2025.",
-    "clue2_ar": "دخلت الفريق الأول لناديي في السابعة عشرة عام 2025.",
-    "clue3_en": "I'm a Portuguese attacking midfielder who plays for Wolves.",
-    "clue3_ar": "أنا لاعب وسط هجومي برتغالي ألعب لوولفرهامبتون.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
-  },
   "1240763": {
     "name": "Caleb Yirenkyi",
     "clue1_en": "I was born in Bechem and came through the Right to Dream academy.",
@@ -18621,17 +17950,6 @@
     "clue3_ar": "أنا لاعب وسط غاني انضممت إلى كوفنتري مقابل 27 مليون يورو عام 2026.",
     "status": "approved",
     "notes": "little-known player; facts from the dataset"
-  },
-  "1241207": {
-    "name": "Tylel Tati",
-    "clue1_en": "I came through my club's academy in western France.",
-    "clue1_ar": "تخرّجت في أكاديمية ناديي في غرب فرنسا.",
-    "clue2_en": "I made my first-team debut at 17 in 2025.",
-    "clue2_ar": "خضت أول مباراة مع الفريق الأول في السابعة عشرة عام 2025.",
-    "clue3_en": "I'm a French centre-back who plays for Nantes.",
-    "clue3_ar": "أنا قلب دفاع فرنسي ألعب لنانت.",
-    "status": "approved",
-    "notes": "little-known player: facts from the dataset"
   },
   "1279526": {
     "name": "Christ Inao Oulai",
@@ -18654,17 +17972,6 @@
     "clue3_ar": "أنا مهاجم كاميروني ألعب لليفركوزن.",
     "status": "approved",
     "notes": "little-known player: facts from the dataset"
-  },
-  "1375227": {
-    "name": "Thiago Pitarch",
-    "clue1_en": "I was born in Fuenlabrada, just south of Spain's capital, in 2007.",
-    "clue1_ar": "وُلدت في فوينلابرادا، جنوب العاصمة الإسبانية، عام 2007.",
-    "clue2_en": "I played for my club's reserve team in 2025 before moving up to the first team.",
-    "clue2_ar": "لعبت للفريق الرديف لناديي عام 2025 قبل صعودي إلى الفريق الأول.",
-    "clue3_en": "I'm a Spanish teenage midfielder at Real Madrid.",
-    "clue3_ar": "أنا لاعب وسط إسباني مراهق في ريال مدريد.",
-    "status": "approved",
-    "notes": "little-known player; facts from the dataset"
   },
   "1390649": {
     "name": "Yan Diomande",

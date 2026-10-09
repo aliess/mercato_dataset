@@ -9,10 +9,12 @@ the World Cup (since 1986) and the Euros (since 1988), plus the matches listed i
 famous_matches.json. Each match gives two lineups (home and away).
 Only the eleven starters are included; substitutes are never answers.
 
-Difficulty goes by the team. Clubs: `beginner` for the biggest (ELITE_CLUB_IDS),
-`intermediate` for other clubs from the top five leagues, `expert` for the rest.
-National teams: `beginner` for the biggest nations (ELITE_NATION_IDS), `intermediate`
-for the rest. These are first guesses; change the constants to re-split.
+Difficulty goes by the team and the year (see difficulty()). Team: the biggest clubs and
+nations are easiest, other top-five-league clubs and other nations are a step harder,
+clubs from other leagues are hardest. Year: 2000–2009 is a step harder and anything
+before 2000 two steps, with one step back for finals and famous matches. So nothing
+before 2000 is `beginner`: the 1998 World Cup final is `intermediate`, a 1996 quarter-final
+is `expert`. Change the constants to re-split.
 
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
 extra fields: difficulty, round, leg, opponent, season, famous.
@@ -68,13 +70,26 @@ LINE = {
 POSITION_NAMES = {'Sweeper': 'Centre-Back'}  # the app has no sweeper
 
 
-def difficulty(club):
+# Older lineups have to be studied, not remembered: steps harder per era (first year, steps).
+ERA_STEPS = [(2010, 0), (2000, 1), (0, 2)]
+DIFFICULTIES = ['beginner', 'intermediate', 'expert']
+
+
+def team_step(club):
+    """0 for the biggest teams, 1 for the next group, 2 for the rest."""
     if club['baseDetails'].get('isNationalTeam'):
-        return 'beginner' if club['baseDetails'].get('countryId') in ELITE_NATION_IDS else 'intermediate'
+        return 0 if club['baseDetails'].get('countryId') in ELITE_NATION_IDS else 1
     if int(club['id']) in ELITE_CLUB_IDS:
-        return 'beginner'
+        return 0
     in_top5 = club['baseDetails'].get('countryId') in TOP5_COUNTRY_IDS or int(club['id']) in TOP5_LEAGUE_CLUB_IDS_ABROAD
-    return 'intermediate' if in_top5 else 'expert'
+    return 1 if in_top5 else 2
+
+
+def difficulty(club, year, famous):
+    era = next(steps for first_year, steps in ERA_STEPS if year >= first_year)
+    if famous:  # finals and famous matches are remembered longer
+        era = max(era - 1, 0)
+    return DIFFICULTIES[min(team_step(club) + era, 2)]
 
 
 def short_name(club):
@@ -203,14 +218,16 @@ def main():
                 skipped['not exactly one goalkeeper'] += 1
                 skipped_matches.append(f'{match_date} {competition} {short_name(club)} {game_id}')
                 continue
+            famous = picked[game_id] or round_name == 'final'
             formation, slots = place(starters, (game[f'{side}Club'].get('tactic') or {}).get('tactic'))
             matches.append({
                 'id': f'{game_id}-{side}', 'team': short_name(club), 'opponent': short_name(other),
                 'competition': f'{competition} {round_name}', 'round': round_name,
                 'leg': 1 if group.get('isFirstLeg') else 2 if group.get('isSecondLeg') else None,
                 'season': base['season']['display'], 'year': int(match_date[:4]), 'date': match_date,
-                'score': score, 'formation': formation, 'difficulty': difficulty(club),
-                'famous': picked[game_id] or round_name == 'final', 'slots': slots,
+                'score': score, 'formation': formation,
+                'difficulty': difficulty(club, int(match_date[:4]), famous),
+                'famous': famous, 'slots': slots,
             })
 
     out = MODE_DIR / 'output' / 'xi_lineups.json'
