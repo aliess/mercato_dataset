@@ -5,5 +5,12 @@
     "matches": 560,
     "latest_match": "2026-07-19",
     "source": "Transfermarkt API"
+  },
+  "synced": {
+    "football-quiz-32eb9": {
+      "date": "2026-10-09",
+      "lineups": 1120,
+      "matches": 560
+    }
   }
 }
