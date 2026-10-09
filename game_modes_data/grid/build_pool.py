@@ -28,6 +28,7 @@ MODE_DIR = Path(__file__).resolve().parent
 ROOT = MODE_DIR.parents[1]
 sys.path.insert(0, str(ROOT))
 
+from sources.country_names import canonical
 from sources.last_updated import record
 from sources.tm_api import TransfermarktAPI
 
@@ -91,6 +92,21 @@ def main():
     players = old.players(spells)
     clubs = old.clubs(club_ids)
     countries = pd.read_csv(ROOT / 'sources' / 'dataset' / 'countries.csv.gz').set_index('country_id')['country_name'].to_dict()
+
+    # The API has no country names. They are learned from players the dataset names: the
+    # citizenship most players with that nationality id have. Those are the same names the
+    # quiz pool uses, so Grid's nationality
+    # columns match. The countries table only fills ids no dataset player has.
+    citizenship = pd.read_csv(ROOT / 'sources' / 'dataset' / 'players.csv.gz',
+                              usecols=['player_id', 'country_of_citizenship']).dropna()
+    votes = defaultdict(Counter)
+    for row in citizenship.itertuples():
+        player = players.get(str(row.player_id))
+        nation_id = player and ((player.get('nationalityDetails') or {}).get('nationalities') or {}).get('nationalityId')
+        if nation_id:
+            votes[nation_id][row.country_of_citizenship] += 1
+    countries.update({nation_id: names.most_common(1)[0][0] for nation_id, names in votes.items()})
+    countries = {country_id: canonical(name) for country_id, name in countries.items()}
 
     unnamed_nations, missing = Counter(), 0
     rows = []

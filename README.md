@@ -34,7 +34,7 @@ Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
 | `players?ids[]=…` (up to 500 ids) | Profile, current club, market value history | transfer history |
 | `clubs?ids[]=…` | Name, short name, country, `clubTypeId` (1 = first team), `mainClubId` | transfer history |
 | `transfer/history/player/{id}` | Every transfer, loan, return and retirement, with fee and date | transfer history |
-| `club/{id}/squad?season=2005` | First-team squad of 2005/06, back to at least 1975. `seasonId=` is ignored (returns the current squad) | planned: grid |
+| `club/{id}/squad?season=2005` | First-team squad of 2005/06, back to at least 1975. `seasonId=` is ignored (returns the current squad) | grid |
 | `games?ids[]=…`, `game/{id}` | Match with both starting lineups, formation, score and every goal; old and national-team matches too. The score includes shootout penalties (`additionType`) | starting XI |
 | `competition/{id}/fixtures?season=2004` | Every match of a competition season, with game ids and round names. Ids: `CL`, `FIWC` (World Cup), `EURO`. Summer tournaments are filed under the year before (World Cup 2010 → 2009) | starting XI |
 | `club/{id}/fixtures?season=2004` | A club's matches that season | — |
@@ -55,7 +55,7 @@ game_modes_data/    one folder per game mode: its scripts and its data
   transfer_history/   the player pool and every player's transfers; all other modes build on it
   clues/              Three Clues: hand-written clue text per player
   starting_xi/        Starting XI: starting lineups of Champions League, World Cup and Euro knockout matches
-  grid/               Grid Rush: no data of its own yet (uses the transfer history)
+  grid/               Grid Rush: everyone who was in a club's squad, 268 clubs since 1990/91
 update.sh           refresh the transfer history in one command
 ```
 
@@ -64,7 +64,7 @@ update.sh           refresh the transfer history in one command
 | Transfer history (main quiz, daily, multiplayer) | `game_modes_data/transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
 | Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
 | Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Data built; app still uses a placeholder | `game_modes_data/starting_xi/output/xi_lineups.json` (not in the app yet) |
-| Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
+| Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | Data built; app still uses the quiz pool | `game_modes_data/grid/output/grid_pool.json` (not in the app yet) |
 
 ### When was each set last updated?
 

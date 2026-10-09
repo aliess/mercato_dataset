@@ -30,6 +30,7 @@ ROOT = MODE_DIR.parent.parent
 sys.path.insert(0, str(ROOT))
 
 import compare_outputs
+from sources.country_names import canonical
 from sources.last_updated import record
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
@@ -404,11 +405,14 @@ def main():
         live = profiles['player_id'].map(lambda pid: live_profiles.get(pid, {}).get(column))
         profiles[column] = live.where(live.notna(), profiles[column])
     profiles['current_club_id'] = profiles['current_club_id'].astype('Int64')
+    for column in ('citizenship', 'country_of_birth'):
+        profiles[column] = profiles[column].map(canonical)
     profiles = profiles.sort_values(['market_value', 'player_id'], ascending=[False, True])
 
     for side in ('from', 'to'):
         missing = out[f'{side}_team_country'].isna()
         out.loc[missing, f'{side}_team_country'] = out.loc[missing, f'{side}_team_id'].map(dataset.club_country)
+        out[f'{side}_team_country'] = out[f'{side}_team_country'].map(canonical)
     out = out.sort_values(['player_id', 'transfer_date', 'to_team_id'], ascending=[True, False, True])
 
     without = selected - set(out['player_id'])
