@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Build the two files the app's Firestore is filled from:
+Build the two files the app's game data is made from (publish_files.py turns them into
+Storage cache/game_data_v1.json):
 
-  game_modes_data/transfer_history/output/player_profiles.csv    → collection `player_profiles_and_value` (doc id = player_id)
-  game_modes_data/transfer_history/output/transfer_history.csv   → collection `transfer_history_filtered`
+  game_modes_data/transfer_history/output/player_profiles.csv    → the file's `players`
+  game_modes_data/transfer_history/output/transfer_history.csv   → the file's `transfers`
 
 Players are picked from the transfermarkt-datasets tables (sources/dataset/). Unless --offline is
 given, every candidate is then refreshed from Transfermarkt's JSON API (see sources/tm_api.py):
@@ -59,7 +60,7 @@ SPECIAL_CLUB_NAMES = {'Without Club', 'Retired', 'Career break', 'Unknown', 'Dis
 YOUTH_SUFFIXES = ('YTH', 'Youth', 'You', 'U19', 'U17', 'Yth', 'U20', 'U21', 'U18',
                   'U16', 'U23', 'U22', 'U24', 'II', 'Yth.', 'B')
 
-# ── Output columns (must match what the app / Firestore import expect) ──
+# ── Output columns (the app decodes these names from game_data_v1.json; see ../CONTRACTS.md) ──
 PROFILES_COLUMNS = [
     'player_id', 'player_slug', 'player_name', 'player_image_url',
     'name_in_home_country', 'date_of_birth', 'place_of_birth', 'country_of_birth',
@@ -442,7 +443,7 @@ def main():
         warnings = compare_outputs.report(previous_dir, args.output_dir,
                                           save_to=args.output_dir / 'compare_report.txt')
         if warnings:
-            sys.exit('\nThe new build looks wrong (see above). Fix it before syncing to Firestore.')
+            sys.exit('\nThe new build looks wrong (see above). Fix it before publishing.')
 
 
 if __name__ == '__main__':

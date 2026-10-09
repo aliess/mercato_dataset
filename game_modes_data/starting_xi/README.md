@@ -53,6 +53,11 @@ So nothing before 2000 is `beginner`. Examples: France in the 1998 World Cup fin
 
 ## File layout
 
+`output/xi_lineups.json` is published unchanged in content as Storage `cache/xi_v1.json` by
+`publish_files.py` (run from the repo root; uploading needs the user's yes). The publisher
+refuses a lineup without exactly 11 slots or with other fields than the ones below, so adding
+or renaming a field means changing `publish_files.py` and `../CONTRACTS.md` too.
+
 Same layout the app reads for the bundled placeholder (`Resources/Labs/xi_placeholder.json`),
 with extra fields the app ignores until it uses them:
 
@@ -75,5 +80,6 @@ with extra fields the app ignores until it uses them:
 - 9 lineups have no captain marked and 1 shirt has no number.
 - One match is left out because the API has no positions for it (Legia–Panathinaikos 1996).
 - Team names are today's ("Germany" for West Germany in 1986).
-- The app still bundles the 18-lineup placeholder. It has to switch to this file, and to show
-  the new competition labels ("Champions League semi-final", "World Cup final"…).
+- The app has to read `cache/xi_v1.json` instead of its bundled 18-lineup placeholder, and show
+  the new competition labels ("Champions League semi-final", "World Cup final"…). In the file
+  `leg` and a slot's `number` can be null, and the top-level `version` is 2.

@@ -83,4 +83,7 @@ he was in the squad, not proof he was there every season in between.
 - Country names follow the quiz pool. Some have no flag in the app yet (Cote d'Ivoire,
   Bosnia-Herzegovina, Northern Ireland, Korea, South, Israel…).
 - Squads before 1990/91 are not fetched (`FIRST_SEASON`): Maradona shows Napoli only for 1990.
-- The app does not read this file yet; it still builds boards from the quiz pool.
+- `output/grid_pool.json` is published as Storage `cache/grid_pool_v1.json` by `publish_files.py`
+  (run from the repo root; uploading needs the user's yes). The publisher checks that every
+  player row has the five fields and that every club id in it is in `clubs`. A player's `nation`
+  can be null (31 players).

@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Refresh the player pool and transfer history: download → build → sync.
+# Refresh the player pool and transfer history, then build the files the app downloads:
+# download → build → publish_files.py. Without --apply nothing is uploaded.
 # Usage: ./update.sh dev|prod [--apply] [--credentials key.json]
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -13,4 +14,4 @@ shift
 
 python sources/download_dataset.py
 python game_modes_data/transfer_history/build_dataset.py
-python game_modes_data/transfer_history/sync_firestore.py --project "$project" "$@"
+python publish_files.py --project "$project" "$@"

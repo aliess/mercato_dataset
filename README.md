@@ -51,20 +51,25 @@ sources/            where the data comes from; shared by every mode
   tm_api.py           Transfermarkt API client (cached, throttled, retries)
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
   dataset/, cache/    downloaded tables and API responses (not in git)
+publish_files.py    builds the JSON files the app downloads and uploads them to Firebase Storage
+publish/            the files it built (not in git)
 game_modes_data/    one folder per game mode: its scripts and its data
   transfer_history/   the player pool and every player's transfers; all other modes build on it
   clues/              Three Clues: hand-written clue text per player
   starting_xi/        Starting XI: starting lineups of Champions League, World Cup and Euro knockout matches
   grid/               Grid Rush: everyone who was in a club's squad, 268 clubs since 1990/91
-update.sh           refresh the transfer history in one command
+update.sh           refresh the transfer history and run the publisher in one command
 ```
 
-| Game mode | Folder | Status | Ends up in |
+| Game mode | Folder | Built file | Published as (Storage) |
 |---|---|---|---|
-| Transfer history (main quiz, daily, multiplayer) | `game_modes_data/transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
-| Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
-| Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Data built; app still uses a placeholder | `game_modes_data/starting_xi/output/xi_lineups.json` (not in the app yet) |
-| Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | Data built; app still uses the quiz pool | `game_modes_data/grid/output/grid_pool.json` (not in the app yet) |
+| Transfer history (main quiz, daily, multiplayer) | `game_modes_data/transfer_history/` | `output/player_profiles.csv`, `output/transfer_history.csv` | `cache/game_data_v1.json` |
+| Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | `player_clues.json` | `cache/clues_v1.json` |
+| Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | `output/xi_lineups.json` | `cache/xi_v1.json` |
+| Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | `output/grid_pool.json` | `cache/grid_pool_v1.json` |
+
+Game data does not pass through Firestore. [Publishing](#publishing-to-the-app) below says how
+the files get to the app; `game_modes_data/STATUS.md` says what has been uploaded where.
 
 ### Player names
 
@@ -76,11 +81,11 @@ their accents.
 ### When was each set last updated?
 
 See [game_modes_data/STATUS.md](game_modes_data/STATUS.md): one table for all modes, rewritten by the
-scripts on every build and sync.
+scripts on every build and upload.
 
 It is made from the `LAST_UPDATED.json` in every mode folder, also kept in git: `built` is when the files here were last built (with counts and the newest match or
-transfer in them), and `synced` is when they last went to each Firebase project. If `built` is
-newer than `synced`, the app is behind the files.
+transfer in them), and `synced` is when they were last uploaded to each Firebase project. If `built` is
+newer than `synced`, the app is behind the files. For an exact answer run the publisher's dry run.
 
 ## Setup
 
@@ -88,17 +93,61 @@ newer than `synced`, the app is behind the files.
 pip install -r requirements.txt          # once (pyenv env: football-dataset-env)
 ```
 
-Firestore writes need a service-account key per project: Firebase console → Project settings →
+Uploading needs a service-account key per project: Firebase console → Project settings →
 Service accounts → *Generate new private key*. Save it in this folder under its downloaded name
-(`<project-id>-firebase-adminsdk-….json`); the scripts find it by project, refuse a key that
-belongs to another project, and git ignores it. `--credentials key.json`,
-`GOOGLE_APPLICATION_CREDENTIALS` and `gcloud auth application-default login` also work for
-`sync_firestore.py`.
+(`<project-id>-firebase-adminsdk-….json`); the publisher finds it by project, refuses a key that
+belongs to another project, and git ignores it. `--credentials key.json` and
+`GOOGLE_APPLICATION_CREDENTIALS` also work. Building and dry runs need no key.
 
-The sync and clue scripts also use the built Cloud Functions next to this repo
-(`cd ../footballquiz_firebase/functions && npm install && npm run build`).
+The publisher and the clue checker run the clue validator from the built Cloud Functions next
+to this repo (`cd ../footballquiz_firebase/functions && npm install && npm run build`, needs node).
 
 Projects: `dev` = `football-quiz-32eb9`, `prod` = `mercato-6e710`.
+
+## Publishing to the app
+
+`publish_files.py` builds five files into `publish/` and uploads them to the project's default
+bucket (`<project-id>.firebasestorage.app`) under `cache/`. The app downloads them from there.
+The shapes are in `../CONTRACTS.md` §1.
+
+```bash
+python publish_files.py --project dev            # dry run: build, compare with what is live
+python publish_files.py --project dev --apply    # upload what changed (ask the user first)
+python publish_files.py --project prod --apply
+```
+
+| File | Built from |
+|---|---|
+| `game_data_v1.json` | `transfer_history/output/player_profiles.csv` and `transfer_history.csv` |
+| `clues_v1.json` | `clues/player_clues.json`: approved sets whose player is in the game data and that pass the validator |
+| `xi_v1.json` | `starting_xi/output/xi_lineups.json` |
+| `grid_pool_v1.json` | `grid/output/grid_pool.json` |
+| `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the four files |
+
+- **The dry run** downloads the live `manifest.json` by public HTTP and says per file whether it
+  is unchanged, changed or new, with sizes and counts. For a file that would change it also
+  downloads the live copy and lists what differs (players added and removed, transfers, clue
+  sets); `--no-diff` skips that. It uploads nothing and never touches Firestore.
+- **`--apply`** uploads only the files whose version changed, gzip-compressed (`contentEncoding:
+  gzip`, `cacheControl: public, max-age=300`), reads each one back and checks it, and uploads
+  `manifest.json` last (`cacheControl: no-cache`). When nothing changed it uploads nothing.
+- **The files are deterministic**: no build time inside, fixed order, so the same inputs give the
+  same version and the app does not re-download. Keep it that way when changing a builder.
+- **Safety stop**: a file that would be more than 20% smaller than the live one stops the run
+  (`--allow-shrink` overrides).
+- **To undo an upload**: check out the commit whose data was live before, and publish again.
+  Storage keeps no old versions.
+- How values are written in `game_data_v1.json` (the app depends on it): ids and `market_value`
+  are integers, `height` a whole number, dates are `{"_seconds": …, "_nanoseconds": 0}` at
+  midnight UTC, empty cells are left out. A transfer's `id` is
+  `<player_id>_<yyyymmdd>_<from id>_<to id>`. Two moves on the same day are put in the order
+  that connects (the move that starts where the player was comes first).
+- A clue set's `v` is the first 52 bits of the SHA-256 of its six strings: it changes only when
+  the text changes.
+
+The Firestore collections that used to hold this data (`player_profiles_and_value`,
+`transfer_history_filtered`, `player_clues`) are no longer read or written by anything here.
+Old backups of them stay in `game_modes_data/transfer_history/backups/` (not in git).
 
 ## Refresh the transfer history
 
@@ -106,7 +155,7 @@ Run from this folder. Do it after each transfer window, or whenever the data sho
 
 ```bash
 ./update.sh dev                          # download + build + show what would change in dev
-./update.sh dev --apply                  # …and write it, then rebuild the game data file
+./update.sh dev --apply                  # …and upload it (ask the user first)
 ./update.sh prod --apply
 ```
 
@@ -116,8 +165,8 @@ Or step by step:
 |---|---|---|
 | 1 | `python sources/download_dataset.py` | Fetches the 6 tables needed (~25 MB) into `sources/dataset/` |
 | 2 | `python game_modes_data/transfer_history/build_dataset.py` | Picks players, refreshes them from the Transfermarkt API, writes `game_modes_data/transfer_history/output/`, compares with the last build |
-| 3 | `python game_modes_data/transfer_history/sync_firestore.py --project dev` | Shows what would change in Firestore (dry run) |
-| 4 | `python game_modes_data/transfer_history/sync_firestore.py --project dev --apply` | Backs up Firestore, writes only changed docs, rebuilds the game data file |
+| 3 | `python publish_files.py --project dev` | Builds the files in `publish/` and shows what would change in dev (dry run) |
+| 4 | `python publish_files.py --project dev --apply` | Uploads the files that changed, then the manifest |
 
 A full refresh is about 3,500 API requests and takes a few minutes. Responses are cached in
 `sources/cache/tm_api/` for 24 h (`--max-age-hours`), so a rerun the same day is instant.
@@ -133,10 +182,8 @@ After new players are added, give them clues: see [game_modes_data/clues/README.
   something looks broken (counts drop more than 5%, unplayable players increase, data got
   older), the build exits with an error. Re-run the comparison any time with
   `python game_modes_data/transfer_history/compare_outputs.py`.
-- Each `sync_firestore.py --apply` first saves both Firestore collections to
-  `game_modes_data/transfer_history/backups/<project>/<time>/`. To undo a sync:
-  `python game_modes_data/transfer_history/sync_firestore.py --project prod --restore game_modes_data/transfer_history/backups/mercato-6e710/<time> --apply`
-- The sync stops if it would delete more than 20% of a collection (`--allow-shrink` overrides).
+- The publisher's dry run then compares the new files with what is live in a project, and stops
+  if a file would shrink by more than 20% (see [Publishing](#publishing-to-the-app)).
 
 ### Which players are included
 
@@ -162,8 +209,9 @@ transfers.
 
 ### Output
 
-`game_modes_data/transfer_history/output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
-`game_modes_data/transfer_history/output/transfer_history.csv` → `transfer_history_filtered`. Transfers to
+`game_modes_data/transfer_history/output/player_profiles.csv` → `players` in `game_data_v1.json`
+(column names become field names). `game_modes_data/transfer_history/output/transfer_history.csv`
+→ `transfers`, grouped by player, oldest first. Transfers to
 youth and reserve sides (Castilla, Barcelona B, U19s, FC Liefering) and moves dated after today
 are left out. The API's club type decides what a youth or reserve side is, not the name, so
 Willem II and Esbjerg fB stay. Column layout is unchanged from the original import.

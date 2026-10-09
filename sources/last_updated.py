@@ -1,7 +1,7 @@
 """
 Each game mode folder keeps a LAST_UPDATED.json: when its data was last built, from what,
-how much, and when it last went to each Firebase project. The build and sync scripts
-write it; it is kept in git so the dates travel with the data.
+how much, and when it was last uploaded to each Firebase project (`synced`, written by
+publish_files.py --apply). The build and publish scripts write it; it is kept in git so the dates travel with the data.
 
 game_modes_data/STATUS.md is the same information as one table, rewritten on every change.
 Don't edit either by hand. To rewrite the table: python sources/last_updated.py
@@ -51,7 +51,7 @@ def synced_cell(built, synced):
     text = synced['date']
     if describe(synced):
         text += f' ({describe(synced)})'
-    # Behind when the files were built later, or hold different counts than what was sent.
+    # Behind when the files were built later, or hold different counts than what was uploaded.
     differs = any(built.get(key) != value for key, value in synced.items() if key != 'date' and key in built)
     if built and (differs or built.get('date', '') > synced['date']):
         text += ' — **behind the files**'
@@ -62,8 +62,8 @@ def render_status():
     lines = [
         '# Data status',
         '',
-        'When each game mode\'s data was last built, and when it last went to Firebase.',
-        'Written by the build and sync scripts from each mode\'s `LAST_UPDATED.json`; don\'t edit by hand.',
+        'When each game mode\'s data was last built, and when it was last uploaded to Firebase Storage.',
+        'Written by the build and publish scripts from each mode\'s `LAST_UPDATED.json`; don\'t edit by hand.',
         '',
         '| Game mode | Last built | What the files hold | Source | Dev (`football-quiz-32eb9`) | Prod (`mercato-6e710`) |',
         '|---|---|---|---|---|---|',
@@ -76,9 +76,9 @@ def render_status():
                  built.get('source') or built.get('transfers_from') or '—']
         cells += [synced_cell(built, synced.get(project)) for project in PROJECTS]
         lines.append('| ' + ' | '.join(cells) + ' |')
-    lines += ['', '"Behind the files" means the files here were rebuilt after the last sync, or hold different',
-              'counts: the app is still serving the older data. "never" means the mode is not in the app\'s',
-              'backend yet.', '']
+    lines += ['', '"Behind the files" means the files here were rebuilt after the last upload, or hold different',
+              'counts: the app is still getting the older data. "never" means the mode has not been',
+              'uploaded to that project yet. `python publish_files.py --project dev|prod` compares exactly.', '']
     (MODES_DIR / 'STATUS.md').write_text('\n'.join(lines))
 
 

@@ -6,9 +6,12 @@ sources/dataset/
 sources/cache/
 game_modes_data/transfer_history/output/
 
-# Firestore backups made by sync_firestore.py --apply
+# Firestore backups made by the retired sync_firestore.py (kept locally)
 game_modes_data/transfer_history/backups/
 
 # Credentials
 *service-account*.json
 *-firebase-adminsdk-*.json
+
+# Files built by publish_files.py (re-create with the script)
+publish/

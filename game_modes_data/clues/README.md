@@ -1,23 +1,28 @@
 # Three Clues content
 
-Clue text for the Three Clues mode, written and reviewed here before it goes into
-Firestore `player_clues/{playerId}` (see `footballquiz/docs/plans/three_clues_mode_plan.md` §3 and §8.2).
+Clue text for the Three Clues mode, written and reviewed here, then published to Storage
+`cache/clues_v1.json` by `publish_files.py` (see `footballquiz/docs/plans/three_clues_mode_plan.md` §3 and §8.2).
+It does not pass through Firestore.
 
 | File | What it is |
 |---|---|
 | `facts.jsonl` | Player facts to write against (`python game_modes_data/clues/export_clue_facts.py`) |
 | `batches/batch_NN.json` | The written clues, about 30 players per file |
-| `player_clues.json` | Every clue set that passes the server validator, keyed by player ID: the Firestore docs |
+| `player_clues.json` | Every clue set that passes the server validator, keyed by player ID: what the publisher reads |
+| `publishable_clues.js` | Used by `publish_files.py`: picks the approved sets whose player is in the game data and runs the validator again |
 | `clue_report.json` | Errors (left out) and warnings (kept) from the validator |
 | `review.csv` | The same clues as a spreadsheet, ranked by market value, with each player's difficulty |
 
 ```bash
 python game_modes_data/clues/export_clue_facts.py                      # every player, with its difficulty
 node game_modes_data/clues/check_clues.js                              # validate + merge
+python publish_files.py --project dev                                  # dry run: what would change in the app's clue file
 ```
 
 Every doc starts as `status: "draft"`. Change it to `"approved"` once reviewed; only approved
-docs are published to the app.
+docs are published to the app. Uploading (`publish_files.py … --apply`) needs the user's yes.
+In the published file each set carries `v`, a number made from its text, so it changes only
+when the text changes.
 
 ## Batch format
 
@@ -29,7 +34,7 @@ docs are published to the app.
   "notes": "verify: the facts that don't come from facts.jsonl"}]
 ```
 
-`name` is only for reading the file; it isn't uploaded.
+`name` is only for reading the file; it isn't published.
 
 ## Writing rules
 
