@@ -68,8 +68,10 @@ update.sh           refresh the transfer history in one command
 
 ### When was each set last updated?
 
-Every mode folder has a `LAST_UPDATED.json`, written by its build and sync scripts and kept in
-git: `built` is when the files here were last built (with counts and the newest match or
+See [game_modes_data/STATUS.md](game_modes_data/STATUS.md): one table for all modes, rewritten by the
+scripts on every build and sync.
+
+It is made from the `LAST_UPDATED.json` in every mode folder, also kept in git: `built` is when the files here were last built (with counts and the newest match or
 transfer in them), and `synced` is when they last went to each Firebase project. If `built` is
 newer than `synced`, the app is behind the files.
 

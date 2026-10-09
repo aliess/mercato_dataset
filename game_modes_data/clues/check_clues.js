@@ -63,6 +63,8 @@ function recordLastUpdated(section, facts) {
   for (const key of keys.slice(0, -1)) target = target[key] ??= {};
   target[keys.at(-1)] = {date: new Date().toLocaleDateString("en-CA"), ...facts};
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+  // Rewrite game_modes_data/STATUS.md from it.
+  require("child_process").spawnSync("python3", [path.join(ROOT, "sources/last_updated.py")]);
 }
 
 const tiers = ["beginner", "intermediate", "expert"];
@@ -70,7 +72,6 @@ const written = Object.keys(docs).map((id) => facts.get(id).difficulty);
 const total = [...facts.values()].map((p) => p.difficulty);
 recordLastUpdated("built", {
   clue_sets: Object.keys(docs).length,
-  approved: Object.values(docs).filter((d) => d.status === "approved").length,
   players_in_pool: facts.size,
   source: "written by hand against facts.jsonl",
 });

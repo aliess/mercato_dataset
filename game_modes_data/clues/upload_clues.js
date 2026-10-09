@@ -53,6 +53,8 @@ function recordLastUpdated(section, facts) {
   for (const key of keys.slice(0, -1)) target = target[key] ??= {};
   target[keys.at(-1)] = {date: new Date().toLocaleDateString("en-CA"), ...facts};
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+  // Rewrite game_modes_data/STATUS.md from it.
+  require("child_process").spawnSync("python3", [path.join(ROOT, "sources/last_updated.py")]);
 }
 
 /** The fields a clue document holds in Firestore (empty notes left out). */
@@ -112,7 +114,7 @@ function toDoc(source) {
   await writer.close();
   console.log(`Wrote ${changes.length - failed} documents` + (failed ? `, ${failed} failed` : ""));
   if (failed) process.exit(1);
-  recordLastUpdated(`synced.${projectId}`, {approved_clue_sets: wanted.length, written: changes.length});
+  recordLastUpdated(`synced.${projectId}`, {clue_sets: wanted.length});
 })().catch((error) => {
   console.error(error);
   process.exit(1);
