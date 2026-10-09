@@ -17,6 +17,7 @@ Usage:
 """
 
 import argparse
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -44,7 +45,9 @@ PRESTIGIOUS_CLUB_IDS = {
     631: 'Chelsea',
 }
 
-# Transfers TO teams whose name ends like this are youth/reserve moves and are dropped.
+# Transfers TO youth and reserve sides are dropped. The API says which clubs those are
+# (see is_reserve_side). These name endings are only the fallback for clubs the API didn't
+# return, e.g. with --offline; on their own they also catch real clubs (Willem II, Esbjerg fB).
 YOUTH_SUFFIXES = ('YTH', 'Youth', 'You', 'U19', 'U17', 'Yth', 'U20', 'U21', 'U18',
                   'U16', 'U23', 'U22', 'U24', 'II', 'Yth.', 'B')
 
@@ -166,6 +169,31 @@ class Dataset:
 
 # ── Transfermarkt API ──
 
+AGE_GROUP_NAME = re.compile(r'\b(U-?\d{2}|Sub-?\d{2}|Youth|Yth\.?|Jugend)$')
+
+
+def is_reserve_side(club):
+    """Youth, reserve and feeder sides (Castilla, Barcelona B, U19s, FC Liefering).
+
+    clubTypeId 1 is a first team; every type above 1 is a youth or reserve side. Type 0 is
+    unclassified (small clubs): a reserve side when it has a parent club, otherwise None,
+    and the name decides (YOUTH_SUFFIXES). "Retired", "Without Club" and the like are
+    special clubs and stay.
+
+    The API files some youth sides of small clubs as first teams ("Legia Warsaw Youth",
+    "FC Volendam U17"), so a first team whose name ends in an age group is still dropped.
+    """
+    if club.get('isSpecialClub'):
+        return False
+    base = club['baseDetails']
+    club_type = base.get('clubTypeId')
+    if club_type == 1:
+        return bool(AGE_GROUP_NAME.search(club['name'].strip()))
+    if club_type == 0:
+        return True if base.get('mainClubId') not in (None, '', '0', 0, club['id']) else None
+    return True
+
+
 FREE_TYPES = {'ACTIVE_LOAN_TRANSFER', 'RETURNED_FROM_PREVIOUS_LOAN'}
 
 
@@ -183,7 +211,8 @@ def transfer_fee(transfer):
 def fetch_live_data(api, dataset, candidate_ids):
     """Refresh candidates from the Transfermarkt API.
 
-    Returns (profiles by player id, transfers DataFrame in output schema).
+    Returns (profiles by player id, transfers DataFrame in output schema,
+    {club id: is it a youth/reserve side, None when only the name can tell}).
     """
     print(f'\nFetching {len(candidate_ids):,} player profiles from Transfermarkt...')
     profiles = api.players(candidate_ids)
@@ -285,7 +314,8 @@ def fetch_live_data(api, dataset, candidate_ids):
             'date_of_death': (p.get('lifeDates') or {}).get('dateOfDeath'),
             'highest_value': highest,
         }
-    return live_profiles, pd.DataFrame(rows, columns=TRANSFERS_COLUMNS)
+    reserve_sides = {int(club_id): is_reserve_side(club) for club_id, club in clubs.items()}
+    return live_profiles, pd.DataFrame(rows, columns=TRANSFERS_COLUMNS), reserve_sides
 
 
 # ── Main ──
@@ -301,10 +331,10 @@ def main():
     print(f'\n{len(candidate_ids):,} candidates peaked at €{PRESTIGIOUS_MIN_VALUE / 1e6:.0f}M or more')
 
     transfers = dataset.transfers_in_output_schema()
-    live_profiles = {}
+    live_profiles, reserve_sides = {}, {}
     if not args.offline:
         api = TransfermarktAPI(args.cache_dir, max_age_hours=args.max_age_hours, workers=args.workers)
-        live_profiles, live_transfers = fetch_live_data(api, dataset, candidate_ids)
+        live_profiles, live_transfers, reserve_sides = fetch_live_data(api, dataset, candidate_ids)
         # The API history replaces the dataset's for every player it returned.
         live_ids = set(live_transfers['player_id'])
         transfers = pd.concat([transfers[~transfers['player_id'].isin(live_ids)], live_transfers],
@@ -338,7 +368,12 @@ def main():
     profiles = profiles.sort_values(['market_value', 'player_id'], ascending=[False, True])
 
     # ── Transfers ──
-    out = transfers[transfers['player_id'].isin(selected) & ~transfers['to_team_name'].map(is_youth_team)].copy()
+    out = transfers[transfers['player_id'].isin(selected)]
+    by_name = out['to_team_name'].map(is_youth_team)
+    to_reserve = out['to_team_id'].map(lambda club_id: reserve_sides.get(club_id)).combine(
+        by_name, lambda flag, name: name if flag is None or pd.isna(flag) else flag).astype(bool)
+    print(f'  dropped {to_reserve.sum():,} transfers to youth and reserve sides')
+    out = out[~to_reserve].copy()
     for side in ('from', 'to'):
         missing = out[f'{side}_team_country'].isna()
         out.loc[missing, f'{side}_team_country'] = out.loc[missing, f'{side}_team_id'].map(dataset.club_country)

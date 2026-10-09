@@ -12,16 +12,25 @@ when the club appears in his transfer history; nationality is his `citizenship`.
 That limits answers to the ~1,900 players in the pool (peaked at €10M or more), and to clubs
 a player transferred to or from.
 
-## Where more data could come from
+## Planned answer pool
 
-The Transfermarkt API (`sources/tm_api.py`) has every first-team squad by season, back to at
-least 1975:
+A wider pool than the quiz's ~1,900 players, used only to decide whether a typed answer is
+right. Decided so far:
+
+- **Clubs covered:** every club of the top five leagues, plus the 20 biggest clubs from other
+  leagues.
+- **Second nationality counts**: the API has it (`nationalityDetails.nationalities`); it has no
+  country names, so the ids need a small lookup table.
+- **Still open: what "played for" means.** The API has squads by season but no appearance
+  counts. Squad membership is one cheap call per club season; "actually played" has to be
+  worked out from every match lineup of every club season, which is far more requests.
 
 | Need | Call |
 |---|---|
-| Everyone who was in a club's squad in a season | `api.squad(club_id, 2005)` (2005 = 2005/06) |
-| Names, citizenship, positions for those ids | `api.players([…])` |
-| Tell first teams from youth/reserve sides | `api.clubs([…])` → `baseDetails.clubTypeId == 1`, `mainClubId` |
+| Everyone who was in a club's squad in a season | `api.squad(club_id, 2005)` (2005 = 2005/06), back to at least 1975 |
+| A club's matches in a season, then who started them | `api.club_fixtures(club_id, 2005)` → `api.games([…])` |
+| Names, both nationalities, positions | `api.players([…])` |
+| Tell first teams from youth/reserve sides | `api.clubs([…])` → `clubTypeId` (see `is_reserve_side` in `transfer_history/build_dataset.py`; the flag alone is not enough) |
 
-Open questions before building it: which clubs and seasons to cover, whether players outside
-the current pool become valid answers, and whether trophies or teammates become categories.
+Other open questions: how far back to go, and how steals work for players from before market
+values existed (about 2004).

@@ -144,5 +144,6 @@ transfers.
 
 `game_modes_data/transfer_history/output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
 `game_modes_data/transfer_history/output/transfer_history.csv` → `transfer_history_filtered`. Transfers to
-youth/reserve sides (names ending in U19, U21, B, II…) and moves dated after today are left
-out. Column layout is unchanged from the original import.
+youth and reserve sides (Castilla, Barcelona B, U19s, FC Liefering) and moves dated after today
+are left out. The API's club type decides what a youth or reserve side is, not the name, so
+Willem II and Esbjerg fB stay. Column layout is unchanged from the original import.
