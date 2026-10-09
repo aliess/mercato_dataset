@@ -1,14 +1,14 @@
 // Uploads the approved clue sets in clues/player_clues.json to Firestore
 // player_clues/{playerId}, writing only the documents that changed.
 //
-//   node scripts/upload_clues.js --project dev            # dry run: show the diff
-//   node scripts/upload_clues.js --project dev --apply
-//   node scripts/upload_clues.js --project prod --apply
+//   node clues/upload_clues.js --project dev            # dry run: show the diff
+//   node clues/upload_clues.js --project dev --apply
+//   node clues/upload_clues.js --project prod --apply
 //
 // Reads the collection once, then writes each new or changed document once
 // (updated_at is set here so the onClueWritten trigger has nothing to add).
 // The server republishes cache/clues_v1.json within 30 minutes of a change.
-// Uses the service-account key for the project found in the dataset folder.
+// Uses the service-account key for the project found in the repo root.
 
 const fs = require("fs");
 const path = require("path");
@@ -26,7 +26,7 @@ const apply = args.includes("--apply");
 const projectArg = args[args.indexOf("--project") + 1];
 const projectId = PROJECTS[projectArg];
 if (!projectId) {
-  console.error("Usage: node scripts/upload_clues.js --project dev|prod [--apply]");
+  console.error("Usage: node clues/upload_clues.js --project dev|prod [--apply]");
   process.exit(1);
 }
 

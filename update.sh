@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Download → build → sync. Usage: ./update.sh dev|prod [--apply] [--credentials key.json]
+# Refresh the player pool and transfer history: download → build → sync.
+# Usage: ./update.sh dev|prod [--apply] [--credentials key.json]
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -10,6 +11,6 @@ fi
 project=$1
 shift
 
-python scripts/download_dataset.py
-python scripts/build_dataset.py
-python scripts/sync_firestore.py --project "$project" "$@"
+python sources/download_dataset.py
+python transfer_history/build_dataset.py
+python transfer_history/sync_firestore.py --project "$project" "$@"

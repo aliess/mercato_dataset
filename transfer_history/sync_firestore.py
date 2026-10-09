@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sync output/player_profiles.csv and output/transfer_history.csv into Firestore, writing only
+Sync transfer_history/output/player_profiles.csv and transfer_history.csv into Firestore, writing only
 what changed, then rebuild the game data file the app downloads (Storage cache/game_data_v1.json)
 by running the functions' buildGameData() locally (needs node + footballquiz_firebase/functions).
 
@@ -11,19 +11,20 @@ by running the functions' buildGameData() locally (needs node + footballquiz_fir
 Field types match the original import: ids/market_value as integers, height/fees/values as
 doubles, dates as timestamps, empty cells left out.
 
-Credentials (any one):
+Credentials (first one found):
   --credentials path/to/service-account.json   (Firebase console → Project settings →
                                                 Service accounts → Generate new private key)
   GOOGLE_APPLICATION_CREDENTIALS=path/to/key.json
+  <project-id>-firebase-adminsdk-*.json in the repo root
   gcloud auth application-default login
 
-Every --apply first saves both collections to backups/<project>/<time>/.
+Every --apply first saves both collections to transfer_history/backups/<project>/<time>/.
 
 Usage:
-    python scripts/sync_firestore.py --project dev                  # dry run: show the diff
-    python scripts/sync_firestore.py --project dev --apply          # backup, write, rebuild game data
-    python scripts/sync_firestore.py --project prod --apply
-    python scripts/sync_firestore.py --project prod --restore backups/mercato-6e710/<time> --apply
+    python transfer_history/sync_firestore.py --project dev                  # dry run: show the diff
+    python transfer_history/sync_firestore.py --project dev --apply          # backup, write, rebuild game data
+    python transfer_history/sync_firestore.py --project prod --apply
+    python transfer_history/sync_firestore.py --project prod --restore transfer_history/backups/mercato-6e710/<time> --apply
 """
 
 import argparse
@@ -38,7 +39,8 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
+MODE_DIR = Path(__file__).resolve().parent
+ROOT = MODE_DIR.parent
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 FUNCTIONS_DIR = ROOT.parent / 'footballquiz_firebase' / 'functions'
 
@@ -58,7 +60,7 @@ def parse_args():
     parser.add_argument('--project', required=True, help='dev, prod, or a Firebase project id')
     parser.add_argument('--apply', action='store_true', help='Write changes (default is a dry run).')
     parser.add_argument('--credentials', type=Path, help='Service account JSON key.')
-    parser.add_argument('--output-dir', type=Path, default=ROOT / 'output')
+    parser.add_argument('--output-dir', type=Path, default=MODE_DIR / 'output')
     parser.add_argument('--skip-rebuild', action='store_true', help="Don't rebuild the game data file.")
     parser.add_argument('--allow-shrink', action='store_true',
                         help='Allow deleting more than 20%% of a collection (safety stop otherwise).')
@@ -216,8 +218,8 @@ def decode(value):
 
 
 def backup(project_id, collections):
-    """Save {collection: {doc_id: data}} to backups/<project>/<time>/ and return that folder."""
-    folder = ROOT / 'backups' / project_id / datetime.now().strftime('%Y-%m-%d_%H%M%S')
+    """Save {collection: {doc_id: data}} to transfer_history/backups/<project>/<time>/ and return that folder."""
+    folder = MODE_DIR / 'backups' / project_id / datetime.now().strftime('%Y-%m-%d_%H%M%S')
     folder.mkdir(parents=True)
     for name, docs in collections.items():
         data = {doc_id: {k: encode(v) for k, v in doc.items()} for doc_id, doc in docs.items()}
@@ -250,6 +252,8 @@ def describe_player_changes(sets, existing):
 def main():
     args = parse_args()
     project_id = PROJECTS.get(args.project, args.project)
+    if not args.credentials and not os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'):
+        args.credentials = next(iter(sorted(ROOT.glob(f'{project_id}-firebase-adminsdk-*.json'))), None)
     if args.credentials:
         key_project = json.loads(args.credentials.read_text()).get('project_id')
         if key_project != project_id:
@@ -303,7 +307,7 @@ def main():
 
     folder = backup(project_id, {PLAYERS_COLLECTION: existing_players, TRANSFERS_COLLECTION: existing_transfers})
     print(f'\nBacked up current Firestore data to {folder.relative_to(ROOT)}')
-    print(f'  (undo with: python scripts/sync_firestore.py --project {args.project} --restore {folder.relative_to(ROOT)} --apply)')
+    print(f'  (undo with: python transfer_history/sync_firestore.py --project {args.project} --restore {folder.relative_to(ROOT)} --apply)')
 
     print('\nWriting players...')
     write(db, PLAYERS_COLLECTION, player_sets, player_deletes)

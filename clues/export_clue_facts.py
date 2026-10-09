@@ -1,10 +1,10 @@
 """Exports the facts behind Three Clues, most valuable players first.
 
 Writes clues/facts.jsonl: one player per line with the profile fields and the
-club path from transfer_history.csv, for writing clues against.
+club path from transfer_history/output/ (build that first), for writing clues against.
 
-    python scripts/export_clue_facts.py            # every player
-    python scripts/export_clue_facts.py --top 500  # only the top 500 by market value
+    python clues/export_clue_facts.py            # every player
+    python clues/export_clue_facts.py --top 500  # only the top 500 by market value
 """
 
 import argparse
@@ -13,9 +13,8 @@ import json
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-OUTPUT = ROOT / "output"
-CLUES = ROOT / "clues"
+CLUES = Path(__file__).resolve().parent
+OUTPUT = CLUES.parent / "transfer_history" / "output"
 
 SKIP_CLUBS = {"Without Club", "Retired", "Career break", "Unknown"}
 

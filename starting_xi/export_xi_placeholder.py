@@ -5,24 +5,20 @@ Builds the Labs Starting XI placeholder lineups bundled in the app
 transfermarkt-datasets match tables (games, game_lineups; ~130 MB, not kept in git).
 
 Usage:
-    python scripts/export_xi_placeholder.py <match-tables-dir> <output.json>
+    python starting_xi/export_xi_placeholder.py <output.json>
 
-The tables are downloaded into <match-tables-dir> when missing. Lineups exist for club
+The tables are downloaded into sources/dataset/ when missing. Lineups exist for club
 matches only (national-team finals have none). Pitch places come from the match
 formation; shirts are placed left to right by position.
 """
-import csv, gzip, json, re, sys, urllib.request
+import csv, gzip, json, re, sys
 from pathlib import Path
 
-D, OUT = sys.argv[1], sys.argv[2]
-BASE_URL = "https://pub-e682421888d945d684bcae8890b0ec20.r2.dev/data"
-for table in ("games", "game_lineups"):
-    path = Path(D) / f"{table}.csv.gz"
-    if not path.exists():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        request = urllib.request.Request(f"{BASE_URL}/{table}.csv.gz", headers={"User-Agent": "mercato-dataset"})
-        with urllib.request.urlopen(request, timeout=300) as response:
-            path.write_bytes(response.read())
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from sources.download_dataset import DATASET_DIR, download
+
+D, OUT = str(DATASET_DIR), sys.argv[1]
+download(("games", "game_lineups"), only_missing=True)
 # game_id, side ("home"/"away"), competition label, score label (regulation + pens)
 PICKS = [
     ("3183105", "away", "Champions League final", 2019, "Tottenham 0–2 Liverpool"),

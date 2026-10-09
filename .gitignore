@@ -2,16 +2,13 @@
 __pycache__/
 
 # Downloaded and generated data (re-create with the scripts, see README)
-dataset/*.csv
-dataset/*.csv.gz
-dataset/*.part
-cache/
-output/
-scripts/output/
+sources/dataset/
+sources/cache/
+transfer_history/output/
+
+# Firestore backups made by sync_firestore.py --apply
+transfer_history/backups/
 
 # Credentials
 *service-account*.json
 *-firebase-adminsdk-*.json
-
-# Firestore backups made by sync_firestore.py --apply
-backups/

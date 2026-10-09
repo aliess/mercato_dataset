@@ -4,7 +4,7 @@ Compare two builds (output/previous/ vs output/) and flag anything that looks wr
 build_dataset.py runs this automatically; the report is saved to output/compare_report.txt.
 
 Usage:
-    python scripts/compare_outputs.py [old_dir] [new_dir]
+    python transfer_history/compare_outputs.py [old_dir] [new_dir]
 """
 
 import sys
@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
+MODE_DIR = Path(__file__).resolve().parent
 PROFILES = 'player_profiles.csv'
 TRANSFERS = 'transfer_history.csv'
 
@@ -114,8 +114,8 @@ def report(old_dir, new_dir, save_to=None):
 
 
 def main():
-    old_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / 'output' / 'previous'
-    new_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / 'output'
+    old_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else MODE_DIR / 'output' / 'previous'
+    new_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else MODE_DIR / 'output'
     sys.exit(1 if report(old_dir, new_dir) else 0)
 
 

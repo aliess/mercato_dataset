@@ -1,21 +1,94 @@
 # Mercato dataset
 
-Builds the player and transfer data behind the Mercato app and syncs it into Firestore.
+The data behind the Mercato app: where it comes from, how it is built for each game mode, and
+how to refresh it.
+
+## Where the data comes from
+
+| Source | What we take from it | Access | Code |
+|---|---|---|---|
+| **Transfermarkt JSON API**<br>`https://tmapi-alpha.transfermarkt.technology` | Live data: full transfer histories, highest market value, current club. Also has squads by season and match lineups (not used yet). | No key, no login | `sources/tm_api.py` |
+| **transfermarkt-datasets**<br>[github.com/dcaribou/transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets), public R2 bucket (the same files as Kaggle) | The list of players to consider, and their profile fields (birth, position, foot, height…). Frozen since July 2026. | No key, no login | `sources/download_dataset.py` |
+
+Clue text (Three Clues) is written by hand in this repo, against facts exported from the two
+sources above.
+
+### About the Transfermarkt API
+
+- It is the API behind Transfermarkt's own apps. It is **unofficial and undocumented**: endpoints
+  can change or disappear without notice, so every response is cached and each build is compared
+  with the last one.
+- **No username or password is needed.** Opening the base URL in a browser redirects to `/doc`,
+  the API's documentation page, and only that page asks for a login. The data endpoints answer
+  plain GET requests, e.g. open
+  `https://tmapi-alpha.transfermarkt.technology/players?ids[]=28003` in a browser.
+- Why not transfermarkt.com itself: since July 2026 the website serves an AWS WAF "Human
+  Verification" challenge to scrapers. That is what stopped transfermarkt-datasets
+  ([discussion #383](https://github.com/dcaribou/transfermarkt-datasets/discussions/383)).
+  The dataset's last valuations are from 2026-06-12.
+
+Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
+
+| Endpoint | Returns | Used by |
+|---|---|---|
+| `players?ids[]=…` (up to 500 ids) | Profile, current club, market value history | transfer history |
+| `clubs?ids[]=…` | Name, short name, country, `clubTypeId` (1 = first team), `mainClubId` | transfer history |
+| `transfer/history/player/{id}` | Every transfer, loan, return and retirement, with fee and date | transfer history |
+| `club/{id}/squad?season=2005` | First-team squad of 2005/06, back to at least 1975. `seasonId=` is ignored (returns the current squad) | planned: grid |
+| `games?ids[]=…`, `game/{id}` | Match with both starting lineups, formation and score; old and national-team matches too | planned: starting XI |
+| `competition/{id}/fixtures?season=2004` | Every match of a competition season, with game ids | planned: starting XI |
+| `club/{id}/fixtures?season=2004` | A club's matches that season | planned: starting XI |
+| `competitions?ids[]=CL`, `competition/CL` | Competition details | — |
+
+There is no search endpoint and no `countries` endpoint (404). Retired players work by id
+(Zidane 3111, Henry 3207).
+
+## Layout
 
 ```
-transfermarkt-datasets (R2/Kaggle) ─┐
-                                    ├─ build_dataset.py ─→ output/*.csv ─→ sync_firestore.py ─→ Firestore
-Transfermarkt JSON API (live) ──────┘                                                          └→ adminRebuildGameData
-                                                                                                  → cache/game_data_v1.json (app)
+sources/            where the data comes from; shared by every mode
+  tm_api.py           Transfermarkt API client (cached, throttled, retries)
+  download_dataset.py transfermarkt-datasets tables → sources/dataset/
+  dataset/, cache/    downloaded tables and API responses (not in git)
+transfer_history/   the player pool and every player's transfers; all other modes build on it
+clues/              Three Clues: hand-written clue text per player
+starting_xi/        Starting XI: placeholder lineups only, real data not built yet
+grid/               Grid Rush: no data of its own yet (uses the transfer history)
+update.sh           refresh the transfer history in one command
 ```
 
-## Update the data
+| Game mode | Folder | Status | Ends up in |
+|---|---|---|---|
+| Transfer history (main quiz, daily, multiplayer) | `transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
+| Three Clues | `clues/` ([README](clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
+| Starting XI | `starting_xi/` ([README](starting_xi/README.md)) | Placeholder | Bundled in the app (`Resources/Labs/xi_placeholder.json`) |
+| Grid Rush | `grid/` ([README](grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
+
+## Setup
 
 ```bash
 pip install -r requirements.txt          # once (pyenv env: football-dataset-env)
+```
 
-./update.sh dev                          # download + build + dry-run diff against dev
-./update.sh dev --apply                  # …and write it, then rebuild game data
+Firestore writes need a service-account key per project: Firebase console → Project settings →
+Service accounts → *Generate new private key*. Save it in this folder under its downloaded name
+(`<project-id>-firebase-adminsdk-….json`); the scripts find it by project, refuse a key that
+belongs to another project, and git ignores it. `--credentials key.json`,
+`GOOGLE_APPLICATION_CREDENTIALS` and `gcloud auth application-default login` also work for
+`sync_firestore.py`.
+
+The sync and clue scripts also use the built Cloud Functions next to this repo
+(`cd ../footballquiz_firebase/functions && npm install && npm run build`).
+
+Projects: `dev` = `football-quiz-32eb9`, `prod` = `mercato-6e710`.
+
+## Refresh the transfer history
+
+Run from this folder. Do it after each transfer window, or whenever the data should be current.
+
+```bash
+./update.sh dev                          # download + build + show what would change in dev
+./update.sh dev --apply                  # …and write it, then rebuild the game data file
 ./update.sh prod --apply
 ```
 
@@ -23,61 +96,51 @@ Or step by step:
 
 | Step | Command | What it does |
 |---|---|---|
-| 1 | `python scripts/download_dataset.py` | Fetches the 6 tables needed (~25 MB) into `dataset/` |
-| 2 | `python scripts/build_dataset.py` | Picks players, refreshes them from the Transfermarkt API, writes `output/`, compares with the last build |
-| 3 | `python scripts/sync_firestore.py --project dev` | Shows what would change in Firestore (dry run) |
-| 4 | `python scripts/sync_firestore.py --project dev --apply` | Backs up Firestore, writes only changed docs, rebuilds the game data file |
+| 1 | `python sources/download_dataset.py` | Fetches the 6 tables needed (~25 MB) into `sources/dataset/` |
+| 2 | `python transfer_history/build_dataset.py` | Picks players, refreshes them from the Transfermarkt API, writes `transfer_history/output/`, compares with the last build |
+| 3 | `python transfer_history/sync_firestore.py --project dev` | Shows what would change in Firestore (dry run) |
+| 4 | `python transfer_history/sync_firestore.py --project dev --apply` | Backs up Firestore, writes only changed docs, rebuilds the game data file |
 
+A full refresh is about 3,500 API requests and takes a few minutes. Responses are cached in
+`sources/cache/tm_api/` for 24 h (`--max-age-hours`), so a rerun the same day is instant.
 `build_dataset.py --offline` skips the API and uses only the dataset tables.
+
+After new players are added, give them clues: see [clues/README.md](clues/README.md).
 
 ### Checking a new build before it goes live
 
-- Each build moves the last one to `output/previous/` and compares them: players added/removed,
-  players with no transfers, players who lost transfers, club changes, latest transfer date.
-  The report is saved to `output/compare_report.txt`. If something looks broken (counts drop more
-  than 5%, unplayable players increase, data got older), the build exits with an error.
-  Re-run the comparison any time with `python scripts/compare_outputs.py`.
+- Each build moves the last one to `transfer_history/output/previous/` and compares them:
+  players added/removed, players with no transfers, players who lost transfers, club changes,
+  latest transfer date. The report is saved to `transfer_history/output/compare_report.txt`. If
+  something looks broken (counts drop more than 5%, unplayable players increase, data got
+  older), the build exits with an error. Re-run the comparison any time with
+  `python transfer_history/compare_outputs.py`.
 - Each `sync_firestore.py --apply` first saves both Firestore collections to
-  `backups/<project>/<time>/`. To undo a sync:
-  `python scripts/sync_firestore.py --project prod --restore backups/mercato-6e710/<time> --apply`
+  `transfer_history/backups/<project>/<time>/`. To undo a sync:
+  `python transfer_history/sync_firestore.py --project prod --restore transfer_history/backups/mercato-6e710/<time> --apply`
+- The sync stops if it would delete more than 20% of a collection (`--allow-shrink` overrides).
 
-### Firestore credentials
+### Which players are included
 
-`sync_firestore.py` needs one of:
-- `--credentials key.json`: Firebase console → Project settings → Service accounts → *Generate new private key* (one per project; never commit it, `*-firebase-adminsdk-*.json` is git-ignored). The script refuses a key that belongs to a different project than `--project`.
-- `GOOGLE_APPLICATION_CREDENTIALS=key.json`
-- `gcloud auth application-default login`
+- **Stars**: highest-ever market value of €20M or more.
+- **Big-club players**: peaked at €10M–20M and played for Arsenal, AC Milan, Real Madrid,
+  Barcelona or Chelsea (first team, by club id).
 
-The game data rebuild uses the admin key in `../footballquiz_firebase/ADMIN_API_KEY`.
+Thresholds and clubs are constants at the top of `transfer_history/build_dataset.py`.
+Candidates come from the dataset tables, so a player who first reached €10M after June 2026 is
+not picked up until the dataset updates again or the candidate list gets another source.
 
-## Why the API refresh
+### How the two sources are combined
 
-The [transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets) pipeline stopped on
-2026-07-10 ([discussion #383](https://github.com/dcaribou/transfermarkt-datasets/discussions/383)):
-transfermarkt.com now serves an AWS WAF "Human Verification" challenge to scrapers. Transfermarkt's
-JSON API (`tmapi-alpha.transfermarkt.technology`, used by their apps) still answers, so
-`build_dataset.py` uses it to fetch, for every candidate player:
+For every candidate (anyone who peaked at €10M or more in the dataset), the API replaces the
+dataset's transfer history, highest market value, current club, contract end and date of death.
+The dataset still supplies the profile fields and the club names and countries it knows, so
+names stay the same as in earlier imports. Players whose API request fails keep their dataset
+transfers.
 
-- the full transfer history (including loans, returns and retirements), which replaces the dataset's;
-- the highest market value and current club.
+### Output
 
-Responses are cached in `cache/tm_api/` for 24 h (`--max-age-hours`), so reruns are fast. A full
-refresh is ~5,000 requests and takes about 2 minutes.
-
-The dataset tables are still used to choose candidates (anyone who peaked at €10M+) and for profile
-fields (birth, position, foot…). If upstream resumes, re-run `download_dataset.py`.
-
-## Which players are included
-
-- **Stars**: highest-ever market value above €20M.
-- **Big-club players**: peaked at €10M–20M and played for Arsenal, AC Milan, Real Madrid, Barcelona
-  or Chelsea (first team, by club id).
-
-Thresholds and clubs are constants at the top of `scripts/build_dataset.py`.
-
-## Output
-
-`output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
-`output/transfer_history.csv` → `transfer_history_filtered`. Transfers to youth/reserve sides
-(names ending in U19, U21, B, II…) and moves dated after today are left out. Column layout is
-unchanged from the original import.
+`transfer_history/output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
+`transfer_history/output/transfer_history.csv` → `transfer_history_filtered`. Transfers to
+youth/reserve sides (names ending in U19, U21, B, II…) and moves dated after today are left
+out. Column layout is unchanged from the original import.

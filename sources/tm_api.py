@@ -5,7 +5,12 @@ The transfermarkt.com pages sit behind an AWS WAF "Human Verification" challenge
 which is why the upstream transfermarkt-datasets scraper stopped in July 2026.
 This JSON API (used by Transfermarkt's own apps) is not behind the challenge.
 
-Responses are cached on disk so reruns are fast and gentle on the API.
+No key or login is needed: the data endpoints answer plain GET requests. Only the
+API's documentation page asks for a username and password (the base URL redirects to
+/doc, which is what a browser shows). The API is unofficial and undocumented, so
+endpoints can change without notice; README.md lists the ones checked by hand.
+
+Responses are cached on disk (sources/cache/tm_api/) so reruns are fast and gentle on the API.
 """
 
 import hashlib
@@ -21,6 +26,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 BASE_URL = 'https://tmapi-alpha.transfermarkt.technology'
+DEFAULT_CACHE_DIR = Path(__file__).resolve().parent / 'cache' / 'tm_api'
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 '
                   '(KHTML, like Gecko) Chrome/129.0 Safari/537.36',
@@ -30,7 +36,7 @@ BATCH_SIZE = 200  # ids per players?/clubs? request (500 works, 200 keeps URLs s
 
 
 class TransfermarktAPI:
-    def __init__(self, cache_dir, max_age_hours=24.0, workers=4, min_interval=0.05):
+    def __init__(self, cache_dir=DEFAULT_CACHE_DIR, max_age_hours=24.0, workers=4, min_interval=0.05):
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.max_age = max_age_hours * 3600
@@ -133,3 +139,25 @@ class TransfermarktAPI:
                 if progress and (done % 250 == 0 or done == len(player_ids)):
                     progress(done, len(player_ids))
         return result
+
+    # Not used by a build yet; these are the endpoints Starting XI and Grid need.
+    # Old seasons never change, so pass a large max_age_hours when fetching them.
+
+    def squad(self, club_id, season):
+        """First-team squad of a season (season=2005 is 2005/06): playerId, shirtNumber, isCaptain.
+
+        The parameter must be `season`; `seasonId` is ignored and returns the current squad.
+        """
+        return self.get(f'club/{club_id}/squad?season={season}')
+
+    def games(self, game_ids):
+        """Matches by id: both clubs' starting lineups, formation (`tactic`) and score."""
+        return self._get_batched('games', game_ids)
+
+    def competition_fixtures(self, competition_id, season):
+        """Every match (with game ids) of a competition season, e.g. ('CL', 2004)."""
+        return self.get(f'competition/{competition_id}/fixtures?season={season}')
+
+    def club_fixtures(self, club_id, season):
+        """A club's matches in a season."""
+        return self.get(f'club/{club_id}/fixtures?season={season}')

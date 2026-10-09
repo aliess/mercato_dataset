@@ -2,7 +2,7 @@
 // clues/batches/*.json file and merges the results into clues/player_clues.json
 // and clues/review.csv (ranked by market value, with each player's difficulty).
 //
-//   node scripts/check_clues.js
+//   node clues/check_clues.js
 //
 // Build the functions first (cd ../footballquiz_firebase/functions && npm run build).
 // Errors keep a player out of player_clues.json; warnings are listed only.
@@ -11,7 +11,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.resolve(__dirname, "..");
-const CLUES = path.join(ROOT, "clues");
+const CLUES = __dirname;
 const {checkClueDoc} = require(path.resolve(
   ROOT, "../footballquiz_firebase/functions/lib/clueValidation.js"));
 

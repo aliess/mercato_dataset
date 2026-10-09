@@ -2,18 +2,18 @@
 """
 Build the two files the app's Firestore is filled from:
 
-  output/player_profiles.csv    → collection `player_profiles_and_value` (doc id = player_id)
-  output/transfer_history.csv   → collection `transfer_history_filtered`
+  transfer_history/output/player_profiles.csv    → collection `player_profiles_and_value` (doc id = player_id)
+  transfer_history/output/transfer_history.csv   → collection `transfer_history_filtered`
 
-Players are picked from the transfermarkt-datasets tables (dataset/). Unless --offline is
-given, every candidate is then refreshed from Transfermarkt's JSON API (see tm_api.py):
+Players are picked from the transfermarkt-datasets tables (sources/dataset/). Unless --offline is
+given, every candidate is then refreshed from Transfermarkt's JSON API (see sources/tm_api.py):
 highest market value, current club, and the full transfer history. That keeps the data
 current even though the upstream dataset stopped updating in July 2026, and fills in
 players whose transfers the dataset never had (e.g. Hazard, Bale, Aguero).
 
 Usage:
-    python scripts/build_dataset.py              # dataset + live Transfermarkt refresh
-    python scripts/build_dataset.py --offline    # dataset only (old behaviour)
+    python transfer_history/build_dataset.py              # dataset + live Transfermarkt refresh
+    python transfer_history/build_dataset.py --offline    # dataset only (old behaviour)
 """
 
 import argparse
@@ -24,10 +24,12 @@ from pathlib import Path
 import pandas as pd
 from unidecode import unidecode
 
-import compare_outputs
-from tm_api import TransfermarktAPI
+MODE_DIR = Path(__file__).resolve().parent
+ROOT = MODE_DIR.parent
+sys.path.insert(0, str(ROOT))
 
-ROOT = Path(__file__).resolve().parent.parent
+import compare_outputs
+from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
 # ── Player selection ──
 # Stars: highest-ever market value at or above this (Jamie Vardy peaked at exactly 20M).
@@ -67,9 +69,9 @@ TRANSFERS_COLUMNS = [
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('--dataset-dir', type=Path, default=ROOT / 'dataset')
-    parser.add_argument('--output-dir', type=Path, default=ROOT / 'output')
-    parser.add_argument('--cache-dir', type=Path, default=ROOT / 'cache' / 'tm_api')
+    parser.add_argument('--dataset-dir', type=Path, default=ROOT / 'sources' / 'dataset')
+    parser.add_argument('--output-dir', type=Path, default=MODE_DIR / 'output')
+    parser.add_argument('--cache-dir', type=Path, default=DEFAULT_CACHE_DIR)
     parser.add_argument('--offline', action='store_true',
                         help='Use only the dataset tables; skip the Transfermarkt API.')
     parser.add_argument('--max-age-hours', type=float, default=24,
@@ -83,7 +85,7 @@ def read_table(dataset_dir, name, **kwargs):
     for path in (dataset_dir / f'{name}.csv.gz', dataset_dir / f'{name}.csv'):
         if path.exists():
             return pd.read_csv(path, **kwargs)
-    sys.exit(f'Missing {name}.csv in {dataset_dir}. Run scripts/download_dataset.py first.')
+    sys.exit(f'Missing {name}.csv in {dataset_dir}. Run sources/download_dataset.py first.')
 
 
 def is_youth_team(name):
