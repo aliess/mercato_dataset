@@ -93,9 +93,9 @@ class TransfermarktAPI:
         cache_file.write_text(json.dumps({'path': path, 'data': body['data']}))
         return body['data']
 
-    def _get_batched(self, endpoint, ids):
+    def _get_batched(self, endpoint, ids, batch_size=BATCH_SIZE):
         ids = sorted({str(i) for i in ids})
-        chunks = [ids[i:i + BATCH_SIZE] for i in range(0, len(ids), BATCH_SIZE)]
+        chunks = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
         paths = [f'{endpoint}?' + '&'.join(f'ids[]={urllib.parse.quote(i)}' for i in chunk)
                  for chunk in chunks]
         result = {}
@@ -152,7 +152,7 @@ class TransfermarktAPI:
 
     def games(self, game_ids):
         """Matches by id: both clubs' starting lineups, formation (`tactic`) and score."""
-        return self._get_batched('games', game_ids)
+        return self._get_batched('games', game_ids, batch_size=25)  # match records are large
 
     def competition_fixtures(self, competition_id, season):
         """Every match (with game ids) of a competition season, e.g. ('CL', 2004)."""

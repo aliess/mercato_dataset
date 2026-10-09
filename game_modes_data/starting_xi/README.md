@@ -1,31 +1,68 @@
 # Starting XI
 
-Name the eleven starters of a famous match. Still a Labs prototype: the app ships a
-placeholder set, and the real data set is not built yet.
-
-## What exists
-
-`export_xi_placeholder.py` writes the 18 Champions League final lineups (2014–2025) bundled
-in the app as `footballquiz/footballquiz/Resources/Labs/xi_placeholder.json`:
+Name the eleven starters of a famous match. Only the players who started count; substitutes
+and the rest of the squad are never answers.
 
 ```bash
-python game_modes_data/starting_xi/export_xi_placeholder.py ../footballquiz/footballquiz/Resources/Labs/xi_placeholder.json
+python game_modes_data/starting_xi/build_lineups.py     # → output/xi_lineups.json (kept in git)
 ```
 
-Source: the `games` and `game_lineups` tables of transfermarkt-datasets (~130 MB, downloaded
-into `sources/dataset/` on first run). Limits of that source: club matches only (no
-national-team finals), nothing before July 2013, and no updates since July 2026.
+Everything comes from the Transfermarkt API (`sources/tm_api.py`): the fixture list of each
+competition season gives the match ids, the match record gives the starters, shirt numbers,
+captain, formation and score, and the player records give the names. A full build is about
+150 requests; finished seasons are cached for good, so a rerun only fetches the latest ones.
 
-## Where the real data will come from
+## Which matches
 
-The Transfermarkt API (`sources/tm_api.py`) has full lineups for old and national-team
-matches (2005 Champions League final and 2010 World Cup final checked):
+| Competition | Rounds | From |
+|---|---|---|
+| Champions League | Quarter-finals, semi-finals, finals | 1992/93 (first season the API has) |
+| World Cup | Quarter-finals, semi-finals, finals | 1986 |
+| Euros | Quarter-finals, semi-finals, finals | 1988 |
+| Famous matches from other rounds | The ids in `famous_matches.json` | — |
 
-| Need | Call |
-|---|---|
-| The matches of a competition season, with game ids | `api.competition_fixtures('CL', 2004)` |
-| Starters, shirt numbers, captain, formation, score | `api.games([game_id, …])` → `homeClub.lineup.players`, `tactic`, `score` |
-| Player names for the ids in a lineup | `api.players([…])` |
+Each match gives two lineups, one per team: 1,120 lineups from 561 matches in the current build.
+To add a famous match, add its Transfermarkt match id (the number at the end of the match
+report URL) to `famous_matches.json` and rebuild. To add a competition, add a row to
+`COMPETITIONS` in `build_lineups.py`.
 
-Open questions before building it: which matches to include, and how the app receives them
-(a Storage JSON file like the other modes, not Firestore docs per match).
+## Difficulty
+
+By team, as a first guess; the lists are constants at the top of `build_lineups.py`.
+
+| Difficulty | Clubs | National teams |
+|---|---|---|
+| `beginner` | Real Madrid, Barcelona, Bayern, Man Utd, Liverpool, Chelsea, Arsenal, Man City, Juventus, AC Milan, Inter, PSG | Brazil, Argentina, France, Germany, Spain, Italy, England, Netherlands, Portugal |
+| `intermediate` | Other clubs from the top five leagues | Every other nation |
+| `expert` | Clubs from other leagues | — |
+
+The year is not part of it yet: Bayern's 1999 lineup is `beginner` like their 2020 one. Each
+lineup carries `year`, `round` and `famous` (finals and the extra matches), so the split can
+be refined without refetching.
+
+## File layout
+
+Same layout the app reads for the bundled placeholder (`Resources/Labs/xi_placeholder.json`),
+with extra fields the app ignores until it uses them:
+
+```json
+{"id": "31195-away", "team": "Liverpool", "opponent": "AC Milan",
+ "competition": "Champions League final", "round": "final", "leg": null,
+ "season": "04/05", "year": 2005, "date": "2005-05-25",
+ "score": "AC Milan 3–3 Liverpool (2–3 pens)", "formation": "4-4-1-1",
+ "difficulty": "beginner", "famous": true,
+ "slots": [{"player_id": "…", "name": "Jerzy Dudek", "number": 1, "position": "Goalkeeper",
+            "captain": false, "x": 0.5, "y": 0.9}]}
+```
+
+## Known limits
+
+- The API doesn't say which of two centre-backs played left or right, so shirts with the same
+  position are in arbitrary order within their row.
+- The API's score includes shootout penalties. The builder works out the real score from the
+  goals, and shows the shootout separately: "(2–3 pens)".
+- 9 lineups have no captain marked and 1 shirt has no number.
+- One match is left out because the API has no positions for it (Legia–Panathinaikos 1996).
+- Team names are today's ("Germany" for West Germany in 1986).
+- The app still bundles the 18-lineup placeholder. It has to switch to this file, and to show
+  the new competition labels ("Champions League semi-final", "World Cup final"…).

@@ -35,10 +35,11 @@ Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
 | `clubs?ids[]=…` | Name, short name, country, `clubTypeId` (1 = first team), `mainClubId` | transfer history |
 | `transfer/history/player/{id}` | Every transfer, loan, return and retirement, with fee and date | transfer history |
 | `club/{id}/squad?season=2005` | First-team squad of 2005/06, back to at least 1975. `seasonId=` is ignored (returns the current squad) | planned: grid |
-| `games?ids[]=…`, `game/{id}` | Match with both starting lineups, formation and score; old and national-team matches too | planned: starting XI |
-| `competition/{id}/fixtures?season=2004` | Every match of a competition season, with game ids | planned: starting XI |
-| `club/{id}/fixtures?season=2004` | A club's matches that season | planned: starting XI |
+| `games?ids[]=…`, `game/{id}` | Match with both starting lineups, formation, score and every goal; old and national-team matches too. The score includes shootout penalties (`additionType`) | starting XI |
+| `competition/{id}/fixtures?season=2004` | Every match of a competition season, with game ids and round names. Ids: `CL`, `FIWC` (World Cup), `EURO`. Summer tournaments are filed under the year before (World Cup 2010 → 2009) | starting XI |
+| `club/{id}/fixtures?season=2004` | A club's matches that season | — |
 | `competitions?ids[]=CL`, `competition/CL` | Competition details | — |
+| `player/{id}/market-value-history` | Answers (200); content not looked at yet | — |
 
 There is no search endpoint and no `countries` endpoint (404). Retired players work by id
 (Zidane 3111, Henry 3207).
@@ -53,7 +54,7 @@ sources/            where the data comes from; shared by every mode
 game_modes_data/    one folder per game mode: its scripts and its data
   transfer_history/   the player pool and every player's transfers; all other modes build on it
   clues/              Three Clues: hand-written clue text per player
-  starting_xi/        Starting XI: placeholder lineups only, real data not built yet
+  starting_xi/        Starting XI: starting lineups of Champions League, World Cup and Euro knockout matches
   grid/               Grid Rush: no data of its own yet (uses the transfer history)
 update.sh           refresh the transfer history in one command
 ```
@@ -62,7 +63,7 @@ update.sh           refresh the transfer history in one command
 |---|---|---|---|
 | Transfer history (main quiz, daily, multiplayer) | `game_modes_data/transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
 | Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
-| Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Placeholder | Bundled in the app (`Resources/Labs/xi_placeholder.json`) |
+| Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Data built; app still uses a placeholder | `game_modes_data/starting_xi/output/xi_lineups.json` (not in the app yet) |
 | Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
 
 ## Setup
