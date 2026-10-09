@@ -35,6 +35,11 @@ from sources.tm_api import TransfermarktAPI
 FIRST_SEASON = 1990  # 1990/91; the API has squads back to at least 1975
 TOP5_LEAGUES = {'GB1': 'Premier League', 'ES1': 'LaLiga', 'IT1': 'Serie A', 'L1': 'Bundesliga', 'FR1': 'Ligue 1'}
 # The 20 clubs outside those leagues that the most quiz-pool players passed through.
+# Transfermarkt has valued players since late 2004. Someone in a squad in this season or
+# later who was never valued is a fringe squad member (third keeper, registered youth
+# player) and is left out. Earlier players have no value because none existed yet
+# (Maradona, Baggio, van Basten), so they stay.
+VALUES_SINCE_SEASON = 2005
 OTHER_CLUB_IDS = {
     294: 'Benfica', 610: 'Ajax', 720: 'Porto', 336: 'Sporting CP', 36: 'Fenerbahce', 383: 'PSV',
     141: 'Galatasaray', 114: 'Besiktas', 58: 'Anderlecht', 409: 'Red Bull Salzburg',
@@ -108,7 +113,7 @@ def main():
     countries.update({nation_id: names.most_common(1)[0][0] for nation_id, names in votes.items()})
     countries = {country_id: canonical(name) for country_id, name in countries.items()}
 
-    unnamed_nations, missing = Counter(), 0
+    unnamed_nations, missing, never_valued = Counter(), 0, 0
     rows = []
     for player_id, player_clubs in spells.items():
         player = players.get(player_id)
@@ -120,6 +125,9 @@ def main():
         if not nation:
             unnamed_nations[nation_id] += 1
         peak = ((player.get('marketValueDetails') or {}).get('highest') or {}).get('value')
+        if peak is None and max(span[1] for span in player_clubs.values()) >= VALUES_SINCE_SEASON:
+            never_valued += 1
+            continue
         rows.append([player_id, player['name'], nation, peak,
                      [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])]])
     rows.sort(key=lambda r: (-(r[3] or 0), int(r[0])))
@@ -142,7 +150,8 @@ def main():
     record(MODE_DIR, 'built', players=len(rows), clubs=len(club_rows),
            seasons=f'{FIRST_SEASON} to {this_season}', source='Transfermarkt API')
     print(f'\n✓ {len(rows):,} players, {len(club_rows):,} clubs → {out} ({out.stat().st_size / 1e6:.1f} MB)')
-    print(f'  without a peak market value: {sum(r[3] is None for r in rows):,}')
+    print(f'  left out: {never_valued:,} never-valued players from {VALUES_SINCE_SEASON} or later')
+    print(f'  without a market value (careers before values existed): {sum(r[3] is None for r in rows):,}')
     if missing:
         print(f'  left out: {missing:,} players the API returned no record for')
     if unnamed_nations:
