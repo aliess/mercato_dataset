@@ -5,15 +5,15 @@ Firestore `player_clues/{playerId}` (see `footballquiz/docs/plans/three_clues_mo
 
 | File | What it is |
 |---|---|
-| `facts.jsonl` | Player facts to write against (`python clues/export_clue_facts.py`) |
+| `facts.jsonl` | Player facts to write against (`python game_modes_data/clues/export_clue_facts.py`) |
 | `batches/batch_NN.json` | The written clues, about 30 players per file |
 | `player_clues.json` | Every clue set that passes the server validator, keyed by player ID: the Firestore docs |
 | `clue_report.json` | Errors (left out) and warnings (kept) from the validator |
 | `review.csv` | The same clues as a spreadsheet, ranked by market value, with each player's difficulty |
 
 ```bash
-python clues/export_clue_facts.py                      # every player, with its difficulty
-node clues/check_clues.js                              # validate + merge
+python game_modes_data/clues/export_clue_facts.py                      # every player, with its difficulty
+node game_modes_data/clues/check_clues.js                              # validate + merge
 ```
 
 Every doc starts as `status: "draft"`. Change it to `"approved"` once reviewed; only approved

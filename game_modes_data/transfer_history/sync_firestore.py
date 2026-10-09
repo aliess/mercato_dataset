@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Sync transfer_history/output/player_profiles.csv and transfer_history.csv into Firestore, writing only
+Sync game_modes_data/transfer_history/output/player_profiles.csv and transfer_history.csv into Firestore, writing only
 what changed, then rebuild the game data file the app downloads (Storage cache/game_data_v1.json)
 by running the functions' buildGameData() locally (needs node + footballquiz_firebase/functions).
 
@@ -18,13 +18,13 @@ Credentials (first one found):
   <project-id>-firebase-adminsdk-*.json in the repo root
   gcloud auth application-default login
 
-Every --apply first saves both collections to transfer_history/backups/<project>/<time>/.
+Every --apply first saves both collections to game_modes_data/transfer_history/backups/<project>/<time>/.
 
 Usage:
-    python transfer_history/sync_firestore.py --project dev                  # dry run: show the diff
-    python transfer_history/sync_firestore.py --project dev --apply          # backup, write, rebuild game data
-    python transfer_history/sync_firestore.py --project prod --apply
-    python transfer_history/sync_firestore.py --project prod --restore transfer_history/backups/mercato-6e710/<time> --apply
+    python game_modes_data/transfer_history/sync_firestore.py --project dev                  # dry run: show the diff
+    python game_modes_data/transfer_history/sync_firestore.py --project dev --apply          # backup, write, rebuild game data
+    python game_modes_data/transfer_history/sync_firestore.py --project prod --apply
+    python game_modes_data/transfer_history/sync_firestore.py --project prod --restore game_modes_data/transfer_history/backups/mercato-6e710/<time> --apply
 """
 
 import argparse
@@ -40,7 +40,7 @@ from pathlib import Path
 import pandas as pd
 
 MODE_DIR = Path(__file__).resolve().parent
-ROOT = MODE_DIR.parent
+ROOT = MODE_DIR.parent.parent
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 FUNCTIONS_DIR = ROOT.parent / 'footballquiz_firebase' / 'functions'
 
@@ -218,7 +218,7 @@ def decode(value):
 
 
 def backup(project_id, collections):
-    """Save {collection: {doc_id: data}} to transfer_history/backups/<project>/<time>/ and return that folder."""
+    """Save {collection: {doc_id: data}} to game_modes_data/transfer_history/backups/<project>/<time>/ and return that folder."""
     folder = MODE_DIR / 'backups' / project_id / datetime.now().strftime('%Y-%m-%d_%H%M%S')
     folder.mkdir(parents=True)
     for name, docs in collections.items():
@@ -307,7 +307,7 @@ def main():
 
     folder = backup(project_id, {PLAYERS_COLLECTION: existing_players, TRANSFERS_COLLECTION: existing_transfers})
     print(f'\nBacked up current Firestore data to {folder.relative_to(ROOT)}')
-    print(f'  (undo with: python transfer_history/sync_firestore.py --project {args.project} --restore {folder.relative_to(ROOT)} --apply)')
+    print(f'  (undo with: python game_modes_data/transfer_history/sync_firestore.py --project {args.project} --restore {folder.relative_to(ROOT)} --apply)')
 
     print('\nWriting players...')
     write(db, PLAYERS_COLLECTION, player_sets, player_deletes)

@@ -9,7 +9,7 @@ placeholder set, and the real data set is not built yet.
 in the app as `footballquiz/footballquiz/Resources/Labs/xi_placeholder.json`:
 
 ```bash
-python starting_xi/export_xi_placeholder.py ../footballquiz/footballquiz/Resources/Labs/xi_placeholder.json
+python game_modes_data/starting_xi/export_xi_placeholder.py ../footballquiz/footballquiz/Resources/Labs/xi_placeholder.json
 ```
 
 Source: the `games` and `game_lineups` tables of transfermarkt-datasets (~130 MB, downloaded

@@ -4,10 +4,10 @@ __pycache__/
 # Downloaded and generated data (re-create with the scripts, see README)
 sources/dataset/
 sources/cache/
-transfer_history/output/
+game_modes_data/transfer_history/output/
 
 # Firestore backups made by sync_firestore.py --apply
-transfer_history/backups/
+game_modes_data/transfer_history/backups/
 
 # Credentials
 *service-account*.json

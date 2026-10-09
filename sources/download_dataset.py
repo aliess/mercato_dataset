@@ -3,7 +3,7 @@
 Download transfermarkt-datasets tables from the project's public R2 bucket, the same
 files Kaggle publishes (github.com/dcaribou/transfermarkt-datasets). No account needed.
 
-By default it fetches the six tables transfer_history/build_dataset.py needs (~25 MB
+By default it fetches the six tables game_modes_data/transfer_history/build_dataset.py needs (~25 MB
 gzipped) into sources/dataset/. Starting XI also uses games and game_lineups (~130 MB).
 
 Upstream stopped updating in July 2026 (github.com/dcaribou/transfermarkt-datasets/discussions/383);

@@ -2,8 +2,8 @@
 """
 Build the two files the app's Firestore is filled from:
 
-  transfer_history/output/player_profiles.csv    → collection `player_profiles_and_value` (doc id = player_id)
-  transfer_history/output/transfer_history.csv   → collection `transfer_history_filtered`
+  game_modes_data/transfer_history/output/player_profiles.csv    → collection `player_profiles_and_value` (doc id = player_id)
+  game_modes_data/transfer_history/output/transfer_history.csv   → collection `transfer_history_filtered`
 
 Players are picked from the transfermarkt-datasets tables (sources/dataset/). Unless --offline is
 given, every candidate is then refreshed from Transfermarkt's JSON API (see sources/tm_api.py):
@@ -12,8 +12,8 @@ current even though the upstream dataset stopped updating in July 2026, and fill
 players whose transfers the dataset never had (e.g. Hazard, Bale, Aguero).
 
 Usage:
-    python transfer_history/build_dataset.py              # dataset + live Transfermarkt refresh
-    python transfer_history/build_dataset.py --offline    # dataset only (old behaviour)
+    python game_modes_data/transfer_history/build_dataset.py              # dataset + live Transfermarkt refresh
+    python game_modes_data/transfer_history/build_dataset.py --offline    # dataset only (old behaviour)
 """
 
 import argparse
@@ -25,7 +25,7 @@ import pandas as pd
 from unidecode import unidecode
 
 MODE_DIR = Path(__file__).resolve().parent
-ROOT = MODE_DIR.parent
+ROOT = MODE_DIR.parent.parent
 sys.path.insert(0, str(ROOT))
 
 import compare_outputs

@@ -1,10 +1,10 @@
 """Exports the facts behind Three Clues, most valuable players first.
 
-Writes clues/facts.jsonl: one player per line with the profile fields and the
-club path from transfer_history/output/ (build that first), for writing clues against.
+Writes game_modes_data/clues/facts.jsonl: one player per line with the profile fields and the
+club path from game_modes_data/transfer_history/output/ (build that first), for writing clues against.
 
-    python clues/export_clue_facts.py            # every player
-    python clues/export_clue_facts.py --top 500  # only the top 500 by market value
+    python game_modes_data/clues/export_clue_facts.py            # every player
+    python game_modes_data/clues/export_clue_facts.py --top 500  # only the top 500 by market value
 """
 
 import argparse

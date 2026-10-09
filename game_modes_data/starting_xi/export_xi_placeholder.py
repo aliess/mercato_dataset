@@ -5,7 +5,7 @@ Builds the Labs Starting XI placeholder lineups bundled in the app
 transfermarkt-datasets match tables (games, game_lineups; ~130 MB, not kept in git).
 
 Usage:
-    python starting_xi/export_xi_placeholder.py <output.json>
+    python game_modes_data/starting_xi/export_xi_placeholder.py <output.json>
 
 The tables are downloaded into sources/dataset/ when missing. Lineups exist for club
 matches only (national-team finals have none). Pitch places come from the match
@@ -14,7 +14,7 @@ formation; shirts are placed left to right by position.
 import csv, gzip, json, re, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from sources.download_dataset import DATASET_DIR, download
 
 D, OUT = str(DATASET_DIR), sys.argv[1]

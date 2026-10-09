@@ -6,7 +6,7 @@ player who fits both. Still a Labs prototype, and it has no data of its own yet.
 ## What it uses today
 
 Boards are built on the phone from the game data file the app already downloads
-(`cache/game_data_v1.json`, made from `transfer_history/output/`). A player "played for" a club
+(`cache/game_data_v1.json`, made from `game_modes_data/transfer_history/output/`). A player "played for" a club
 when the club appears in his transfer history; nationality is his `citizenship`.
 
 That limits answers to the ~1,900 players in the pool (peaked at €10M or more), and to clubs

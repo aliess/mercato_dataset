@@ -50,19 +50,20 @@ sources/            where the data comes from; shared by every mode
   tm_api.py           Transfermarkt API client (cached, throttled, retries)
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
   dataset/, cache/    downloaded tables and API responses (not in git)
-transfer_history/   the player pool and every player's transfers; all other modes build on it
-clues/              Three Clues: hand-written clue text per player
-starting_xi/        Starting XI: placeholder lineups only, real data not built yet
-grid/               Grid Rush: no data of its own yet (uses the transfer history)
+game_modes_data/    one folder per game mode: its scripts and its data
+  transfer_history/   the player pool and every player's transfers; all other modes build on it
+  clues/              Three Clues: hand-written clue text per player
+  starting_xi/        Starting XI: placeholder lineups only, real data not built yet
+  grid/               Grid Rush: no data of its own yet (uses the transfer history)
 update.sh           refresh the transfer history in one command
 ```
 
 | Game mode | Folder | Status | Ends up in |
 |---|---|---|---|
-| Transfer history (main quiz, daily, multiplayer) | `transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
-| Three Clues | `clues/` ([README](clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
-| Starting XI | `starting_xi/` ([README](starting_xi/README.md)) | Placeholder | Bundled in the app (`Resources/Labs/xi_placeholder.json`) |
-| Grid Rush | `grid/` ([README](grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
+| Transfer history (main quiz, daily, multiplayer) | `game_modes_data/transfer_history/` | Live | Firestore `player_profiles_and_value`, `transfer_history_filtered` → Storage `cache/game_data_v1.json` |
+| Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | Live | Firestore `player_clues` → Storage `cache/clues_v1.json` |
+| Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Placeholder | Bundled in the app (`Resources/Labs/xi_placeholder.json`) |
+| Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
 
 ## Setup
 
@@ -97,27 +98,27 @@ Or step by step:
 | Step | Command | What it does |
 |---|---|---|
 | 1 | `python sources/download_dataset.py` | Fetches the 6 tables needed (~25 MB) into `sources/dataset/` |
-| 2 | `python transfer_history/build_dataset.py` | Picks players, refreshes them from the Transfermarkt API, writes `transfer_history/output/`, compares with the last build |
-| 3 | `python transfer_history/sync_firestore.py --project dev` | Shows what would change in Firestore (dry run) |
-| 4 | `python transfer_history/sync_firestore.py --project dev --apply` | Backs up Firestore, writes only changed docs, rebuilds the game data file |
+| 2 | `python game_modes_data/transfer_history/build_dataset.py` | Picks players, refreshes them from the Transfermarkt API, writes `game_modes_data/transfer_history/output/`, compares with the last build |
+| 3 | `python game_modes_data/transfer_history/sync_firestore.py --project dev` | Shows what would change in Firestore (dry run) |
+| 4 | `python game_modes_data/transfer_history/sync_firestore.py --project dev --apply` | Backs up Firestore, writes only changed docs, rebuilds the game data file |
 
 A full refresh is about 3,500 API requests and takes a few minutes. Responses are cached in
 `sources/cache/tm_api/` for 24 h (`--max-age-hours`), so a rerun the same day is instant.
 `build_dataset.py --offline` skips the API and uses only the dataset tables.
 
-After new players are added, give them clues: see [clues/README.md](clues/README.md).
+After new players are added, give them clues: see [game_modes_data/clues/README.md](game_modes_data/clues/README.md).
 
 ### Checking a new build before it goes live
 
-- Each build moves the last one to `transfer_history/output/previous/` and compares them:
+- Each build moves the last one to `game_modes_data/transfer_history/output/previous/` and compares them:
   players added/removed, players with no transfers, players who lost transfers, club changes,
-  latest transfer date. The report is saved to `transfer_history/output/compare_report.txt`. If
+  latest transfer date. The report is saved to `game_modes_data/transfer_history/output/compare_report.txt`. If
   something looks broken (counts drop more than 5%, unplayable players increase, data got
   older), the build exits with an error. Re-run the comparison any time with
-  `python transfer_history/compare_outputs.py`.
+  `python game_modes_data/transfer_history/compare_outputs.py`.
 - Each `sync_firestore.py --apply` first saves both Firestore collections to
-  `transfer_history/backups/<project>/<time>/`. To undo a sync:
-  `python transfer_history/sync_firestore.py --project prod --restore transfer_history/backups/mercato-6e710/<time> --apply`
+  `game_modes_data/transfer_history/backups/<project>/<time>/`. To undo a sync:
+  `python game_modes_data/transfer_history/sync_firestore.py --project prod --restore game_modes_data/transfer_history/backups/mercato-6e710/<time> --apply`
 - The sync stops if it would delete more than 20% of a collection (`--allow-shrink` overrides).
 
 ### Which players are included
@@ -126,7 +127,7 @@ After new players are added, give them clues: see [clues/README.md](clues/README
 - **Big-club players**: peaked at €10M–20M and played for Arsenal, AC Milan, Real Madrid,
   Barcelona or Chelsea (first team, by club id).
 
-Thresholds and clubs are constants at the top of `transfer_history/build_dataset.py`.
+Thresholds and clubs are constants at the top of `game_modes_data/transfer_history/build_dataset.py`.
 Candidates come from the dataset tables, so a player who first reached €10M after June 2026 is
 not picked up until the dataset updates again or the candidate list gets another source.
 
@@ -140,7 +141,7 @@ transfers.
 
 ### Output
 
-`transfer_history/output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
-`transfer_history/output/transfer_history.csv` → `transfer_history_filtered`. Transfers to
+`game_modes_data/transfer_history/output/player_profiles.csv` → `player_profiles_and_value` (doc id = `player_id`).
+`game_modes_data/transfer_history/output/transfer_history.csv` → `transfer_history_filtered`. Transfers to
 youth/reserve sides (names ending in U19, U21, B, II…) and moves dated after today are left
 out. Column layout is unchanged from the original import.

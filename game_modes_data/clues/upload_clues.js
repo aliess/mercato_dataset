@@ -1,9 +1,9 @@
-// Uploads the approved clue sets in clues/player_clues.json to Firestore
+// Uploads the approved clue sets in game_modes_data/clues/player_clues.json to Firestore
 // player_clues/{playerId}, writing only the documents that changed.
 //
-//   node clues/upload_clues.js --project dev            # dry run: show the diff
-//   node clues/upload_clues.js --project dev --apply
-//   node clues/upload_clues.js --project prod --apply
+//   node game_modes_data/clues/upload_clues.js --project dev            # dry run: show the diff
+//   node game_modes_data/clues/upload_clues.js --project dev --apply
+//   node game_modes_data/clues/upload_clues.js --project prod --apply
 //
 // Reads the collection once, then writes each new or changed document once
 // (updated_at is set here so the onClueWritten trigger has nothing to add).
@@ -13,7 +13,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = path.resolve(__dirname, "..");
+const ROOT = path.resolve(__dirname, "../..");
 const admin = require(path.resolve(
   ROOT, "../footballquiz_firebase/functions/node_modules/firebase-admin"));
 
@@ -26,7 +26,7 @@ const apply = args.includes("--apply");
 const projectArg = args[args.indexOf("--project") + 1];
 const projectId = PROJECTS[projectArg];
 if (!projectId) {
-  console.error("Usage: node clues/upload_clues.js --project dev|prod [--apply]");
+  console.error("Usage: node game_modes_data/clues/upload_clues.js --project dev|prod [--apply]");
   process.exit(1);
 }
 
@@ -54,7 +54,7 @@ function toDoc(source) {
 }
 
 (async () => {
-  const local = JSON.parse(fs.readFileSync(path.join(ROOT, "clues/player_clues.json"), "utf8"));
+  const local = JSON.parse(fs.readFileSync(path.join(ROOT, "game_modes_data/clues/player_clues.json"), "utf8"));
   const wanted = Object.entries(local).filter(([, doc]) => doc.status === "approved");
 
   const snap = await db.collection("player_clues").get();

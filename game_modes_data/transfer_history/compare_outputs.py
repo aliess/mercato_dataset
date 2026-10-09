@@ -4,7 +4,7 @@ Compare two builds (output/previous/ vs output/) and flag anything that looks wr
 build_dataset.py runs this automatically; the report is saved to output/compare_report.txt.
 
 Usage:
-    python transfer_history/compare_outputs.py [old_dir] [new_dir]
+    python game_modes_data/transfer_history/compare_outputs.py [old_dir] [new_dir]
 """
 
 import sys

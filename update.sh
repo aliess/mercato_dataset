@@ -12,5 +12,5 @@ project=$1
 shift
 
 python sources/download_dataset.py
-python transfer_history/build_dataset.py
-python transfer_history/sync_firestore.py --project "$project" "$@"
+python game_modes_data/transfer_history/build_dataset.py
+python game_modes_data/transfer_history/sync_firestore.py --project "$project" "$@"
