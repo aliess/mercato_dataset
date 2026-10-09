@@ -37,9 +37,13 @@ TOP5_LEAGUES = {'GB1': 'Premier League', 'ES1': 'LaLiga', 'IT1': 'Serie A', 'L1'
 # The 20 clubs outside those leagues that the most quiz-pool players passed through.
 # Transfermarkt has valued players since late 2004. Someone in a squad in this season or
 # later who was never valued is a fringe squad member (third keeper, registered youth
-# player) and is left out. Earlier players have no value because none existed yet
-# (Maradona, Baggio, van Basten), so they stay.
+# player) and is left out.
 VALUES_SINCE_SEASON = 2005
+# Earlier players have no value because none existed yet, famous or not. They stay only
+# if they left a mark (see is_notable): started a match in one of these competitions
+# before values existed, or spent this many seasons in a top-five-league squad.
+NOTABLE_COMPETITIONS = {'FIWC': 1985, 'EURO': 1987, 'CL': 1992}  # id → first season fetched
+NOTABLE_TOP_FLIGHT_SEASONS = 5
 OTHER_CLUB_IDS = {
     294: 'Benfica', 610: 'Ajax', 720: 'Porto', 336: 'Sporting CP', 36: 'Fenerbahce', 383: 'PSV',
     141: 'Galatasaray', 114: 'Besiktas', 58: 'Anderlecht', 409: 'Red Bull Salzburg',
@@ -56,11 +60,13 @@ def main():
 
     # ── Clubs ──
     club_league = {}  # club id → (league id, seasons in it)
+    top_flight = set()  # (club id, season) pairs in a top-five league
     for league in TOP5_LEAGUES:
         for season in seasons:
             fixtures = (live if season >= this_season - 1 else old).competition_fixtures(league, season)
             for club_id in (fixtures or {}).get('clubIds') or []:
                 club_league.setdefault(str(club_id), Counter())[league] += 1
+                top_flight.add((str(club_id), season))
     club_ids = set(club_league) | {str(i) for i in OTHER_CLUB_IDS}
     print(f'{len(club_ids):,} clubs: {len(club_league):,} from the top five leagues since {FIRST_SEASON}, '
           f'{len(club_ids) - len(club_league):,} others')
@@ -74,8 +80,11 @@ def main():
     print(f'  got {len(squads):,} ({old.requests + live.requests:,} API requests)')
 
     spells = defaultdict(dict)  # player id → {club id: [first season, last season]}
+    top_flight_seasons = Counter()  # player id → seasons in a top-five-league squad
     for (club_id, season), player_ids in squads.items():
         for player_id in player_ids:
+            if (club_id, season) in top_flight:
+                top_flight_seasons[player_id] += 1
             span = spells[player_id].setdefault(club_id, [season, season])
             span[0], span[1] = min(span[0], season), max(span[1], season)
 
@@ -91,6 +100,19 @@ def main():
                 from_history += 1
     spells = {player_id: clubs for player_id, clubs in spells.items() if clubs}
     print(f'{len(spells):,} players in those squads (+{from_history:,} club spells from transfer histories)')
+
+    # ── Who started a big match before market values existed ──
+    game_ids = set()
+    for competition_id, first_season in NOTABLE_COMPETITIONS.items():
+        for season in range(first_season, VALUES_SINCE_SEASON):
+            for game_day in (old.competition_fixtures(competition_id, season) or {}).get('fixtures') or []:
+                game_ids.update(game['id'] for game in game_day['games'])
+    print(f'Fetching {len(game_ids):,} World Cup, Euro and Champions League matches up to {VALUES_SINCE_SEASON}...', flush=True)
+    big_match_starters = {player['id'] for game in old.games(game_ids).values() for side in ('homeClub', 'awayClub')
+                          for player in (game[side].get('lineup') or {}).get('players') or []}
+
+    def is_notable(player_id):
+        return player_id in big_match_starters or top_flight_seasons[player_id] >= NOTABLE_TOP_FLIGHT_SEASONS
 
     # ── Players and clubs ──
     print('Fetching players...', flush=True)
@@ -113,7 +135,7 @@ def main():
     countries.update({nation_id: names.most_common(1)[0][0] for nation_id, names in votes.items()})
     countries = {country_id: canonical(name) for country_id, name in countries.items()}
 
-    unnamed_nations, missing, never_valued = Counter(), 0, 0
+    unnamed_nations, missing, never_valued, not_notable = Counter(), 0, 0, 0
     rows = []
     for player_id, player_clubs in spells.items():
         player = players.get(player_id)
@@ -127,6 +149,9 @@ def main():
         peak = ((player.get('marketValueDetails') or {}).get('highest') or {}).get('value')
         if peak is None and max(span[1] for span in player_clubs.values()) >= VALUES_SINCE_SEASON:
             never_valued += 1
+            continue
+        if peak is None and not is_notable(player_id):
+            not_notable += 1
             continue
         rows.append([player_id, player['name'], nation, peak,
                      [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])]])
@@ -151,7 +176,9 @@ def main():
            seasons=f'{FIRST_SEASON} to {this_season}', source='Transfermarkt API')
     print(f'\n✓ {len(rows):,} players, {len(club_rows):,} clubs → {out} ({out.stat().st_size / 1e6:.1f} MB)')
     print(f'  left out: {never_valued:,} never-valued players from {VALUES_SINCE_SEASON} or later')
-    print(f'  without a market value (careers before values existed): {sum(r[3] is None for r in rows):,}')
+    print(f'  left out: {not_notable:,} earlier players with no value who never started a big match '
+          f'or spent {NOTABLE_TOP_FLIGHT_SEASONS} seasons in a top-five league')
+    print(f'  kept without a market value (notable careers before values existed): {sum(r[3] is None for r in rows):,}')
     if missing:
         print(f'  left out: {missing:,} players the API returned no record for')
     if unnamed_nations:

@@ -10,7 +10,7 @@ python game_modes_data/grid/build_pool.py     # → output/grid_pool.json (kept 
 ## The answer pool
 
 `output/grid_pool.json` only decides whether a typed answer is right. It is much wider than
-the quiz's player pool: 57,256 players at 268 clubs.
+the quiz's player pool: 46,872 players at 268 clubs.
 
 - **A player counts for a club** when he was in its squad in any season since 1990/91, whether
   or not he played a match. Quiz-pool players also count for the clubs in their transfer
@@ -22,12 +22,30 @@ the quiz's player pool: 57,256 players at 268 clubs.
   Flamengo, River Plate, Club Brugge, Trabzonspor, Sao Paulo, Braga, Boca Juniors, Palmeiras.
   A club's squads are taken for every season, also those it spent in a lower division.
 - **Nationality:** the player's main one only.
-- **Never-valued recent players are left out** (4,749): someone in a squad in 2005/06 or later
-  whom Transfermarkt never gave a market value is a fringe squad member. Players whose careers
-  ended before values existed (late 2004) stay, with no value: Maradona, Baggio, van Basten.
+
+### Who is left out
+
+Market value is the only fame signal the API has, and Transfermarkt only started valuing
+players in late 2004. So players without a value are handled in two groups:
+
+| Group | Rule | Players |
+|---|---|---|
+| In a squad in 2005/06 or later, never valued | Left out: fringe squad members (third keepers, registered youth players) | 4,749 out |
+| Career ended before values existed | Kept only when notable (below) | 2,006 kept, 10,384 out |
+
+An earlier player is **notable** when he did at least one of these:
+
+- started a World Cup match (1986–2002), a Euro match (1988–2004) or a Champions League match
+  (1992/93–2004/05), in any round;
+- was in a top-five-league squad for five seasons or more.
+
+That keeps Maradona, van Basten, Baggio, Baresi, Cantona, Lineker, Gascoigne and Le Tissier
+(10 seasons at Southampton, no big match), and drops lower-division and short-stay players.
+The constants are at the top of `build_pool.py`.
 
 Everything comes from the Transfermarkt API (`sources/tm_api.py`): one squad request per club
-season (about 9,400), then the player records. The first build takes about 40 minutes;
+season (about 9,400), about 1,800 old World Cup, Euro and Champions League matches, then the
+player records. The first build takes about 40 minutes;
 finished seasons are cached for good, so a rebuild only fetches the last two seasons.
 
 ## File layout
@@ -46,14 +64,15 @@ he was in the squad, not proof he was there every season in between.
 
 ## Known limits
 
-- **4.7 MB** (1.4 MB gzipped). The app should download it only when Grid is opened.
-- **1,228 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
+- **4.0 MB** (1.1 MB gzipped). The app should download it only when Grid is opened.
+- **917 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
   the app has to match a typed name against everyone with that name.
-- **12,390 players have no market value** because their careers ended before late 2004, when
-  Transfermarkt started valuing players. Most are little-known, but the legends of the 1990s
-  are among them. Players who retired soon after 2004 have a low late-career value, not their
-  peak (Zidane €25m, Maldini €3m). So "rarer player" steals can't be ranked fairly for
-  anyone from that era.
+- **2,006 kept players have no market value** (the notable ones from before late 2004), and
+  players who retired soon after have a low late-career value, not their peak (Zidane €25m,
+  Maldini €3m). So "rarer player" steals can't be ranked fairly for anyone from that era.
+- The API files the English top flight under the Premier League only from 1992/93, so 1990/91
+  and 1991/92 don't count towards the five seasons, and a club that was only in the old First
+  Division in those two seasons is not in the club list.
 - 101 players have no nationality name (53 have none in the API; the rest are countries no
   dataset player has).
 - Country names follow the quiz pool. Some have no flag in the app yet (Cote d'Ivoire,
