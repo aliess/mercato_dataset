@@ -33,6 +33,7 @@ from pathlib import Path
 MODE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(MODE_DIR.parents[1]))
 
+from sources.last_updated import record
 from sources.tm_api import TransfermarktAPI
 
 # (API competition id, label, first season). A season is the year it starts in; the API
@@ -235,6 +236,8 @@ def main():
     lines = ',\n'.join(json.dumps(m, ensure_ascii=False, separators=(',', ':')) for m in matches)
     out.write_text('{"version":2,"matches":[\n' + lines + '\n]}\n')
 
+    record(MODE_DIR, 'built', lineups=len(matches), matches=len({m['id'].split('-')[0] for m in matches}),
+           latest_match=matches[-1]['date'], source='Transfermarkt API')
     print(f'\n✓ {len(matches):,} lineups → {out} ({out.stat().st_size / 1e6:.1f} MB)')
     by = lambda key: ', '.join(f'{k} {n:,}' for k, n in Counter(map(key, matches)).most_common())
     print(f'  by competition: {by(lambda m: m["competition"].rsplit(" ", 1)[0] if m["round"] in ROUNDS.values() else "famous extras")}')

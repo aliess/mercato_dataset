@@ -1,0 +1,22 @@
+{
+  "built": {
+    "date": "2026-10-09",
+    "players": 1825,
+    "transfers": 14220,
+    "latest_transfer": "2026-10-08",
+    "transfers_from": "Transfermarkt API",
+    "dataset_latest_valuation": "2026-06-12"
+  },
+  "synced": {
+    "football-quiz-32eb9": {
+      "date": "2026-10-09",
+      "players": 1897,
+      "transfers": 14299
+    },
+    "mercato-6e710": {
+      "date": "2026-10-08",
+      "players": 1897,
+      "transfers": 14773
+    }
+  }
+}

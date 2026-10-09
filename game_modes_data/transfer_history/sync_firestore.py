@@ -41,6 +41,9 @@ import pandas as pd
 
 MODE_DIR = Path(__file__).resolve().parent
 ROOT = MODE_DIR.parent.parent
+sys.path.insert(0, str(ROOT))
+
+from sources.last_updated import record
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 FUNCTIONS_DIR = ROOT.parent / 'footballquiz_firebase' / 'functions'
 
@@ -316,6 +319,7 @@ def main():
     if not args.skip_rebuild:
         print('Rebuilding game data...')
         rebuild_game_data(project_id, args.credentials)
+    record(MODE_DIR, f'synced.{project_id}', players=len(players), transfers=len(transfers))
     print('\n✓ Done')
 
 

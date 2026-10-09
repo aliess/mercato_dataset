@@ -66,6 +66,13 @@ update.sh           refresh the transfer history in one command
 | Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Data built; app still uses a placeholder | `game_modes_data/starting_xi/output/xi_lineups.json` (not in the app yet) |
 | Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | No data yet | Built on the phone from `game_data_v1.json` |
 
+### When was each set last updated?
+
+Every mode folder has a `LAST_UPDATED.json`, written by its build and sync scripts and kept in
+git: `built` is when the files here were last built (with counts and the newest match or
+transfer in them), and `synced` is when they last went to each Firebase project. If `built` is
+newer than `synced`, the app is behind the files.
+
 ## Setup
 
 ```bash

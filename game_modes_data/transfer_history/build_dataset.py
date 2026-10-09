@@ -30,6 +30,7 @@ ROOT = MODE_DIR.parent.parent
 sys.path.insert(0, str(ROOT))
 
 import compare_outputs
+from sources.last_updated import record
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
 # ── Player selection ──
@@ -428,6 +429,11 @@ def main():
     out[TRANSFERS_COLUMNS].to_csv(args.output_dir / 'transfer_history.csv', index=False)
     print(f'\n✓ {len(profiles):,} players  → {args.output_dir / "player_profiles.csv"}')
     print(f'✓ {len(out):,} transfers → {args.output_dir / "transfer_history.csv"}')
+    if args.output_dir == MODE_DIR / 'output':
+        record(MODE_DIR, 'built', players=len(profiles), transfers=len(out),
+               latest_transfer=out['transfer_date'].max(),
+               transfers_from='dataset tables only (--offline)' if args.offline else 'Transfermarkt API',
+               dataset_latest_valuation=dataset.valuations['date'].max())
     country_share = (out['to_team_country'].notna().mean() * 100) if len(out) else 0
     print(f'  {country_share:.1f}% of transfers have a destination country')
 

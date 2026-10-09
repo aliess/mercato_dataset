@@ -150,6 +150,25 @@ class TransfermarktAPI:
         """
         return self.get(f'club/{club_id}/squad?season={season}')
 
+    def squads(self, club_seasons, progress=None):
+        """Squads for many (club_id, season) pairs → {(club_id, season): [player ids]}.
+
+        Pairs the API has nothing for (the club didn't exist yet) are left out.
+        """
+        club_seasons = list(club_seasons)
+        result = {}
+
+        def fetch(pair):
+            return pair, self.squad(*pair)
+
+        with ThreadPoolExecutor(self.workers) as pool:
+            for done, (pair, data) in enumerate(pool.map(fetch, club_seasons), 1):
+                if data and data.get('playerIds'):
+                    result[pair] = [str(i) for i in data['playerIds']]
+                if progress and (done % 500 == 0 or done == len(club_seasons)):
+                    progress(done, len(club_seasons))
+        return result
+
     def games(self, game_ids):
         """Matches by id: both clubs' starting lineups, formation (`tactic`) and score."""
         return self._get_batched('games', game_ids, batch_size=25)  # match records are large

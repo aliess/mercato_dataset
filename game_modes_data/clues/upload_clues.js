@@ -44,6 +44,17 @@ if (key.project_id !== projectId) {
 admin.initializeApp({credential: admin.credential.cert(key), projectId});
 const db = admin.firestore();
 
+/** Sets LAST_UPDATED.json[section] (see sources/last_updated.py). */
+function recordLastUpdated(section, facts) {
+  const file = path.join(__dirname, "LAST_UPDATED.json");
+  const data = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : {};
+  const keys = section.split(".");
+  let target = data;
+  for (const key of keys.slice(0, -1)) target = target[key] ??= {};
+  target[keys.at(-1)] = {date: new Date().toLocaleDateString("en-CA"), ...facts};
+  fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+}
+
 /** The fields a clue document holds in Firestore (empty notes left out). */
 function toDoc(source) {
   const doc = {};
@@ -101,6 +112,7 @@ function toDoc(source) {
   await writer.close();
   console.log(`Wrote ${changes.length - failed} documents` + (failed ? `, ${failed} failed` : ""));
   if (failed) process.exit(1);
+  recordLastUpdated(`synced.${projectId}`, {approved_clue_sets: wanted.length, written: changes.length});
 })().catch((error) => {
   console.error(error);
   process.exit(1);

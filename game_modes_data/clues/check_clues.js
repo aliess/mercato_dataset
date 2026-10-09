@@ -54,9 +54,26 @@ fs.writeFileSync(path.join(CLUES, "review.csv"),
   [["rank", "player_id", "name", "difficulty", ...columns], ...rows]
     .map((r) => r.map(csvCell).join(",")).join("\n") + "\n");
 
+/** Sets LAST_UPDATED.json[section] (see sources/last_updated.py). */
+function recordLastUpdated(section, facts) {
+  const file = path.join(__dirname, "LAST_UPDATED.json");
+  const data = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, "utf8")) : {};
+  const keys = section.split(".");
+  let target = data;
+  for (const key of keys.slice(0, -1)) target = target[key] ??= {};
+  target[keys.at(-1)] = {date: new Date().toLocaleDateString("en-CA"), ...facts};
+  fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
+}
+
 const tiers = ["beginner", "intermediate", "expert"];
 const written = Object.keys(docs).map((id) => facts.get(id).difficulty);
 const total = [...facts.values()].map((p) => p.difficulty);
+recordLastUpdated("built", {
+  clue_sets: Object.keys(docs).length,
+  approved: Object.values(docs).filter((d) => d.status === "approved").length,
+  players_in_pool: facts.size,
+  source: "written by hand against facts.jsonl",
+});
 console.log(`${Object.keys(docs).length} valid, ${report.filter((r) => !r.ok).length} with errors, ` +
   `${report.filter((r) => r.ok).length} with warnings only`);
 if (notInPool.length) {
