@@ -10,7 +10,7 @@ python game_modes_data/grid/build_pool.py     # → output/grid_pool.json (kept 
 ## The answer pool
 
 `output/grid_pool.json` only decides whether a typed answer is right. It is much wider than
-the quiz's player pool: 46,872 players at 268 clubs.
+the quiz's player pool: 45,048 players at 268 clubs. Every player has a market value.
 
 - **A player counts for a club** when he was in its squad in any season since 1990/91, whether
   or not he played a match. Quiz-pool players also count for the clubs in their transfer
@@ -23,29 +23,34 @@ the quiz's player pool: 46,872 players at 268 clubs.
   A club's squads are taken for every season, also those it spent in a lower division.
 - **Nationality:** the player's main one only.
 
-### Who is left out
+### Market values and legends
 
-Market value is the only fame signal the API has, and Transfermarkt only started valuing
-players in late 2004. So players without a value are handled in two groups:
+The game rewards obscure picks, and market value is how it tells a famous player from an
+obscure one. Transfermarkt has only valued players since late 2004, so:
 
-| Group | Rule | Players |
+- **A player with no market value is left out** (16,957): fringe squad members who were never
+  valued, and everyone whose career ended before values existed.
+- **`legends.json` brings the well-known ones back** with an approximate present-day value,
+  picked by hand: 333 players. 183 of them had no value (Maradona, van Basten, Baggio,
+  Baresi); the other 150 had a low late-career value that would have made them look obscure
+  (Maldini €3m, Cafu €3m, Zidane €25m), and get the higher one.
+
+| Value | Who | Examples |
 |---|---|---|
-| In a squad in 2005/06 or later, never valued | Left out: fringe squad members (third keepers, registered youth players) | 4,749 out |
-| Career ended before values existed | Kept only when notable (below) | 2,006 kept, 10,384 out |
+| €250m | The most famous player in the pool | Maradona |
+| €200m | | Ronaldo, Zidane |
+| €180m | | Maldini, Beckham, Henry, Romário, van Basten, Baggio, Matthäus, Gullit, Baresi |
+| €150m | Superstars | Cantona, Schmeichel, Weah, Figo, Raúl, Batistuta, Bergkamp, Buffon, Totti |
+| €120m | Stars | Blanc, Papin, Redondo, Suker, Seedorf, Davids, Zola, Hagi |
+| €100m | Well known | Kohler, Zenga, Pearce, Poyet, Kanu, Yorke, Mendieta |
+| €80m | Known to keen fans | Bakero, Kirsten, Dahlin, Hendry, Onopko |
 
-An earlier player is **notable** when he did at least one of these:
-
-- started a World Cup match (1986–2002), a Euro match (1988–2004) or a Champions League match
-  (1992/93–2004/05), in any round;
-- was in a top-five-league squad for five seasons or more.
-
-That keeps Maradona, van Basten, Baggio, Baresi, Cantona, Lineker, Gascoigne and Le Tissier
-(10 seasons at Southampton, no big match), and drops lower-division and short-stay players.
-The constants are at the top of `build_pool.py`.
+For comparison, the highest real values are Haaland and Yamal at €220m. To add a legend or
+change a value, edit `legends.json` (Transfermarkt player id, name, value) and rebuild; a
+player without a value who is not in that file stays out.
 
 Everything comes from the Transfermarkt API (`sources/tm_api.py`): one squad request per club
-season (about 9,400), about 1,800 old World Cup, Euro and Champions League matches, then the
-player records. The first build takes about 40 minutes;
+season (about 9,400), then the player records. The first build takes about 40 minutes;
 finished seasons are cached for good, so a rebuild only fetches the last two seasons.
 
 ## File layout
@@ -64,15 +69,15 @@ he was in the squad, not proof he was there every season in between.
 
 ## Known limits
 
-- **4.0 MB** (1.1 MB gzipped). The app should download it only when Grid is opened.
-- **917 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
+- **3.8 MB** (1.1 MB gzipped). The app should download it only when Grid is opened.
+- **872 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
   the app has to match a typed name against everyone with that name.
-- **2,006 kept players have no market value** (the notable ones from before late 2004), and
-  players who retired soon after have a low late-career value, not their peak (Zidane €25m,
-  Maldini €3m). So "rarer player" steals can't be ranked fairly for anyone from that era.
-- The API files the English top flight under the Premier League only from 1992/93, so 1990/91
-  and 1991/92 don't count towards the five seasons, and a club that was only in the old First
-  Division in those two seasons is not in the club list.
+- **Legend values are judgment calls**, not data. Players of that era who are not in
+  `legends.json` but have a Transfermarkt value keep it, however low.
+- **27,000 players are valued under €1m.** They are real squad members and the obscure
+  answers the game rewards, but most are not names anyone would type.
+- The API files the English top flight under the Premier League only from 1992/93, so a club
+  that was only in the old First Division in 1990/91 or 1991/92 is not in the club list.
 - 101 players have no nationality name (53 have none in the API; the rest are countries no
   dataset player has).
 - Country names follow the quiz pool. Some have no flag in the app yet (Cote d'Ivoire,
