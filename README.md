@@ -66,6 +66,13 @@ update.sh           refresh the transfer history in one command
 | Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | Data built; app still uses a placeholder | `game_modes_data/starting_xi/output/xi_lineups.json` (not in the app yet) |
 | Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | Data built; app still uses the quiz pool | `game_modes_data/grid/output/grid_pool.json` (not in the app yet) |
 
+### Player names
+
+Every mode writes player names in plain Latin letters through `sources/names.py`, so a name
+can be typed on any keyboard and is spelled the same in every mode: "Pascal Groß" → "Pascal
+Gross", "Kenan Yıldız" → "Kenan Yildiz", "Martin Ødegaard" → "Martin Odegaard". Club names keep
+their accents.
+
 ### When was each set last updated?
 
 See [game_modes_data/STATUS.md](game_modes_data/STATUS.md): one table for all modes, rewritten by the

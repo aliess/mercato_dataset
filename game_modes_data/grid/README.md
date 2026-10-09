@@ -59,7 +59,7 @@ finished seasons are cached for good, so a rebuild only fetches the last two sea
 {"version": 1, "first_season": 1990,
  "clubs": [{"id": 418, "name": "Real Madrid", "country": "Spain", "league": "ES1",
             "top5_seasons": 37, "players": 374}],
- "players": [["3111", "Zinédine Zidane", "France", 25000000,
+ "players": [["3111", "Zinedine Zidane", "France", 25000000,
               [[895, 1990, 1991], [40, 1992, 1995], [506, 1996, 2000], [418, 2001, 2005]]]]}
 ```
 
@@ -70,7 +70,7 @@ he was in the squad, not proof he was there every season in between.
 ## Known limits
 
 - **3.8 MB** (1.1 MB gzipped). The app should download it only when Grid is opened.
-- **872 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
+- **899 names are shared** by two or more players (12 called Fernando, 8 called Rodri), so
   the app has to match a typed name against everyone with that name.
 - **Legend values are judgment calls**, not data. Players of that era who are not in
   `legends.json` but have a Transfermarkt value keep it, however low.

@@ -23,7 +23,6 @@ from datetime import date
 from pathlib import Path
 
 import pandas as pd
-from unidecode import unidecode
 
 MODE_DIR = Path(__file__).resolve().parent
 ROOT = MODE_DIR.parent.parent
@@ -32,6 +31,7 @@ sys.path.insert(0, str(ROOT))
 import compare_outputs
 from sources.country_names import canonical
 from sources.last_updated import record
+from sources.names import latin_name
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
 # ── Player selection ──
@@ -103,10 +103,6 @@ def is_youth_team(name):
     return isinstance(name, str) and name.strip().endswith(YOUTH_SUFFIXES)
 
 
-def ascii_name(name):
-    return unidecode(name) if isinstance(name, str) else name
-
-
 # ── Dataset tables ──
 
 class Dataset:
@@ -158,7 +154,7 @@ class Dataset:
         df = pd.DataFrame({column: None for column in PROFILES_COLUMNS}, index=p.index)
         df['player_id'] = p['player_id']
         df['player_slug'] = p['player_code']
-        df['player_name'] = p['name'].map(ascii_name)
+        df['player_name'] = p['name'].map(latin_name)
         df['player_image_url'] = p['image_url']
         df['date_of_birth'] = p['date_of_birth']
         df['place_of_birth'] = p['city_of_birth']

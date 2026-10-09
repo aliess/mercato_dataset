@@ -30,6 +30,7 @@ sys.path.insert(0, str(ROOT))
 
 from sources.country_names import canonical
 from sources.last_updated import record
+from sources.names import latin_name
 from sources.tm_api import TransfermarktAPI
 
 FIRST_SEASON = 1990  # 1990/91; the API has squads back to at least 1975
@@ -134,7 +135,7 @@ def main():
         if not peak:
             no_value += 1
             continue
-        rows.append([player_id, player['name'], nation, peak,
+        rows.append([player_id, latin_name(player['name']), nation, peak,
                      [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])]])
     rows.sort(key=lambda r: (-(r[3] or 0), int(r[0])))
 
