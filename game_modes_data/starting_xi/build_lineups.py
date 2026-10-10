@@ -9,12 +9,10 @@ the World Cup (since 1986) and the Euros (since 1988), plus the matches listed i
 famous_matches.json. Each match gives two lineups (home and away).
 Only the eleven starters are included; substitutes are never answers.
 
-Difficulty goes by the team and the year (see difficulty()). Team: the biggest clubs and
-nations are easiest, other top-five-league clubs and other nations are a step harder,
-clubs from other leagues are hardest. Year: 2000–2009 is a step harder and anything
-before 2000 two steps, with one step back for finals and famous matches. So nothing
-before 2000 is `beginner`: the 1998 World Cup final is `intermediate`, a 1996 quarter-final
-is `expert`. Change the constants to re-split.
+Difficulty goes by the team and the year (see difficulty()). The big clubs and the top five
+nations are `beginner` from 2012 on and `intermediate` in 2000–2011; the next fifteen nations
+are `intermediate` from 2000 on; every other team, and anything before 2000, is `expert`.
+The round does not matter. Change the constants to re-split.
 
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
 extra fields: difficulty, round, leg, opponent, season, famous.
@@ -51,15 +49,22 @@ OTHER_ROUNDS = {'Round of 16': 'round of 16', 'intermediate stage': 'knockout pl
                 'First Round': 'first round', 'Second Round': 'second round'}
 
 # ── Difficulty ──
-ELITE_CLUB_IDS = {
-    418: 'Real Madrid', 131: 'Barcelona', 27: 'Bayern Munich', 985: 'Man Utd', 31: 'Liverpool',
-    631: 'Chelsea', 11: 'Arsenal', 281: 'Man City', 506: 'Juventus', 5: 'AC Milan', 46: 'Inter',
-    583: 'PSG',
+BIG_CLUB_IDS = {
+    418: 'Real Madrid', 131: 'Barcelona', 13: 'Atlético', 368: 'Sevilla', 1049: 'Valencia',
+    985: 'Man Utd', 31: 'Liverpool', 631: 'Chelsea', 11: 'Arsenal', 281: 'Man City',
+    506: 'Juventus', 5: 'AC Milan', 46: 'Inter', 12: 'Roma', 6195: 'Napoli',
+    27: 'Bayern Munich', 16: 'Dortmund', 583: 'PSG',
 }
-TOP5_COUNTRY_IDS = {189: 'England', 157: 'Spain', 75: 'Italy', 40: 'Germany', 50: 'France'}
-TOP5_LEAGUE_CLUB_IDS_ABROAD = {162: 'Monaco'}  # plays in Ligue 1, registered in Monaco
-ELITE_NATION_IDS = {26: 'Brazil', 9: 'Argentina', 50: 'France', 40: 'Germany', 157: 'Spain',
-                    75: 'Italy', 189: 'England', 122: 'Netherlands', 136: 'Portugal'}
+# National teams, by Transfermarkt country id.
+TOP_NATION_IDS = {26: 'Brazil', 9: 'Argentina', 50: 'France', 40: 'Germany', 157: 'Spain'}
+KNOWN_NATION_IDS = {
+    75: 'Italy', 189: 'England', 122: 'Netherlands', 136: 'Portugal', 37: 'Croatia',
+    19: 'Belgium', 172: 'Czechia', 39: 'Denmark', 174: 'Türkiye', 147: 'Sweden', 56: 'Greece',
+    141: 'Russia', 179: 'Uruguay', 148: 'Switzerland', 107: 'Morocco',
+}
+# Older lineups have to be studied, not remembered: first year of each band.
+RECENT_FROM = 2012
+MODERN_FROM = 2000
 
 # Pitch depth (0 = own goal) and side (-1 left … 1 right) per Transfermarkt position.
 LINE = {
@@ -72,26 +77,17 @@ LINE = {
 POSITION_NAMES = {'Sweeper': 'Centre-Back'}  # the app has no sweeper
 
 
-# Older lineups have to be studied, not remembered: steps harder per era (first year, steps).
-ERA_STEPS = [(2010, 0), (2000, 1), (0, 2)]
-DIFFICULTIES = ['beginner', 'intermediate', 'expert']
-
-
-def team_step(club):
-    """0 for the biggest teams, 1 for the next group, 2 for the rest."""
+def difficulty(club, year):
+    if year < MODERN_FROM:
+        return 'expert'
     if club['baseDetails'].get('isNationalTeam'):
-        return 0 if club['baseDetails'].get('countryId') in ELITE_NATION_IDS else 1
-    if int(club['id']) in ELITE_CLUB_IDS:
-        return 0
-    in_top5 = club['baseDetails'].get('countryId') in TOP5_COUNTRY_IDS or int(club['id']) in TOP5_LEAGUE_CLUB_IDS_ABROAD
-    return 1 if in_top5 else 2
-
-
-def difficulty(club, year, famous):
-    era = next(steps for first_year, steps in ERA_STEPS if year >= first_year)
-    if famous:  # finals and famous matches are remembered longer
-        era = max(era - 1, 0)
-    return DIFFICULTIES[min(team_step(club) + era, 2)]
+        country = club['baseDetails'].get('countryId')
+        top, known = country in TOP_NATION_IDS, country in KNOWN_NATION_IDS
+    else:
+        top, known = int(club['id']) in BIG_CLUB_IDS, False
+    if top:
+        return 'beginner' if year >= RECENT_FROM else 'intermediate'
+    return 'intermediate' if known else 'expert'
 
 
 def short_name(club):
@@ -228,7 +224,7 @@ def main():
                 'leg': 1 if group.get('isFirstLeg') else 2 if group.get('isSecondLeg') else None,
                 'season': base['season']['display'], 'year': int(match_date[:4]), 'date': match_date,
                 'score': score, 'formation': formation,
-                'difficulty': difficulty(club, int(match_date[:4]), famous),
+                'difficulty': difficulty(club, int(match_date[:4])),
                 'famous': famous, 'slots': slots,
             })
 
