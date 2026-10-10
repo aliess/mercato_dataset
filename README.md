@@ -71,6 +71,14 @@ update.sh           refresh the transfer history and run the publisher in one co
 Game data does not pass through Firestore. [Publishing](#publishing-to-the-app) below says how
 the files get to the app; `game_modes_data/STATUS.md` says what has been uploaded where.
 
+### Difficulty tiers
+
+A player's tier comes from his highest market value: Beginner €80m or more, Intermediate €30m
+up to €80m, Expert under €30m. The dataset keeps the lines in one place, `sources/tiers.py`;
+the server and the app hold the same lines (`../CONTRACTS.md` §5), so all three change
+together. Here they set `difficulty` in the clue facts and `by_difficulty` in `clues_v1.json`.
+Starting XI tiers are separate (team and year, see its README).
+
 ### Player names
 
 Every mode writes player names in plain Latin letters through `sources/names.py`, so a name

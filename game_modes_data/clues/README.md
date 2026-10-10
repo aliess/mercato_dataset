@@ -19,6 +19,13 @@ node game_modes_data/clues/check_clues.js                              # validat
 python publish_files.py --project dev                                  # dry run: what would change in the app's clue file
 ```
 
+A player's difficulty comes from his highest market value: Beginner €80m or more, Intermediate
+€30m up to €80m, Expert under €30m. The lines are in `sources/tiers.py` and must match the
+server and the app (`../CONTRACTS.md` §5). They give `difficulty` in `facts.jsonl` and
+`review.csv` and `by_difficulty` in the published file. After changing them, run the two
+commands above again and the publisher's dry run. On 2026-10-10 the 1,825 players split
+119 / 834 / 872 and the 1,635 clue sets 119 / 834 / 682.
+
 Every doc starts as `status: "draft"`. Change it to `"approved"` once reviewed; only approved
 docs are published to the app. Uploading (`publish_files.py … --apply`) needs the user's yes.
 In the published file each set carries `v`, a number made from its text, so it changes only

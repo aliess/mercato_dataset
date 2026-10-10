@@ -10,10 +10,15 @@ club path from game_modes_data/transfer_history/output/ (build that first), for 
 import argparse
 import csv
 import json
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 CLUES = Path(__file__).resolve().parent
+sys.path.insert(0, str(CLUES.parents[1]))
+
+from sources.tiers import difficulty_for_value  # noqa: E402
+
 OUTPUT = CLUES.parent / "transfer_history" / "output"
 
 SKIP_CLUBS = {"Without Club", "Retired", "Career break", "Unknown"}
@@ -26,13 +31,6 @@ def fee_text(value):
     if fee <= 0:
         return "free"
     return f"€{fee / 1e6:g}m"
-
-
-def difficulty(market_value):
-    """Same thresholds as the app (Difficulty.swift) and the server (difficultyForValue)."""
-    if market_value >= 100_000_000:
-        return "beginner"
-    return "intermediate" if market_value >= 40_000_000 else "expert"
 
 
 def career(rows):
@@ -84,7 +82,7 @@ def main():
                 "height": p["height"] or None,
                 "current_club": p["current_club_name"] or None,
                 "market_value": float(p["market_value"]),
-                "difficulty": difficulty(float(p["market_value"])),
+                "difficulty": difficulty_for_value(float(p["market_value"])),
                 "career": career(transfers[p["player_id"]]),
             }, ensure_ascii=False) + "\n")
     print(f"Wrote {len(picked)} players to {CLUES / 'facts.jsonl'}")

@@ -44,6 +44,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from sources.last_updated import record  # noqa: E402
+from sources.tiers import TIERS, difficulty_for_value  # noqa: E402
 
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 MODES = ROOT / 'game_modes_data'
@@ -245,7 +246,12 @@ def build_clues(game_data):
         clues[player_id] = {'v': clue_version(pairs), 'c': pairs}
     if not clues:
         sys.exit('The clue file would be empty.')
-    by_difficulty = {tier: picked['by_difficulty'][tier] for tier in ('beginner', 'intermediate', 'expert')}
+    # Tiers by the dataset's own lines (sources/tiers.py), so the file does not depend on which
+    # version of the functions is compiled next door.
+    values = {str(player['id']): player.get('market_value') for player in game_data['players']}
+    by_difficulty = dict.fromkeys(TIERS, 0)
+    for player_id in clues:
+        by_difficulty[difficulty_for_value(values[player_id])] += 1
     content = {'version': 1, 'count': len(clues), 'by_difficulty': by_difficulty, 'clues': clues}
     counts = {'clue_sets': len(clues), **by_difficulty}
     notes = [f'{count:,} sets left out: {reason.replace("_", " ")}'
@@ -253,6 +259,10 @@ def build_clues(game_data):
     warned = sum(1 for problem in picked['problems'] if problem['published'])
     if warned:
         notes.append(f'{warned:,} published sets have validator warnings')
+    theirs = {tier: picked['by_difficulty'][tier] for tier in TIERS}
+    if theirs != by_difficulty:
+        notes.append(f'the compiled functions next door count the tiers as {theirs}: '
+                     'their difficultyForValue has other lines than sources/tiers.py')
     return content, counts, notes
 
 

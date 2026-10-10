@@ -1,17 +1,17 @@
 {
   "built": {
-    "date": "2026-10-09",
+    "date": "2026-10-10",
     "clue_sets": 1635,
     "players_in_pool": 1825,
     "source": "written by hand against facts.jsonl"
   },
   "synced": {
     "football-quiz-32eb9": {
-      "date": "2026-10-09",
+      "date": "2026-10-10",
       "clue_sets": 1635
     },
     "mercato-6e710": {
-      "date": "2026-10-09",
+      "date": "2026-10-10",
       "clue_sets": 1635
     }
   }
