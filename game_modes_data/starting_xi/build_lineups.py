@@ -67,12 +67,15 @@ RECENT_FROM = 2012
 MODERN_FROM = 2000
 
 # Pitch depth (0 = own goal) and side (-1 left … 1 right) per Transfermarkt position.
+# Strikers sit deeper in the order than wingers (second striker before centre-forward), so
+# when a formation row is cut the wingers fill the band behind a lone striker (4-2-3-1 →
+# LW AM RW, then CF) and share a row with him when there is room (4-3-3 → LW CF RW).
 LINE = {
     'Goalkeeper': (0, 0), 'Sweeper': (1, 0), 'Centre-Back': (1, 0), 'Left-Back': (1, -1),
     'Right-Back': (1, 1), 'Defensive Midfield': (2, 0), 'Central Midfield': (3, 0),
     'Left Midfield': (3, -1), 'Right Midfield': (3, 1), 'Attacking Midfield': (4, 0),
-    'Left Winger': (5, -1), 'Right Winger': (5, 1), 'Second Striker': (5, 0),
-    'Centre-Forward': (5, 0),
+    'Left Winger': (5, -1), 'Right Winger': (5, 1), 'Second Striker': (6, 0),
+    'Centre-Forward': (7, 0),
 }
 POSITION_NAMES = {'Sweeper': 'Centre-Back'}  # the app has no sweeper
 
@@ -118,11 +121,15 @@ def place(starters, tactic):
 
     Rows come from the match formation ("4-4-2 double 6" → GK, 4, 4, 2), filled by depth;
     without one, players are grouped by position line. Shirts in a row go left to right by
-    position. The API doesn't say which centre-back played left, so that order is arbitrary.
+    position; a wide player alone in a row stays on his side. check_positions.py checks the
+    result. The API doesn't say which centre-back played left, so that order is arbitrary.
     """
     shape = re.match(r'\s*(\d(?:-\d)+)', tactic or '')
     counts = [int(n) for n in shape.group(1).split('-')] if shape else []
-    ordered = sorted(starters, key=lambda p: LINE[p['position']])
+    # By depth, central players first: when a formation row is cut out of one depth, the wide
+    # players are the ones pushed up (wing-backs in a back three, LM/RM in the 3 of a 4-2-3-1).
+    ordered = sorted(starters, key=lambda p: (LINE[p['position']][0], abs(LINE[p['position']][1]),
+                                              LINE[p['position']][1]))
     if sum(counts) == 10:
         chunks, start = [ordered[:1]], 1
         for n in counts:
@@ -138,10 +145,13 @@ def place(starters, tactic):
         row = sorted(chunk, key=lambda p: LINE[p['position']][1])
         y = 0.9 - 0.8 * i / (len(chunks) - 1)
         for j, p in enumerate(row):
+            side = LINE[p['position']][1]
+            # A wide player alone in his row (4-4-1-1 with a winger as the "1") stays on his wing.
+            x = 0.5 + 0.3 * side if len(row) == 1 else (j + 1) / (len(row) + 1)
             slots.append({
                 'player_id': p['id'], 'name': p['name'], 'number': p['number'],
                 'position': POSITION_NAMES.get(p['position'], p['position']), 'captain': p['captain'],
-                'x': round((j + 1) / (len(row) + 1), 3), 'y': round(y, 3),
+                'x': round(x, 3), 'y': round(y, 3),
             })
     return '-'.join(str(len(c)) for c in chunks[1:]), slots
 

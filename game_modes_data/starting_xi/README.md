@@ -69,7 +69,23 @@ with extra fields the app ignores until it uses them:
             "captain": false, "x": 0.5, "y": 0.9}]}
 ```
 
+## Pitch places
+
+`x` (0 left … 1 right) and `y` (0.9 goalkeeper … 0.1 front row) come from the match formation:
+the starters are sorted by how deep their position plays (centre-forward deepest in the
+order, then second striker, then wingers, so a 4-2-3-1 gives LW AM RW behind the CF and a
+4-3-3 gives LW CF RW in one row), central players before wide ones at the same depth, and
+cut into the formation's rows. Each row goes left to right by position side; a wide player
+alone in a row stays on his wing (x 0.2 or 0.8). After a build, run
+
+```bash
+python game_modes_data/starting_xi/check_positions.py   # exits 1 if a wide player is central or on the wrong side
+```
+
 ## Known limits
+
+- When the API's positions don't fit the formation (one wide midfielder in a five-man back
+  line's 3, say), a row can have players on one side only; 14 lineups are like that.
 
 - The API doesn't say which of two centre-backs played left or right, so shirts with the same
   position are in arbitrary order within their row.
