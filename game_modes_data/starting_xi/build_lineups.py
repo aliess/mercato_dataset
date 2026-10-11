@@ -9,9 +9,10 @@ the World Cup (since 1986) and the Euros (since 1988), plus the matches listed i
 famous_matches.json. Each match gives two lineups (home and away).
 Only the eleven starters are included; substitutes are never answers.
 
-Difficulty goes by the team and the year (see difficulty()). The big clubs and the top five
-nations are `beginner` from 2012 on and `intermediate` in 2000–2011; the next fifteen nations
-are `intermediate` from 2000 on; every other team, and anything before 2000, is `expert`.
+Difficulty goes by the team and the year (see difficulty()). The eleven most famous clubs
+and six most famous nations are `beginner` from 2017 on. The big clubs and the top five
+nations are `intermediate` from 2000 on when they are not `beginner`, and so are the next
+fifteen nations; every other team, and anything before 2000, is `expert`.
 The round does not matter. Change the constants to re-split.
 
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
@@ -62,8 +63,17 @@ KNOWN_NATION_IDS = {
     19: 'Belgium', 172: 'Czechia', 39: 'Denmark', 174: 'Türkiye', 147: 'Sweden', 56: 'Greece',
     141: 'Russia', 179: 'Uruguay', 148: 'Switzerland', 107: 'Morocco',
 }
-# Older lineups have to be studied, not remembered: first year of each band.
-RECENT_FROM = 2012
+# Beginner: only the very famous teams, and only from RECENT_FROM on. Every one of them is
+# also in the lists above, so a lineup that is not beginner falls to intermediate.
+BEGINNER_CLUB_IDS = {
+    418: 'Real Madrid', 131: 'Barcelona', 27: 'Bayern Munich', 281: 'Man City', 31: 'Liverpool',
+    583: 'PSG', 631: 'Chelsea', 11: 'Arsenal', 13: 'Atlético', 985: 'Man Utd', 506: 'Juventus',
+}
+BEGINNER_NATION_IDS = {26: 'Brazil', 9: 'Argentina', 50: 'France', 40: 'Germany', 157: 'Spain',
+                       189: 'England'}
+# Older lineups have to be studied, not remembered: first year of each band. The year is the
+# match year, so 2017 means the 2016/17 knockout rounds on (Euro 2016 is out).
+RECENT_FROM = 2017
 MODERN_FROM = 2000
 
 # Pitch depth (0 = own goal) and side (-1 left … 1 right) per Transfermarkt position.
@@ -85,11 +95,12 @@ def difficulty(club, year):
         return 'expert'
     if club['baseDetails'].get('isNationalTeam'):
         country = club['baseDetails'].get('countryId')
-        top, known = country in TOP_NATION_IDS, country in KNOWN_NATION_IDS
+        easy = country in BEGINNER_NATION_IDS
+        known = country in TOP_NATION_IDS or country in KNOWN_NATION_IDS
     else:
-        top, known = int(club['id']) in BIG_CLUB_IDS, False
-    if top:
-        return 'beginner' if year >= RECENT_FROM else 'intermediate'
+        easy, known = int(club['id']) in BEGINNER_CLUB_IDS, int(club['id']) in BIG_CLUB_IDS
+    if easy and year >= RECENT_FROM:
+        return 'beginner'
     return 'intermediate' if known else 'expert'
 
 

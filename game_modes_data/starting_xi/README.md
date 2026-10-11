@@ -33,21 +33,35 @@ round does not matter.
 
 | Level | Clubs | National teams |
 |---|---|---|
-| `beginner` | The big clubs, 2012 or later | The top five nations, 2012 or later |
-| `intermediate` | The big clubs, 2000–2011 | The top five nations, 2000–2011; the next fifteen nations, 2000 or later |
+| `beginner` | The eleven most famous clubs, 2017 or later | The six most famous nations, 2017 or later |
+| `intermediate` | The big clubs from 2000 on, when not `beginner` | The top five nations and the next fifteen from 2000 on, when not `beginner` |
 | `expert` | Every other club, and any club before 2000 | Every other nation, and any nation before 2000 |
 
-- **Big clubs:** Real Madrid, Barcelona, Atlético, Sevilla, Valencia; Man Utd, Liverpool,
-  Chelsea, Arsenal, Man City; Juventus, AC Milan, Inter, Roma, Napoli; Bayern, Dortmund; PSG.
-- **Top five nations:** Brazil, Argentina, France, Germany, Spain.
-- **Next fifteen nations:** Italy, England, Netherlands, Portugal, Croatia, Belgium, Czechia,
-  Denmark, Türkiye, Sweden, Greece, Russia, Uruguay, Switzerland, Morocco.
+The year is the year the match was played, so "2017 or later" is the 2016/17 knockout rounds
+on: the last ten seasons. Euro 2016 is out; the 2018, 2022 and 2026 World Cups and the 2021
+and 2024 Euros are in.
 
-Examples: Bayern and PSG in the 2020 final are `beginner`; Liverpool in the 2005 final and
+- **Most famous clubs** (`BEGINNER_CLUB_IDS`): Real Madrid, Barcelona, Bayern, Man City,
+  Liverpool, PSG, Chelsea, Arsenal, Atlético, Man Utd, Juventus.
+- **Most famous nations** (`BEGINNER_NATION_IDS`): Brazil, Argentina, France, Germany, Spain,
+  England.
+- **Big clubs** (`BIG_CLUB_IDS`): Real Madrid, Barcelona, Atlético, Sevilla, Valencia; Man Utd,
+  Liverpool, Chelsea, Arsenal, Man City; Juventus, AC Milan, Inter, Roma, Napoli; Bayern,
+  Dortmund; PSG.
+- **Top five nations** (`TOP_NATION_IDS`): Brazil, Argentina, France, Germany, Spain.
+- **Next fifteen nations** (`KNOWN_NATION_IDS`): Italy, England, Netherlands, Portugal, Croatia,
+  Belgium, Czechia, Denmark, Türkiye, Sweden, Greece, Russia, Uruguay, Switzerland, Morocco.
+
+Every `beginner` team is also on one of the three lists below it, so a lineup that is not
+`beginner` falls to `intermediate`, never to `expert`. To make Beginner wider or narrower,
+change the two `BEGINNER_` lists or `RECENT_FROM`; the other lists also decide Intermediate.
+
+Examples: Bayern and PSG in the 2020 final and England in the Euro 2024 final are `beginner`;
+Dortmund in the 2024 final, Real Madrid in the 2014 final, Liverpool in the 2005 final and
 Portugal in the Euro 2016 final are `intermediate`; France in the 1998 World Cup final, Man
 Utd in the 1999 final and Porto in the 2004 final are `expert`.
 
-The current build has 381 `beginner`, 368 `intermediate` and 371 `expert` lineups.
+The current build has 227 `beginner`, 522 `intermediate` and 371 `expert` lineups.
 
 ## File layout
 
