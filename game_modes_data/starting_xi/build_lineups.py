@@ -65,6 +65,8 @@ KNOWN_NATION_IDS = {
 }
 # Beginner: only the very famous teams, and only from RECENT_FROM on. Every one of them is
 # also in the lists above, so a lineup that is not beginner falls to intermediate.
+# Beginner Grid Rush uses the same teams: GRID_BEGINNER_* in the functions' dailyLogic.ts and
+# GridIndex.Tuning.beginner in the app. Change them together.
 BEGINNER_CLUB_IDS = {
     418: 'Real Madrid', 131: 'Barcelona', 27: 'Bayern Munich', 281: 'Man City', 31: 'Liverpool',
     583: 'PSG', 631: 'Chelsea', 11: 'Arsenal', 13: 'Atlético', 985: 'Man Utd', 506: 'Juventus',
