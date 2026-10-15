@@ -64,8 +64,11 @@ DATE_FIELDS = {'date_of_birth', 'joined', 'contract_expires', 'date_of_last_cont
 
 XI_MATCH_FIELDS = ['id', 'team', 'opponent', 'competition', 'round', 'leg', 'season', 'year', 'date',
                    'score', 'formation', 'difficulty', 'famous', 'slots']
-XI_SLOT_FIELDS = ['player_id', 'name', 'number', 'position', 'captain', 'x', 'y']
+XI_SLOT_FIELDS = ['player_id', 'name', 'number', 'position', 'captain', 'x', 'y', 'nation', 'born']
 GRID_CLUB_FIELDS = ['id', 'name', 'country', 'league', 'top5_seasons', 'players']
+GRID_PLAYER_FIELDS = ['id', 'name', 'nation', 'peak_value', 'clubs: [club id, first season, last season]',
+                      'position', 'born']
+is_day = lambda value: value is None or (isinstance(value, str) and len(value) == 10 and value[4] == value[7] == '-')
 
 
 def bucket_name(project_id):
@@ -275,7 +278,8 @@ def build_xi():
     for match in content['matches']:
         if list(match) != XI_MATCH_FIELDS:
             sys.exit(f"xi_lineups.json: lineup {match.get('id')} has fields {list(match)}")
-        if len(match['slots']) != 11 or any(list(slot) != XI_SLOT_FIELDS for slot in match['slots']):
+        if len(match['slots']) != 11 or any(list(slot) != XI_SLOT_FIELDS or not is_day(slot['born'])
+                                            for slot in match['slots']):
             sys.exit(f"xi_lineups.json: lineup {match['id']} does not have 11 complete slots.")
     if len({match['id'] for match in content['matches']}) != len(content['matches']):
         sys.exit('xi_lineups.json has the same lineup id twice.')
@@ -287,6 +291,8 @@ def build_grid():
     content = json.loads((MODES / 'grid' / 'output' / 'grid_pool.json').read_text(encoding='utf-8'))
     if list(content) != ['version', 'first_season', 'player_fields', 'clubs', 'players']:
         sys.exit(f'grid_pool.json: unexpected top-level fields {list(content)}')
+    if content['player_fields'] != GRID_PLAYER_FIELDS:
+        sys.exit(f"grid_pool.json: player_fields {content['player_fields']}, expected {GRID_PLAYER_FIELDS}")
     if not content['clubs'] or not content['players']:
         sys.exit('grid_pool.json is empty.')
     for club in content['clubs']:
@@ -294,9 +300,10 @@ def build_grid():
             sys.exit(f'grid_pool.json: club {club} has unexpected fields.')
     club_ids = {club['id'] for club in content['clubs']}
     for row in content['players']:
-        ok = (len(row) == 5 and isinstance(row[0], str) and isinstance(row[1], str)
+        ok = (len(row) == 7 and isinstance(row[0], str) and isinstance(row[1], str)
               and isinstance(row[3], int) and isinstance(row[4], list) and row[4]
-              and all(len(spell) == 3 and spell[0] in club_ids for spell in row[4]))
+              and all(len(spell) == 3 and spell[0] in club_ids for spell in row[4])
+              and (row[5] is None or isinstance(row[5], str)) and is_day(row[6]))
         if not ok:
             sys.exit(f'grid_pool.json: bad player row {row}')
     return content, {'players': len(content['players']), 'clubs': len(content['clubs'])}, []

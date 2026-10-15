@@ -80,8 +80,23 @@ with extra fields the app ignores until it uses them:
  "score": "AC Milan 3–3 Liverpool (2–3 pens)", "formation": "4-4-1-1",
  "difficulty": "beginner", "famous": true,
  "slots": [{"player_id": "…", "name": "Jerzy Dudek", "number": 1, "position": "Goalkeeper",
-            "captain": false, "x": 0.5, "y": 0.9}]}
+            "captain": false, "x": 0.5, "y": 0.9, "nation": "Poland", "born": "1973-03-23"}]}
 ```
+
+`nation` and `born` are for the hints (`../../../CONTRACTS.md` §3.2), from
+`sources/player_facts.py`; both can be null:
+
+- **`nation`**: the player's citizenship, first country, spelled as the game data's
+  `citizenship`. The game data's value for players who are in it, else the API profile's main
+  nationality, named through the same map as Grid (`sources/country_ids.json`, written by the
+  Grid build). Not his team's country: a slot can be a club side's foreign player.
+- **`born`**: date of birth, `YYYY-MM-DD` (game data, else API, else the dataset). The app
+  works out the age at the match `date`.
+
+In the current build 12,320 of 12,320 slots have a `nation` and 12,313 a `born` (Magath,
+Riedl and Ernst have no date in any source). The player records are already fetched for the
+names, so these cost no extra requests. After a change to the slot fields only, rebuild with
+`build_lineups.py --from-cache` (uses the cache however old, gives the same lineups).
 
 ## Pitch places
 

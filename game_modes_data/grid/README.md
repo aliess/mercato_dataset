@@ -69,15 +69,37 @@ finished seasons are cached for good, so a rebuild only fetches the last two sea
 
 ```json
 {"version": 1, "first_season": 1990,
+ "player_fields": ["id", "name", "nation", "peak_value",
+                   "clubs: [club id, first season, last season]", "position", "born"],
  "clubs": [{"id": 418, "name": "Real Madrid", "country": "Spain", "league": "ES1",
             "top5_seasons": 37, "players": 374}],
  "players": [["3111", "Zinedine Zidane", "France", 25000000,
-              [[895, 1990, 1991], [40, 1992, 1995], [506, 1996, 2000], [418, 2001, 2005]]]]}
+              [[895, 1990, 1991], [40, 1992, 1995], [506, 1996, 2000], [418, 2001, 2005]],
+              "Attacking Midfield", "1972-06-23"]]}
 ```
 
-A player is `[id, name, nation, peak market value, clubs]`; each club is
+A player is `[id, name, nation, peak market value, clubs, position, born]`; each club is
 `[club id, first season, last season]` (2001 = 2001/02). The seasons are the first and last
-he was in the squad, not proof he was there every season in between.
+he was in the squad, not proof he was there every season in between. `player_fields` names
+the columns; new ones are only ever appended.
+
+`position` and `born` are for the hints (`../../../CONTRACTS.md` §3.2), from
+`sources/player_facts.py`:
+
+- **`position`**: one of the 13 names the game data uses ("Centre-Back", "Right Winger"…).
+  The game data's value for players who are in it (so Transfer Path and Grid agree), else the
+  API profile's main position, else the dataset's. The API's "Sweeper" becomes "Centre-Back".
+  Null for 522 players (1.2%) that no source gives a position.
+- **`born`**: date of birth, `YYYY-MM-DD`, from the same sources in the same order. A date the
+  API marks as unknown (often a 1 January guess) is left out. Null for 279 players (0.6%).
+
+The rows are built from the player records the build already fetched, so these two columns
+cost no extra requests. After a change to a row's fields only, rebuild with
+`build_pool.py --from-cache`: it uses the cache however old and gives the same pool.
+
+The build also writes `sources/country_ids.json`, the Transfermarkt country id → name map it
+learned from its 45,000 players; the Starting XI build reads it for the nations its own
+2,500 players can't name.
 
 ## Known limits
 
@@ -97,5 +119,5 @@ he was in the squad, not proof he was there every season in between.
 - Squads before 1990/91 are not fetched (`FIRST_SEASON`): Maradona shows Napoli only for 1990.
 - `output/grid_pool.json` is published as Storage `cache/grid_pool_v1.json` by `publish_files.py`
   (run from the repo root; uploading needs the user's yes). The publisher checks that every
-  player row has the five fields and that every club id in it is in `clubs`. A player's `nation`
+  player row has the seven fields (`born` a date or null) and that every club id in it is in `clubs`. A player's `nation`
   can be null (31 players).

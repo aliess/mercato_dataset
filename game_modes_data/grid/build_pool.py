@@ -12,8 +12,14 @@ the clubs in their transfer history, as in the app today.
 Clubs: every club that played in one of the top five leagues in any of those seasons,
 plus OTHER_CLUB_IDS. Nationality is the player's main one only.
 
+Each player row also carries his position and date of birth, for the hints
+(sources/player_facts.py). The build saves the country names it learned to
+sources/country_ids.json for the Starting XI build.
+
 Usage:
     python game_modes_data/grid/build_pool.py
+    python game_modes_data/grid/build_pool.py --from-cache   # no API calls for data already
+        cached, however old: rebuilds the same pool, e.g. after a change to the row's fields
 """
 
 import json
@@ -28,9 +34,9 @@ MODE_DIR = Path(__file__).resolve().parent
 ROOT = MODE_DIR.parents[1]
 sys.path.insert(0, str(ROOT))
 
-from sources.country_names import canonical
 from sources.last_updated import record
 from sources.names import latin_name
+from sources.player_facts import PlayerFacts, country_names, nation_id, save_country_names
 from sources.tm_api import TransfermarktAPI
 
 FIRST_SEASON = 1990  # 1990/91; the API has squads back to at least 1975
@@ -72,7 +78,7 @@ def main():
     this_season = date.today().year if date.today().month >= 7 else date.today().year - 1
     seasons = range(FIRST_SEASON, this_season + 1)
     old = TransfermarktAPI(max_age_hours=24 * 3650)  # finished seasons never change
-    live = TransfermarktAPI()
+    live = old if '--from-cache' in sys.argv[1:] else TransfermarktAPI()
 
     # ── Clubs ──
     club_league = {}  # club id → (league id, seasons in it)
@@ -116,22 +122,9 @@ def main():
     print('Fetching players...', flush=True)
     players = old.players(spells)
     clubs = old.clubs(club_ids)
-    countries = pd.read_csv(ROOT / 'sources' / 'dataset' / 'countries.csv.gz').set_index('country_id')['country_name'].to_dict()
-
-    # The API has no country names. They are learned from players the dataset names: the
-    # citizenship most players with that nationality id have. Those are the same names the
-    # quiz pool uses, so Grid's nationality
-    # columns match. The countries table only fills ids no dataset player has.
-    citizenship = pd.read_csv(ROOT / 'sources' / 'dataset' / 'players.csv.gz',
-                              usecols=['player_id', 'country_of_citizenship']).dropna()
-    votes = defaultdict(Counter)
-    for row in citizenship.itertuples():
-        player = players.get(str(row.player_id))
-        nation_id = player and ((player.get('nationalityDetails') or {}).get('nationalities') or {}).get('nationalityId')
-        if nation_id:
-            votes[nation_id][row.country_of_citizenship] += 1
-    countries.update({nation_id: names.most_common(1)[0][0] for nation_id, names in votes.items()})
-    countries = {country_id: canonical(name) for country_id, name in countries.items()}
+    # Country names as the quiz pool spells them, so Grid's nationality columns match.
+    countries = country_names(players)
+    facts = PlayerFacts(players, countries)
 
     legends = legend_values(json.loads(LEGENDS_FILE.read_text()))
     unnamed_nations, missing, no_value, raised = Counter(), 0, 0, 0
@@ -141,10 +134,9 @@ def main():
         if not player or not player.get('name'):
             missing += 1
             continue
-        nation_id = ((player.get('nationalityDetails') or {}).get('nationalities') or {}).get('nationalityId')
-        nation = countries.get(nation_id)
+        nation = countries.get(nation_id(player))
         if not nation:
-            unnamed_nations[nation_id] += 1
+            unnamed_nations[nation_id(player)] += 1
         peak = ((player.get('marketValueDetails') or {}).get('highest') or {}).get('value')
         if player_id in legends and legends[player_id] > (peak or 0):
             peak = legends[player_id]
@@ -153,7 +145,8 @@ def main():
             no_value += 1
             continue
         rows.append([player_id, latin_name(player['name']), nation, peak,
-                     [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])]])
+                     [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])],
+                     facts.position(player_id), facts.born(player_id)])
     rows.sort(key=lambda r: (-(r[3] or 0), int(r[0])))
 
     club_rows = [{
@@ -168,13 +161,17 @@ def main():
     out.parent.mkdir(exist_ok=True)
     dump = lambda value: json.dumps(value, ensure_ascii=False, separators=(',', ':'))
     out.write_text(
-        '{"version":1,"first_season":%d,\n"player_fields":["id","name","nation","peak_value","clubs: [club id, first season, last season]"],\n'
+        '{"version":1,"first_season":%d,\n"player_fields":["id","name","nation","peak_value","clubs: [club id, first season, last season]","position","born"],\n'
         '"clubs":[\n%s\n],\n"players":[\n%s\n]}\n' % (FIRST_SEASON, ',\n'.join(map(dump, club_rows)), ',\n'.join(map(dump, rows))))
 
+    save_country_names(countries)
     record(MODE_DIR, 'built', players=len(rows), clubs=len(club_rows),
            seasons=f'{FIRST_SEASON} to {this_season}', source='Transfermarkt API')
     print(f'\n✓ {len(rows):,} players, {len(club_rows):,} clubs → {out} ({out.stat().st_size / 1e6:.1f} MB)')
     print(f'  left out: {no_value:,} players with no market value')
+    for column, label in ((5, 'position'), (6, 'born')):
+        have = sum(1 for r in rows if r[column])
+        print(f'  {label}: {have:,} of {len(rows):,} players ({have / len(rows):.1%})')
     print(f'  {raised:,} of the {len(legends):,} legends got their value from legends.json')
     absent = set(legends) - {r[0] for r in rows}
     if absent:

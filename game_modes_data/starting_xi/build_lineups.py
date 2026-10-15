@@ -18,8 +18,13 @@ The round does not matter. Change the constants to re-split.
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
 extra fields: difficulty, round, leg, opponent, season, famous.
 
+Each slot also carries the player's nationality and date of birth, for the hints
+(sources/player_facts.py).
+
 Usage:
     python game_modes_data/starting_xi/build_lineups.py
+    python game_modes_data/starting_xi/build_lineups.py --from-cache   # no API calls for data
+        already cached, however old: rebuilds the same lineups, e.g. after a change to the fields
 """
 
 import json
@@ -34,6 +39,7 @@ sys.path.insert(0, str(MODE_DIR.parents[1]))
 
 from sources.last_updated import record
 from sources.names import latin_name
+from sources.player_facts import PlayerFacts
 from sources.tm_api import TransfermarktAPI
 
 # (API competition id, label, first season). A season is the year it starts in; the API
@@ -172,7 +178,7 @@ def place(starters, tactic):
 def main():
     this_season = date.today().year if date.today().month >= 7 else date.today().year - 1
     old = TransfermarktAPI(max_age_hours=24 * 3650)  # finished seasons never change
-    live = TransfermarktAPI()
+    live = old if '--from-cache' in sys.argv[1:] else TransfermarktAPI()
 
     # ── Which matches ──
     picked = {}  # game id → famous?
@@ -195,6 +201,7 @@ def main():
                            for p in (g[side].get('lineup') or {}).get('players') or []})
     print(f'{len(games):,} match records, {len(clubs):,} clubs, {len(players):,} players '
           f'({old.requests + live.requests:,} API requests)')
+    facts = PlayerFacts(players)
 
     # ── Lineups ──
     labels = {competition_id: label for competition_id, label, _ in COMPETITIONS}
@@ -241,6 +248,8 @@ def main():
                 continue
             famous = picked[game_id] or round_name == 'final'
             formation, slots = place(starters, (game[f'{side}Club'].get('tactic') or {}).get('tactic'))
+            for slot in slots:
+                slot['nation'], slot['born'] = facts.nation(slot['player_id']), facts.born(slot['player_id'])
             matches.append({
                 'id': f'{game_id}-{side}', 'team': short_name(club), 'opponent': short_name(other),
                 'competition': f'{competition} {round_name}', 'round': round_name,
@@ -264,6 +273,10 @@ def main():
     print(f'  by difficulty: {by(lambda m: m["difficulty"])}')
     print(f'  by round: {by(lambda m: m["round"])}')
     print(f'  from {matches[0]["date"]} to {matches[-1]["date"]}')
+    slots = [slot for m in matches for slot in m['slots']]
+    for field in ('nation', 'born'):
+        have = sum(1 for slot in slots if slot[field])
+        print(f'  {field}: {have:,} of {len(slots):,} slots ({have / len(slots):.1%})')
     if skipped:
         print('  left out: ' + ', '.join(f'{n:,} × {reason}' for reason, n in skipped.most_common()))
         for line in skipped_matches:

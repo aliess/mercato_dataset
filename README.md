@@ -50,6 +50,8 @@ There is no search endpoint and no `countries` endpoint (404). Retired players w
 sources/            where the data comes from; shared by every mode
   tm_api.py           Transfermarkt API client (cached, throttled, retries)
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
+  player_facts.py     a player's nationality, position and date of birth (for the hints)
+  country_ids.json    Transfermarkt country id → name, written by the Grid build
   dataset/, cache/    downloaded tables and API responses (not in git)
 publish_files.py    builds the JSON files the app downloads and uploads them to Firebase Storage
 publish/            the files it built (not in git)
@@ -85,6 +87,13 @@ Every mode writes player names in plain Latin letters through `sources/names.py`
 can be typed on any keyboard and is spelled the same in every mode: "Pascal Groß" → "Pascal
 Gross", "Kenan Yıldız" → "Kenan Yildiz", "Martin Ødegaard" → "Martin Odegaard". Club names keep
 their accents.
+
+### Player facts for the hints
+
+Grid Rush rows and Starting XI slots carry a player's position, date of birth and (in Starting
+XI) nationality for the hints. `sources/player_facts.py` takes each from the game data when
+the player is in it, so every mode agrees, else from the API profile the build already
+fetched, else from the dataset. Positions use the game data's 13 names.
 
 ### When was each set last updated?
 
