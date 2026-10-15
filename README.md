@@ -88,6 +88,13 @@ can be typed on any keyboard and is spelled the same in every mode: "Pascal Gro�
 Gross", "Kenan Yıldız" → "Kenan Yildiz", "Martin Ødegaard" → "Martin Odegaard". Club names keep
 their accents.
 
+A player has one spelling across all game files: the app builds one suggestion list from them.
+Grid and Starting XI take the name from `PlayerFacts.name()` (`sources/player_facts.py`): the
+game data's `player_name` when the player is in Transfer Path, else the API's name. The API
+sometimes differs ("Marc ter Stegen" for "Marc-Andre ter Stegen", "Savio" for "Savinho"). The
+dataset table is not used for other players' names: it is staler than the API. After a
+transfer-history build adds players, rebuild Grid and Starting XI so they pick up the spelling.
+
 ### Player facts for the hints
 
 Grid Rush rows and Starting XI slots carry a player's position, date of birth and (in Starting

@@ -35,7 +35,6 @@ ROOT = MODE_DIR.parents[1]
 sys.path.insert(0, str(ROOT))
 
 from sources.last_updated import record
-from sources.names import latin_name
 from sources.player_facts import PlayerFacts, country_names, nation_id, save_country_names
 from sources.tm_api import TransfermarktAPI
 
@@ -144,7 +143,7 @@ def main():
         if not peak:
             no_value += 1
             continue
-        rows.append([player_id, latin_name(player['name']), nation, peak,
+        rows.append([player_id, facts.name(player_id), nation, peak,
                      [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])],
                      facts.position(player_id), facts.born(player_id)])
     rows.sort(key=lambda r: (-(r[3] or 0), int(r[0])))

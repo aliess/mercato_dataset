@@ -1,5 +1,7 @@
 """
-Nationality, position and date of birth of any player, for the hints (CONTRACTS.md §3.2).
+Name, nationality, position and date of birth of any player: the name so every game file
+spells a player the same way (the app builds one suggestion list from all of them), the rest
+for the hints (CONTRACTS.md §3.2).
 
 Each fact is taken from the first source that has it:
 
@@ -8,6 +10,12 @@ Each fact is taken from the first source that has it:
 2. the player's Transfermarkt API profile, which the Grid and Starting XI builds already
    fetch (current, covers everyone);
 3. the dataset table (sources/dataset/players.csv.gz), when the API leaves a field empty.
+
+Names come from the game data only, then the API: a player in Transfer Path must be spelled
+the same in Grid and Starting XI (the API sometimes shortens a name, "Marc ter Stegen" for the
+game data's "Marc-Andre ter Stegen"). The dataset table is not used for names: it is frozen
+and staler than the API ("Noah Korczowski" for "Noah van Lent"). Every name goes through
+latin_name().
 
 Positions use the game data's 13 names ("Centre-Back", "Right Winger", ...). The API also
 has "Sweeper", filed here as "Centre-Back" (Starting XI does the same).
@@ -21,6 +29,7 @@ from pathlib import Path
 import pandas as pd
 
 from sources.country_names import canonical
+from sources.names import latin_name
 
 ROOT = Path(__file__).resolve().parent.parent
 GAME_PROFILES = ROOT / 'game_modes_data' / 'transfer_history' / 'output' / 'player_profiles.csv'
@@ -84,10 +93,20 @@ class PlayerFacts:
         """`api_players`: {player id (str): API profile}, as TransfermarktAPI.players returns."""
         self.api = api_players
         self.countries = countries if countries is not None else country_names(api_players)
-        game = pd.read_csv(GAME_PROFILES, usecols=['player_id', 'citizenship', 'position', 'date_of_birth'])
+        game = pd.read_csv(GAME_PROFILES, usecols=['player_id', 'player_name', 'citizenship', 'position', 'date_of_birth'])
         self.game = {str(r.player_id): r for r in game.itertuples()}
         dataset = pd.read_csv(DATASET_PLAYERS, usecols=['player_id', 'sub_position', 'date_of_birth'])
         self.dataset = {str(r.player_id): r for r in dataset.itertuples()}
+
+    def name(self, player_id):
+        """The player's name as game_data_v1.json spells it, else the API's; Latin letters."""
+        player_id = str(player_id)
+        game = self.game.get(player_id)
+        for name in (game.player_name if game is not None else None,
+                     (self.api.get(player_id) or {}).get('name')):
+            if isinstance(name, str) and name.strip():
+                return latin_name(name)
+        return None
 
     def nation(self, player_id):
         game = self.game.get(str(player_id))

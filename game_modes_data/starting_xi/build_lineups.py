@@ -38,7 +38,6 @@ MODE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(MODE_DIR.parents[1]))
 
 from sources.last_updated import record
-from sources.names import latin_name
 from sources.player_facts import PlayerFacts
 from sources.tm_api import TransfermarktAPI
 
@@ -226,7 +225,7 @@ def main():
         for side, club, other in (('home', home, away), ('away', away, home)):
             lineup = (game[f'{side}Club'].get('lineup') or {}).get('players') or []
             starters = [{
-                'id': p['id'], 'name': latin_name((players.get(p['id']) or {}).get('name')),
+                'id': p['id'], 'name': facts.name(p['id']),
                 'number': p.get('shirtNumber') or None, 'captain': bool(p.get('isCaptain')),
                 'position': (p.get('position') or {}).get('name'),
             } for p in lineup]
