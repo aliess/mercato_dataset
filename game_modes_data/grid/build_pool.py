@@ -41,7 +41,8 @@ TOP5_LEAGUES = {'GB1': 'Premier League', 'ES1': 'LaLiga', 'IT1': 'Serie A', 'L1'
 # - a player with no value is left out, unless he is in legends.json;
 # - legends.json gives well-known players of that era an approximate present-day value
 #   (Maradona highest), which also replaces a lower late-career value (Maldini's €3m).
-# Every player in the pool therefore has a value.
+# Every player in the pool therefore has a value. See legend_values for how a legend's tier
+# becomes his value.
 LEGENDS_FILE = MODE_DIR / 'legends.json'
 OTHER_CLUB_IDS = {
     294: 'Benfica', 610: 'Ajax', 720: 'Porto', 336: 'Sporting CP', 36: 'Fenerbahce', 383: 'PSV',
@@ -49,6 +50,22 @@ OTHER_CLUB_IDS = {
     234: 'Feyenoord', 683: 'Olympiacos', 614: 'Flamengo', 209: 'River Plate', 2282: 'Club Brugge',
     449: 'Trabzonspor', 585: 'Sao Paulo', 1075: 'Braga', 189: 'Boca Juniors', 1023: 'Palmeiras',
 }
+
+
+def legend_values(legends):
+    """Each legend's value. A tier in legends.json is a ceiling: its legends are spread
+    evenly from just under it down to the next tier, the one with the most Wikipedia
+    languages highest. Each value is a round amount less one euro, so it is never equal to
+    a real Transfermarkt value: a legend tied with a current player is the rarer one."""
+    tiers = sorted({legend['value'] for legend in legends}, reverse=True)
+    values = {}
+    for i, tier in enumerate(tiers):
+        floor = tiers[i + 1] if i + 1 < len(tiers) else tier - (tiers[i - 1] - tier)
+        members = sorted((legend for legend in legends if legend['value'] == tier),
+                         key=lambda legend: (-legend['wikipedia_languages'], int(legend['id'])))
+        for rank, legend in enumerate(members):
+            values[legend['id']] = round((tier - rank * (tier - floor) / len(members)) / 10_000) * 10_000 - 1
+    return values
 
 
 def main():
@@ -116,7 +133,7 @@ def main():
     countries.update({nation_id: names.most_common(1)[0][0] for nation_id, names in votes.items()})
     countries = {country_id: canonical(name) for country_id, name in countries.items()}
 
-    legends = {legend['id']: legend['value'] for legend in json.loads(LEGENDS_FILE.read_text())}
+    legends = legend_values(json.loads(LEGENDS_FILE.read_text()))
     unnamed_nations, missing, no_value, raised = Counter(), 0, 0, 0
     rows = []
     for player_id, player_clubs in spells.items():

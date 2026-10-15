@@ -35,7 +35,7 @@ obscure one. Transfermarkt has only valued players since late 2004, so:
   Baresi); the other 150 had a low late-career value that would have made them look obscure
   (Maldini €3m, Cafu €3m, Zidane €25m), and get the higher one.
 
-| Value | Who | Examples |
+| Tier | Who | Examples |
 |---|---|---|
 | €250m | The most famous player in the pool | Maradona |
 | €200m | | Ronaldo, Zidane |
@@ -45,9 +45,21 @@ obscure one. Transfermarkt has only valued players since late 2004, so:
 | €100m | Well known | Kohler, Zenga, Pearce, Poyet, Kanu, Yorke, Mendieta |
 | €80m | Known to keen fans | Bakero, Kirsten, Dahlin, Hendry, Onopko |
 
+A tier is a ceiling, not the value itself. Within a tier the legends are spread evenly from
+just under it down to the next tier, ordered by how many Wikipedia languages have an article
+on them (`wikipedia_languages`, from Wikidata): in the €120m tier, Guardiola gets €119.99m,
+Thuram €118.89m, Blanc €113.56m, Petit €110.22m and Le Tissier €100.22m. The €80m tier
+spreads down to €60m. Ties within a tier go to the lower Transfermarkt id. So no two legends
+share a value, and a steal between two of them always has a winner.
+
+Every legend value is a round amount less one euro (€119,999,999), so a legend is never tied
+with a current player: Thuram at €118.89m is rarer than Dembélé at €120m and can steal from
+him. The app shows ranks only, so the odd euro is never seen.
+
 For comparison, the highest real values are Haaland and Yamal at €220m. To add a legend or
-change a value, edit `legends.json` (Transfermarkt player id, name, value) and rebuild; a
-player without a value who is not in that file stays out.
+change a tier, edit `legends.json` (Transfermarkt player id, name, tier `value`), run
+`python game_modes_data/grid/legend_fame.py` to fill in `wikipedia_languages` (one Wikidata
+request), and rebuild. A player without a value who is not in that file stays out.
 
 Everything comes from the Transfermarkt API (`sources/tm_api.py`): one squad request per club
 season (about 9,400), then the player records. The first build takes about 40 minutes;
