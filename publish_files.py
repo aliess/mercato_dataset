@@ -37,6 +37,7 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -44,7 +45,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from sources.last_updated import record  # noqa: E402
-from sources.tiers import TIERS, difficulty_for_value  # noqa: E402
+from sources.fame import TIERS  # noqa: E402
 
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 MODES = ROOT / 'game_modes_data'
@@ -61,13 +62,14 @@ INT_FIELDS = {'player_id', 'current_club_id', 'market_value', 'player_agent_id',
 NUMBER_FIELDS = {'height'}
 DATE_FIELDS = {'date_of_birth', 'joined', 'contract_expires', 'date_of_last_contract_extension',
                'contract_there_expires', 'date_of_death'}
+BOOL_FIELDS = {'active', 'story_only'}  # written by pandas as True / False
 
 XI_MATCH_FIELDS = ['id', 'team', 'opponent', 'competition', 'round', 'leg', 'season', 'year', 'date',
                    'score', 'formation', 'difficulty', 'famous', 'slots']
 XI_SLOT_FIELDS = ['player_id', 'name', 'number', 'position', 'captain', 'x', 'y', 'nation', 'born']
 GRID_CLUB_FIELDS = ['id', 'name', 'country', 'league', 'top5_seasons', 'players']
 GRID_PLAYER_FIELDS = ['id', 'name', 'nation', 'peak_value', 'clubs: [club id, first season, last season]',
-                      'position', 'born']
+                      'position', 'born', 'legend']
 is_day = lambda value: value is None or (isinstance(value, str) and len(value) == 10 and value[4] == value[7] == '-')
 
 
@@ -124,6 +126,10 @@ def player_record(row):
             player[field] = int(float(cell))
         elif field in NUMBER_FIELDS:
             player[field] = number(cell)
+        elif field in BOOL_FIELDS:
+            if cell not in ('True', 'False'):
+                raise ValueError(f'{field} is {cell!r}, not True or False')
+            player[field] = cell == 'True'
         elif field in DATE_FIELDS:
             # The shape a Firestore Timestamp had in this file; the app reads `_seconds`.
             player[field] = {'_seconds': epoch_seconds(cell), '_nanoseconds': 0}
@@ -154,6 +160,10 @@ def build_game_data():
     players.sort(key=lambda p: p['id'])  # by id as text, the order the file always had
     if len({p['id'] for p in players}) != len(players):
         sys.exit('player_profiles.csv has the same player_id twice.')
+    for player in players:  # the tier and status the app and the functions read (CONTRACTS.md §1)
+        if player.get('difficulty') not in TIERS or not isinstance(player.get('active'), bool) \
+                or player.get('story_only', True) is not True:
+            sys.exit(f"player_profiles.csv: player {player['id']} has no valid difficulty, active or story_only.")
 
     by_player, used_ids, dropped = {}, set(), 0
     for row in read_csv(output / 'transfer_history.csv'):
@@ -206,7 +216,9 @@ def build_game_data():
         if not transfer['to'] or not isinstance(transfer['date'], int):
             sys.exit(f'Bad transfer row: {transfer}')
     known = {p['id'] for p in players}
-    counts = {'players': len(players), 'transfers': transfer_count}
+    counts = {'players': len(players), 'transfers': transfer_count,
+              **{tier: sum(1 for p in players if p['difficulty'] == tier) for tier in TIERS},
+              'story_only': sum(1 for p in players if p.get('story_only'))}
     notes = []
     if dropped:
         notes.append(f'{dropped:,} transfer rows dropped (no player, date or destination)')
@@ -228,7 +240,7 @@ def clue_version(pairs):
 
 def build_clues(game_data):
     subjects = [{key: player.get(key) for key in
-                 ('id', 'player_name', 'name_in_home_country', 'current_club_name', 'market_value')}
+                 ('id', 'player_name', 'name_in_home_country', 'current_club_name', 'difficulty')}
                 for player in game_data['players']]
     script = MODES / 'clues' / 'publishable_clues.js'
     try:
@@ -249,12 +261,11 @@ def build_clues(game_data):
         clues[player_id] = {'v': clue_version(pairs), 'c': pairs}
     if not clues:
         sys.exit('The clue file would be empty.')
-    # Tiers by the dataset's own lines (sources/tiers.py), so the file does not depend on which
-    # version of the functions is compiled next door.
-    values = {str(player['id']): player.get('market_value') for player in game_data['players']}
+    # Each player's tier as written in the game data (sources/fame.py).
+    tiers = {str(player['id']): player['difficulty'] for player in game_data['players']}
     by_difficulty = dict.fromkeys(TIERS, 0)
     for player_id in clues:
-        by_difficulty[difficulty_for_value(values[player_id])] += 1
+        by_difficulty[tiers[player_id]] += 1
     content = {'version': 1, 'count': len(clues), 'by_difficulty': by_difficulty, 'clues': clues}
     counts = {'clue_sets': len(clues), **by_difficulty}
     notes = [f'{count:,} sets left out: {reason.replace("_", " ")}'
@@ -262,10 +273,6 @@ def build_clues(game_data):
     warned = sum(1 for problem in picked['problems'] if problem['published'])
     if warned:
         notes.append(f'{warned:,} published sets have validator warnings')
-    theirs = {tier: picked['by_difficulty'][tier] for tier in TIERS}
-    if theirs != by_difficulty:
-        notes.append(f'the compiled functions next door count the tiers as {theirs}: '
-                     'their difficultyForValue has other lines than sources/tiers.py')
     return content, counts, notes
 
 
@@ -300,13 +307,14 @@ def build_grid():
             sys.exit(f'grid_pool.json: club {club} has unexpected fields.')
     club_ids = {club['id'] for club in content['clubs']}
     for row in content['players']:
-        ok = (len(row) == 7 and isinstance(row[0], str) and isinstance(row[1], str)
+        ok = (len(row) == 8 and isinstance(row[0], str) and isinstance(row[1], str)
               and isinstance(row[3], int) and isinstance(row[4], list) and row[4]
               and all(len(spell) == 3 and spell[0] in club_ids for spell in row[4])
-              and (row[5] is None or isinstance(row[5], str)) and is_day(row[6]))
+              and (row[5] is None or isinstance(row[5], str)) and is_day(row[6]) and row[7] in (0, 1))
         if not ok:
             sys.exit(f'grid_pool.json: bad player row {row}')
-    return content, {'players': len(content['players']), 'clubs': len(content['clubs'])}, []
+    return content, {'players': len(content['players']), 'clubs': len(content['clubs']),
+                     'legends': sum(row[7] for row in content['players'])}, []
 
 
 # file name → (mode folder for LAST_UPDATED.json, which counts go there)
@@ -392,6 +400,14 @@ def describe_difference(name, live, new):
             lines.append('  added: ' + names(added, lambda i: new_players[i].get('player_name', i)))
         if removed:
             lines.append('  removed: ' + names(removed, lambda i: old_players[i].get('player_name', i)))
+        renamed = sorted((i for i in both if old_players[i].get('player_name') != new_players[i].get('player_name')),
+                         key=lambda i: (-new_players[i].get('market_value', 0), int(i)))
+        if renamed:
+            lines.append(f'  {len(renamed):,} renamed: ' + names(renamed, lambda i: f"{old_players[i].get('player_name')} → "
+                                                                              f"{new_players[i].get('player_name')}"))
+        for field in ('difficulty', 'active', 'story_only'):
+            tally = lambda players: dict(sorted(Counter(str(p.get(field)) for p in players.values()).items()))
+            lines.append(f'  {field}: {tally(old_players)} live → {tally(new_players)}')
 
         def moves(data, player_id):  # without ids: old files carry Firestore document ids
             return [{k: v for k, v in t.items() if k != 'id'} for t in data['transfers'].get(player_id, [])]
@@ -418,6 +434,14 @@ def describe_difference(name, live, new):
         lines.append(f"lineups: {len(old):,} live → {len(new_matches):,}; "
                      f"{len(set(new_matches) - set(old)):,} added, {len(set(old) - set(new_matches)):,} removed, "
                      f"{changed:,} changed")
+        tally = lambda matches: dict(Counter(m['difficulty'] for m in matches.values()))
+        lines.append(f"  by difficulty: {tally(old)} live → {tally(new_matches)}")
+        moved = Counter((old[i]['difficulty'], new_matches[i]['difficulty']) for i in new_matches
+                        if i in old and old[i]['difficulty'] != new_matches[i]['difficulty'])
+        if moved:
+            lines.append('  moved: ' + ', '.join(f'{a} → {b} {n:,}' for (a, b), n in moved.most_common()))
+        daily = lambda matches: sum(1 for m in matches.values() if m['famous'] and m['difficulty'] != 'expert')
+        lines.append(f"  Daily XI pool (famous, not expert): {daily(old):,} live → {daily(new_matches):,}")
     elif name == 'grid_pool_v1.json':
         old = {row[0]: row for row in live['players']}
         new_rows = {row[0]: row for row in new['players']}

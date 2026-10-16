@@ -40,6 +40,7 @@ def compare(old_dir, new_dir):
     old_t, new_t = pd.read_csv(old_dir / TRANSFERS), pd.read_csv(new_dir / TRANSFERS)
     lines, warnings = [], []
     out = lines.append
+    story = lambda p: set(p.loc[p['story_only'] == True, 'player_id']) if 'story_only' in p else set()  # noqa: E712
 
     old_ids, new_ids = set(old_p['player_id']), set(new_p['player_id'])
     added, removed = new_ids - old_ids, old_ids - new_ids
@@ -47,11 +48,16 @@ def compare(old_dir, new_dir):
     out(f'Transfers: {len(old_t):,} → {len(new_t):,}')
     if added:
         out(f'  added:   {names_list(new_p, added)}')
+    if 'difficulty' in new_p:
+        tiers = lambda p: ', '.join(f'{t} {n:,}' for t, n in p['difficulty'].value_counts().items()) if 'difficulty' in p else 'none'
+        out(f'Tiers: {tiers(old_p)} → {tiers(new_p)}; {len(story(new_p)):,} Player Story only, '
+            f"{int((new_p['active'] == True).sum()):,} still playing")  # noqa: E712
     if removed:
         out(f'  removed: {names_list(old_p, removed)}')
 
-    no_transfers_old = old_ids - set(old_t['player_id'])
-    no_transfers_new = new_ids - set(new_t['player_id'])
+    # Player Story only legends (story_only) have no transfer path to play, by design.
+    no_transfers_old = old_ids - set(old_t['player_id']) - story(old_p)
+    no_transfers_new = new_ids - set(new_t['player_id']) - story(new_p)
     out(f'Players without transfers (not playable): {len(no_transfers_old):,} → {len(no_transfers_new):,}')
     if no_transfers_new:
         out(f'  {names_list(new_p, no_transfers_new)}')

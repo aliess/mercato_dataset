@@ -3,7 +3,7 @@
 //
 //   node game_modes_data/clues/publishable_clues.js < players.json
 //
-// stdin:  [{id, player_name, name_in_home_country, current_club_name, market_value}, …]
+// stdin:  [{id, player_name, name_in_home_country, current_club_name, difficulty}, …]
 //         (the players of the game data file being published)
 // stdout: {clues: {playerId: [[en, ar], [en, ar], [en, ar]]}, by_difficulty, problems, skipped}
 //
@@ -20,7 +20,7 @@ if (!fs.existsSync(lib)) {
   console.error(`Missing ${lib}\nBuild the functions: cd ../footballquiz_firebase/functions && npm install && npm run build`);
   process.exit(1);
 }
-const {checkClueDoc, difficultyForValue} = require(lib);
+const {checkClueDoc} = require(lib);
 
 const players = new Map(JSON.parse(fs.readFileSync(0, "utf8")).map((p) => [String(p.id), p]));
 const local = JSON.parse(fs.readFileSync(path.join(__dirname, "player_clues.json"), "utf8"));
@@ -54,7 +54,7 @@ for (const [id, doc] of Object.entries(local)) {
     continue;
   }
   clues[id] = check.clues;
-  byDifficulty[difficultyForValue(player.market_value)]++;
+  byDifficulty[player.difficulty]++;  // the tier written in the game data (sources/fame.py)
 }
 
 process.stdout.write(JSON.stringify({clues, by_difficulty: byDifficulty, problems, skipped}));

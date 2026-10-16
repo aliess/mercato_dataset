@@ -7,11 +7,12 @@ It does not pass through Firestore.
 | File | What it is |
 |---|---|
 | `facts.jsonl` | Player facts to write against (`python game_modes_data/clues/export_clue_facts.py`) |
+| `legends_todo.jsonl` | The legends that still need a clue set (`export_clue_facts.py --legends-todo`) |
 | `batches/batch_NN.json` | The written clues, about 30 players per file |
 | `player_clues.json` | Every clue set that passes the server validator, keyed by player ID: what the publisher reads |
 | `publishable_clues.js` | Used by `publish_files.py`: picks the approved sets whose player is in the game data and runs the validator again |
 | `clue_report.json` | Errors (left out) and warnings (kept) from the validator |
-| `review.csv` | The same clues as a spreadsheet, ranked by market value, with each player's difficulty |
+| `review.csv` | The same clues as a spreadsheet, ranked by fame, with each player's difficulty |
 
 ```bash
 python game_modes_data/clues/export_clue_facts.py                      # every player, with its difficulty
@@ -19,12 +20,17 @@ node game_modes_data/clues/check_clues.js                              # validat
 python publish_files.py --project dev                                  # dry run: what would change in the app's clue file
 ```
 
-A player's difficulty comes from his highest market value: Beginner €80m or more, Intermediate
-€30m up to €80m, Expert under €30m. The lines are in `sources/tiers.py` and must match the
-server and the app (`../CONTRACTS.md` §5). They give `difficulty` in `facts.jsonl` and
-`review.csv` and `by_difficulty` in the published file. After changing them, run the two
-commands above again and the publisher's dry run. On 2026-10-10 the 1,825 players split
-119 / 834 / 872 and the 1,635 clue sets 119 / 834 / 682.
+A player's difficulty is the tier the game data gives him (`difficulty` in
+`player_profiles.csv`, from `sources/fame.py`; rules in `../../README.md` "Fame and difficulty
+tiers" and `../../../CONTRACTS.md` §5). It is copied into `facts.jsonl` and `review.csv`, and
+`by_difficulty` in the published file counts it. `market_value` in the facts is the player's
+fame. After the player pool or the tiers change, run the two commands above again and the
+publisher's dry run.
+
+Legends (`sources/legends/legends.json`) are in the pool too, also the one-club ones
+(`story_only: true` in the facts: Player Story only, never a Transfer Path question).
+`export_clue_facts.py --legends-todo` also writes `legends_todo.jsonl`: the legends with no
+approved clue set yet, with the same facts, to write their clues against.
 
 Every doc starts as `status: "draft"`. Change it to `"approved"` once reviewed; only approved
 docs are published to the app. Uploading (`publish_files.py … --apply`) needs the user's yes.

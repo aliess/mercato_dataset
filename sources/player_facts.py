@@ -12,8 +12,9 @@ Each fact is taken from the first source that has it:
 3. the dataset table (sources/dataset/players.csv.gz), when the API leaves a field empty.
 
 Names come from the game data only, then the API: a player in Transfer Path must be spelled
-the same in Grid and Starting XI (the API sometimes shortens a name, "Marc ter Stegen" for the
-game data's "Marc-Andre ter Stegen"). The dataset table is not used for names: it is frozen
+the same in Grid and Starting XI. (The game data's names are the API's since 2026-10-16, so
+both give the same spelling; the game data comes first so a later name fix there wins.) The
+dataset table is not used for names: it is frozen
 and staler than the API ("Noah Korczowski" for "Noah van Lent"). Every name goes through
 latin_name().
 

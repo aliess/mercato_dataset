@@ -7,8 +7,8 @@ how to refresh it.
 
 | Source | What we take from it | Access | Code |
 |---|---|---|---|
-| **Transfermarkt JSON API**<br>`https://tmapi-alpha.transfermarkt.technology` | Live data: full transfer histories, highest market value, current club. Also has squads by season and match lineups (not used yet). | No key, no login | `sources/tm_api.py` |
-| **transfermarkt-datasets**<br>[github.com/dcaribou/transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets), public R2 bucket (the same files as Kaggle) | The list of players to consider, and their profile fields (birth, position, foot, height…). Frozen since July 2026. | No key, no login | `sources/download_dataset.py` |
+| **Transfermarkt JSON API**<br>`https://tmapi-alpha.transfermarkt.technology` | Everything about players: profiles, full transfer histories, market values, current club; squads by season (who is in the game), match lineups. | No key, no login | `sources/tm_api.py` |
+| **transfermarkt-datasets**<br>[github.com/dcaribou/transfermarkt-datasets](https://github.com/dcaribou/transfermarkt-datasets), public R2 bucket (the same files as Kaggle) | No longer the list of players. Still read for: every valuation since 2004 (the growth index that puts old Starting XI values in today's money), the club names and countries it knows (so club names stay as in earlier imports), the transfers of a player whose API request fails, and country names. Frozen since July 2026. | No key, no login | `sources/download_dataset.py` |
 
 Clue text (Three Clues) is written by hand in this repo, against facts exported from the two
 sources above.
@@ -31,7 +31,7 @@ Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
 
 | Endpoint | Returns | Used by |
 |---|---|---|
-| `players?ids[]=…` (up to 500 ids) | Profile, current club, market value history | transfer history |
+| `players?ids[]=…` (up to 500 ids) | Profile, current club, current and highest market value | every mode |
 | `clubs?ids[]=…` | Name, short name, country, `clubTypeId` (1 = first team), `mainClubId` | transfer history |
 | `transfer/history/player/{id}` | Every transfer, loan, return and retirement, with fee and date | transfer history |
 | `club/{id}/squad?season=2005` | First-team squad of 2005/06, back to at least 1975. `seasonId=` is ignored (returns the current squad) | grid |
@@ -39,7 +39,7 @@ Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
 | `competition/{id}/fixtures?season=2004` | Every match of a competition season, with game ids and round names. Ids: `CL`, `FIWC` (World Cup), `EURO`. Summer tournaments are filed under the year before (World Cup 2010 → 2009) | starting XI |
 | `club/{id}/fixtures?season=2004` | A club's matches that season | — |
 | `competitions?ids[]=CL`, `competition/CL` | Competition details | — |
-| `player/{id}/market-value-history` | Answers (200); content not looked at yet | — |
+| `player/{id}/market-value-history` | Every value a player was given: `history[]` with `marketValue.value` and `determined` (date) | transfer history (value now, for the tiers) |
 
 There is no search endpoint and no `countries` endpoint (404). Retired players work by id
 (Zidane 3111, Henry 3207).
@@ -49,6 +49,9 @@ There is no search endpoint and no `countries` endpoint (404). Retired players w
 ```
 sources/            where the data comes from; shared by every mode
   tm_api.py           Transfermarkt API client (cached, throttled, retries)
+  squads.py           the pool clubs and their squads since 1990/91: the one player list
+  fame.py             fame, value now, still playing, and the tiers of every mode
+  legends/            legends.json (hand-picked older players and their value) and legend_fame.py
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
   player_facts.py     a player's nationality, position and date of birth (for the hints)
   country_ids.json    Transfermarkt country id → name, written by the Grid build
@@ -73,13 +76,31 @@ update.sh           refresh the transfer history and run the publisher in one co
 Game data does not pass through Firestore. [Publishing](#publishing-to-the-app) below says how
 the files get to the app; `game_modes_data/STATUS.md` says what has been uploaded where.
 
-### Difficulty tiers
+### Fame and difficulty tiers
 
-A player's tier comes from his highest market value: Beginner €80m or more, Intermediate €30m
-up to €80m, Expert under €30m. The dataset keeps the lines in one place, `sources/tiers.py`;
-the server and the app hold the same lines (`../CONTRACTS.md` §5), so all three change
-together. Here they set `difficulty` in the clue facts and `by_difficulty` in `clues_v1.json`.
-Starting XI tiers are separate (team and year, see its README).
+`sources/fame.py` is the one place that says how famous a player is and which tier he is in
+(plan §8 item 115, `../CONTRACTS.md` §5). Every build takes its values from it, and the files
+carry the result: the app and the server hold no value lines.
+
+- **Fame** = the higher of the player's Transfermarkt peak value and his legend value.
+  Transfermarkt has valued players only since late 2004, so `sources/legends/legends.json`
+  gives 333 well-known older players an approximate present-day value (Maradona highest,
+  €250m). A legend's value is a tier ceiling spread down by Wikipedia fame
+  (`sources/legends/legend_fame.py`); see the Grid README.
+- **Value now** = the highest Transfermarkt value since 1 July 2023 (the API's market value
+  history plus the current value).
+- **Still playing** (`active`) = not retired and alive; a player without a club (or on a career
+  break) counts only if his last move was less than a year ago.
+- **Transfer Path and Player Story**: Beginner = still playing and (value now €50m+, or fame
+  €80m+ with value now €15m+); Intermediate = otherwise fame €40m+ (every legend lands here);
+  Expert = fame under €40m. Written as `difficulty` on each player of `game_data_v1.json`;
+  `market_value` there is the fame.
+- **Starting XI**: a starter is a star when his fame in today's money is €40m+. Today's money =
+  fame × growth(match year), growth = the mean of the year's 300 highest player values in the
+  latest full year (2025) ÷ the same in the match year, at most ×2.5 (2012 and earlier hit the
+  cap; 2016 is ×2.02, 2017 ×1.72, 2018 ×1.14, 2023 ×1.08). The values are the dataset's
+  valuations (`player_valuations`), which are complete up to June 2026. Legends are not adjusted. Beginner = 2017 or later
+  with 10+ stars, Intermediate = 5+ stars, Expert = the rest.
 
 ### Player names
 
@@ -90,9 +111,10 @@ their accents.
 
 A player has one spelling across all game files: the app builds one suggestion list from them.
 Grid and Starting XI take the name from `PlayerFacts.name()` (`sources/player_facts.py`): the
-game data's `player_name` when the player is in Transfer Path, else the API's name. The API
-sometimes differs ("Marc ter Stegen" for "Marc-Andre ter Stegen", "Savio" for "Savinho"). The
-dataset table is not used for other players' names: it is staler than the API. After a
+game data's `player_name` when the player is in Transfer Path, else the API's name. Since
+2026-10-16 the game data's names are the API's too (its profiles come from the API), so the
+API's spelling is the one everywhere: "Marc ter Stegen", "Savio" (not "Savinho"), "Jose Manuel
+Lopez" (not "Flaco Lopez"). The dataset table is not used for names: it is staler than the API. After a
 transfer-history build adds players, rebuild Grid and Starting XI so they pick up the spelling.
 
 ### Player facts for the hints
@@ -194,7 +216,8 @@ Or step by step:
 
 A full refresh is about 3,500 API requests and takes a few minutes. Responses are cached in
 `sources/cache/tm_api/` for 24 h (`--max-age-hours`), so a rerun the same day is instant.
-`build_dataset.py --offline` skips the API and uses only the dataset tables.
+`build_dataset.py --from-cache` reuses cached API responses however old (no requests for
+anything already cached).
 
 After new players are added, give them clues: see [game_modes_data/clues/README.md](game_modes_data/clues/README.md).
 
@@ -211,25 +234,31 @@ After new players are added, give them clues: see [game_modes_data/clues/README.
 
 ### Which players are included
 
-- **Stars**: highest-ever market value of €20M or more.
-- **Big-club players**: peaked at €10M–20M and played for Arsenal, AC Milan, Real Madrid,
-  Barcelona or Chelsea (first team, by club id).
+Candidates are the one player list every mode shares (`sources/squads.py`): everyone who was in
+the squad of a pool club (top five leagues plus 20 other clubs) in any season since 1990/91,
+the same list Grid Rush answers come from. Added to it: every legend, and the few players of
+earlier builds who were never in a pool club's squad (`EXTRA_PLAYER_IDS`). From those:
 
+- **Stars**: fame of €20M or more.
+- **Big-club players**: fame of €10M–20M and in the squad of, or a transfer to or from,
+  Arsenal, AC Milan, Real Madrid, Barcelona or Chelsea (by club id).
 - **At least two clubs**: players whose history shows a single first-team club (Lamine Yamal,
-  Saka, Totti) are left out, because there is no transfer path to guess. This also takes them
-  out of Three Clues, since both modes share the player pool.
+  Saka) are left out, because there is no transfer path to guess. A **legend** with a single
+  club (Maldini, Totti, Baresi, Giggs, Puyol) stays with `story_only: true`: Player Story can
+  use him, Transfer Path skips him.
 
 Thresholds and clubs are constants at the top of `game_modes_data/transfer_history/build_dataset.py`.
-Candidates come from the dataset tables, so a player who first reached €10M after June 2026 is
-not picked up until the dataset updates again or the candidate list gets another source.
+A new player is picked up once he is in a pool club's squad and reaches the bar.
 
-### How the two sources are combined
+### Where each field comes from
 
-For every candidate (anyone who peaked at €10M or more in the dataset), the API replaces the
-dataset's transfer history, highest market value, current club, contract end and date of death.
-The dataset still supplies the profile fields and the club names and countries it knows, so
-names stay the same as in earlier imports. Players whose API request fails keep their dataset
-transfers.
+Every profile field comes from the player's API profile: name (in Latin letters), slug, image,
+date and place of birth, height, citizenship (named through `country_names()` in
+`sources/player_facts.py`), position, foot, agent, current club, contract end, date of death.
+A date of birth the API marks as unknown is left out. Transfers come from the API's transfer
+history; club names and countries the dataset knows are kept so they stay as in earlier
+imports. A player whose transfer history request fails keeps his dataset transfers.
+`market_value`, `difficulty`, `active` and `story_only` come from `sources/fame.py`.
 
 ### Output
 
@@ -238,4 +267,5 @@ transfers.
 → `transfers`, grouped by player, oldest first. Transfers to
 youth and reserve sides (Castilla, Barcelona B, U19s, FC Liefering) and moves dated after today
 are left out. The API's club type decides what a youth or reserve side is, not the name, so
-Willem II and Esbjerg fB stay. Column layout is unchanged from the original import.
+Willem II and Esbjerg fB stay. Column layout is the original import's, plus `difficulty`,
+`active` and `story_only` at the end (from `sources/fame.py`).

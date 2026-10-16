@@ -16,6 +16,7 @@ Responses are cached on disk (sources/cache/tm_api/) so reruns are fast and gent
 import hashlib
 import http.client
 import json
+import os
 import random
 import threading
 import time
@@ -93,16 +94,35 @@ class TransfermarktAPI:
         cache_file.write_text(json.dumps({'path': path, 'data': body['data']}))
         return body['data']
 
+    def _item_cache_path(self, endpoint, item_id):
+        return self._cache_path(f'{endpoint}/item/{item_id}')
+
     def _get_batched(self, endpoint, ids, batch_size=BATCH_SIZE):
+        """{id: item}. Each item is also cached on its own, so a later call with another set
+        of ids (which cuts the batches differently) only asks for the ids it has no fresh copy
+        of. An id the API does not know is simply missing from the result."""
         ids = sorted({str(i) for i in ids})
-        chunks = [ids[i:i + batch_size] for i in range(0, len(ids), batch_size)]
+        result, wanted = {}, []
+        for item_id in ids:
+            cached = self._item_cache_path(endpoint, item_id)
+            if cached.exists() and time.time() - cached.stat().st_mtime < self.max_age:
+                result[item_id] = json.loads(cached.read_text())
+                self.cache_hits += 1
+            else:
+                wanted.append(item_id)
+        chunks = [wanted[i:i + batch_size] for i in range(0, len(wanted), batch_size)]
         paths = [f'{endpoint}?' + '&'.join(f'ids[]={urllib.parse.quote(i)}' for i in chunk)
                  for chunk in chunks]
-        result = {}
         with ThreadPoolExecutor(self.workers) as pool:
-            for data in pool.map(self.get, paths):
+            for path, data in zip(paths, pool.map(self.get, paths)):
+                batch_file = self._cache_path(path)
+                fetched_at = batch_file.stat().st_mtime if batch_file.exists() else time.time()
                 for item in data or []:
                     result[str(item['id'])] = item
+                    cached = self._item_cache_path(endpoint, item['id'])
+                    cached.parent.mkdir(exist_ok=True)
+                    cached.write_text(json.dumps(item))
+                    os.utime(cached, (fetched_at, fetched_at))  # as old as the response it came from
         return result
 
     # ── endpoints ──
@@ -140,7 +160,35 @@ class TransfermarktAPI:
                     progress(done, len(player_ids))
         return result
 
-    # Not used by a build yet; these are the endpoints Starting XI and Grid need.
+    def market_value_histories(self, player_ids):
+        """Every market value a player was given, by player id: [{value, date}], oldest first.
+
+        Players with no value at all get an empty list; players whose request kept failing
+        are left out and listed in `self.failed`.
+        """
+        player_ids = [str(i) for i in player_ids]
+        result = {}
+        self.failed = []
+
+        def fetch(player_id):
+            try:
+                return player_id, self.get(f'player/{player_id}/market-value-history')
+            except Exception as error:  # one bad player must not stop the run
+                self.failed.append((player_id, repr(error)))
+                return player_id, False
+
+        with ThreadPoolExecutor(self.workers) as pool:
+            for player_id, data in pool.map(fetch, player_ids):
+                if data is False:
+                    continue
+                points = [{'value': (h.get('marketValue') or {}).get('value'),
+                           'date': (h.get('marketValue') or {}).get('determined')}
+                          for h in (data or {}).get('history') or []]
+                result[player_id] = sorted((p for p in points if p['value'] and p['date']),
+                                           key=lambda p: p['date'])
+        return result
+
+    # The endpoints Starting XI and Grid use.
     # Old seasons never change, so pass a large max_age_hours when fetching them.
 
     def squad(self, club_id, season):

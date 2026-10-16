@@ -3,11 +3,11 @@
 Store how famous each legend is in legends.json: the number of Wikipedia languages that
 have an article on him (Wikidata sitelinks, matched by Transfermarkt player id, P2446).
 
-build_pool.py uses it to order the legends within their value tier. Run it again after
+sources/fame.py uses it to order the legends within their value tier. Run it again after
 adding legends; it makes one public request to the Wikidata query service.
 
 Usage:
-    python game_modes_data/grid/legend_fame.py
+    python sources/legends/legend_fame.py
 """
 
 import json

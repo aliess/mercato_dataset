@@ -10,14 +10,15 @@ python game_modes_data/grid/build_pool.py     # → output/grid_pool.json (kept 
 ## The answer pool
 
 `output/grid_pool.json` only decides whether a typed answer is right. It is much wider than
-the quiz's player pool: 45,048 players at 268 clubs. Every player has a market value.
+the quiz's player pool: 45,057 players at 268 clubs. Every player has a market value.
 
 - **A player counts for a club** when he was in its squad in any season since 1990/91, whether
   or not he played a match. Quiz-pool players also count for the clubs in their transfer
   history, as in the app today.
 - **Clubs:** every club that played in the Premier League, LaLiga, Serie A, Bundesliga or
   Ligue 1 in any of those seasons (248), plus the 20 clubs outside those leagues that the most
-  quiz-pool players passed through (`OTHER_CLUB_IDS` in `build_pool.py`): Benfica, Ajax, Porto,
+  quiz-pool players passed through (`OTHER_CLUB_IDS` in `sources/squads.py`, shared with the
+  Transfer Path build, which picks its players from the same squads): Benfica, Ajax, Porto,
   Sporting, Fenerbahce, PSV, Galatasaray, Besiktas, Anderlecht, Salzburg, Feyenoord, Olympiacos,
   Flamengo, River Plate, Club Brugge, Trabzonspor, Sao Paulo, Braga, Boca Juniors, Palmeiras.
   A club's squads are taken for every season, also those it spent in a lower division.
@@ -26,11 +27,12 @@ the quiz's player pool: 45,048 players at 268 clubs. Every player has a market v
 ### Market values and legends
 
 The game rewards obscure picks, and market value is how it tells a famous player from an
-obscure one. Transfermarkt has only valued players since late 2004, so:
+obscure one. A row's `peak_value` is the player's fame from `sources/fame.py`, the same value
+every mode uses. Transfermarkt has only valued players since late 2004, so:
 
 - **A player with no market value is left out** (16,957): fringe squad members who were never
   valued, and everyone whose career ended before values existed.
-- **`legends.json` brings the well-known ones back** with an approximate present-day value,
+- **`sources/legends/legends.json` brings the well-known ones back** with an approximate present-day value,
   picked by hand: 333 players. 183 of them had no value (Maradona, van Basten, Baggio,
   Baresi); the other 150 had a low late-career value that would have made them look obscure
   (Maldini €3m, Cafu €3m, Zidane €25m), and get the higher one.
@@ -57,9 +59,11 @@ with a current player: Thuram at €118.89m is rarer than Dembélé at €120m a
 him. The app shows ranks only, so the odd euro is never seen.
 
 For comparison, the highest real values are Haaland and Yamal at €220m. To add a legend or
-change a tier, edit `legends.json` (Transfermarkt player id, name, tier `value`), run
-`python game_modes_data/grid/legend_fame.py` to fill in `wikipedia_languages` (one Wikidata
-request), and rebuild. A player without a value who is not in that file stays out.
+change a tier, edit `sources/legends/legends.json` (Transfermarkt player id, name, tier
+`value`), run `python sources/legends/legend_fame.py` to fill in `wikipedia_languages` (one
+Wikidata request), and rebuild every mode: a legend is in Transfer Path and Player Story too
+(plan §8 item 115). The spreading is `legend_values` in `sources/fame.py`. A player without a
+value who is not in that file stays out.
 
 Everything comes from the Transfermarkt API (`sources/tm_api.py`): one squad request per club
 season (about 9,400), then the player records. The first build takes about 40 minutes;
@@ -70,15 +74,15 @@ finished seasons are cached for good, so a rebuild only fetches the last two sea
 ```json
 {"version": 1, "first_season": 1990,
  "player_fields": ["id", "name", "nation", "peak_value",
-                   "clubs: [club id, first season, last season]", "position", "born"],
+                   "clubs: [club id, first season, last season]", "position", "born", "legend"],
  "clubs": [{"id": 418, "name": "Real Madrid", "country": "Spain", "league": "ES1",
             "top5_seasons": 37, "players": 374}],
- "players": [["3111", "Zinedine Zidane", "France", 25000000,
+ "players": [["3111", "Zinedine Zidane", "France", 199999999,
               [[895, 1990, 1991], [40, 1992, 1995], [506, 1996, 2000], [418, 2001, 2005]],
-              "Attacking Midfield", "1972-06-23"]]}
+              "Attacking Midfield", "1972-06-23", 1]]}
 ```
 
-A player is `[id, name, nation, peak market value, clubs, position, born]`; each club is
+A player is `[id, name, nation, fame, clubs, position, born, legend]`; each club is
 `[club id, first season, last season]` (2001 = 2001/02). The seasons are the first and last
 he was in the squad, not proof he was there every season in between. `player_fields` names
 the columns; new ones are only ever appended.
@@ -92,6 +96,9 @@ the columns; new ones are only ever appended.
   Null for 522 players (1.2%) that no source gives a position.
 - **`born`**: date of birth, `YYYY-MM-DD`, from the same sources in the same order. A date the
   API marks as unknown (often a 1 January guess) is left out. Null for 279 players (0.6%).
+
+- **`legend`**: 1 for a player from `sources/legends/legends.json`, 0 otherwise. The Grid
+  Beginner rule leaves legends out of the current-era answer count (`../../../CONTRACTS.md` §5).
 
 The rows are built from the player records the build already fetched, so these two columns
 cost no extra requests. After a change to a row's fields only, rebuild with
@@ -116,8 +123,10 @@ learned from its 45,000 players; the Starting XI build reads it for the nations 
   dataset player has).
 - Country names follow the quiz pool. Some have no flag in the app yet (Cote d'Ivoire,
   Bosnia-Herzegovina, Northern Ireland, Korea, South, Israel…).
-- Squads before 1990/91 are not fetched (`FIRST_SEASON`): Maradona shows Napoli only for 1990.
+- Squads before 1990/91 are not fetched (`FIRST_SEASON`). Players of the quiz pool get their
+  earlier clubs from their transfer histories (one season per move): since the legends joined
+  it, Maradona counts for Barcelona (1982/83) as well as Napoli.
 - `output/grid_pool.json` is published as Storage `cache/grid_pool_v1.json` by `publish_files.py`
   (run from the repo root; uploading needs the user's yes). The publisher checks that every
-  player row has the seven fields (`born` a date or null) and that every club id in it is in `clubs`. A player's `nation`
+  player row has the eight fields (`born` a date or null) and that every club id in it is in `clubs`. A player's `nation`
   can be null (31 players).

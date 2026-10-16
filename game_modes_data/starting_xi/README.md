@@ -9,7 +9,8 @@ python game_modes_data/starting_xi/build_lineups.py     # → output/xi_lineups.
 
 Everything comes from the Transfermarkt API (`sources/tm_api.py`): the fixture list of each
 competition season gives the match ids, the match record gives the starters, shirt numbers,
-captain, formation and score, and the player records give the names. A full build is about
+captain, formation and score, and the player records give the names and the fame behind the
+difficulty. A full build is about
 150 requests; finished seasons are cached for good, so a rerun only fetches the latest ones.
 
 ## Which matches
@@ -28,40 +29,27 @@ report URL) to `famous_matches.json` and rebuild. To add a competition, add a ro
 
 ## Difficulty
 
-By team and by year; the lists and years are constants at the top of `build_lineups.py`. The
-round does not matter.
+By how many of the eleven starters are stars (`sources/fame.py`, plan §8 item 115). The team
+and the round do not matter.
 
-| Level | Clubs | National teams |
-|---|---|---|
-| `beginner` | The eleven most famous clubs, 2017 or later | The six most famous nations, 2017 or later |
-| `intermediate` | The big clubs from 2000 on, when not `beginner` | The top five nations and the next fifteen from 2000 on, when not `beginner` |
-| `expert` | Every other club, and any club before 2000 | Every other nation, and any nation before 2000 |
+- A starter is a **star** when his fame in today's money is €40m or more. Fame is his
+  Transfermarkt peak value (from his current API profile), raised to his legend value if he is
+  in `sources/legends/legends.json`. Today's money = fame × the growth of Transfermarkt values
+  between the match year and the latest full year (the mean of the year's 300 highest player
+  values), at most ×2.5: ×1.0 for 2025 on, ×1.14 for 2018, ×1.72 for 2017, ×2.02 for 2016, and
+  the cap for 2012 and earlier. Legends are not adjusted: their value is already today's.
+- `beginner`: match year 2017 or later with 10+ stars.
+- `intermediate`: 5+ stars, any year.
+- `expert`: the rest.
 
-The year is the year the match was played, so "2017 or later" is the 2016/17 knockout rounds
-on: the last ten seasons. Euro 2016 is out; the 2018, 2022 and 2026 World Cups and the 2021
-and 2024 Euros are in.
+Examples: Liverpool in the 2026 quarter-final, England at Euro 2024 and Portugal at the 2022
+World Cup are `beginner`; Belgium 2014–2021, the Netherlands, Croatia 2018 and 2022, Portugal
+at Euro 2016 and Switzerland 2026 (5 stars) are `intermediate`; Russia, Morocco and Greece are
+`expert`.
 
-- **Most famous clubs** (`BEGINNER_CLUB_IDS`): Real Madrid, Barcelona, Bayern, Man City,
-  Liverpool, PSG, Chelsea, Arsenal, Atlético, Man Utd, Juventus.
-- **Most famous nations** (`BEGINNER_NATION_IDS`): Brazil, Argentina, France, Germany, Spain,
-  England.
-- **Big clubs** (`BIG_CLUB_IDS`): Real Madrid, Barcelona, Atlético, Sevilla, Valencia; Man Utd,
-  Liverpool, Chelsea, Arsenal, Man City; Juventus, AC Milan, Inter, Roma, Napoli; Bayern,
-  Dortmund; PSG.
-- **Top five nations** (`TOP_NATION_IDS`): Brazil, Argentina, France, Germany, Spain.
-- **Next fifteen nations** (`KNOWN_NATION_IDS`): Italy, England, Netherlands, Portugal, Croatia,
-  Belgium, Czechia, Denmark, Türkiye, Sweden, Greece, Russia, Uruguay, Switzerland, Morocco.
-
-Every `beginner` team is also on one of the three lists below it, so a lineup that is not
-`beginner` falls to `intermediate`, never to `expert`. To make Beginner wider or narrower,
-change the two `BEGINNER_` lists or `RECENT_FROM`; the other lists also decide Intermediate.
-
-Examples: Bayern and PSG in the 2020 final and England in the Euro 2024 final are `beginner`;
-Dortmund in the 2024 final, Real Madrid in the 2014 final, Liverpool in the 2005 final and
-Portugal in the Euro 2016 final are `intermediate`; France in the 1998 World Cup final, Man
-Utd in the 1999 final and Porto in the 2004 final are `expert`.
-
-The current build has 227 `beginner`, 522 `intermediate` and 371 `expert` lineups.
+The current build has 158 `beginner`, 721 `intermediate` and 241 `expert` lineups; the Daily
+XI pool (famous and not `expert`) is 114. The build prints how many lineups have each number
+of stars. A re-split must keep every lineup id: the dailies already written reference them.
 
 ## File layout
 

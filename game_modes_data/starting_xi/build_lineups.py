@@ -9,11 +9,10 @@ the World Cup (since 1986) and the Euros (since 1988), plus the matches listed i
 famous_matches.json. Each match gives two lineups (home and away).
 Only the eleven starters are included; substitutes are never answers.
 
-Difficulty goes by the team and the year (see difficulty()). The eleven most famous clubs
-and six most famous nations are `beginner` from 2017 on. The big clubs and the top five
-nations are `intermediate` from 2000 on when they are not `beginner`, and so are the next
-fifteen nations; every other team, and anything before 2000, is `expert`.
-The round does not matter. Change the constants to re-split.
+Difficulty goes by how many of the eleven are stars (sources/fame.py): a starter is a star
+when his fame in today's money is €40m or more (his fame times the growth of Transfermarkt's
+values since the match year; legends as they are). Beginner = match year 2017 or later with
+10+ stars, Intermediate = 5+ stars, Expert = the rest. The round and the team do not matter.
 
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
 extra fields: difficulty, round, leg, opponent, season, famous.
@@ -37,6 +36,7 @@ from pathlib import Path
 MODE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(MODE_DIR.parents[1]))
 
+from sources import fame
 from sources.last_updated import record
 from sources.player_facts import PlayerFacts
 from sources.tm_api import TransfermarktAPI
@@ -54,35 +54,6 @@ ROUNDS = {'Quarter-Finals': 'quarter-final', 'Semi-Finals': 'semi-final', 'Final
 OTHER_ROUNDS = {'Round of 16': 'round of 16', 'intermediate stage': 'knockout play-off',
                 'First Round': 'first round', 'Second Round': 'second round'}
 
-# ── Difficulty ──
-BIG_CLUB_IDS = {
-    418: 'Real Madrid', 131: 'Barcelona', 13: 'Atlético', 368: 'Sevilla', 1049: 'Valencia',
-    985: 'Man Utd', 31: 'Liverpool', 631: 'Chelsea', 11: 'Arsenal', 281: 'Man City',
-    506: 'Juventus', 5: 'AC Milan', 46: 'Inter', 12: 'Roma', 6195: 'Napoli',
-    27: 'Bayern Munich', 16: 'Dortmund', 583: 'PSG',
-}
-# National teams, by Transfermarkt country id.
-TOP_NATION_IDS = {26: 'Brazil', 9: 'Argentina', 50: 'France', 40: 'Germany', 157: 'Spain'}
-KNOWN_NATION_IDS = {
-    75: 'Italy', 189: 'England', 122: 'Netherlands', 136: 'Portugal', 37: 'Croatia',
-    19: 'Belgium', 172: 'Czechia', 39: 'Denmark', 174: 'Türkiye', 147: 'Sweden', 56: 'Greece',
-    141: 'Russia', 179: 'Uruguay', 148: 'Switzerland', 107: 'Morocco',
-}
-# Beginner: only the very famous teams, and only from RECENT_FROM on. Every one of them is
-# also in the lists above, so a lineup that is not beginner falls to intermediate.
-# Beginner Grid Rush uses the same teams: GRID_BEGINNER_* in the functions' dailyLogic.ts and
-# GridIndex.Tuning.beginner in the app. Change them together.
-BEGINNER_CLUB_IDS = {
-    418: 'Real Madrid', 131: 'Barcelona', 27: 'Bayern Munich', 281: 'Man City', 31: 'Liverpool',
-    583: 'PSG', 631: 'Chelsea', 11: 'Arsenal', 13: 'Atlético', 985: 'Man Utd', 506: 'Juventus',
-}
-BEGINNER_NATION_IDS = {26: 'Brazil', 9: 'Argentina', 50: 'France', 40: 'Germany', 157: 'Spain',
-                       189: 'England'}
-# Older lineups have to be studied, not remembered: first year of each band. The year is the
-# match year, so 2017 means the 2016/17 knockout rounds on (Euro 2016 is out).
-RECENT_FROM = 2017
-MODERN_FROM = 2000
-
 # Pitch depth (0 = own goal) and side (-1 left … 1 right) per Transfermarkt position.
 # Strikers sit deeper in the order than wingers (second striker before centre-forward), so
 # when a formation row is cut the wingers fill the band behind a lone striker (4-2-3-1 →
@@ -97,18 +68,10 @@ LINE = {
 POSITION_NAMES = {'Sweeper': 'Centre-Back'}  # the app has no sweeper
 
 
-def difficulty(club, year):
-    if year < MODERN_FROM:
-        return 'expert'
-    if club['baseDetails'].get('isNationalTeam'):
-        country = club['baseDetails'].get('countryId')
-        easy = country in BEGINNER_NATION_IDS
-        known = country in TOP_NATION_IDS or country in KNOWN_NATION_IDS
-    else:
-        easy, known = int(club['id']) in BEGINNER_CLUB_IDS, int(club['id']) in BIG_CLUB_IDS
-    if easy and year >= RECENT_FROM:
-        return 'beginner'
-    return 'intermediate' if known else 'expert'
+def difficulty(slots, profiles, year):
+    """The lineup's tier from its number of stars (sources/fame.py)."""
+    stars = sum(fame.is_star(slot['player_id'], profiles.get(str(slot['player_id'])), year) for slot in slots)
+    return fame.lineup_tier(year, stars), stars
 
 
 def short_name(club):
@@ -196,7 +159,8 @@ def main():
 
     games = old.games(picked)
     clubs = old.clubs({g[side]['clubId'] for g in games.values() for side in ('homeClub', 'awayClub')})
-    players = old.players({p['id'] for g in games.values() for side in ('homeClub', 'awayClub')
+    # Current profiles: a starter's peak value (his fame) can still rise.
+    players = live.players({p['id'] for g in games.values() for side in ('homeClub', 'awayClub')
                            for p in (g[side].get('lineup') or {}).get('players') or []})
     print(f'{len(games):,} match records, {len(clubs):,} clubs, {len(players):,} players '
           f'({old.requests + live.requests:,} API requests)')
@@ -204,7 +168,7 @@ def main():
 
     # ── Lineups ──
     labels = {competition_id: label for competition_id, label, _ in COMPETITIONS}
-    matches, skipped, skipped_matches = [], Counter(), []
+    matches, skipped, skipped_matches, star_counts = [], Counter(), [], []
     for game_id in sorted(picked, key=lambda i: games[i]['baseDetails']['date']['dateTimeUTC'] if i in games else ''):
         game = games.get(game_id)
         if not game:
@@ -249,13 +213,15 @@ def main():
             formation, slots = place(starters, (game[f'{side}Club'].get('tactic') or {}).get('tactic'))
             for slot in slots:
                 slot['nation'], slot['born'] = facts.nation(slot['player_id']), facts.born(slot['player_id'])
+            tier, stars = difficulty(slots, players, int(match_date[:4]))
+            star_counts.append(stars)
             matches.append({
                 'id': f'{game_id}-{side}', 'team': short_name(club), 'opponent': short_name(other),
                 'competition': f'{competition} {round_name}', 'round': round_name,
                 'leg': 1 if group.get('isFirstLeg') else 2 if group.get('isSecondLeg') else None,
                 'season': base['season']['display'], 'year': int(match_date[:4]), 'date': match_date,
                 'score': score, 'formation': formation,
-                'difficulty': difficulty(club, int(match_date[:4])),
+                'difficulty': tier,
                 'famous': famous, 'slots': slots,
             })
 
@@ -270,6 +236,8 @@ def main():
     by = lambda key: ', '.join(f'{k} {n:,}' for k, n in Counter(map(key, matches)).most_common())
     print(f'  by competition: {by(lambda m: m["competition"].rsplit(" ", 1)[0] if m["round"] in ROUNDS.values() else "famous extras")}')
     print(f'  by difficulty: {by(lambda m: m["difficulty"])}')
+    print(f'  daily pool (famous, not expert): {sum(1 for m in matches if m["famous"] and m["difficulty"] != "expert"):,}')
+    print(f'  stars per lineup: {dict(sorted(Counter(star_counts).items()))}')
     print(f'  by round: {by(lambda m: m["round"])}')
     print(f'  from {matches[0]["date"]} to {matches[-1]["date"]}')
     slots = [slot for m in matches for slot in m['slots']]

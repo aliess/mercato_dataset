@@ -25,7 +25,6 @@ Usage:
 import json
 import sys
 from collections import Counter, defaultdict
-from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -34,75 +33,36 @@ MODE_DIR = Path(__file__).resolve().parent
 ROOT = MODE_DIR.parents[1]
 sys.path.insert(0, str(ROOT))
 
+from sources import fame
 from sources.last_updated import record
 from sources.player_facts import PlayerFacts, country_names, nation_id, save_country_names
+from sources.squads import FIRST_SEASON, pool_clubs, squad_spells, this_season as current_season
 from sources.tm_api import TransfermarktAPI
 
-FIRST_SEASON = 1990  # 1990/91; the API has squads back to at least 1975
-TOP5_LEAGUES = {'GB1': 'Premier League', 'ES1': 'LaLiga', 'IT1': 'Serie A', 'L1': 'Bundesliga', 'FR1': 'Ligue 1'}
-# The 20 clubs outside those leagues that the most quiz-pool players passed through.
-# Market value is how the game tells a famous pick from an obscure one, and Transfermarkt
-# has only valued players since late 2004. So:
-# - a player with no value is left out, unless he is in legends.json;
-# - legends.json gives well-known players of that era an approximate present-day value
-#   (Maradona highest), which also replaces a lower late-career value (Maldini's €3m).
-# Every player in the pool therefore has a value. See legend_values for how a legend's tier
-# becomes his value.
-LEGENDS_FILE = MODE_DIR / 'legends.json'
-OTHER_CLUB_IDS = {
-    294: 'Benfica', 610: 'Ajax', 720: 'Porto', 336: 'Sporting CP', 36: 'Fenerbahce', 383: 'PSV',
-    141: 'Galatasaray', 114: 'Besiktas', 58: 'Anderlecht', 409: 'Red Bull Salzburg',
-    234: 'Feyenoord', 683: 'Olympiacos', 614: 'Flamengo', 209: 'River Plate', 2282: 'Club Brugge',
-    449: 'Trabzonspor', 585: 'Sao Paulo', 1075: 'Braga', 189: 'Boca Juniors', 1023: 'Palmeiras',
-}
-
-
-def legend_values(legends):
-    """Each legend's value. A tier in legends.json is a ceiling: its legends are spread
-    evenly from just under it down to the next tier, the one with the most Wikipedia
-    languages highest. Each value is a round amount less one euro, so it is never equal to
-    a real Transfermarkt value: a legend tied with a current player is the rarer one."""
-    tiers = sorted({legend['value'] for legend in legends}, reverse=True)
-    values = {}
-    for i, tier in enumerate(tiers):
-        floor = tiers[i + 1] if i + 1 < len(tiers) else tier - (tiers[i - 1] - tier)
-        members = sorted((legend for legend in legends if legend['value'] == tier),
-                         key=lambda legend: (-legend['wikipedia_languages'], int(legend['id'])))
-        for rank, legend in enumerate(members):
-            values[legend['id']] = round((tier - rank * (tier - floor) / len(members)) / 10_000) * 10_000 - 1
-    return values
+# Clubs and squads are the shared player universe (sources/squads.py). Market value is how the
+# game tells a famous pick from an obscure one, and Transfermarkt has only valued players since
+# late 2004. So each row's value is the player's fame (sources/fame.py): his peak value, raised
+# by his legend value (sources/legends/legends.json) for the well-known players of that era
+# (Maradona highest; also Maldini's late-career €3m). A player with no fame is left out.
 
 
 def main():
-    this_season = date.today().year if date.today().month >= 7 else date.today().year - 1
-    seasons = range(FIRST_SEASON, this_season + 1)
+    this_season = current_season()
     old = TransfermarktAPI(max_age_hours=24 * 3650)  # finished seasons never change
     live = old if '--from-cache' in sys.argv[1:] else TransfermarktAPI()
 
     # ── Clubs ──
-    club_league = {}  # club id → (league id, seasons in it)
-    for league in TOP5_LEAGUES:
-        for season in seasons:
-            fixtures = (live if season >= this_season - 1 else old).competition_fixtures(league, season)
-            for club_id in (fixtures or {}).get('clubIds') or []:
-                club_league.setdefault(str(club_id), Counter())[league] += 1
-    club_ids = set(club_league) | {str(i) for i in OTHER_CLUB_IDS}
-    print(f'{len(club_ids):,} clubs: {len(club_league):,} from the top five leagues since {FIRST_SEASON}, '
-          f'{len(club_ids) - len(club_league):,} others')
+    club_league = pool_clubs(old, live)  # club id → (league id → seasons in it)
+    club_ids = set(club_league)
+    in_top5 = sum(1 for leagues in club_league.values() if leagues)
+    print(f'{len(club_ids):,} clubs: {in_top5:,} from the top five leagues since {FIRST_SEASON}, '
+          f'{len(club_ids) - in_top5:,} others')
 
     # ── Squads ──
     progress = lambda done, total: print(f'  {done:,}/{total:,}', flush=True)
-    past = [(c, s) for c in sorted(club_ids, key=int) for s in seasons if s < this_season - 1]
-    recent = [(c, s) for c in sorted(club_ids, key=int) for s in seasons if s >= this_season - 1]
-    print(f'Fetching {len(past) + len(recent):,} squads...', flush=True)
-    squads = {**old.squads(past, progress), **live.squads(recent)}
-    print(f'  got {len(squads):,} ({old.requests + live.requests:,} API requests)')
-
-    spells = defaultdict(dict)  # player id → {club id: [first season, last season]}
-    for (club_id, season), player_ids in squads.items():
-        for player_id in player_ids:
-            span = spells[player_id].setdefault(club_id, [season, season])
-            span[0], span[1] = min(span[0], season), max(span[1], season)
+    print('Fetching squads...', flush=True)
+    spells, squad_count = squad_spells(old, live, club_ids, progress)
+    print(f'  got {squad_count:,} ({old.requests + live.requests:,} API requests)')
 
     # Quiz-pool players also count for the clubs in their transfer history.
     transfers = pd.read_csv(ROOT / 'game_modes_data' / 'transfer_history' / 'output' / 'transfer_history.csv',
@@ -125,7 +85,7 @@ def main():
     countries = country_names(players)
     facts = PlayerFacts(players, countries)
 
-    legends = legend_values(json.loads(LEGENDS_FILE.read_text()))
+    legends = fame.legends()
     unnamed_nations, missing, no_value, raised = Counter(), 0, 0, 0
     rows = []
     for player_id, player_clubs in spells.items():
@@ -136,23 +96,22 @@ def main():
         nation = countries.get(nation_id(player))
         if not nation:
             unnamed_nations[nation_id(player)] += 1
-        peak = ((player.get('marketValueDetails') or {}).get('highest') or {}).get('value')
-        if player_id in legends and legends[player_id] > (peak or 0):
-            peak = legends[player_id]
-            raised += 1
-        if not peak:
+        value = fame.fame(player_id, player)
+        if not value:
             no_value += 1
             continue
-        rows.append([player_id, facts.name(player_id), nation, peak,
+        if value > (fame.peak_value(player) or 0):
+            raised += 1
+        rows.append([player_id, facts.name(player_id), nation, value,
                      [[int(club_id), *span] for club_id, span in sorted(player_clubs.items(), key=lambda c: c[1])],
-                     facts.position(player_id), facts.born(player_id)])
+                     facts.position(player_id), facts.born(player_id), int(player_id in legends)])
     rows.sort(key=lambda r: (-(r[3] or 0), int(r[0])))
 
     club_rows = [{
         'id': int(club_id), 'name': club['baseDetails'].get('shortName') or club['name'],
         'country': countries.get(club['baseDetails'].get('countryId')),
-        'league': club_league[club_id].most_common(1)[0][0] if club_id in club_league else None,
-        'top5_seasons': sum(club_league[club_id].values()) if club_id in club_league else 0,
+        'league': club_league[club_id].most_common(1)[0][0] if club_league[club_id] else None,
+        'top5_seasons': sum(club_league[club_id].values()),
         'players': sum(1 for r in rows if any(c[0] == int(club_id) for c in r[4])),
     } for club_id, club in sorted(clubs.items(), key=lambda c: int(c[0]))]
 
@@ -160,7 +119,7 @@ def main():
     out.parent.mkdir(exist_ok=True)
     dump = lambda value: json.dumps(value, ensure_ascii=False, separators=(',', ':'))
     out.write_text(
-        '{"version":1,"first_season":%d,\n"player_fields":["id","name","nation","peak_value","clubs: [club id, first season, last season]","position","born"],\n'
+        '{"version":1,"first_season":%d,\n"player_fields":["id","name","nation","peak_value","clubs: [club id, first season, last season]","position","born","legend"],\n'
         '"clubs":[\n%s\n],\n"players":[\n%s\n]}\n' % (FIRST_SEASON, ',\n'.join(map(dump, club_rows)), ',\n'.join(map(dump, rows))))
 
     save_country_names(countries)
@@ -171,7 +130,8 @@ def main():
     for column, label in ((5, 'position'), (6, 'born')):
         have = sum(1 for r in rows if r[column])
         print(f'  {label}: {have:,} of {len(rows):,} players ({have / len(rows):.1%})')
-    print(f'  {raised:,} of the {len(legends):,} legends got their value from legends.json')
+    print(f'  {raised:,} of the {len(legends):,} legends got their value from legends.json; '
+          f'{sum(r[7] for r in rows):,} legends in the pool')
     absent = set(legends) - {r[0] for r in rows}
     if absent:
         print(f'  ⚠ legends not in any squad: {sorted(absent)}')

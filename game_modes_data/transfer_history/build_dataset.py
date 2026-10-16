@@ -6,15 +6,23 @@ Storage cache/game_data_v1.json):
   game_modes_data/transfer_history/output/player_profiles.csv    → the file's `players`
   game_modes_data/transfer_history/output/transfer_history.csv   → the file's `transfers`
 
-Players are picked from the transfermarkt-datasets tables (sources/dataset/). Unless --offline is
-given, every candidate is then refreshed from Transfermarkt's JSON API (see sources/tm_api.py):
-highest market value, current club, and the full transfer history. That keeps the data
-current even though the upstream dataset stopped updating in July 2026, and fills in
-players whose transfers the dataset never had (e.g. Hazard, Bale, Aguero).
+Players are picked from the one player list every mode shares (sources/squads.py: everyone in
+a pool club's squad since 1990/91), plus every legend (sources/legends/legends.json) and
+EXTRA_PLAYER_IDS. Profiles, transfer histories and market values all come from Transfermarkt's
+JSON API (sources/tm_api.py). Each player's fame, tier and whether he is still playing come
+from sources/fame.py and are written as the columns market_value, difficulty and active.
+
+Legends with fewer than MIN_CLUBS clubs (Maldini, Totti) are kept for Player Story only
+(story_only); other players with fewer are left out.
+
+The transfermarkt-datasets tables (sources/dataset/) are still read for the club names and
+countries they know (so names stay as in earlier imports), for the transfers of a player whose
+API request fails, and for country names (sources/player_facts.py).
 
 Usage:
-    python game_modes_data/transfer_history/build_dataset.py              # dataset + live Transfermarkt refresh
-    python game_modes_data/transfer_history/build_dataset.py --offline    # dataset only (old behaviour)
+    python game_modes_data/transfer_history/build_dataset.py
+    python game_modes_data/transfer_history/build_dataset.py --from-cache   # reuse cached API
+        responses however old (no new requests for anything already cached)
 """
 
 import argparse
@@ -30,15 +38,18 @@ ROOT = MODE_DIR.parent.parent
 sys.path.insert(0, str(ROOT))
 
 import compare_outputs
+from sources import fame
 from sources.country_names import canonical
 from sources.last_updated import record
 from sources.names import latin_name
+from sources.player_facts import POSITION_NAMES, POSITIONS, country_names
+from sources.squads import pool_clubs, squad_spells
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
 # ── Player selection ──
-# Stars: highest-ever market value at or above this (Jamie Vardy peaked at exactly 20M).
+# Stars: fame (sources/fame.py) at or above this (Jamie Vardy peaked at exactly 20M).
 STAR_MIN_VALUE = 20_000_000
-# Lesser players are kept if they played for one of these clubs and peaked at or above this.
+# Lesser players are kept if they played for one of these clubs and reached this fame.
 PRESTIGIOUS_MIN_VALUE = 10_000_000
 PRESTIGIOUS_CLUB_IDS = {
     11: 'Arsenal',
@@ -47,16 +58,24 @@ PRESTIGIOUS_CLUB_IDS = {
     131: 'Barcelona',
     631: 'Chelsea',
 }
+# Players who were in Transfer Path before it was picked from the squads (2026-10-16) but were
+# never in a pool club's squad. They stay while they still qualify.
+EXTRA_PLAYER_IDS = {
+    102740: 'Mario Fernandes', 69683: 'Alan Dzagoev', 489893: 'Yuri Alberto',
+    515744: 'Eduard Spertsyan', 15650: 'Igor Denisov', 289059: 'Mykola Matvienko',
+    403315: 'Claudinho', 580461: 'Kevin Viveros', 1004741: 'Pedro',
+}
 
-# Players whose history shows fewer first-team clubs than this are left out: a one-club
-# player (Koke, Iñaki Williams) has no transfer path to guess.
+# Players whose history shows fewer first-team clubs than this are left out of Transfer Path:
+# a one-club player (Koke, Iñaki Williams) has no transfer path to guess. A legend with fewer
+# stays, for Player Story only (story_only).
 MIN_CLUBS = 2
 # Not clubs: they stay in a history but don't count towards MIN_CLUBS.
 SPECIAL_CLUB_NAMES = {'Without Club', 'Retired', 'Career break', 'Unknown', 'Disqualification', 'Own Youth'}
 
 # Transfers TO youth and reserve sides are dropped. The API says which clubs those are
 # (see is_reserve_side). These name endings are only the fallback for clubs the API didn't
-# return, e.g. with --offline; on their own they also catch real clubs (Willem II, Esbjerg fB).
+# return; on their own they also catch real clubs (Willem II, Esbjerg fB).
 YOUTH_SUFFIXES = ('YTH', 'Youth', 'You', 'U19', 'U17', 'Yth', 'U20', 'U21', 'U18',
                   'U16', 'U23', 'U22', 'U24', 'II', 'Yth.', 'B')
 
@@ -71,12 +90,17 @@ PROFILES_COLUMNS = [
     'on_loan_from_club_name', 'contract_there_expires', 'second_club_url',
     'second_club_name', 'third_club_url', 'third_club_name', 'fourth_club_url',
     'fourth_club_name', 'date_of_death', 'market_value',
+    # From sources/fame.py (CONTRACTS.md §1): tier, still playing, Player Story only.
+    'difficulty', 'active', 'story_only',
 ]
 TRANSFERS_COLUMNS = [
     'player_id', 'season_name', 'transfer_date', 'from_team_id', 'from_team_name',
     'to_team_id', 'to_team_name', 'transfer_type', 'value_at_transfer',
     'transfer_fee', 'from_team_country', 'to_team_country',
 ]
+# The API's position group → the dataset's main position, as the file always had it.
+MAIN_POSITIONS = {'GOALKEEPER': 'Goalkeeper', 'DEFENDER': 'Defender', 'MIDFIELDER': 'Midfield',
+                  'FORWARD': 'Attack'}
 
 
 def parse_args():
@@ -84,8 +108,8 @@ def parse_args():
     parser.add_argument('--dataset-dir', type=Path, default=ROOT / 'sources' / 'dataset')
     parser.add_argument('--output-dir', type=Path, default=MODE_DIR / 'output')
     parser.add_argument('--cache-dir', type=Path, default=DEFAULT_CACHE_DIR)
-    parser.add_argument('--offline', action='store_true',
-                        help='Use only the dataset tables; skip the Transfermarkt API.')
+    parser.add_argument('--from-cache', action='store_true',
+                        help='Reuse cached API responses however old.')
     parser.add_argument('--max-age-hours', type=float, default=24,
                         help='Reuse cached API responses younger than this (default 24).')
     parser.add_argument('--workers', type=int, default=4, help='Parallel API requests (default 4).')
@@ -104,21 +128,15 @@ def is_youth_team(name):
     return isinstance(name, str) and name.strip().endswith(YOUTH_SUFFIXES)
 
 
-# ── Dataset tables ──
+# ── Dataset tables (club names and countries only) ──
 
 class Dataset:
     def __init__(self, dataset_dir):
-        print(f'Loading dataset from {dataset_dir}')
-        self.players = read_table(dataset_dir, 'players', low_memory=False)
-        self.valuations = read_table(
-            dataset_dir, 'player_valuations',
-            usecols=['player_id', 'date', 'market_value_in_eur', 'current_club_id'])
+        print(f'Loading dataset tables from {dataset_dir}')
         self.clubs = read_table(dataset_dir, 'clubs', usecols=['club_id', 'name', 'domestic_competition_id'])
         self.competitions = read_table(dataset_dir, 'competitions')
         self.countries = read_table(dataset_dir, 'countries', usecols=['country_id', 'country_name'])
         self.transfers = read_table(dataset_dir, 'transfers')
-        print(f'  {len(self.players):,} players, {len(self.valuations):,} valuations '
-              f'(latest {self.valuations["date"].max()}), {len(self.transfers):,} transfers')
 
         # club_id → country, via the club's domestic league (same as before).
         league_country = self.competitions.set_index('competition_id')['country_name']
@@ -127,14 +145,8 @@ class Dataset:
         self.country_by_id = self.countries.set_index('country_id')['country_name'].to_dict()
         self.club_official_name = self.clubs.set_index('club_id')['name'].to_dict()
 
-    def highest_values(self):
-        """Highest-ever market value per player, from valuations and the players table."""
-        from_valuations = self.valuations.groupby('player_id')['market_value_in_eur'].max()
-        from_players = self.players.set_index('player_id')['highest_market_value_in_eur']
-        return pd.concat([from_valuations, from_players], axis=1).max(axis=1).dropna()
-
-    def transfers_in_output_schema(self):
-        t = self.transfers
+    def transfers_in_output_schema(self, player_ids):
+        t = self.transfers[self.transfers['player_id'].isin(player_ids)]
         return pd.DataFrame({
             'player_id': t['player_id'],
             'season_name': t['transfer_season'],
@@ -148,28 +160,7 @@ class Dataset:
             'transfer_fee': t['transfer_fee'],
             'from_team_country': None,
             'to_team_country': None,
-        })
-
-    def profiles_in_output_schema(self, player_ids):
-        p = self.players[self.players['player_id'].isin(player_ids)]
-        df = pd.DataFrame({column: None for column in PROFILES_COLUMNS}, index=p.index)
-        df['player_id'] = p['player_id']
-        df['player_slug'] = p['player_code']
-        df['player_name'] = p['name'].map(latin_name)
-        df['player_image_url'] = p['image_url']
-        df['date_of_birth'] = p['date_of_birth']
-        df['place_of_birth'] = p['city_of_birth']
-        df['country_of_birth'] = p['country_of_birth']
-        df['height'] = p['height_in_cm']
-        df['citizenship'] = p['country_of_citizenship']
-        df['position'] = p['sub_position']
-        df['main_position'] = p['position']
-        df['foot'] = p['foot']
-        df['current_club_id'] = p['current_club_id']
-        df['current_club_name'] = p['current_club_name']
-        df['contract_expires'] = p['contract_expiration_date']
-        df['player_agent_name'] = p['agent_name']
-        return df.reset_index(drop=True)
+        }, columns=TRANSFERS_COLUMNS)
 
 
 # ── Transfermarkt API ──
@@ -213,26 +204,21 @@ def transfer_fee(transfer):
     return None
 
 
-def fetch_live_data(api, dataset, candidate_ids):
-    """Refresh candidates from the Transfermarkt API.
+def fetch_transfers(api, dataset, player_ids):
+    """Transfer histories from the API, in the output schema.
 
-    Returns (profiles by player id, transfers DataFrame in output schema,
-    {club id: is it a youth/reserve side, None when only the name can tell},
-    ids of special clubs like "Retired").
+    Returns (transfers DataFrame, {club id: API club}, {player id: date of his latest move up
+    to today}, ids whose request failed). Moves dated after today (pending) are left out.
     """
-    print(f'\nFetching {len(candidate_ids):,} player profiles from Transfermarkt...')
-    profiles = api.players(candidate_ids)
-    print(f'  got {len(profiles):,}')
-
-    print(f'Fetching transfer histories...')
+    print('Fetching transfer histories...')
     histories = api.transfer_histories(
-        candidate_ids, progress=lambda done, total: print(f'  {done:,}/{total:,}'))
+        player_ids, progress=lambda done, total: print(f'  {done:,}/{total:,}'))
+    failed = [int(player_id) for player_id, _ in api.failed]
     print(f'  got {len(histories):,} histories ({api.requests:,} API requests, {api.cache_hits:,} cached)')
-    if api.failed:
-        print(f'  ⚠ {len(api.failed):,} players failed and keep their dataset transfers, e.g. {api.failed[0]}')
+    if failed:
+        print(f'  ⚠ {len(failed):,} players failed and keep their dataset transfers, e.g. {api.failed[0]}')
 
-    club_ids = {str(a['clubId']) for p in profiles.values() for a in p.get('clubAssignments') or []
-                if a.get('type') == 'current'}
+    club_ids = set()
     for history in histories.values():
         for t in history:
             club_ids.add(t['transferSource']['clubId'])
@@ -263,7 +249,7 @@ def fetch_live_data(api, dataset, candidate_ids):
         return dataset.country_by_id.get(country_id) or dataset.country_by_id.get(fallback_country_id)
 
     today = date.today().isoformat()
-    rows = []
+    rows, last_move = [], {}
     skipped_future = skipped_unknown = 0
     for player_id, history in histories.items():
         for t in history:
@@ -274,12 +260,12 @@ def fetch_live_data(api, dataset, candidate_ids):
             if transfer_date > today:
                 skipped_future += 1
                 continue
+            last_move[int(player_id)] = max(last_move.get(int(player_id), ''), transfer_date)
             source, destination = t['transferSource'], t['transferDestination']
             to_name = short_name(destination['clubId'])
             if not to_name:
                 skipped_unknown += 1
                 continue
-            fee = (details.get('fee') or {})
             value = (details.get('marketValue') or {}).get('value')
             rows.append({
                 'player_id': int(player_id),
@@ -299,30 +285,58 @@ def fetch_live_data(api, dataset, candidate_ids):
         print(f'  skipped {skipped_future:,} transfers dated after today (pending moves)')
     if skipped_unknown:
         print(f'  skipped {skipped_unknown:,} transfers to unknown clubs')
+    transfers = pd.DataFrame(rows, columns=TRANSFERS_COLUMNS)
+    if failed:
+        transfers = pd.concat([transfers, dataset.transfers_in_output_schema(failed)], ignore_index=True)
+    return transfers, clubs, last_move, failed
 
-    live_profiles = {}
-    for player_id, p in profiles.items():
-        current = next((a for a in p.get('clubAssignments') or [] if a.get('type') == 'current'), None)
-        club_id = int(current['clubId']) if current else None
-        club = clubs.get(str(club_id)) if club_id is not None else None
-        official = dataset.club_official_name.get(club_id) if club_id is not None else None
-        if not official and club:
-            # First teams carry their legal name ("Derby County Football Club") like the dataset;
-            # Retired / Without Club / youth sides keep their own name (the parent's is localized).
-            is_first_team = club['baseDetails'].get('clubTypeId') == 1 and not club.get('isSpecialClub')
-            superior = (club['baseDetails'].get('superiorClub') or {}).get('name')
-            official = superior if is_first_team and superior else club['name']
-        highest = ((p.get('marketValueDetails') or {}).get('highest') or {}).get('value')
-        live_profiles[int(player_id)] = {
-            'current_club_id': club_id,
-            'current_club_name': official,
-            'contract_expires': (p.get('attributes') or {}).get('contractUntil'),
-            'date_of_death': (p.get('lifeDates') or {}).get('dateOfDeath'),
-            'highest_value': highest,
-        }
-    reserve_sides = {int(club_id): is_reserve_side(club) for club_id, club in clubs.items()}
-    special_clubs = {int(club_id) for club_id, club in clubs.items() if club.get('isSpecialClub')}
-    return live_profiles, pd.DataFrame(rows, columns=TRANSFERS_COLUMNS), reserve_sides, special_clubs
+
+def current_club(profile):
+    current = next((a for a in profile.get('clubAssignments') or [] if a.get('type') == 'current'), None)
+    return int(current['clubId']) if current else None
+
+
+def profile_row(player_id, p, countries, clubs, dataset):
+    """One player_profiles.csv row from his API profile (fame columns are added later)."""
+    attributes = p.get('attributes') or {}
+    life = p.get('lifeDates') or {}
+    birth = p.get('birthPlaceDetails') or {}
+    club_id = current_club(p)
+    club = clubs.get(str(club_id)) if club_id is not None else None
+    official = dataset.club_official_name.get(club_id) if club_id is not None else None
+    if not official and club:
+        # First teams carry their legal name ("Derby County Football Club") like the dataset;
+        # Retired / Without Club / youth sides keep their own name (the parent's is localized).
+        is_first_team = club['baseDetails'].get('clubTypeId') == 1 and not club.get('isSpecialClub')
+        superior = (club['baseDetails'].get('superiorClub') or {}).get('name')
+        official = superior if is_first_team and superior else club['name']
+    position = (attributes.get('position') or {}).get('name')
+    position = POSITION_NAMES.get(position, position)
+    height = attributes.get('height')
+    slug = (p.get('relativeUrl') or '').strip('/').split('/')[0] or None
+    row = dict.fromkeys(PROFILES_COLUMNS)
+    row.update({
+        'player_id': int(player_id),
+        'player_slug': slug,
+        'player_name': latin_name(p.get('name')),
+        'player_image_url': p.get('portraitUrl'),
+        # A guessed date of birth (the API marks it unknown, often 1 January) is left out.
+        'date_of_birth': None if life.get('isDateOfBirthUnknown') else life.get('dateOfBirth'),
+        'place_of_birth': (birth.get('placeOfBirth') or '').strip() or None,
+        'country_of_birth': canonical(countries.get(birth.get('countryOfBirthId'))),
+        'height': round(height * 100) if height else None,
+        'citizenship': canonical(countries.get(((p.get('nationalityDetails') or {}).get('nationalities') or {})
+                                               .get('nationalityId'))),
+        'position': position if position in POSITIONS else None,
+        'main_position': MAIN_POSITIONS.get(attributes.get('positionGroup')),
+        'foot': (attributes.get('preferredFoot') or {}).get('name'),
+        'current_club_id': club_id,
+        'current_club_name': official,
+        'contract_expires': attributes.get('contractUntil'),
+        'player_agent_name': (attributes.get('consultantAgency') or {}).get('name'),
+        'date_of_death': life.get('dateOfDeath'),
+    })
+    return row
 
 
 # ── Main ──
@@ -330,40 +344,46 @@ def fetch_live_data(api, dataset, candidate_ids):
 def main():
     args = parse_args()
     dataset = Dataset(args.dataset_dir)
+    max_age = 24 * 3650 if args.from_cache else args.max_age_hours
+    api = TransfermarktAPI(args.cache_dir, max_age_hours=max_age, workers=args.workers)
+    old = TransfermarktAPI(args.cache_dir, max_age_hours=24 * 3650, workers=args.workers)  # finished seasons
 
-    highest = dataset.highest_values()
-    known_ids = set(dataset.players['player_id'])
-    candidate_ids = sorted(pid for pid, value in highest.items()
-                           if value >= PRESTIGIOUS_MIN_VALUE and pid in known_ids)
-    print(f'\n{len(candidate_ids):,} candidates peaked at €{PRESTIGIOUS_MIN_VALUE / 1e6:.0f}M or more')
+    # ── Candidates: the shared player list, the legends and the extra players ──
+    print('Reading the squads of the pool clubs (sources/squads.py)...')
+    spells, squad_count = squad_spells(old, api, set(pool_clubs(old, api)))
+    universe = set(spells) | set(fame.legends()) | {str(i) for i in EXTRA_PLAYER_IDS}
+    print(f'  {len(spells):,} players in {squad_count:,} squads; {len(universe):,} with the legends and extras')
+    # Peak values only rise, so the cached profiles are enough to find who could reach the bar.
+    known = old.players(universe)
+    candidate_ids = sorted(int(pid) for pid in universe if fame.fame(pid, known.get(pid)) >= PRESTIGIOUS_MIN_VALUE)
+    print(f'{len(candidate_ids):,} candidates with fame of €{PRESTIGIOUS_MIN_VALUE / 1e6:.0f}M or more')
 
-    transfers = dataset.transfers_in_output_schema()
-    live_profiles, reserve_sides, special_clubs = {}, {}, set()
-    if not args.offline:
-        api = TransfermarktAPI(args.cache_dir, max_age_hours=args.max_age_hours, workers=args.workers)
-        live_profiles, live_transfers, reserve_sides, special_clubs = fetch_live_data(api, dataset, candidate_ids)
-        # The API history replaces the dataset's for every player it returned.
-        live_ids = set(live_transfers['player_id'])
-        transfers = pd.concat([transfers[~transfers['player_id'].isin(live_ids)], live_transfers],
-                              ignore_index=True)
-        for player_id, live in live_profiles.items():
-            if live['highest_value']:
-                highest[player_id] = max(highest.get(player_id, 0), live['highest_value'])
+    print(f'Fetching {len(candidate_ids):,} player profiles...')
+    profiles = {int(pid): p for pid, p in api.players(candidate_ids).items()}
+    print(f'  got {len(profiles):,}')
+    candidate_ids = [pid for pid in candidate_ids if pid in profiles]
+    player_fame = {pid: fame.fame(pid, profiles[pid]) for pid in candidate_ids}
+
+    transfers, clubs, last_move, failed = fetch_transfers(api, dataset, candidate_ids)
+    clubs.update(api.clubs({current_club(p) for p in profiles.values()} - {None} - {int(c) for c in clubs}))
+    reserve_sides = {int(club_id): is_reserve_side(club) for club_id, club in clubs.items()}
+    special_clubs = {int(club_id) for club_id, club in clubs.items() if club.get('isSpecialClub')}
 
     # ── Select players ──
-    clubs_played_for = pd.concat([
-        transfers[['player_id', 'from_team_id']].set_axis(['player_id', 'club_id'], axis=1),
-        transfers[['player_id', 'to_team_id']].set_axis(['player_id', 'club_id'], axis=1),
-        dataset.valuations[['player_id', 'current_club_id']].set_axis(['player_id', 'club_id'], axis=1),
-    ])
-    prestigious_ids = set(clubs_played_for[clubs_played_for['club_id'].isin(PRESTIGIOUS_CLUB_IDS)]['player_id'])
-
-    stars = {pid for pid in candidate_ids if highest[pid] >= STAR_MIN_VALUE}
-    prestigious = {pid for pid in candidate_ids
-                   if pid not in stars and highest[pid] >= PRESTIGIOUS_MIN_VALUE and pid in prestigious_ids}
+    prestigious_ids = {int(pid) for pid, player_clubs in spells.items()
+                       if any(int(club_id) in PRESTIGIOUS_CLUB_IDS for club_id in player_clubs)}
+    prestigious_ids |= set(transfers.loc[transfers['from_team_id'].isin(PRESTIGIOUS_CLUB_IDS)
+                                         | transfers['to_team_id'].isin(PRESTIGIOUS_CLUB_IDS), 'player_id'])
+    legend_ids = {int(pid) for pid in fame.legends()}
+    stars = {pid for pid in candidate_ids if player_fame[pid] >= STAR_MIN_VALUE}
+    prestigious = {pid for pid in candidate_ids if pid not in stars and pid in prestigious_ids}
     selected = stars | prestigious
-    print(f'\nSelected {len(selected):,} players: {len(stars):,} peaked at or above €{STAR_MIN_VALUE / 1e6:.0f}M, '
-          f'{len(prestigious):,} more played for {", ".join(PRESTIGIOUS_CLUB_IDS.values())}')
+    print(f'\nSelected {len(selected):,} players: {len(stars):,} with fame of €{STAR_MIN_VALUE / 1e6:.0f}M or more '
+          f'({len(stars & legend_ids):,} legends), {len(prestigious):,} more played for '
+          f'{", ".join(PRESTIGIOUS_CLUB_IDS.values())}')
+    missing_legends = legend_ids - selected
+    if missing_legends:
+        print(f'  ⚠ legends the API has no profile for: {sorted(missing_legends)}')
 
     # ── Transfers ──
     def to_reserve_side(ids, names):
@@ -388,23 +408,42 @@ def main():
         for side in ('from', 'to')])
     club_count = club_rows.groupby('player_id')['club_id'].nunique()
     few_clubs = {pid for pid in selected if club_count.get(pid, 0) < MIN_CLUBS}
-    if few_clubs:
-        names = dataset.players.set_index('player_id')['name'].reindex(sorted(few_clubs, key=lambda pid: -highest[pid]))
-        print(f'  left out {len(few_clubs):,} players with fewer than {MIN_CLUBS} clubs in their history, '
-              f'e.g. {", ".join(names.head(12))}')
-        selected -= few_clubs
-        out = out[out['player_id'].isin(selected)]
+    story_only = few_clubs & legend_ids
+    left_out = few_clubs - legend_ids
+    by_fame = lambda ids: sorted(ids, key=lambda pid: (-player_fame[pid], pid))
+    name_of = lambda pid: latin_name(profiles[pid].get('name'))
+    if left_out:
+        print(f'  left out {len(left_out):,} players with fewer than {MIN_CLUBS} clubs in their history, '
+              f'e.g. {", ".join(map(name_of, by_fame(left_out)[:12]))}')
+    if story_only:
+        print(f'  {len(story_only):,} legends with fewer than {MIN_CLUBS} clubs are Player Story only: '
+              f'{", ".join(map(name_of, by_fame(story_only)))}')
+    selected -= left_out
+    out = out[out['player_id'].isin(selected)]
+
+    # ── Fame, tier, still playing ──
+    print(f'Fetching {len(selected):,} market value histories...')
+    histories = {int(pid): h for pid, h in api.market_value_histories(sorted(selected)).items()}
+    if api.failed:
+        print(f'  ⚠ {len(api.failed):,} failed; their value now is the profile\'s current value only')
+    today = date.today()
 
     # ── Profiles ──
-    profiles = dataset.profiles_in_output_schema(selected)
-    profiles['market_value'] = profiles['player_id'].map(highest).astype('int64')
-    for column in ('current_club_id', 'current_club_name', 'contract_expires', 'date_of_death'):
-        live = profiles['player_id'].map(lambda pid: live_profiles.get(pid, {}).get(column))
-        profiles[column] = live.where(live.notna(), profiles[column])
-    profiles['current_club_id'] = profiles['current_club_id'].astype('Int64')
-    for column in ('citizenship', 'country_of_birth'):
-        profiles[column] = profiles[column].map(canonical)
-    profiles = profiles.sort_values(['market_value', 'player_id'], ascending=[False, True])
+    countries = country_names({str(pid): p for pid, p in profiles.items()})
+    rows = []
+    for pid in sorted(selected):
+        row = profile_row(pid, profiles[pid], countries, clubs, dataset)
+        club = clubs.get(str(row['current_club_id'])) if row['current_club_id'] is not None else None
+        active = fame.still_playing(club['name'] if club else None, row['date_of_death'], last_move.get(pid), today)
+        row['market_value'] = player_fame[pid]
+        row['difficulty'] = fame.player_tier(player_fame[pid], fame.value_now(histories.get(pid), profiles[pid]), active)
+        row['active'] = active
+        row['story_only'] = True if pid in story_only else None
+        rows.append(row)
+    profiles_out = pd.DataFrame(rows, columns=PROFILES_COLUMNS)
+    profiles_out['current_club_id'] = profiles_out['current_club_id'].astype('Int64')
+    profiles_out['height'] = profiles_out['height'].astype('Int64')
+    profiles_out = profiles_out.sort_values(['market_value', 'player_id'], ascending=[False, True])
 
     for side in ('from', 'to'):
         missing = out[f'{side}_team_country'].isna()
@@ -412,9 +451,13 @@ def main():
         out[f'{side}_team_country'] = out[f'{side}_team_country'].map(canonical)
     out = out.sort_values(['player_id', 'transfer_date', 'to_team_id'], ascending=[True, False, True])
 
-    without = selected - set(out['player_id'])
+    without = selected - set(out['player_id']) - story_only
     if without:
         print(f'  ⚠ {len(without):,} selected players have no transfers and will not appear in quizzes')
+    for column in ('position', 'citizenship', 'date_of_birth'):
+        empty = profiles_out[column].isna().sum()
+        if empty:
+            print(f'  {empty:,} players without {column}')
 
     # Keep the last build in output/previous/ so the new one can be compared against it.
     output_files = ('player_profiles.csv', 'transfer_history.csv')
@@ -426,15 +469,23 @@ def main():
             (args.output_dir / name).replace(previous_dir / name)
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    profiles[PROFILES_COLUMNS].to_csv(args.output_dir / 'player_profiles.csv', index=False)
+    profiles_out[PROFILES_COLUMNS].to_csv(args.output_dir / 'player_profiles.csv', index=False)
     out[TRANSFERS_COLUMNS].to_csv(args.output_dir / 'transfer_history.csv', index=False)
-    print(f'\n✓ {len(profiles):,} players  → {args.output_dir / "player_profiles.csv"}')
+    tiers = profiles_out.groupby('difficulty').size().reindex(fame.TIERS, fill_value=0)
+    path_tiers = profiles_out[profiles_out['story_only'] != True].groupby('difficulty').size().reindex(fame.TIERS, fill_value=0)  # noqa: E712
+    print(f'\n✓ {len(profiles_out):,} players  → {args.output_dir / "player_profiles.csv"}')
+    print(f'  tiers: ' + ', '.join(f'{t} {n:,}' for t, n in tiers.items())
+          + f'; Transfer Path (without the {len(story_only):,} story-only): '
+          + ', '.join(f'{t} {n:,}' for t, n in path_tiers.items()))
+    print(f'  {int(profiles_out["active"].sum()):,} still playing; '
+          f'{len(selected & legend_ids):,} legends ({len(story_only):,} story only)')
     print(f'✓ {len(out):,} transfers → {args.output_dir / "transfer_history.csv"}')
     if args.output_dir == MODE_DIR / 'output':
-        record(MODE_DIR, 'built', players=len(profiles), transfers=len(out),
+        record(MODE_DIR, 'built', players=len(profiles_out), transfers=len(out),
                latest_transfer=out['transfer_date'].max(),
-               transfers_from='dataset tables only (--offline)' if args.offline else 'Transfermarkt API',
-               dataset_latest_valuation=dataset.valuations['date'].max())
+               beginner=int(tiers['beginner']), intermediate=int(tiers['intermediate']),
+               expert=int(tiers['expert']), story_only=len(story_only),
+               source='Transfermarkt API' + (f' ({len(failed):,} players from the dataset tables)' if failed else ''))
     country_share = (out['to_team_country'].notna().mean() * 100) if len(out) else 0
     print(f'  {country_share:.1f}% of transfers have a destination country')
 

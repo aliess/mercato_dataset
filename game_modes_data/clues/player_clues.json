@@ -307,6 +307,28 @@
     "status": "approved",
     "notes": ""
   },
+  "3397": {
+    "name": "Paul Scholes",
+    "clue1_en": "I had asthma and a knee condition as a boy, and joined my local club's academy.",
+    "clue1_ar": "عانيت من الربو ومشكلة في الركبة وأنا صغير، وانضممت إلى أكاديمية النادي المحلي.",
+    "clue2_en": "I came out of retirement in 2012 to play again for my only club.",
+    "clue2_ar": "عدت من الاعتزال عام 2012 لألعب مجدداً لناديي الوحيد.",
+    "clue3_en": "I'm an English midfielder who spent my whole career at Manchester United.",
+    "clue3_ar": "أنا لاعب وسط إنجليزي قضيت مسيرتي كلها في مانشستر يونايتد.",
+    "status": "approved",
+    "notes": ""
+  },
+  "3406": {
+    "name": "Ryan Giggs",
+    "clue1_en": "I played for Manchester City's youth team before joining their rivals at 14.",
+    "clue1_ar": "لعبت لفريق شباب مانشستر سيتي قبل انضمامي إلى غريمه في الرابعة عشرة.",
+    "clue2_en": "I scored a famous solo goal against Arsenal in the 1999 FA Cup semi-final replay.",
+    "clue2_ar": "سجّلت هدفاً فردياً شهيراً أمام أرسنال في إعادة نصف نهائي كأس الاتحاد الإنجليزي 1999.",
+    "clue3_en": "I'm a Welsh winger who won 13 Premier League titles with Manchester United.",
+    "clue3_ar": "أنا جناح ويلزي فزت بالدوري الإنجليزي 13 مرة مع مانشستر يونايتد.",
+    "status": "approved",
+    "notes": ""
+  },
   "3411": {
     "name": "Pablo Aimar",
     "clue1_en": "I came through River Plate and was Lionel Messi's childhood idol.",
@@ -846,6 +868,17 @@
     "status": "approved",
     "notes": ""
   },
+  "5958": {
+    "name": "Francesco Totti",
+    "clue1_en": "My mother turned down AC Milan for me as a boy, so I stayed in my home city.",
+    "clue1_ar": "رفضت والدتي عرض ميلان لي وأنا صغير، فبقيت في مدينتي.",
+    "clue2_en": "I won the 2006 World Cup and the European Golden Shoe in 2007.",
+    "clue2_ar": "فزت بكأس العالم 2006، وبالحذاء الذهبي الأوروبي عام 2007.",
+    "clue3_en": "I'm an Italian forward who spent my whole 25-year career at Roma.",
+    "clue3_ar": "أنا مهاجم إيطالي قضيت مسيرتي كلها، 25 عاماً، في روما.",
+    "status": "approved",
+    "notes": ""
+  },
   "5962": {
     "name": "Antonio Cassano",
     "clue1_en": "At 17, I scored a famous solo goal against Inter for my hometown club, Bari.",
@@ -986,6 +1019,17 @@
     "clue2_ar": "انضممت إلى مايوركا مقابل 6 ملايين يورو عام 2006، وفزت بيورو 2008 لاعباً احتياطياً.",
     "clue3_en": "I'm a Spanish left-back who spent seven years at Sevilla and won two Europa Leagues.",
     "clue3_ar": "أنا ظهير أيسر إسباني قضيت سبع سنوات في إشبيلية وفزت بالدوري الأوروبي مرتين.",
+    "status": "approved",
+    "notes": ""
+  },
+  "7594": {
+    "name": "Carles Puyol",
+    "clue1_en": "I grew up in a small Pyrenees village and played in goal and up front before joining La Masia.",
+    "clue1_ar": "نشأت في قرية صغيرة بجبال البرانس، ولعبت حارساً ومهاجماً قبل انضمامي إلى لاماسيا.",
+    "clue2_en": "My header won the 2010 World Cup semi-final against Germany.",
+    "clue2_ar": "حسمت رأسيتي نصف نهائي كأس العالم 2010 أمام ألمانيا.",
+    "clue3_en": "I'm a Spanish centre-back who captained Barcelona for years.",
+    "clue3_ar": "أنا قلب دفاع إسباني كنت قائداً لبرشلونة لسنوات.",
     "status": "approved",
     "notes": ""
   },

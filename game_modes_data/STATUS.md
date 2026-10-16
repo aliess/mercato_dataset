@@ -5,10 +5,10 @@ Written by the build and publish scripts from each mode's `LAST_UPDATED.json`; d
 
 | Game mode | Last built | What the files hold | Source | Dev (`football-quiz-32eb9`) | Prod (`mercato-6e710`) |
 |---|---|---|---|---|---|
-| Transfer history | 2026-10-09 | 1,825 players; 14,220 transfers; latest transfer 2026-10-08; dataset latest valuation 2026-06-12 | Transfermarkt API | 2026-10-09 (1,825 players; 14,220 transfers) | 2026-10-09 (1,825 players; 14,220 transfers) |
-| Three Clues | 2026-10-10 | 1,635 clue sets; 1,825 players in pool | written by hand against facts.jsonl | 2026-10-10 (1,635 clue sets) | 2026-10-10 (1,635 clue sets) |
-| Starting XI | 2026-10-15 | 1,120 lineups; 560 matches; latest match 2026-07-19 | Transfermarkt API | 2026-10-15 (1,120 lineups; 560 matches) | 2026-10-15 (1,120 lineups; 560 matches) |
-| Grid Rush | 2026-10-15 | 45,057 players; 268 clubs; seasons 1990 to 2026 | Transfermarkt API | 2026-10-15 (45,057 players; 268 clubs) | 2026-10-15 (45,057 players; 268 clubs) |
+| Transfer history | 2026-10-16 | 2,211 players; 17,483 transfers; latest transfer 2026-10-14; 251 beginner; 679 intermediate; 1,281 expert; 13 story only | Transfermarkt API | 2026-10-09 (1,825 players; 14,220 transfers) — **behind the files** | 2026-10-09 (1,825 players; 14,220 transfers) — **behind the files** |
+| Three Clues | 2026-10-16 | 1,639 clue sets; 2,211 players in pool | written by hand against facts.jsonl | 2026-10-10 (1,635 clue sets) — **behind the files** | 2026-10-10 (1,635 clue sets) — **behind the files** |
+| Starting XI | 2026-10-16 | 1,120 lineups; 560 matches; latest match 2026-07-19 | Transfermarkt API | 2026-10-15 (1,120 lineups; 560 matches) — **behind the files** | 2026-10-15 (1,120 lineups; 560 matches) — **behind the files** |
+| Grid Rush | 2026-10-16 | 45,057 players; 268 clubs; seasons 1990 to 2026 | Transfermarkt API | 2026-10-15 (45,057 players; 268 clubs) — **behind the files** | 2026-10-15 (45,057 players; 268 clubs) — **behind the files** |
 
 "Behind the files" means the files here were rebuilt after the last upload, or hold different
 counts: the app is still getting the older data. "never" means the mode has not been

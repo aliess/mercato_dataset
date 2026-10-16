@@ -1,11 +1,14 @@
 {
   "built": {
-    "date": "2026-10-09",
-    "players": 1825,
-    "transfers": 14220,
-    "latest_transfer": "2026-10-08",
-    "transfers_from": "Transfermarkt API",
-    "dataset_latest_valuation": "2026-06-12"
+    "date": "2026-10-16",
+    "players": 2211,
+    "transfers": 17483,
+    "latest_transfer": "2026-10-14",
+    "beginner": 251,
+    "intermediate": 679,
+    "expert": 1281,
+    "story_only": 13,
+    "source": "Transfermarkt API"
   },
   "synced": {
     "football-quiz-32eb9": {
