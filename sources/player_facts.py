@@ -30,7 +30,7 @@ from pathlib import Path
 import pandas as pd
 
 from sources.country_names import canonical
-from sources.names import latin_name
+from sources.names import NAME_OVERRIDES, latin_name
 
 ROOT = Path(__file__).resolve().parent.parent
 GAME_PROFILES = ROOT / 'game_modes_data' / 'transfer_history' / 'output' / 'player_profiles.csv'
@@ -104,7 +104,7 @@ class PlayerFacts:
         player_id = str(player_id)
         game = self.game.get(player_id)
         for name in (game.player_name if game is not None else None,
-                     (self.api.get(player_id) or {}).get('name')):
+                     NAME_OVERRIDES.get(int(player_id)), (self.api.get(player_id) or {}).get('name')):
             if isinstance(name, str) and name.strip():
                 return latin_name(name)
         return None

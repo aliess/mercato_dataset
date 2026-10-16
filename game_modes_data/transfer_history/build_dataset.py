@@ -41,7 +41,7 @@ import compare_outputs
 from sources import fame
 from sources.country_names import canonical
 from sources.last_updated import record
-from sources.names import latin_name
+from sources.names import latin_name, player_name
 from sources.player_facts import POSITION_NAMES, POSITIONS, country_names
 from sources.squads import pool_clubs, squad_spells
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
@@ -318,7 +318,7 @@ def profile_row(player_id, p, countries, clubs, dataset):
     row.update({
         'player_id': int(player_id),
         'player_slug': slug,
-        'player_name': latin_name(p.get('name')),
+        'player_name': player_name(player_id, p.get('name')),
         'player_image_url': p.get('portraitUrl'),
         # A guessed date of birth (the API marks it unknown, often 1 January) is left out.
         'date_of_birth': None if life.get('isDateOfBirthUnknown') else life.get('dateOfBirth'),

@@ -113,8 +113,9 @@ A player has one spelling across all game files: the app builds one suggestion l
 Grid and Starting XI take the name from `PlayerFacts.name()` (`sources/player_facts.py`): the
 game data's `player_name` when the player is in Transfer Path, else the API's name. Since
 2026-10-16 the game data's names are the API's too (its profiles come from the API), so the
-API's spelling is the one everywhere: "Marc ter Stegen", "Savio" (not "Savinho"), "Jose Manuel
-Lopez" (not "Flaco Lopez"). The dataset table is not used for names: it is staler than the API. After a
+API's spelling is the one everywhere, except the few in `NAME_OVERRIDES` (`sources/names.py`)
+where players know another name: Savinho (API "Savio"), Flaco Lopez ("Jose Manuel Lopez"),
+Marc-Andre ter Stegen ("Marc ter Stegen"), Rafael Borre ("Rafael Santos Borre"). The dataset table is not used for names: it is staler than the API. After a
 transfer-history build adds players, rebuild Grid and Starting XI so they pick up the spelling.
 
 ### Player facts for the hints
