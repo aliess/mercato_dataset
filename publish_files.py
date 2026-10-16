@@ -355,6 +355,7 @@ def build_tiers(game_data, xi):
         if entry is None:
             continue
         expected = {'now', 'fame_now', 'why'} | ({'peak_year'} if 'peak_year' in entry else set()) \
+            | ({'big_club'} if 'big_club' in entry else set()) \
             | ({'legend'} if fame.is_legend(player['id']) else set()) \
             | ({'grace'} if entry.get('grace') else set())
         # fame now is the raw fame (market_value) in today's money: for a player who is not a
@@ -367,7 +368,12 @@ def build_tiers(game_data, xi):
                    else entry['fame_now'] == expected_now)
               and entry['why'] in fame.REASON_TIERS
               and fame.REASON_TIERS[entry['why']] == player['difficulty']
-              and fame.tier_reason(entry['fame_now'], entry['now'], player['active']) == entry['why']
+              # big_club is one of the big clubs, and it is his current club whenever that is one
+              and (entry.get('big_club') is None or entry['big_club'] in fame.BEGINNER_CLUB_IDS)
+              and (player.get('current_club_id') not in fame.BEGINNER_CLUB_IDS
+                   or entry.get('big_club') == player['current_club_id'])
+              and fame.tier_reason(player['id'], entry['fame_now'], entry['now'], player['active'],
+                                   entry.get('big_club')) == entry['why']
               and entry.get('legend', True) is True and entry.get('grace', True) is True
               and not (entry.get('grace') and not player['active']))
         if not ok:

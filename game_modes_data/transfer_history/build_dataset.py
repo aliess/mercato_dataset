@@ -459,17 +459,21 @@ def main():
         # The tier goes by fame in today's money; market_value stays the raw fame (the pool,
         # the name suggestions and the Daily Transfer's €20m Expert floor read it).
         fame_now, peak_year = fame.fame_now(pid, profiles[pid], histories.get(pid))
-        reason = fame.tier_reason(fame_now, now, active)
+        # Beginner also needs a big club: his current one, or a squad there since 2024/25
+        # (the same squads as the Grid), unless he is an all-time star.
+        big_club = fame.beginner_club(row['current_club_id'], spells.get(str(pid)) or spells.get(pid))
+        reason = fame.tier_reason(pid, fame_now, now, active, big_club)
         row['market_value'] = player_fame[pid]
         row['difficulty'] = fame.REASON_TIERS[reason]
         row['active'] = active
         row['story_only'] = True if pid in story_only else None
         rows.append(row)
         # tiers_v1.json's player entry (CONTRACTS.md §1): value now, fame now and the year of
-        # the peak it comes from, the rule, legend, grace.
+        # the peak it comes from, the rule, the big club that allows Beginner, legend, grace.
         why[str(pid)] = {'now': now, 'fame_now': fame_now,
                          **({'peak_year': peak_year} if peak_year is not None else {}),
                          'why': reason,
+                         **({'big_club': big_club} if big_club is not None else {}),
                          **({'legend': True} if pid in legend_ids else {}),
                          **({'grace': True} if status == 'grace' else {})}
     profiles_out = pd.DataFrame(rows, columns=PROFILES_COLUMNS)

@@ -4,8 +4,8 @@
     "players": 2211,
     "transfers": 17483,
     "latest_transfer": "2026-10-14",
-    "beginner": 179,
-    "intermediate": 1004,
+    "beginner": 141,
+    "intermediate": 1042,
     "expert": 1028,
     "story_only": 13,
     "source": "Transfermarkt API"

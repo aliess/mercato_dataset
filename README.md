@@ -103,9 +103,15 @@ carry the result: the app and the server hold no value lines.
 - **Still playing** (`active`) = not retired and alive; a player without a club (or on a career
   break) counts only if his last move was less than a year ago.
 - **Transfer Path and Player Story**: Beginner = still playing and (value now €60m+, or fame
-  now €80m+ with value now €15m+); Intermediate = otherwise fame now €40m+ (every legend lands
-  here); Expert = fame now under €40m. Written as `difficulty` on each player of
-  `game_data_v1.json`; `tiers_v1.json` gives each player's `fame_now`, `peak_year` and the rule.
+  now €80m+ with value now €15m+), and a big club: his current club is one of the 11
+  (`BEGINNER_CLUB_IDS`: Real Madrid, Barcelona, Atlético, Man City, Liverpool, Arsenal, Chelsea,
+  Man Utd, Tottenham, PSG, Bayern), or he was in one of their squads in 2024/25 or later (the
+  Grid's squads, `sources/squads.py`), or he is one of the four all-time stars
+  (`ALL_TIME_STAR_IDS`: Messi, Cristiano Ronaldo, Neymar, Benzema). A player who meets the
+  value lines without a big club is Intermediate (`why` = `intermediate_club`: Lautaro,
+  Osimhen, Barella...). Intermediate = otherwise fame now €40m+ (every legend lands here);
+  Expert = fame now under €40m. Written as `difficulty` on each player of
+  `game_data_v1.json`; `tiers_v1.json` gives each player's `fame_now`, `peak_year`, `big_club` and the rule.
 - **Starting XI**: a starter is a star when his fame now is €40m+; the match year adds nothing
   on top. Beginner = 2017 or later with 10+ stars, Intermediate = 5+ stars, Expert = the rest.
 

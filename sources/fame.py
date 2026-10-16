@@ -11,9 +11,10 @@ How famous a player is, and the difficulty tiers that follow from it, for every 
   adjusted). It sets every tier: Transfer Path, Player Story and the Starting XI stars.
 - value_now(player) = his highest Transfermarkt value since VALUE_NOW_FROM.
 - still_playing(...) = not retired, alive, and when without a club, moved in the last year.
-- Transfer Path and Player Story: player_tier(fame now, value now, still playing), and
-  tier_reason() for which rule set it (the `why` of tiers_v1.json; player_tier is read off it,
-  so the two never disagree).
+- Transfer Path and Player Story: player_tier(...), and tier_reason() for which rule set it
+  (the `why` of tiers_v1.json; player_tier is read off it, so the two never disagree). Beginner
+  also needs a big club (beginner_club(): current club or a recent squad there) or an
+  all-time star; otherwise the player is Intermediate.
 - Starting XI: a starter is a star when his fame now is STAR_VALUE or more (no match-year
   factor on top: his value is already in today's money); lineup_tier(year, stars).
 - rules(): these constants as the admin panel sees them (tiers_v1.json, CONTRACTS.md §1).
@@ -42,6 +43,14 @@ BEGINNER_FAME = 80_000_000              # or fame €80m+ ...
 BEGINNER_FAME_VALUE_NOW = 15_000_000    # ... and still worth €15m+ since VALUE_NOW_FROM
 INTERMEDIATE_FAME = 40_000_000          # otherwise: intermediate from €40m fame, expert below
 # "fame" in these lines is fame_now(): the peak in today's money (growth of its year).
+# Beginner also needs one of: his current club is one of these, or he was in one of their squads
+# (sources/squads.py, the Grid's spells) in BEGINNER_CLUB_LAST_SEASON or later, or he is one of
+# ALL_TIME_STAR_IDS. A player who meets the value lines without either is intermediate.
+# Real Madrid, Barcelona, Atlético, Man City, Liverpool, Arsenal, Chelsea, Man Utd, Tottenham, PSG, Bayern
+BEGINNER_CLUB_IDS = (418, 131, 13, 281, 31, 11, 631, 985, 148, 583, 27)
+BEGINNER_CLUB_LAST_SEASON = 2024        # a squad there in 2024/25 or later counts
+# Messi, Cristiano Ronaldo, Neymar, Benzema
+ALL_TIME_STAR_IDS = (28003, 8198, 68290, 18922)
 
 # ── Still playing ──
 RETIRED = 'Retired'
@@ -149,25 +158,42 @@ def still_playing(current_club, date_of_death, last_move, today=None):
 
 # The rule that set a player's tier → the tier.
 REASON_TIERS = {
-    'beginner_value_now': 'beginner',   # still playing, value now ≥ BEGINNER_VALUE_NOW
-    'beginner_fame': 'beginner',        # still playing, fame ≥ BEGINNER_FAME, value now ≥ BEGINNER_FAME_VALUE_NOW
+    'beginner_value_now': 'beginner',   # still playing, value now ≥ BEGINNER_VALUE_NOW, a big club
+    'beginner_fame': 'beginner',        # still playing, fame ≥ BEGINNER_FAME, value now ≥ BEGINNER_FAME_VALUE_NOW, a big club
+    'beginner_star': 'beginner',        # one of those value lines, no big club, one of ALL_TIME_STAR_IDS
+    'intermediate_club': 'intermediate',  # one of those value lines, but no big club and not an all-time star
     'intermediate_fame': 'intermediate',  # fame ≥ INTERMEDIATE_FAME
     'expert': 'expert',                 # the rest
 }
 
 
-def tier_reason(player_fame, player_value_now, active):
-    """Which rule sets the Transfer Path and Player Story tier: a key of REASON_TIERS."""
-    if active and player_value_now >= BEGINNER_VALUE_NOW:
-        return 'beginner_value_now'
-    if active and player_fame >= BEGINNER_FAME and player_value_now >= BEGINNER_FAME_VALUE_NOW:
-        return 'beginner_fame'
+def beginner_club(current_club_id, spells):
+    """The big club that lets the player be Beginner, or None: his current club when it is one
+    of BEGINNER_CLUB_IDS, else the one he was last in the squad of, when that squad is of
+    BEGINNER_CLUB_LAST_SEASON or later. `spells` = {club id: [first season, last season]}, his
+    entry of sources/squads.squad_spells (the Grid's squads)."""
+    if current_club_id is not None and int(current_club_id) in BEGINNER_CLUB_IDS:
+        return int(current_club_id)
+    recent = [(span[1], int(club_id)) for club_id, span in (spells or {}).items()
+              if int(club_id) in BEGINNER_CLUB_IDS and span[1] >= BEGINNER_CLUB_LAST_SEASON]
+    return max(recent)[1] if recent else None
+
+
+def tier_reason(player_id, player_fame, player_value_now, active, big_club):
+    """Which rule sets the Transfer Path and Player Story tier: a key of REASON_TIERS.
+    `big_club` is beginner_club()'s answer."""
+    value_line = player_value_now >= BEGINNER_VALUE_NOW
+    fame_line = player_fame >= BEGINNER_FAME and player_value_now >= BEGINNER_FAME_VALUE_NOW
+    if active and (value_line or fame_line):
+        if big_club is not None:
+            return 'beginner_value_now' if value_line else 'beginner_fame'
+        return 'beginner_star' if int(player_id) in ALL_TIME_STAR_IDS else 'intermediate_club'
     return 'intermediate_fame' if player_fame >= INTERMEDIATE_FAME else 'expert'
 
 
-def player_tier(player_fame, player_value_now, active):
+def player_tier(player_id, player_fame, player_value_now, active, big_club):
     """Transfer Path and Player Story tier."""
-    return REASON_TIERS[tier_reason(player_fame, player_value_now, active)]
+    return REASON_TIERS[tier_reason(player_id, player_fame, player_value_now, active, big_club)]
 
 
 # ── Today's money (Starting XI) ──
@@ -239,13 +265,16 @@ def growth_table(years):
 # ── The lines, as tiers_v1.json shows them ──
 
 def player_rules():
-    """The constants player_tier() and still_playing() use (amounts in euros)."""
+    """The constants player_tier(), beginner_club() and still_playing() use (amounts in euros)."""
     return {
         'value_now_from': VALUE_NOW_FROM,
         'beginner_value_now': BEGINNER_VALUE_NOW,
         'beginner_fame': BEGINNER_FAME,
         'beginner_fame_value_now': BEGINNER_FAME_VALUE_NOW,
         'intermediate_fame': INTERMEDIATE_FAME,
+        'beginner_club_ids': list(BEGINNER_CLUB_IDS),
+        'beginner_club_last_season': BEGINNER_CLUB_LAST_SEASON,
+        'all_time_star_ids': list(ALL_TIME_STAR_IDS),
         'no_club_grace_days': NO_CLUB_GRACE.days,
     }
 
