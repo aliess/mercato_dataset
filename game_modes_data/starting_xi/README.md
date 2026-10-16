@@ -42,6 +42,10 @@ and the round do not matter.
 - `intermediate`: 5+ stars, any year.
 - `expert`: the rest.
 
+The build also writes `output/xi_stars.json` (each lineup's star count, the lines and the
+growth by year it used); the publisher turns it into the `lineups` and `growth` of the admin
+panel's `cache/tiers_v1.json`, which the app never downloads.
+
 Examples: Liverpool in the 2026 quarter-final, England at Euro 2024 and Portugal at the 2022
 World Cup are `beginner`; Belgium 2014–2021, the Netherlands, Croatia 2018 and 2022, Portugal
 at Euro 2016 and Switzerland 2026 (5 stars) are `intermediate`; Russia, Morocco and Greece are

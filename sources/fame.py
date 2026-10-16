@@ -7,9 +7,12 @@ How famous a player is, and the difficulty tiers that follow from it, for every 
   approximate present-day value (see legend_values).
 - value_now(player) = his highest Transfermarkt value since VALUE_NOW_FROM.
 - still_playing(...) = not retired, alive, and when without a club, moved in the last year.
-- Transfer Path and Player Story: player_tier(fame, value now, still playing).
+- Transfer Path and Player Story: player_tier(fame, value now, still playing), and
+  tier_reason() for which rule set it (the `why` of tiers_v1.json; player_tier is read off it,
+  so the two never disagree).
 - Starting XI: a starter is a star when his fame in today's money (growth()) is
   STAR_VALUE or more; lineup_tier(year, stars).
+- rules(): these constants as the admin panel sees them (tiers_v1.json, CONTRACTS.md §1).
 
 The app and the functions read the tier from the files (`difficulty` in game_data_v1.json and
 xi_v1.json) and hold no value lines of their own.
@@ -98,23 +101,46 @@ def value_now(history, profile=None):
     return max(points, default=0)
 
 
+def playing_status(current_club, date_of_death, last_move, today=None):
+    """'playing', 'grace' (without a club or on a career break, but his last move, an ISO
+    date, is less than NO_CLUB_GRACE before `today`) or 'stopped' (retired, dead, or without a
+    club for longer)."""
+    if date_of_death or current_club == RETIRED:
+        return 'stopped'
+    if current_club in NO_CLUB:
+        today = today or date.today()
+        recent = bool(last_move) and date.fromisoformat(last_move[:10]) >= today - NO_CLUB_GRACE
+        return 'grace' if recent else 'stopped'
+    return 'playing'
+
+
 def still_playing(current_club, date_of_death, last_move, today=None):
     """Not retired and alive. A player without a club (or on a career break) counts only when
     his last move (ISO date) is less than a year before `today`."""
-    if date_of_death or current_club == RETIRED:
-        return False
-    if current_club in NO_CLUB:
-        today = today or date.today()
-        return bool(last_move) and date.fromisoformat(last_move[:10]) >= today - NO_CLUB_GRACE
-    return True
+    return playing_status(current_club, date_of_death, last_move, today) != 'stopped'
+
+
+# The rule that set a player's tier → the tier.
+REASON_TIERS = {
+    'beginner_value_now': 'beginner',   # still playing, value now ≥ BEGINNER_VALUE_NOW
+    'beginner_fame': 'beginner',        # still playing, fame ≥ BEGINNER_FAME, value now ≥ BEGINNER_FAME_VALUE_NOW
+    'intermediate_fame': 'intermediate',  # fame ≥ INTERMEDIATE_FAME
+    'expert': 'expert',                 # the rest
+}
+
+
+def tier_reason(player_fame, player_value_now, active):
+    """Which rule sets the Transfer Path and Player Story tier: a key of REASON_TIERS."""
+    if active and player_value_now >= BEGINNER_VALUE_NOW:
+        return 'beginner_value_now'
+    if active and player_fame >= BEGINNER_FAME and player_value_now >= BEGINNER_FAME_VALUE_NOW:
+        return 'beginner_fame'
+    return 'intermediate_fame' if player_fame >= INTERMEDIATE_FAME else 'expert'
 
 
 def player_tier(player_fame, player_value_now, active):
     """Transfer Path and Player Story tier."""
-    if active and (player_value_now >= BEGINNER_VALUE_NOW
-                   or (player_fame >= BEGINNER_FAME and player_value_now >= BEGINNER_FAME_VALUE_NOW)):
-        return 'beginner'
-    return 'intermediate' if player_fame >= INTERMEDIATE_FAME else 'expert'
+    return REASON_TIERS[tier_reason(player_fame, player_value_now, active)]
 
 
 # ── Today's money (Starting XI) ──
@@ -167,3 +193,41 @@ def lineup_tier(year, stars):
     if year >= BEGINNER_LINEUP_FROM and stars >= BEGINNER_LINEUP_STARS:
         return 'beginner'
     return 'intermediate' if stars >= INTERMEDIATE_LINEUP_STARS else 'expert'
+
+
+def growth_table(years):
+    """{latest_full_year, by_year: {"<year>": growth(year)}} for these years (tiers_v1.json)."""
+    return {'latest_full_year': growth_index()[1],
+            'by_year': {str(year): growth(year) for year in sorted(set(years))}}
+
+
+# ── The lines, as tiers_v1.json shows them ──
+
+def player_rules():
+    """The constants player_tier() and still_playing() use (amounts in euros)."""
+    return {
+        'value_now_from': VALUE_NOW_FROM,
+        'beginner_value_now': BEGINNER_VALUE_NOW,
+        'beginner_fame': BEGINNER_FAME,
+        'beginner_fame_value_now': BEGINNER_FAME_VALUE_NOW,
+        'intermediate_fame': INTERMEDIATE_FAME,
+        'no_club_grace_days': NO_CLUB_GRACE.days,
+    }
+
+
+def lineup_rules():
+    """The constants is_star(), growth() and lineup_tier() use."""
+    return {
+        'star_value': STAR_VALUE,
+        'growth_top': GROWTH_TOP,
+        'growth_cap': GROWTH_CAP,
+        'growth_min_players': GROWTH_MIN_PLAYERS,
+        'beginner_lineup_from': BEGINNER_LINEUP_FROM,
+        'beginner_lineup_stars': BEGINNER_LINEUP_STARS,
+        'intermediate_lineup_stars': INTERMEDIATE_LINEUP_STARS,
+    }
+
+
+def rules():
+    """Every tier line of this module, in the order tiers_v1.json lists them."""
+    return {**player_rules(), **lineup_rules()}

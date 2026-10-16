@@ -3,6 +3,8 @@
 Build the Starting XI lineups from the Transfermarkt API (see sources/tm_api.py):
 
   game_modes_data/starting_xi/output/xi_lineups.json
+  game_modes_data/starting_xi/output/xi_stars.json   stars per lineup and the lines used, for
+                                                     the admin panel's tiers_v1.json
 
 Matches: every quarter-final, semi-final and final of the Champions League (since 1992/93),
 the World Cup (since 1986) and the Euros (since 1988), plus the matches listed in
@@ -229,6 +231,10 @@ def main():
     out.parent.mkdir(exist_ok=True)
     lines = ',\n'.join(json.dumps(m, ensure_ascii=False, separators=(',', ':')) for m in matches)
     out.write_text('{"version":2,"matches":[\n' + lines + '\n]}\n')
+    # Why each lineup has its tier (publish_files.py makes tiers_v1.json from it).
+    stars_file = {'rules': fame.lineup_rules(), 'growth': fame.growth_table(m['year'] for m in matches),
+                  'lineups': {m['id']: stars for m, stars in zip(matches, star_counts)}}
+    (MODE_DIR / 'output' / 'xi_stars.json').write_text(json.dumps(stars_file, separators=(',', ':')) + '\n')
 
     record(MODE_DIR, 'built', lineups=len(matches), matches=len({m['id'].split('-')[0] for m in matches}),
            latest_match=matches[-1]['date'], source='Transfermarkt API')

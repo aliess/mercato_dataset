@@ -6,6 +6,10 @@ Storage cache/game_data_v1.json):
   game_modes_data/transfer_history/output/player_profiles.csv    → the file's `players`
   game_modes_data/transfer_history/output/transfer_history.csv   → the file's `transfers`
 
+and, for the admin panel's cache/tiers_v1.json, why each player has his tier:
+
+  game_modes_data/transfer_history/output/player_tiers.json      → the file's `players`, `rules`
+
 Players are picked from the one player list every mode shares (sources/squads.py: everyone in
 a pool club's squad since 1990/91), plus every legend (sources/legends/legends.json) and
 EXTRA_PLAYER_IDS. Profiles, transfer histories and market values all come from Transfermarkt's
@@ -26,6 +30,7 @@ Usage:
 """
 
 import argparse
+import json
 import re
 import sys
 from datetime import date
@@ -339,6 +344,17 @@ def profile_row(player_id, p, countries, clubs, dataset):
     return row
 
 
+def write_player_tiers(path, why):
+    """Why each player has his tier, with the lines this build used (publish_files.py makes
+    tiers_v1.json from it). One player per line, by id."""
+    head = {'rules': fame.player_rules(),
+            'pool': {'star_min_value': STAR_MIN_VALUE, 'prestigious_min_value': PRESTIGIOUS_MIN_VALUE,
+                     'prestigious_club_ids': sorted(PRESTIGIOUS_CLUB_IDS), 'min_clubs': MIN_CLUBS}}
+    compact = lambda value: json.dumps(value, separators=(',', ':'))
+    players = ',\n'.join(f'{compact(pid)}:{compact(entry)}' for pid, entry in sorted(why.items(), key=lambda i: int(i[0])))
+    path.write_text(compact(head)[:-1] + ',"players":{\n' + players + '\n}}\n')
+
+
 # ── Main ──
 
 def main():
@@ -430,16 +446,23 @@ def main():
 
     # ── Profiles ──
     countries = country_names({str(pid): p for pid, p in profiles.items()})
-    rows = []
+    rows, why = [], {}
     for pid in sorted(selected):
         row = profile_row(pid, profiles[pid], countries, clubs, dataset)
         club = clubs.get(str(row['current_club_id'])) if row['current_club_id'] is not None else None
-        active = fame.still_playing(club['name'] if club else None, row['date_of_death'], last_move.get(pid), today)
+        status = fame.playing_status(club['name'] if club else None, row['date_of_death'], last_move.get(pid), today)
+        active = status != 'stopped'
+        now = int(fame.value_now(histories.get(pid), profiles[pid]))
+        reason = fame.tier_reason(player_fame[pid], now, active)
         row['market_value'] = player_fame[pid]
-        row['difficulty'] = fame.player_tier(player_fame[pid], fame.value_now(histories.get(pid), profiles[pid]), active)
+        row['difficulty'] = fame.REASON_TIERS[reason]
         row['active'] = active
         row['story_only'] = True if pid in story_only else None
         rows.append(row)
+        # tiers_v1.json's player entry (CONTRACTS.md §1): value now, the rule, legend, grace.
+        why[str(pid)] = {'now': now, 'why': reason,
+                         **({'legend': True} if pid in legend_ids else {}),
+                         **({'grace': True} if status == 'grace' else {})}
     profiles_out = pd.DataFrame(rows, columns=PROFILES_COLUMNS)
     profiles_out['current_club_id'] = profiles_out['current_club_id'].astype('Int64')
     profiles_out['height'] = profiles_out['height'].astype('Int64')
@@ -471,6 +494,7 @@ def main():
     args.output_dir.mkdir(parents=True, exist_ok=True)
     profiles_out[PROFILES_COLUMNS].to_csv(args.output_dir / 'player_profiles.csv', index=False)
     out[TRANSFERS_COLUMNS].to_csv(args.output_dir / 'transfer_history.csv', index=False)
+    write_player_tiers(args.output_dir / 'player_tiers.json', why)
     tiers = profiles_out.groupby('difficulty').size().reindex(fame.TIERS, fill_value=0)
     path_tiers = profiles_out[profiles_out['story_only'] != True].groupby('difficulty').size().reindex(fame.TIERS, fill_value=0)  # noqa: E712
     print(f'\n✓ {len(profiles_out):,} players  → {args.output_dir / "player_profiles.csv"}')

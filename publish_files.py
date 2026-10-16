@@ -7,7 +7,10 @@ Game data never passes through Firestore: this script does not touch it.
   cache/clues_v1.json       game_modes_data/clues/player_clues.json (approved sets that pass the validator)
   cache/xi_v1.json          game_modes_data/starting_xi/output/xi_lineups.json
   cache/grid_pool_v1.json   game_modes_data/grid/output/grid_pool.json
-  cache/manifest.json       version (SHA-256), size and last change of the four files
+  cache/tiers_v1.json       game_modes_data/transfer_history/output/player_tiers.json and
+                            starting_xi/output/xi_stars.json: why each player and lineup has its
+                            tier, for the admin panel only (the app never downloads it)
+  cache/manifest.json       version (SHA-256), size and last change of the five files
 
 The files hold no build time, so the same inputs always give the same bytes and the same
 version. Shapes are in ../CONTRACTS.md §1.
@@ -45,6 +48,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from sources.last_updated import record  # noqa: E402
+from sources import fame  # noqa: E402
 from sources.fame import TIERS  # noqa: E402
 
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
@@ -317,7 +321,85 @@ def build_grid():
                      'legends': sum(row[7] for row in content['players'])}, []
 
 
-# file name → (mode folder for LAST_UPDATED.json, which counts go there)
+# ── tiers_v1.json ──
+
+def read_side_output(path, built_by):
+    if not path.exists():
+        sys.exit(f'{path.relative_to(ROOT)} is missing: run {built_by} (--from-cache rebuilds it with no API calls).')
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def build_tiers(game_data, xi):
+    """Why every player and lineup has its tier (CONTRACTS.md §1), from the side outputs of the
+    builds that wrote `difficulty`. Stops when they don't match the files being published or
+    the lines in sources/fame.py, so the admin panel never shows a reason the data disagrees with."""
+    players_side = read_side_output(MODES / 'transfer_history' / 'output' / 'player_tiers.json',
+                                    'game_modes_data/transfer_history/build_dataset.py')
+    xi_side = read_side_output(MODES / 'starting_xi' / 'output' / 'xi_stars.json',
+                               'game_modes_data/starting_xi/build_lineups.py')
+    for side, current, built_by in ((players_side, fame.player_rules(), 'build_dataset.py'),
+                                    (xi_side, fame.lineup_rules(), 'build_lineups.py')):
+        if side['rules'] != current:
+            changed = ', '.join(f'{k} {side["rules"].get(k)} → {v}' for k, v in current.items()
+                                if side['rules'].get(k) != v)
+            sys.exit(f'sources/fame.py changed since the last {built_by} ({changed}): rebuild before publishing.')
+
+    problems = []
+    entries = players_side['players']
+    ids = {player['id'] for player in game_data['players']}
+    if set(entries) != ids:
+        problems.append(f'player_tiers.json and the game data differ: {len(ids - set(entries)):,} players '
+                        f'without an entry, {len(set(entries) - ids):,} entries for players not in it')
+    for player in game_data['players']:
+        entry = entries.get(player['id'])
+        if entry is None:
+            continue
+        expected = {'now', 'why'} | ({'legend'} if fame.is_legend(player['id']) else set()) \
+            | ({'grace'} if entry.get('grace') else set())
+        ok = (set(entry) == expected and isinstance(entry['now'], int) and entry['now'] >= 0
+              and entry['why'] in fame.REASON_TIERS
+              and fame.REASON_TIERS[entry['why']] == player['difficulty']
+              and fame.tier_reason(player['market_value'], entry['now'], player['active']) == entry['why']
+              and entry.get('legend', True) is True and entry.get('grace', True) is True
+              and not (entry.get('grace') and not player['active']))
+        if not ok:
+            problems.append(f"player {player['id']}: {entry} does not explain difficulty {player['difficulty']} "
+                            f"(fame {player['market_value']:,}, active {player['active']})")
+
+    stars = xi_side['lineups']
+    lineup_ids = [match['id'] for match in xi['matches']]
+    if set(stars) != set(lineup_ids):
+        problems.append(f'xi_stars.json and xi_lineups.json differ: {len(set(lineup_ids) - set(stars)):,} lineups '
+                        f'without stars, {len(set(stars) - set(lineup_ids)):,} entries for lineups not in it')
+    for match in xi['matches']:
+        count = stars.get(match['id'])
+        if count is None:
+            continue
+        if not (isinstance(count, int) and 0 <= count <= 11 and fame.lineup_tier(match['year'], count) == match['difficulty']):
+            problems.append(f"lineup {match['id']}: {count} stars in {match['year']} does not give {match['difficulty']}")
+    growth = fame.growth_table(match['year'] for match in xi['matches'])
+    if xi_side['growth'] != growth:
+        problems.append("xi_stars.json's growth by year is not what sources/fame.py gives now: rebuild the lineups")
+    if problems:
+        sys.exit('tiers_v1.json would not match the data, nothing was written:\n  '
+                 + '\n  '.join(problems[:20]) + (f'\n  … (+{len(problems) - 20:,})' if len(problems) > 20 else ''))
+
+    content = {
+        'version': 1,
+        'rules': {**fame.rules(), 'pool': players_side['pool']},
+        'growth': growth,
+        'players': {player_id: entries[player_id] for player_id in sorted(entries, key=int)},
+        'lineups': {match_id: stars[match_id] for match_id in lineup_ids},
+    }
+    why = Counter(entry['why'] for entry in entries.values())
+    counts = {'players': len(entries), 'lineups': len(stars),
+              **{reason: why[reason] for reason in fame.REASON_TIERS}}
+    grace = sum(1 for entry in entries.values() if entry.get('grace'))
+    notes = [f'{grace:,} players still playing only through the {fame.NO_CLUB_GRACE.days}-day grace'] if grace else []
+    return content, counts, notes
+
+
+# file name → (mode folder for LAST_UPDATED.json, which counts go there); tiers_v1.json has none
 FILES = {
     'game_data_v1.json': ('transfer_history', ('players', 'transfers')),
     'clues_v1.json': ('clues', ('clue_sets',)),
@@ -327,13 +409,15 @@ FILES = {
 
 
 def build_all():
-    """{file name: {content, body, gzip, version, counts, notes}} for the four data files."""
+    """{file name: {content, body, gzip, version, counts, notes}} for the five data files."""
     game_data, game_counts, game_notes = build_game_data()
+    xi = build_xi()
     built = {
         'game_data_v1.json': (game_data, game_counts, game_notes),
         'clues_v1.json': build_clues(game_data),
-        'xi_v1.json': build_xi(),
+        'xi_v1.json': xi,
         'grid_pool_v1.json': build_grid(),
+        'tiers_v1.json': build_tiers(game_data, xi[0]),
     }
     files = {}
     for name, (content, counts, notes) in built.items():
@@ -449,6 +533,15 @@ def describe_difference(name, live, new):
         lines.append(f"players: {len(old):,} live → {len(new_rows):,}; "
                      f"{len(set(new_rows) - set(old)):,} added, {len(set(old) - set(new_rows)):,} removed, "
                      f"{changed:,} changed; clubs: {len(live['clubs']):,} live → {len(new['clubs']):,}")
+    elif name == 'tiers_v1.json':
+        old_rules, new_rules = live['rules'], new['rules']
+        changed = [f'{key} {old_rules.get(key)} → {value}' for key, value in new_rules.items() if old_rules.get(key) != value]
+        lines.append('rules: ' + ('; '.join(changed) if changed else 'unchanged'))
+        tally = lambda players: dict(sorted(Counter(entry['why'] for entry in players.values()).items()))
+        lines.append(f"players: {len(live['players']):,} live → {len(new['players']):,}; "
+                     f"by why: {tally(live['players'])} live → {tally(new['players'])}")
+        moved = sum(1 for i, stars in new['lineups'].items() if i in live['lineups'] and live['lineups'][i] != stars)
+        lines.append(f"lineups: {len(live['lineups']):,} live → {len(new['lineups']):,}; {moved:,} with a changed star count")
     return lines
 
 
@@ -597,8 +690,9 @@ def main():
             print(f'  ⚠ the public URL of {name} does not serve the new bytes yet '
                   '(it may be cached for up to 5 minutes; check again).')
     for name in to_upload:
-        mode, keys = FILES[name]
-        record(MODES / mode, f'synced.{project_id}', **{key: files[name]['counts'][key] for key in keys})
+        if name in FILES:
+            mode, keys = FILES[name]
+            record(MODES / mode, f'synced.{project_id}', **{key: files[name]['counts'][key] for key in keys})
     print('\n✓ Done')
 
 

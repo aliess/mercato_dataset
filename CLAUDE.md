@@ -15,8 +15,9 @@ yes for that run.** That covers `publish_files.py … --apply` and `./update.sh 
 General permission to deploy does not cover it. Build locally, show the comparison report and
 the publisher's dry-run output, and wait.
 
-Game data does not pass through Firestore any more: `publish_files.py` builds five JSON files in
-`publish/` and uploads them to Storage `cache/`. Nothing in this project reads or writes
+Game data does not pass through Firestore any more: `publish_files.py` builds six JSON files in
+`publish/` (the four the app plays from, `tiers_v1.json` for the admin panel, and the manifest)
+and uploads them to Storage `cache/`. Nothing in this project reads or writes
 Firestore. The old collections are still there until the user deletes them; leave them alone.
 A dry run costs a few public HTTP downloads and nothing else.
 
@@ -27,8 +28,10 @@ Python 3.11, pyenv env `football-dataset-env`; `pip install -r requirements.txt`
 - `python sources/download_dataset.py`: fetch the dataset tables.
 - `python game_modes_data/transfer_history/build_dataset.py`: build and compare with the last
   build. Exits with an error when the result looks broken; read the report, don't override it.
-- `python publish_files.py --project dev|prod`: build the five files into `publish/` and compare
-  them with what is live (dry run). `--apply` uploads the files that changed.
+- `python publish_files.py --project dev|prod`: build the six files into `publish/` and compare
+  them with what is live (dry run). `--apply` uploads the files that changed. It refuses to
+  build when `tiers_v1.json` would not explain every `difficulty` (rebuild the mode it names;
+  `--from-cache` does it with no API calls).
 - `./update.sh dev`: download, build, then that dry run against dev.
 - `python game_modes_data/starting_xi/build_lineups.py`, `python game_modes_data/grid/build_pool.py`.
 - Clues: `game_modes_data/clues/README.md`.

@@ -72,6 +72,7 @@ update.sh           refresh the transfer history and run the publisher in one co
 | Three Clues | `game_modes_data/clues/` ([README](game_modes_data/clues/README.md)) | `player_clues.json` | `cache/clues_v1.json` |
 | Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | `output/xi_lineups.json` | `cache/xi_v1.json` |
 | Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | `output/grid_pool.json` | `cache/grid_pool_v1.json` |
+| Why each tier (admin panel only) | `transfer_history/`, `starting_xi/` | `output/player_tiers.json`, `output/xi_stars.json` | `cache/tiers_v1.json` |
 
 Game data does not pass through Firestore. [Publishing](#publishing-to-the-app) below says how
 the files get to the app; `game_modes_data/STATUS.md` says what has been uploaded where.
@@ -153,8 +154,9 @@ Projects: `dev` = `football-quiz-32eb9`, `prod` = `mercato-6e710`.
 
 ## Publishing to the app
 
-`publish_files.py` builds five files into `publish/` and uploads them to the project's default
-bucket (`<project-id>.firebasestorage.app`) under `cache/`. The app downloads them from there.
+`publish_files.py` builds six files into `publish/` and uploads them to the project's default
+bucket (`<project-id>.firebasestorage.app`) under `cache/`. The app downloads them from there,
+all but `tiers_v1.json`, which only the admin panel's `tiers_report` reads.
 The shapes are in `../CONTRACTS.md` §1.
 
 ```bash
@@ -169,7 +171,8 @@ python publish_files.py --project prod --apply
 | `clues_v1.json` | `clues/player_clues.json`: approved sets whose player is in the game data and that pass the validator |
 | `xi_v1.json` | `starting_xi/output/xi_lineups.json` |
 | `grid_pool_v1.json` | `grid/output/grid_pool.json` |
-| `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the four files |
+| `tiers_v1.json` | `transfer_history/output/player_tiers.json` and `starting_xi/output/xi_stars.json`: each player's value now and the `sources/fame.py` rule that set his tier, each lineup's star count, the lines and the growth factors those builds used |
+| `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the five files |
 
 - **The dry run** downloads the live `manifest.json` by public HTTP and says per file whether it
   is unchanged, changed or new, with sizes and counts. For a file that would change it also
@@ -183,6 +186,12 @@ python publish_files.py --project prod --apply
 - **Safety stop**: a file that would be more than 20% smaller than the live one stops the run
   (`--allow-shrink` overrides).
 - **To undo an upload**: check out the commit whose data was live before, and publish again.
+- **`tiers_v1.json` must explain the data**: the publisher stops, writing nothing, when a player
+  of the game data or a lineup has no entry, when a player's `why` (recomputed from his fame,
+  value now and `active`) does not give his `difficulty`, when `lineup_tier(year, stars)` does
+  not give a lineup's, or when `sources/fame.py`'s lines differ from the ones the build used.
+  Rebuild the mode it names; `build_dataset.py --from-cache` and `build_lineups.py --from-cache`
+  do it from the cache with no API calls.
   Storage keeps no old versions.
 - How values are written in `game_data_v1.json` (the app depends on it): ids and `market_value`
   are integers, `height` a whole number, dates are `{"_seconds": …, "_nanoseconds": 0}` at
