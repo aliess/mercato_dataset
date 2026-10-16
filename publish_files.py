@@ -50,6 +50,7 @@ sys.path.insert(0, str(ROOT))
 from sources.last_updated import record  # noqa: E402
 from sources import fame  # noqa: E402
 from sources.fame import TIERS  # noqa: E402
+from sources.names import alt_names  # noqa: E402
 
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 MODES = ROOT / 'game_modes_data'
@@ -213,7 +214,7 @@ def build_game_data():
 
     transfer_count = sum(len(moves) for moves in transfers.values())
     content = {'version': 1, 'player_count': len(players), 'transfer_count': transfer_count,
-               'players': players, 'transfers': transfers}
+               'players': players, 'transfers': transfers, 'alt_names': alt_names()}
     if not players or not transfer_count:
         sys.exit('The game data would be empty. Build the transfer history first.')
     for transfer in (t for moves in transfers.values() for t in moves):

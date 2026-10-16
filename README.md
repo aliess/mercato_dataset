@@ -128,7 +128,11 @@ game data's `player_name` when the player is in Transfer Path, else the API's na
 2026-10-16 the game data's names are the API's too (its profiles come from the API), so the
 API's spelling is the one everywhere, except the few in `NAME_OVERRIDES` (`sources/names.py`)
 where players know another name: Savinho (API "Savio"), Flaco Lopez ("Jose Manuel Lopez"),
-Marc-Andre ter Stegen ("Marc ter Stegen"), Rafael Borre ("Rafael Santos Borre"). The dataset table is not used for names: it is staler than the API. After a
+Marc-Andre ter Stegen ("Marc ter Stegen"), Rafael Borre ("Rafael Santos Borre"). Other names a
+player is known by go in `ALT_NAMES` (same file) and reach the app as `alt_names` in
+`game_data_v1.json`: they are accepted as an answer next to his name in every mode, but never
+shown. Only players the user names are in it; it starts with the API's names of the four
+overrides, so "Savio" still counts for Savinho. The dataset table is not used for names: it is staler than the API. After a
 transfer-history build adds players, rebuild Grid and Starting XI so they pick up the spelling.
 
 ### Player facts for the hints

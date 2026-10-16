@@ -23,6 +23,24 @@ NAME_OVERRIDES = {
 }
 
 
+# Other names a player is known by, accepted as an answer next to his name in every mode
+# (Transfermarkt player id → names). Added by hand, one player at a time, when the user names
+# one; the overrides above keep the API's name here so "Savio" still counts for Savinho.
+ALT_NAMES = {
+    743591: ['Sávio'],
+    844797: ['José Manuel López'],
+    74857: ['Marc ter Stegen'],
+    323831: ['Rafael Santos Borré'],
+}
+
+
+def alt_names():
+    """The alternate names as the game data writes them: {player id (str): [names]}, in plain
+    Latin letters, ids in order."""
+    return {str(player_id): [latin_name(name) for name in ALT_NAMES[player_id]]
+            for player_id in sorted(ALT_NAMES)}
+
+
 def player_name(player_id, api_name):
     """A player's name in every game file: the override when there is one, else the API's,
     in plain Latin letters."""
