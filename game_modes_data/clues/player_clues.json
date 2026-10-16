@@ -1,4 +1,15 @@
 {
+  "2": {
+    "name": "Mario Basler",
+    "clue1_en": "Rot-Weiss Essen sold me to Hertha for €75,000. I once scored straight from a corner.",
+    "clue1_ar": "باعني روت فايس إيسن إلى هيرتا برلين مقابل 75 ألف يورو، وسجّلت ذات مرة مباشرة من ركلة ركنية.",
+    "clue2_en": "I scored the opener in the 1999 Champions League final before the late turnaround.",
+    "clue2_ar": "سجّلت هدف التقدم في نهائي دوري الأبطال 1999 قبل الانقلاب المتأخر.",
+    "clue3_en": "I'm a German winger who won Euro 96 and played for Werder Bremen, Bayern Munich and Kaiserslautern.",
+    "clue3_ar": "أنا جناح ألماني فزت بكأس أوروبا 1996، ولعبت لفيردر بريمن وبايرن ميونخ وكايزرسلاوترن.",
+    "status": "draft",
+    "notes": "verify: goals direct from corners"
+  },
   "4": {
     "name": "Youri Djorkaeff",
     "clue1_en": "My father also captained my country, and I started out at Grenoble.",
@@ -54,6 +65,17 @@
     "status": "approved",
     "notes": ""
   },
+  "70": {
+    "name": "Emerson",
+    "clue1_en": "I started at Grêmio and moved to Germany in 1997.",
+    "clue1_ar": "بدأت مع غريميو، وانتقلت إلى ألمانيا عام 1997.",
+    "clue2_en": "I was my country's captain until I hurt my shoulder in training on the eve of the 2002 World Cup.",
+    "clue2_ar": "كنت قائد منتخب بلادي إلى أن أُصبت في كتفي خلال تدريب عشية كأس العالم 2002.",
+    "clue3_en": "I'm a Brazilian midfielder who played for Roma, Juventus and Real Madrid.",
+    "clue3_ar": "أنا لاعب وسط برازيلي لعبت لروما ويوفنتوس وريال مدريد.",
+    "status": "draft",
+    "notes": ""
+  },
   "77": {
     "name": "Lucio",
     "clue1_en": "I played for small clubs near Brasília before Internacional signed me.",
@@ -64,6 +86,28 @@
     "clue3_ar": "أنا قلب دفاع برازيلي فزت بثلاثية 2010 مع إنتر.",
     "status": "approved",
     "notes": ""
+  },
+  "89": {
+    "name": "Ze Roberto",
+    "clue1_en": "I started at Portuguesa in São Paulo and had a short loan spell at Flamengo.",
+    "clue1_ar": "بدأت مع بورتوغيزا في ساو باولو، وقضيت فترة قصيرة معاراً إلى فلامنغو.",
+    "clue2_en": "I played at the 2006 World Cup at 32, and kept playing in Brazil past 40.",
+    "clue2_ar": "شاركت في كأس العالم 2006 في الثانية والثلاثين، وواصلت اللعب في البرازيل بعد الأربعين.",
+    "clue3_en": "I'm a Brazilian midfielder who played for Real Madrid, Leverkusen and Bayern Munich.",
+    "clue3_ar": "أنا لاعب وسط برازيلي لعبت لريال مدريد وباير ليفركوزن وبايرن ميونخ.",
+    "status": "draft",
+    "notes": "verify: Palmeiras until 2017"
+  },
+  "119": {
+    "name": "Jurgen Kohler",
+    "clue1_en": "I started at Waldhof Mannheim and spent two seasons in Cologne.",
+    "clue1_ar": "بدأت مع فالدهوف مانهايم، وقضيت موسمين في كولن.",
+    "clue2_en": "I won the World Cup, the European Championship and the Champions League.",
+    "clue2_ar": "فزت بكأس العالم وببطولة أوروبا وبدوري أبطال أوروبا.",
+    "clue3_en": "I'm a German centre-back who played for Bayern Munich, Juventus and Borussia Dortmund.",
+    "clue3_ar": "أنا قلب دفاع ألماني لعبت لبايرن ميونخ ويوفنتوس وبوروسيا دورتموند.",
+    "status": "draft",
+    "notes": "verify: 1990, 1996, 1997"
   },
   "122": {
     "name": "Jens Lehmann",
@@ -84,6 +128,17 @@
     "clue2_ar": "فزت بكأس أوروبا 1996، وبدوري الأبطال مع دورتموند عام 1997.",
     "clue3_en": "I'm a German midfielder who played for Juventus and later joined Schalke, Dortmund's fiercest rivals.",
     "clue3_ar": "أنا لاعب وسط ألماني لعبت ليوفنتوس، ثم انتقلت إلى شالكه، أشرس غريم لدورتموند.",
+    "status": "draft",
+    "notes": ""
+  },
+  "127": {
+    "name": "Sunday Oliseh",
+    "clue1_en": "I left Nigeria for Belgium at 16, and later played for clubs in Italy and Germany.",
+    "clue1_ar": "غادرت نيجيريا إلى بلجيكا في السادسة عشرة، ولعبت لاحقاً لأندية في إيطاليا وألمانيا.",
+    "clue2_en": "I scored a long-range winner against Spain at the 1998 World Cup.",
+    "clue2_ar": "سجّلت هدف الفوز بتسديدة بعيدة أمام إسبانيا في كأس العالم 1998.",
+    "clue3_en": "I'm a Nigerian midfielder who played for Ajax, Juventus and Borussia Dortmund.",
+    "clue3_ar": "أنا لاعب وسط نيجيري لعبت لأياكس ويوفنتوس وبوروسيا دورتموند.",
     "status": "draft",
     "notes": ""
   },
@@ -109,6 +164,17 @@
     "status": "draft",
     "notes": ""
   },
+  "198": {
+    "name": "Giovane Elber",
+    "clue1_en": "AC Milan signed me from Londrina at 18 but loaned me to Grasshoppers in Zurich.",
+    "clue1_ar": "تعاقد معي ميلان قادماً من لوندرينا في الثامنة عشرة، لكنه أعارني إلى غراسهوبرز في زيورخ.",
+    "clue2_en": "I won the 2001 Champions League and was the Bundesliga's top scorer in 2003.",
+    "clue2_ar": "فزت بدوري الأبطال 2001، وكنت هداف الدوري الألماني عام 2003.",
+    "clue3_en": "I'm a Brazilian striker who starred for Stuttgart and Bayern Munich.",
+    "clue3_ar": "أنا مهاجم برازيلي تألقت مع شتوتغارت وبايرن ميونخ.",
+    "status": "draft",
+    "notes": "verify: joint top scorer 2002-03"
+  },
   "206": {
     "name": "Oliver Kahn",
     "clue1_en": "My father played for my hometown club, where I started my career in goal.",
@@ -131,6 +197,28 @@
     "status": "draft",
     "notes": "verify: first French-born player at Athletic Club 1996"
   },
+  "217": {
+    "name": "Mehmet Scholl",
+    "clue1_en": "My father is Turkish, and I started at my hometown club Karlsruhe.",
+    "clue1_ar": "والدي تركي، وبدأت في نادي مدينتي كارلسروه.",
+    "clue2_en": "I won Euro 96 and the 2001 Champions League.",
+    "clue2_ar": "فزت بكأس أوروبا 1996 وبدوري الأبطال 2001.",
+    "clue3_en": "I'm a German midfielder who spent 15 years at Bayern Munich.",
+    "clue3_ar": "أنا لاعب وسط ألماني قضيت 15 عاماً في بايرن ميونخ.",
+    "status": "draft",
+    "notes": ""
+  },
+  "286": {
+    "name": "Marc Wilmots",
+    "clue1_en": "I started at Sint-Truiden and played for Mechelen and Standard Liège.",
+    "clue1_ar": "بدأت مع سانت ترويدن، ولعبت لمخلن وستاندار لييج.",
+    "clue2_en": "I scored the winning penalty in the 1997 UEFA Cup final shootout.",
+    "clue2_ar": "سجّلت ركلة الترجيح الحاسمة في نهائي كأس الاتحاد الأوروبي 1997.",
+    "clue3_en": "I'm a Belgian midfielder who starred for Schalke and later coached Belgium.",
+    "clue3_ar": "أنا لاعب وسط بلجيكي تألقت مع شالكه، ثم دربت منتخب بلجيكا.",
+    "status": "draft",
+    "notes": "verify: Schalke v Inter 1997"
+  },
   "532": {
     "name": "Claudio Pizarro",
     "clue1_en": "I was born in Callao and started at Deportivo Pesquero and Alianza Lima.",
@@ -142,6 +230,28 @@
     "status": "approved",
     "notes": ""
   },
+  "553": {
+    "name": "Thomas Hassler",
+    "clue1_en": "I grew up in West Berlin and started at Köln in 1984.",
+    "clue1_ar": "نشأت في برلين الغربية، وبدأت مع كولن عام 1984.",
+    "clue2_en": "I won the 1990 World Cup and Euro 96, and was twice named footballer of the year in my country.",
+    "clue2_ar": "فزت بكأس العالم 1990 وبكأس أوروبا 1996، واختِرت مرتين أفضل لاعب في بلادي.",
+    "clue3_en": "I'm a German playmaker who played for Juventus, Roma and Karlsruhe.",
+    "clue3_ar": "أنا صانع ألعاب ألماني لعبت ليوفنتوس وروما وكارلسروه.",
+    "status": "draft",
+    "notes": "verify: German Footballer of the Year 1989 and 1992"
+  },
+  "584": {
+    "name": "Krasimir Balakov",
+    "clue1_en": "I started at Etar in my hometown and moved to Sporting in Lisbon in 1991.",
+    "clue1_ar": "بدأت مع إتار في مدينتي، وانتقلت إلى سبورتنغ لشبونة عام 1991.",
+    "clue2_en": "I helped my country reach the 1994 World Cup semi-final.",
+    "clue2_ar": "ساعدت منتخب بلادي على بلوغ نصف نهائي كأس العالم 1994.",
+    "clue3_en": "I'm a Bulgarian playmaker who formed a famous attacking 'magic triangle' at Stuttgart.",
+    "clue3_ar": "أنا صانع ألعاب بلغاري شكّلت مثلثاً هجومياً سحرياً شهيراً في شتوتغارت.",
+    "status": "draft",
+    "notes": "verify: magisches Dreieck with Elber and Bobic"
+  },
   "597": {
     "name": "Aleksandr Hleb",
     "clue1_en": "I was born in Minsk and left BATE Borisov for Stuttgart at 19.",
@@ -152,6 +262,28 @@
     "clue3_ar": "أنا صانع ألعاب بيلاروسي انضممت إلى برشلونة مقابل 17 مليون يورو عام 2008.",
     "status": "approved",
     "notes": ""
+  },
+  "919": {
+    "name": "Dietmar Hamann",
+    "clue1_en": "I scored the last goal ever at the old Wembley, in 2000.",
+    "clue1_ar": "سجّلت آخر هدف في تاريخ ملعب ويمبلي القديم، عام 2000.",
+    "clue2_en": "I came on at half-time of the 2005 Champions League final and helped turn it around.",
+    "clue2_ar": "دخلت بين الشوطين في نهائي دوري الأبطال 2005، وساعدت في قلب النتيجة.",
+    "clue3_en": "I'm a German midfielder who spent seven years at Liverpool.",
+    "clue3_ar": "أنا لاعب وسط ألماني قضيت سبع سنوات في ليفربول.",
+    "status": "draft",
+    "notes": ""
+  },
+  "1157": {
+    "name": "Jan Koller",
+    "clue1_en": "I started out as a goalkeeper, and once went in goal in the Bundesliga after our keeper was sent off.",
+    "clue1_ar": "بدأت حارساً للمرمى، ووقفت ذات مرة في المرمى بالدوري الألماني بعد طرد حارسنا.",
+    "clue2_en": "I'm my country's all-time top scorer.",
+    "clue2_ar": "أنا الهداف التاريخي لمنتخب بلادي.",
+    "clue3_en": "I'm a 2.02m Czech striker who played for Anderlecht, Borussia Dortmund and Monaco.",
+    "clue3_ar": "أنا مهاجم تشيكي طولي متران وسنتيمتران، لعبت لأندرلخت وبوروسيا دورتموند وموناكو.",
+    "status": "draft",
+    "notes": "verify: in goal v Bayern November 2002; 55 goals for the Czech Republic"
   },
   "1161": {
     "name": "Javier Zanetti",
@@ -175,6 +307,17 @@
     "status": "approved",
     "notes": ""
   },
+  "1403": {
+    "name": "Taribo West",
+    "clue1_en": "I grew up in Lagos and won the league and cup double with a French club in Burgundy.",
+    "clue1_ar": "نشأت في لاغوس، وفزت بثنائية الدوري والكأس مع نادٍ فرنسي في بورغونيا.",
+    "clue2_en": "I won Olympic gold in 1996 and played at the 1998 World Cup.",
+    "clue2_ar": "فزت بذهبية الأولمبياد عام 1996، وشاركت في كأس العالم 1998.",
+    "clue3_en": "I'm a Nigerian defender with coloured braids who played for Inter and AC Milan and later became a pastor.",
+    "clue3_ar": "أنا مدافع نيجيري صاحب ضفائر ملونة لعبت لإنتر وميلان، وأصبحت لاحقاً قسّاً.",
+    "status": "draft",
+    "notes": "verify: Auxerre double 1996"
+  },
   "1407": {
     "name": "Davor Suker",
     "clue1_en": "I won the U-20 World Cup with Yugoslavia in 1987, then moved to Seville.",
@@ -186,6 +329,28 @@
     "status": "draft",
     "notes": ""
   },
+  "1419": {
+    "name": "Rigobert Song",
+    "clue1_en": "I started in France at Metz and played in Italy for Salernitana.",
+    "clue1_ar": "بدأت في فرنسا مع ميتز، ولعبت في إيطاليا لساليرنيتانا.",
+    "clue2_en": "I was sent off at two different World Cups, the first time at 17.",
+    "clue2_ar": "طُردت في نسختين من كأس العالم، أولاهما وأنا في السابعة عشرة.",
+    "clue3_en": "I'm a Cameroonian defender who played for Liverpool, West Ham and Galatasaray and captained my country.",
+    "clue3_ar": "أنا مدافع كاميروني لعبت لليفربول ووست هام وغلطة سراي، وكنت قائداً لمنتخب بلادي.",
+    "status": "draft",
+    "notes": "verify: red cards 1994 and 1998"
+  },
+  "1445": {
+    "name": "Andreas Kopke",
+    "clue1_en": "I started at Holstein Kiel and played in Berlin before eight years at Nuremberg.",
+    "clue1_ar": "بدأت مع هولشتاين كيل، ولعبت في برلين قبل ثماني سنوات في نورنبرغ.",
+    "clue2_en": "I saved a penalty in the Euro 96 semi-final shootout and went on to win the tournament.",
+    "clue2_ar": "تصديت لركلة في ركلات ترجيح نصف نهائي كأس أوروبا 1996، وفزنا بالبطولة.",
+    "clue3_en": "I'm a German goalkeeper who played for Nuremberg, Eintracht Frankfurt and Marseille.",
+    "clue3_ar": "أنا حارس مرمى ألماني لعبت لنورنبرغ وآينتراخت فرانكفورت ومرسيليا.",
+    "status": "draft",
+    "notes": "verify: saved Gareth Southgate's penalty 1996"
+  },
   "1527": {
     "name": "Lothar Matthaus",
     "clue1_en": "I trained as an interior decorator while playing for my hometown club in Bavaria.",
@@ -196,6 +361,17 @@
     "clue3_ar": "أنا لاعب وسط ألماني لعبت لبايرن ميونخ وإنتر وشاركت في خمس نسخ من كأس العالم.",
     "status": "draft",
     "notes": "verify: apprenticeship as Raumausstatter at Herzogenaurach; World Cups 1982-1998"
+  },
+  "1536": {
+    "name": "Paulo Sousa",
+    "clue1_en": "I walked out on my first club in Lisbon in 1993 and joined their city rivals.",
+    "clue1_ar": "تركت أول نادٍ لي في لشبونة عام 1993، وانضممت إلى غريمه في المدينة.",
+    "clue2_en": "I won the Champions League two years in a row with two different clubs.",
+    "clue2_ar": "فزت بدوري الأبطال عامين متتاليين مع ناديين مختلفين.",
+    "clue3_en": "I'm a Portuguese midfielder who played for Juventus, Borussia Dortmund and Inter.",
+    "clue3_ar": "أنا لاعب وسط برتغالي لعبت ليوفنتوس وبوروسيا دورتموند وإنتر.",
+    "status": "draft",
+    "notes": "verify: Benfica to Sporting 1993; Juventus 1996, Dortmund 1997"
   },
   "1792": {
     "name": "Hamit Altintop",
@@ -295,6 +471,17 @@
     "clue3_ar": "أنا مدافع فرنسي لعبت لبرشلونة وإنتر ومانشستر يونايتد، ثم دربت باريس سان جيرمان.",
     "status": "draft",
     "notes": "verify: golden goal v Paraguay 1998"
+  },
+  "3129": {
+    "name": "Gheorghe Popescu",
+    "clue1_en": "I started at Universitatea Craiova and joined PSV in 1990.",
+    "clue1_ar": "بدأت مع أونيفرسيتاتيا كرايوفا، وانضممت إلى آيندهوفن عام 1990.",
+    "clue2_en": "I scored the winning penalty in the 2000 UEFA Cup final shootout.",
+    "clue2_ar": "سجّلت ركلة الترجيح الحاسمة في نهائي كأس الاتحاد الأوروبي 2000.",
+    "clue3_en": "I'm a Romanian defender who played for PSV, Tottenham, Barcelona and Galatasaray.",
+    "clue3_ar": "أنا مدافع روماني لعبت لآيندهوفن وتوتنهام وبرشلونة وغلطة سراي.",
+    "status": "draft",
+    "notes": ""
   },
   "3133": {
     "name": "Nwankwo Kanu",
@@ -483,6 +670,17 @@
     "status": "draft",
     "notes": "verify: named after Denis Law; Ajax debut 1986 under Johan Cruyff"
   },
+  "3188": {
+    "name": "Sylvain Wiltord",
+    "clue1_en": "I started at Rennes and was loaned straight back there after signing for Deportivo.",
+    "clue1_ar": "بدأت مع رين، وأُعرت إليه مباشرة بعد توقيعي لديبورتيفو.",
+    "clue2_en": "I scored the stoppage-time equaliser in the Euro 2000 final.",
+    "clue2_ar": "سجّلت هدف التعادل في الوقت بدل الضائع بنهائي كأس أوروبا 2000.",
+    "clue3_en": "I'm a French forward who scored Arsenal's 2002 title winner at Old Trafford.",
+    "clue3_ar": "أنا مهاجم فرنسي سجّلت لأرسنال هدف حسم لقب 2002 في أولد ترافورد.",
+    "status": "draft",
+    "notes": ""
+  },
   "3191": {
     "name": "Giovanni van Bronckhorst",
     "clue1_en": "My father is from Indonesia, and I came through my hometown club in Rotterdam.",
@@ -549,6 +747,17 @@
     "status": "draft",
     "notes": "verify: Les Ulis; Monaco debut under Arsène Wenger 1994; Champions League 2009"
   },
+  "3223": {
+    "name": "Dwight Yorke",
+    "clue1_en": "An English manager spotted me on a tour of my island and took me to England at 17.",
+    "clue1_ar": "اكتشفني مدرب إنجليزي خلال جولة في جزيرتي، وأخذني إلى إنجلترا في السابعة عشرة.",
+    "clue2_en": "I won the treble in 1999 alongside a famous strike partner.",
+    "clue2_ar": "فزت بالثلاثية عام 1999 إلى جانب شريك هجوم شهير.",
+    "clue3_en": "I'm a Trinidad and Tobago striker who played for Aston Villa and Manchester United.",
+    "clue3_ar": "أنا مهاجم من ترينيداد وتوباغو لعبت لأستون فيلا ومانشستر يونايتد.",
+    "status": "draft",
+    "notes": "verify: spotted by Graham Taylor on Aston Villa's 1989 tour"
+  },
   "3225": {
     "name": "Robbie Fowler",
     "clue1_en": "I grew up supporting our city rivals and scored five goals in a League Cup tie at 18.",
@@ -582,6 +791,17 @@
     "status": "approved",
     "notes": ""
   },
+  "3237": {
+    "name": "Christophe Dugarry",
+    "clue1_en": "I was born in Bordeaux and came through my hometown club.",
+    "clue1_ar": "وُلدت في بوردو، وتخرجت من نادي مدينتي.",
+    "clue2_en": "I won the 1998 World Cup and was a close friend of my country's star playmaker.",
+    "clue2_ar": "فزت بكأس العالم 1998، وكنت صديقاً مقرباً لصانع ألعاب منتخب بلادي ونجمه.",
+    "clue3_en": "I'm a French striker who played for Bordeaux, AC Milan, Barcelona and Marseille.",
+    "clue3_ar": "أنا مهاجم فرنسي لعبت لبوردو وميلان وبرشلونة ومرسيليا.",
+    "status": "draft",
+    "notes": ""
+  },
   "3238": {
     "name": "Andy Cole",
     "clue1_en": "I played just once for my first club in London before being sold to Bristol City.",
@@ -592,6 +812,17 @@
     "clue3_ar": "أنا مهاجم إنجليزي انتقلت من نيوكاسل إلى مانشستر يونايتد عام 1995، وفزت بالثلاثية.",
     "status": "draft",
     "notes": "verify: one Arsenal league appearance; five v Ipswich March 1995"
+  },
+  "3248": {
+    "name": "Paul Ince",
+    "clue1_en": "West Ham fans never forgave me for a photo in my new club's shirt taken before my 1989 move.",
+    "clue1_ar": "لم تغفر لي جماهير وست هام صورة التُقطت لي بقميص ناديي الجديد قبل انتقالي عام 1989.",
+    "clue2_en": "I was the first black player to captain England.",
+    "clue2_ar": "كنت أول لاعب أسود يحمل شارة قيادة منتخب إنجلترا.",
+    "clue3_en": "I'm an English midfielder who played for Manchester United, Inter and Liverpool.",
+    "clue3_ar": "أنا لاعب وسط إنجليزي لعبت لمانشستر يونايتد وإنتر وليفربول.",
+    "status": "draft",
+    "notes": "verify: captain v USA 1993"
   },
   "3259": {
     "name": "Damien Duff",
@@ -736,6 +967,17 @@
     "status": "draft",
     "notes": "verify: Lancashire youth cricket; captain after Roy Keane left in 2005"
   },
+  "3404": {
+    "name": "Phil Neville",
+    "clue1_en": "I was a top youth cricketer, and my older brother played at my club too.",
+    "clue1_ar": "كنت لاعب كريكيت بارزاً في فئة الناشئين، ولعب أخي الأكبر في ناديي أيضاً.",
+    "clue2_en": "I gave away a late penalty that knocked my country out of Euro 2000.",
+    "clue2_ar": "تسببت في ركلة جزاء متأخرة أقصت منتخب بلادي من كأس أوروبا 2000.",
+    "clue3_en": "I'm an English defender who spent ten years at Manchester United, then joined Everton.",
+    "clue3_ar": "أنا مدافع إنجليزي قضيت عشر سنوات في مانشستر يونايتد، ثم انضممت إلى إيفرتون.",
+    "status": "draft",
+    "notes": "verify: England youth cricket; penalty v Romania 2000"
+  },
   "3406": {
     "name": "Ryan Giggs",
     "clue1_en": "I played for Manchester City's youth team before joining their rivals at 14.",
@@ -778,6 +1020,39 @@
     "clue3_en": "I'm an Argentine playmaker who later played for Zaragoza and Benfica.",
     "clue3_ar": "أنا صانع ألعاب أرجنتيني لعبت لاحقاً لسرقسطة وبنفيكا.",
     "status": "approved",
+    "notes": ""
+  },
+  "3415": {
+    "name": "Marcelo Salas",
+    "clue1_en": "I started at Universidad de Chile and moved to Buenos Aires in 1996.",
+    "clue1_ar": "بدأت مع جامعة تشيلي، وانتقلت إلى بوينس آيرس عام 1996.",
+    "clue2_en": "I scored twice against England at Wembley in 1998.",
+    "clue2_ar": "سجّلت هدفين أمام إنجلترا في ويمبلي عام 1998.",
+    "clue3_en": "I'm a Chilean striker who played for River Plate, Lazio and Juventus.",
+    "clue3_ar": "أنا مهاجم تشيلي لعبت لريفر بليت ولاتسيو ويوفنتوس.",
+    "status": "draft",
+    "notes": "verify: friendly February 1998, Chile won 2-0"
+  },
+  "3418": {
+    "name": "Claudio Lopez",
+    "clue1_en": "I started at Racing Club in Avellaneda and moved to Spain in 1996.",
+    "clue1_ar": "بدأت مع راسينغ كلوب في أفيانيدا، وانتقلت إلى إسبانيا عام 1996.",
+    "clue2_en": "I helped Valencia reach the 2000 Champions League final.",
+    "clue2_ar": "ساعدت فالنسيا على بلوغ نهائي دوري الأبطال عام 2000.",
+    "clue3_en": "I'm an Argentine striker who played for Valencia and Lazio.",
+    "clue3_ar": "أنا مهاجم أرجنتيني لعبت لفالنسيا ولاتسيو.",
+    "status": "draft",
+    "notes": ""
+  },
+  "3420": {
+    "name": "Karel Poborsky",
+    "clue1_en": "I started in České Budějovice and moved to Slavia Prague in 1995.",
+    "clue1_ar": "بدأت في تشيسكي بوديوفيتسه، وانتقلت إلى سلافيا براغ عام 1995.",
+    "clue2_en": "I scored a famous scooped lob against Portugal at Euro 96.",
+    "clue2_ar": "سجّلت هدفاً ساقطاً شهيراً أمام البرتغال في كأس أوروبا 1996.",
+    "clue3_en": "I'm a Czech winger who played for Manchester United, Benfica and Lazio.",
+    "clue3_ar": "أنا جناح تشيكي لعبت لمانشستر يونايتد وبنفيكا ولاتسيو.",
+    "status": "draft",
     "notes": ""
   },
   "3428": {
@@ -835,6 +1110,17 @@
     "status": "approved",
     "notes": ""
   },
+  "3500": {
+    "name": "Sonny Anderson",
+    "clue1_en": "I played in Switzerland for Servette before joining Marseille.",
+    "clue1_ar": "لعبت في سويسرا لسيرفيت قبل انضمامي إلى مرسيليا.",
+    "clue2_en": "I was Ligue 1's top scorer twice with Lyon and helped them win their first league title.",
+    "clue2_ar": "كنت هداف الدوري الفرنسي مرتين مع ليون، وساعدته على الفوز بأول لقب دوري في تاريخه.",
+    "clue3_en": "I'm a Brazilian striker who played for Monaco, Barcelona and Lyon.",
+    "clue3_ar": "أنا مهاجم برازيلي لعبت لموناكو وبرشلونة وليون.",
+    "status": "draft",
+    "notes": "verify: top scorer 2000 and 2001; Lyon champions 2002"
+  },
   "3513": {
     "name": "Marc Overmars",
     "clue1_en": "I grew up on a farm in Gelderland and started at Go Ahead Eagles.",
@@ -890,6 +1176,17 @@
     "status": "draft",
     "notes": "verify: semi-final v Italy 2000"
   },
+  "3519": {
+    "name": "Ronald de Boer",
+    "clue1_en": "I spent two seasons at Twente before returning to Ajax, where my twin played.",
+    "clue1_ar": "قضيت موسمين في تفينتي قبل أن أعود إلى أياكس، حيث يلعب توأمي.",
+    "clue2_en": "I missed in the 1998 World Cup semi-final shootout against Brazil.",
+    "clue2_ar": "أهدرت ركلتي في ركلات ترجيح نصف نهائي كأس العالم 1998 أمام البرازيل.",
+    "clue3_en": "I'm a Dutch midfielder who played for Ajax, Barcelona and Rangers alongside my twin brother.",
+    "clue3_ar": "أنا لاعب وسط هولندي لعبت لأياكس وبرشلونة ورينجرز إلى جانب أخي التوأم.",
+    "status": "draft",
+    "notes": ""
+  },
   "3521": {
     "name": "Lilian Thuram",
     "clue1_en": "I was born in Guadeloupe and moved to the Paris area at nine. As a boy, I wanted to become a priest.",
@@ -923,6 +1220,17 @@
     "status": "draft",
     "notes": "verify: rejected by Inter youth; protests v sale to Parma 1995; top scorer 1993, 1994, 1996"
   },
+  "3543": {
+    "name": "Nicky Butt",
+    "clue1_en": "I grew up in Manchester and came through my club's youth team with a famous group of friends.",
+    "clue1_ar": "نشأت في مانشستر، وتخرجت من فريق شباب ناديي مع مجموعة شهيرة من الأصدقاء.",
+    "clue2_en": "I won the treble in 1999 and was praised for my displays at the 2002 World Cup.",
+    "clue2_ar": "فزت بالثلاثية عام 1999، ونلت الإشادة على أدائي في كأس العالم 2002.",
+    "clue3_en": "I'm an English midfielder who spent 12 years at Manchester United, then joined Newcastle.",
+    "clue3_ar": "أنا لاعب وسط إنجليزي قضيت 12 عاماً في مانشستر يونايتد، ثم انضممت إلى نيوكاسل.",
+    "status": "draft",
+    "notes": "verify: Class of 92"
+  },
   "3547": {
     "name": "Darren Fletcher",
     "clue1_en": "I joined Manchester United's academy from Scotland as a boy.",
@@ -944,6 +1252,17 @@
     "clue3_ar": "أنا قلب دفاع هولندي فزت بالثلاثية مع مانشستر يونايتد عام 1999.",
     "status": "draft",
     "notes": "verify: autobiography Head to Head 2001"
+  },
+  "3571": {
+    "name": "Alen Boksic",
+    "clue1_en": "I started at Hajduk Split and was loaned to Cannes after joining Marseille.",
+    "clue1_ar": "بدأت مع هايدوك سبليت، وأُعرت إلى كان بعد انضمامي إلى مرسيليا.",
+    "clue2_en": "I won the first Champions League in 1993 and Serie A with Lazio in 2000.",
+    "clue2_ar": "فزت بأول نسخة من دوري الأبطال عام 1993، وبالدوري الإيطالي مع لاتسيو عام 2000.",
+    "clue3_en": "I'm a Croatian striker who played for Marseille, Lazio, Juventus and Middlesbrough.",
+    "clue3_ar": "أنا مهاجم كرواتي لعبت لمرسيليا ولاتسيو ويوفنتوس وميدلزبره.",
+    "status": "draft",
+    "notes": ""
   },
   "3597": {
     "name": "Jamie Carragher",
@@ -967,6 +1286,17 @@
     "status": "draft",
     "notes": "verify: Dukla Prague during military service, then Sparta Prague"
   },
+  "3623": {
+    "name": "Pauleta",
+    "clue1_en": "I'm from the Azores and played in the Portuguese and Spanish lower leagues until I was 25.",
+    "clue1_ar": "أنا من جزر الأزور، ولعبت في الدرجات الدنيا بالبرتغال وإسبانيا حتى الخامسة والعشرين.",
+    "clue2_en": "I was my country's all-time top scorer until a younger star passed me.",
+    "clue2_ar": "كنت الهداف التاريخي لمنتخب بلادي حتى تجاوزني نجم أصغر سناً.",
+    "clue3_en": "I'm a Portuguese striker who played for Deportivo, Bordeaux and PSG.",
+    "clue3_ar": "أنا مهاجم برتغالي لعبت لديبورتيفو لاكورونيا وبوردو وباريس سان جيرمان.",
+    "status": "draft",
+    "notes": "verify: 47 goals for Portugal"
+  },
   "3624": {
     "name": "Rui Costa",
     "clue1_en": "At 18, I was loaned to a small club in the north before breaking through at my club.",
@@ -977,6 +1307,28 @@
     "clue3_ar": "أنا صانع ألعاب برتغالي لعبت لبنفيكا وفيورنتينا وميلان.",
     "status": "draft",
     "notes": "verify: loan to AD Fafe 1990-91; winning penalty v Brazil in 1991 final"
+  },
+  "3625": {
+    "name": "Jardel",
+    "clue1_en": "I started at Vasco da Gama and won the Copa Libertadores with Grêmio in 1995.",
+    "clue1_ar": "بدأت مع فاسكو دا غاما، وفزت بكأس ليبرتادوريس مع غريميو عام 1995.",
+    "clue2_en": "I won the European Golden Shoe twice, once with 42 league goals in a season in Lisbon.",
+    "clue2_ar": "فزت بالحذاء الذهبي الأوروبي مرتين، إحداهما بتسجيل 42 هدفاً في موسم واحد بالدوري في لشبونة.",
+    "clue3_en": "I'm a Brazilian striker who scored heaps of goals for Porto, Galatasaray and Sporting.",
+    "clue3_ar": "أنا مهاجم برازيلي سجّلت أهدافاً كثيرة لبورتو وغلطة سراي وسبورتنغ لشبونة.",
+    "status": "draft",
+    "notes": "verify: Golden Shoe 1999 (Porto) and 2002 (Sporting, 42 goals)"
+  },
+  "3645": {
+    "name": "Les Ferdinand",
+    "clue1_en": "I played non-league football in west London and spent a season on loan in Turkey.",
+    "clue1_ar": "لعبت في دوري الهواة غرب لندن، وقضيت موسماً معاراً في تركيا.",
+    "clue2_en": "In 1996, my fellow professionals voted me the best player in England.",
+    "clue2_ar": "عام 1996، اختارني زملائي المحترفون أفضل لاعب في إنجلترا.",
+    "clue3_en": "I'm an English striker who played for QPR, Newcastle and Tottenham.",
+    "clue3_ar": "أنا مهاجم إنجليزي لعبت لكوينز بارك رينجرز ونيوكاسل وتوتنهام.",
+    "status": "draft",
+    "notes": "verify: Beşiktaş loan 1988-89; PFA Player of the Year 1996"
   },
   "3699": {
     "name": "Paolo Di Canio",
@@ -1066,6 +1418,17 @@
     "status": "approved",
     "notes": ""
   },
+  "3889": {
+    "name": "Marc-Vivien Foe",
+    "clue1_en": "I started at Canon Yaoundé and moved to Lens, where I won the French league.",
+    "clue1_ar": "بدأت مع كانون ياوندي، وانتقلت إلى لانس حيث فزت بالدوري الفرنسي.",
+    "clue2_en": "I won the Africa Cup of Nations twice with my country.",
+    "clue2_ar": "فزت بكأس الأمم الأفريقية مرتين مع منتخب بلادي.",
+    "clue3_en": "I'm a Cameroonian midfielder who played for West Ham, Lyon and Man City, and died on the pitch in 2003.",
+    "clue3_ar": "أنا لاعب وسط كاميروني لعبت لوست هام وليون ومانشستر سيتي، وتوفيت على أرض الملعب عام 2003.",
+    "status": "draft",
+    "notes": "verify: Lens champions 1998; AFCON 2000 and 2002"
+  },
   "3924": {
     "name": "Didier Drogba",
     "clue1_en": "I moved to France as a child and only turned professional at 21, with Le Mans.",
@@ -1088,6 +1451,28 @@
     "status": "approved",
     "notes": ""
   },
+  "3980": {
+    "name": "Steve McManaman",
+    "clue1_en": "I grew up an Everton fan in Bootle, and joined their city rivals as a boy.",
+    "clue1_ar": "نشأت مشجعاً لإيفرتون في بوتل، وانضممت إلى غريمه في المدينة وأنا صغير.",
+    "clue2_en": "I scored a famous volley in the 2000 Champions League final.",
+    "clue2_ar": "سجّلت تسديدة طائرة شهيرة في نهائي دوري الأبطال 2000.",
+    "clue3_en": "I'm an English winger who left Liverpool for Real Madrid on a free transfer in 1999.",
+    "clue3_ar": "أنا جناح إنجليزي تركت ليفربول إلى ريال مدريد في صفقة حرة عام 1999.",
+    "status": "draft",
+    "notes": ""
+  },
+  "3994": {
+    "name": "Roy Makaay",
+    "clue1_en": "I started at Vitesse and moved to Tenerife in 1997.",
+    "clue1_ar": "بدأت مع فيتيس، وانتقلت إلى تينيريفي عام 1997.",
+    "clue2_en": "I won the European Golden Shoe in 2003, and once scored in the Champions League after 10 seconds.",
+    "clue2_ar": "فزت بالحذاء الذهبي الأوروبي عام 2003، وسجّلت ذات مرة في دوري الأبطال بعد 10 ثوانٍ.",
+    "clue3_en": "I'm a Dutch striker who played for Deportivo La Coruña and Bayern Munich.",
+    "clue3_ar": "أنا مهاجم هولندي لعبت لديبورتيفو لاكورونيا وبايرن ميونخ.",
+    "status": "draft",
+    "notes": "verify: 10.12 seconds v Real Madrid March 2007"
+  },
   "4077": {
     "name": "Rustu Recber",
     "clue1_en": "I was born in Antalya and started at my hometown club before moving to Istanbul.",
@@ -1107,6 +1492,17 @@
     "clue2_ar": "سجّلت الهدف الذهبي الذي حسم كأس أوروبا 2000، وأهدرت ركلتي في ركلات ترجيح نهائي كأس العالم 2006.",
     "clue3_en": "I'm a French striker who spent ten years at Juventus and stayed when they went down in 2006.",
     "clue3_ar": "أنا مهاجم فرنسي قضيت عشر سنوات في يوفنتوس وبقيت معه حين هبط عام 2006.",
+    "status": "draft",
+    "notes": ""
+  },
+  "4147": {
+    "name": "Ariel Ortega",
+    "clue1_en": "I grew up in Jujuy province, far from Buenos Aires, and made my debut at 17.",
+    "clue1_ar": "نشأت في إقليم خوخوي بعيداً عن بوينس آيرس، وخضت أول مباراة لي في السابعة عشرة.",
+    "clue2_en": "I was sent off for headbutting the Dutch goalkeeper at the 1998 World Cup.",
+    "clue2_ar": "طُردت لنطحي حارس هولندا في كأس العالم 1998.",
+    "clue3_en": "I'm an Argentine playmaker who starred for River Plate and played for Valencia, Sampdoria and Parma.",
+    "clue3_ar": "أنا صانع ألعاب أرجنتيني تألقت مع ريفر بليت، ولعبت لفالنسيا وسامبدوريا وبارما.",
     "status": "draft",
     "notes": ""
   },
@@ -1142,6 +1538,17 @@
     "clue3_ar": "أنا لاعب وسط هولندي لعبت لأياكس وريال مدريد وإنتر وميلان.",
     "status": "draft",
     "notes": "verify: youngest Ajax league debutant at 16 (1992)"
+  },
+  "4169": {
+    "name": "Jon Dahl Tomasson",
+    "clue1_en": "I started at Køge and broke through at Heerenveen in the Netherlands.",
+    "clue1_ar": "بدأت مع كوغه، وبرزت مع هيرنفين في هولندا.",
+    "clue2_en": "I scored four goals at the 2002 World Cup and won the Champions League in 2003.",
+    "clue2_ar": "سجّلت أربعة أهداف في كأس العالم 2002، وفزت بدوري الأبطال عام 2003.",
+    "clue3_en": "I'm a Danish striker who played for Newcastle, Feyenoord and AC Milan.",
+    "clue3_ar": "أنا مهاجم دنماركي لعبت لنيوكاسل وفينورد وميلان.",
+    "status": "draft",
+    "notes": ""
   },
   "4171": {
     "name": "Alessandro Nesta",
@@ -1231,6 +1638,17 @@
     "status": "approved",
     "notes": ""
   },
+  "4280": {
+    "name": "Denis Irwin",
+    "clue1_en": "I played Gaelic football and hurling as a boy in Cork, and Leeds released me.",
+    "clue1_ar": "مارست كرة القدم الغيلية والهيرلينغ وأنا صغير في كورك، وأطلق ليدز سراحي.",
+    "clue2_en": "I won the treble in 1999 and seven league titles.",
+    "clue2_ar": "فزت بالثلاثية عام 1999، وبالدوري الإنجليزي سبع مرات.",
+    "clue3_en": "I'm an Irish full-back who spent 12 years at Manchester United.",
+    "clue3_ar": "أنا ظهير إيرلندي قضيت 12 عاماً في مانشستر يونايتد.",
+    "status": "draft",
+    "notes": ""
+  },
   "4289": {
     "name": "Alessandro Del Piero",
     "clue1_en": "I played in goal as a small boy, and left home at 13 to join a club in Padua.",
@@ -1284,6 +1702,17 @@
     "clue3_en": "I'm a Dutch winger who played for Chelsea and Real Madrid before ten years at Bayern Munich.",
     "clue3_ar": "أنا جناح هولندي لعبت لتشيلسي وريال مدريد قبل عشر سنوات في بايرن ميونخ.",
     "status": "approved",
+    "notes": ""
+  },
+  "4375": {
+    "name": "Michael Reiziger",
+    "clue1_en": "I was loaned to Volendam and Groningen early in my career.",
+    "clue1_ar": "أُعرت إلى فولندام وخرونينغن في بداية مسيرتي.",
+    "clue2_en": "I won the Champions League at 22, then left for AC Milan on a free.",
+    "clue2_ar": "فزت بدوري الأبطال في الثانية والعشرين، ثم رحلت إلى ميلان في صفقة حرة.",
+    "clue3_en": "I'm a Dutch right-back who spent seven years at Barcelona.",
+    "clue3_ar": "أنا ظهير أيمن هولندي قضيت سبع سنوات في برشلونة.",
+    "status": "draft",
     "notes": ""
   },
   "4380": {
@@ -1363,6 +1792,17 @@
     "status": "approved",
     "notes": ""
   },
+  "5198": {
+    "name": "Phillip Cocu",
+    "clue1_en": "I started at AZ and Vitesse, and joined Barcelona from PSV on a free in 1998.",
+    "clue1_ar": "بدأت مع ألكمار وفيتيس، وانتقلت إلى برشلونة من آيندهوفن في صفقة حرة عام 1998.",
+    "clue2_en": "I missed in the 1998 World Cup semi-final shootout against Brazil.",
+    "clue2_ar": "أهدرت ركلتي في ركلات ترجيح نصف نهائي كأس العالم 1998 أمام البرازيل.",
+    "clue3_en": "I'm a Dutch midfielder who spent six years at Barcelona and later coached PSV.",
+    "clue3_ar": "أنا لاعب وسط هولندي قضيت ست سنوات في برشلونة، ثم دربت آيندهوفن.",
+    "status": "draft",
+    "notes": ""
+  },
   "5283": {
     "name": "Eric Abidal",
     "clue1_en": "I was born in Lyon, played amateur football until 20 and started at Monaco and Lille.",
@@ -1406,6 +1846,17 @@
     "clue3_ar": "أنا جناح فرنسي قصير القامة فزت بدوري الأبطال 2006 مع برشلونة.",
     "status": "approved",
     "notes": ""
+  },
+  "5314": {
+    "name": "Frank Leboeuf",
+    "clue1_en": "I played for small clubs in the south of France and for Laval before Strasbourg.",
+    "clue1_ar": "لعبت لأندية صغيرة في جنوب فرنسا ولفريق لافال قبل ستراسبورغ.",
+    "clue2_en": "I stood in for a suspended teammate in the 1998 World Cup final.",
+    "clue2_ar": "حللت مكان زميل موقوف في نهائي كأس العالم 1998.",
+    "clue3_en": "I'm a French centre-back who spent five years at Chelsea.",
+    "clue3_ar": "أنا قلب دفاع فرنسي قضيت خمس سنوات في تشيلسي.",
+    "status": "draft",
+    "notes": "verify: replaced Laurent Blanc in the 1998 final"
   },
   "5352": {
     "name": "Mahamadou Diarra",
@@ -1506,6 +1957,28 @@
     "status": "approved",
     "notes": ""
   },
+  "5747": {
+    "name": "Paolo Montero",
+    "clue1_en": "I started at Peñarol and joined Atalanta in 1992.",
+    "clue1_ar": "بدأت مع بينيارول، وانضممت إلى أتالانتا عام 1992.",
+    "clue2_en": "I have more red cards than anyone in Serie A history.",
+    "clue2_ar": "تلقيت بطاقات حمراء أكثر من أي لاعب آخر في تاريخ الدوري الإيطالي.",
+    "clue3_en": "I'm a Uruguayan centre-back who spent nine years at Juventus.",
+    "clue3_ar": "أنا قلب دفاع أوروغوياني قضيت تسع سنوات في يوفنتوس.",
+    "status": "draft",
+    "notes": "verify: 16 Serie A red cards"
+  },
+  "5749": {
+    "name": "Ciro Ferrara",
+    "clue1_en": "I came through my hometown club and won two league titles there alongside its greatest star.",
+    "clue1_ar": "تخرجت من نادي مدينتي، وفزت معه بالدوري مرتين إلى جانب أعظم نجومه.",
+    "clue2_en": "I won the 1996 Champions League and later coached my club.",
+    "clue2_ar": "فزت بدوري الأبطال 1996، ثم دربت ناديي لاحقاً.",
+    "clue3_en": "I'm an Italian centre-back who played for Napoli and Juventus.",
+    "clue3_ar": "أنا قلب دفاع إيطالي لعبت لنابولي ويوفنتوس.",
+    "status": "draft",
+    "notes": "verify: Napoli titles 1987 and 1990; Juventus coach 2009"
+  },
   "5757": {
     "name": "Gianluca Zambrotta",
     "clue1_en": "I started as a winger at my hometown club on Lake Como, then spent two seasons in Bari.",
@@ -1539,6 +2012,17 @@
     "status": "draft",
     "notes": "verify: Lecce debut 1986 aged 16; Juventus titles as coach 2012-2014"
   },
+  "5769": {
+    "name": "Francesco Toldo",
+    "clue1_en": "I was loaned to Verona, Trento and Ravenna while on AC Milan's books.",
+    "clue1_ar": "أُعرت إلى فيرونا وترينتو ورافينا حين كنت مسجلاً في ميلان.",
+    "clue2_en": "I saved three penalties in the Euro 2000 semi-final against the Netherlands.",
+    "clue2_ar": "تصديت لثلاث ركلات جزاء في نصف نهائي كأس أوروبا 2000 أمام هولندا.",
+    "clue3_en": "I'm an Italian goalkeeper who played for Fiorentina and Inter.",
+    "clue3_ar": "أنا حارس مرمى إيطالي لعبت لفيورنتينا وإنتر.",
+    "status": "draft",
+    "notes": "verify: one penalty in the match and two in the shootout"
+  },
   "5775": {
     "name": "Fabio Cannavaro",
     "clue1_en": "I was a ball boy at my hometown club in the days of its greatest star. My younger brother played there too.",
@@ -1549,6 +2033,17 @@
     "clue3_ar": "أنا قلب دفاع إيطالي لعبت لنابولي وبارما وإنتر ويوفنتوس وريال مدريد.",
     "status": "draft",
     "notes": "verify: Napoli ball boy in the Maradona years; brother Paolo Cannavaro"
+  },
+  "5796": {
+    "name": "Alvaro Recoba",
+    "clue1_en": "I started at Danubio in Montevideo, and on loan I helped Venezia avoid relegation.",
+    "clue1_ar": "بدأت مع دانوبيو في مونتيفيديو، وساعدت فينيسيا وأنا معار على تفادي الهبوط.",
+    "clue2_en": "I scored two long-range goals on my Serie A debut in 1997, the same day a Brazilian star made his.",
+    "clue2_ar": "سجّلت هدفين من بعيد في أول مباراة لي بالدوري الإيطالي عام 1997، يوم ظهور نجم برازيلي لأول مرة.",
+    "clue3_en": "I'm a Uruguayan playmaker who spent a decade at Inter.",
+    "clue3_ar": "أنا صانع ألعاب أوروغوياني قضيت عقداً في إنتر.",
+    "status": "draft",
+    "notes": "verify: debut v Brescia August 1997, Ronaldo's debut; Venezia 1999"
   },
   "5797": {
     "name": "Christian Vieri",
@@ -1638,6 +2133,28 @@
     "status": "approved",
     "notes": ""
   },
+  "5826": {
+    "name": "Angelo Peruzzi",
+    "clue1_en": "I started at Roma and was banned for a year after a failed drug test.",
+    "clue1_ar": "بدأت مع روما، وأُوقفت عاماً كاملاً بعد فحص منشطات إيجابي.",
+    "clue2_en": "I won the 1996 Champions League and saved penalties in the final's shootout.",
+    "clue2_ar": "فزت بدوري الأبطال 1996، وتصديت لركلات في ركلات ترجيح النهائي.",
+    "clue3_en": "I'm an Italian goalkeeper who played for Juventus and Lazio.",
+    "clue3_ar": "أنا حارس مرمى إيطالي لعبت ليوفنتوس ولاتسيو.",
+    "status": "draft",
+    "notes": "verify: one-year ban 1990 (with Carnevale); saves v Ajax 1996"
+  },
+  "5831": {
+    "name": "Fernando Couto",
+    "clue1_en": "I started at Porto and was loaned to Famalicão and Académica.",
+    "clue1_ar": "بدأت مع بورتو، وأُعرت إلى فاماليكاو وأكاديميكا.",
+    "clue2_en": "I won the Cup Winners' Cup with two different clubs and the UEFA Cup with Parma.",
+    "clue2_ar": "فزت بكأس الكؤوس الأوروبية مع ناديين مختلفين، وبكأس الاتحاد الأوروبي مع بارما.",
+    "clue3_en": "I'm a long-haired Portuguese centre-back who played for Porto, Parma, Barcelona and Lazio.",
+    "clue3_ar": "أنا قلب دفاع برتغالي طويل الشعر لعبت لبورتو وبارما وبرشلونة ولاتسيو.",
+    "status": "draft",
+    "notes": "verify: Cup Winners' Cup 1997 (Barcelona) and 1999 (Lazio); UEFA Cup 1995"
+  },
   "5841": {
     "name": "Diego Simeone",
     "clue1_en": "I left Argentina at 20 to join a small club in Tuscany.",
@@ -1648,6 +2165,17 @@
     "clue3_ar": "أنا لاعب وسط أرجنتيني فزت بالثنائية مع أتلتيكو مدريد عام 1996، ثم دربته لاحقاً.",
     "status": "draft",
     "notes": "verify: Pisa 1990"
+  },
+  "5843": {
+    "name": "Dino Baggio",
+    "clue1_en": "I started at Torino and was loaned to Inter before joining Juventus.",
+    "clue1_ar": "بدأت مع تورينو، وأُعرت إلى إنتر قبل انضمامي إلى يوفنتوس.",
+    "clue2_en": "At the 1994 World Cup, I shared a surname with my country's biggest star, but we're not related.",
+    "clue2_ar": "في كأس العالم 1994، كنت أحمل لقب أكبر نجوم منتخب بلادي، لكن لا قرابة بيننا.",
+    "clue3_en": "I'm an Italian midfielder who played for Juventus, Parma and Lazio.",
+    "clue3_ar": "أنا لاعب وسط إيطالي لعبت ليوفنتوس وبارما ولاتسيو.",
+    "status": "draft",
+    "notes": ""
   },
   "5855": {
     "name": "Claudio Taffarel",
@@ -1715,6 +2243,17 @@
     "status": "approved",
     "notes": ""
   },
+  "5940": {
+    "name": "Christian Panucci",
+    "clue1_en": "I started at Genoa, and later played on loan for Chelsea and Monaco.",
+    "clue1_ar": "بدأت مع جنوى، ولعبت لاحقاً معاراً لتشيلسي وموناكو.",
+    "clue2_en": "I won the Champions League with AC Milan in 1994 and with Real Madrid in 1998.",
+    "clue2_ar": "فزت بدوري الأبطال مع ميلان عام 1994، ومع ريال مدريد عام 1998.",
+    "clue3_en": "I'm an Italian right-back who spent eight years at Roma.",
+    "clue3_ar": "أنا ظهير أيمن إيطالي قضيت ثماني سنوات في روما.",
+    "status": "draft",
+    "notes": ""
+  },
   "5947": {
     "name": "Daniele De Rossi",
     "clue1_en": "I grew up in Ostia, near Rome, and started out as a striker.",
@@ -1770,6 +2309,28 @@
     "status": "draft",
     "notes": "verify: basketball as a boy, football from about 17; Fiorentina relegated 1993, promoted 1994"
   },
+  "5960": {
+    "name": "Vincenzo Montella",
+    "clue1_en": "I started at Empoli and celebrated my goals with my arms spread like a plane.",
+    "clue1_ar": "بدأت مع إمبولي، وكنت أحتفل بأهدافي بفتح ذراعيّ مثل الطائرة.",
+    "clue2_en": "I won the league title in 2001, and once scored four goals in a Rome derby.",
+    "clue2_ar": "فزت بالدوري عام 2001، وسجّلت ذات مرة أربعة أهداف في ديربي روما.",
+    "clue3_en": "I'm an Italian striker who spent most of my career at Roma after leaving Sampdoria.",
+    "clue3_ar": "أنا مهاجم إيطالي قضيت معظم مسيرتي في روما بعد رحيلي عن سامبدوريا.",
+    "status": "draft",
+    "notes": "verify: four goals v Lazio March 2002"
+  },
+  "5961": {
+    "name": "Marco Delvecchio",
+    "clue1_en": "I came through the youth system of a big club in my home city and was loaned to Venezia and Udinese.",
+    "clue1_ar": "تخرجت من أكاديمية نادٍ كبير في مدينتي، وأُعرت إلى فينيسيا وأودينيزي.",
+    "clue2_en": "I scored in the Euro 2000 final, which we lost to a golden goal.",
+    "clue2_ar": "سجّلت في نهائي كأس أوروبا 2000، الذي خسرناه بهدف ذهبي.",
+    "clue3_en": "I'm an Italian striker who spent ten years at Roma and won the league in 2001.",
+    "clue3_ar": "أنا مهاجم إيطالي قضيت عشر سنوات في روما، وفزت بالدوري عام 2001.",
+    "status": "draft",
+    "notes": ""
+  },
   "5962": {
     "name": "Antonio Cassano",
     "clue1_en": "At 17, I scored a famous solo goal against Inter for my hometown club, Bari.",
@@ -1791,6 +2352,17 @@
     "clue3_ar": "أنا مهاجم إيطالي فزت أيضاً بالبوندسليغا مع بايرن ميونخ.",
     "status": "approved",
     "notes": ""
+  },
+  "5985": {
+    "name": "Gianluca Pagliuca",
+    "clue1_en": "I started at my hometown club Bologna and won the league with Sampdoria in 1991.",
+    "clue1_ar": "بدأت في نادي مدينتي بولونيا، وفزت بالدوري مع سامبدوريا عام 1991.",
+    "clue2_en": "I was the first goalkeeper ever sent off at a World Cup, in 1994.",
+    "clue2_ar": "كنت أول حارس مرمى يُطرد في كأس العالم، عام 1994.",
+    "clue3_en": "I'm an Italian goalkeeper who played for Sampdoria, Inter and Bologna.",
+    "clue3_ar": "أنا حارس مرمى إيطالي لعبت لسامبدوريا وإنتر وبولونيا.",
+    "status": "draft",
+    "notes": "verify: red card v Norway 1994"
   },
   "5993": {
     "name": "Cristian Zaccardo",
@@ -1836,6 +2408,17 @@
     "status": "approved",
     "notes": ""
   },
+  "6657": {
+    "name": "Abedi Pele",
+    "clue1_en": "I played in Qatar as a teenager, then for small clubs in Switzerland and France.",
+    "clue1_ar": "لعبت في قطر وأنا مراهق، ثم لأندية صغيرة في سويسرا وفرنسا.",
+    "clue2_en": "I won the first Champions League in 1993 and was African Footballer of the Year three times.",
+    "clue2_ar": "فزت بأول نسخة من دوري الأبطال عام 1993، واختِرت أفضل لاعب أفريقي ثلاث مرات.",
+    "clue3_en": "I'm a Ghanaian playmaker who starred for Marseille, Lyon and Torino.",
+    "clue3_ar": "أنا صانع ألعاب غاني تألقت مع مرسيليا وليون وتورينو.",
+    "status": "draft",
+    "notes": "verify: Al-Sadd 1982; African Footballer of the Year 1991-1993"
+  },
   "6710": {
     "name": "Per Mertesacker",
     "clue1_en": "I was born in Hannover and made my debut for my hometown club at 19.",
@@ -1845,6 +2428,17 @@
     "clue3_en": "I'm a tall German centre-back who captained Arsenal and won the 2014 World Cup.",
     "clue3_ar": "أنا قلب دفاع ألماني طويل القامة كنت قائداً لأرسنال وفزت بكأس العالم 2014.",
     "status": "approved",
+    "notes": ""
+  },
+  "7329": {
+    "name": "Enrico Chiesa",
+    "clue1_en": "I played for four lower-league clubs and only broke through in my mid-twenties.",
+    "clue1_ar": "لعبت لأربعة أندية في الدرجات الدنيا، ولم أبرز إلا في منتصف العشرينات.",
+    "clue2_en": "My son became a winger for my country and won Euro 2020.",
+    "clue2_ar": "أصبح ابني جناحاً في منتخب بلادي، وفاز بكأس أوروبا 2020.",
+    "clue3_en": "I'm an Italian striker who played for Sampdoria, Parma and Fiorentina.",
+    "clue3_ar": "أنا مهاجم إيطالي لعبت لسامبدوريا وبارما وفيورنتينا.",
+    "status": "draft",
     "notes": ""
   },
   "7349": {
@@ -1891,6 +2485,28 @@
     "status": "approved",
     "notes": ""
   },
+  "7501": {
+    "name": "Juan Carlos Valeron",
+    "clue1_en": "I'm from the Canary Islands and started at my local club before moving to Mallorca.",
+    "clue1_ar": "أنا من جزر الكناري، وبدأت مع نادي منطقتي قبل انتقالي إلى مايوركا.",
+    "clue2_en": "I suffered three serious knee injuries after starring in Deportivo's Champions League runs.",
+    "clue2_ar": "عانيت من ثلاث إصابات خطيرة في الركبة بعد تألقي مع ديبورتيفو في دوري الأبطال.",
+    "clue3_en": "I'm a Spanish playmaker who spent 13 years at Deportivo La Coruña.",
+    "clue3_ar": "أنا صانع ألعاب إسباني قضيت 13 عاماً في ديبورتيفو لاكورونيا.",
+    "status": "draft",
+    "notes": "verify: UD Las Palmas; knee injuries from 2006"
+  },
+  "7504": {
+    "name": "Diego Tristan",
+    "clue1_en": "I was born near Seville and only broke into the top flight at 23, with Mallorca.",
+    "clue1_ar": "وُلدت قرب إشبيلية، ولم أبرز في الدرجة الأولى إلا في الثالثة والعشرين، مع مايوركا.",
+    "clue2_en": "I was La Liga's top scorer in 2002.",
+    "clue2_ar": "كنت هداف الدوري الإسباني عام 2002.",
+    "clue3_en": "I'm a Spanish striker who starred for Deportivo La Coruña.",
+    "clue3_ar": "أنا مهاجم إسباني تألقت مع ديبورتيفو لاكورونيا.",
+    "status": "draft",
+    "notes": ""
+  },
   "7513": {
     "name": "Fernando Hierro",
     "clue1_en": "I grew up near Málaga, where my older brother played, and began my career in Valladolid.",
@@ -1901,6 +2517,28 @@
     "clue3_ar": "أنا قلب دفاع إسباني قضيت 14 عاماً في ريال مدريد وفزت بدوري الأبطال ثلاث مرات.",
     "status": "draft",
     "notes": "verify: brother Manolo Hierro at Málaga; 21 league goals 1991-92; 29 goals for Spain"
+  },
+  "7514": {
+    "name": "Ivan Helguera",
+    "clue1_en": "I started in the Spanish lower leagues and spent one season at Roma before joining Espanyol.",
+    "clue1_ar": "بدأت في الدرجات الدنيا الإسبانية، وقضيت موسماً واحداً مع روما قبل انضمامي إلى إسبانيول.",
+    "clue2_en": "I won two Champions Leagues with Real Madrid as a defender who had started in midfield.",
+    "clue2_ar": "فزت بدوري الأبطال مرتين مع ريال مدريد، وكنت مدافعاً بدأ مسيرته في خط الوسط.",
+    "clue3_en": "I'm a Spanish centre-back who spent eight years at Real Madrid.",
+    "clue3_ar": "أنا قلب دفاع إسباني قضيت ثماني سنوات في ريال مدريد.",
+    "status": "draft",
+    "notes": "verify: Champions League 2000 and 2002"
+  },
+  "7515": {
+    "name": "Michel Salgado",
+    "clue1_en": "I started at Celta Vigo and was loaned to Salamanca.",
+    "clue1_ar": "بدأت مع سيلتا فيغو، وأُعرت إلى سالامانكا.",
+    "clue2_en": "I won the Champions League in 2000 and 2002 and played at the 2002 World Cup.",
+    "clue2_ar": "فزت بدوري الأبطال عامي 2000 و2002، وشاركت في كأس العالم 2002.",
+    "clue3_en": "I'm a Spanish right-back who spent ten years at Real Madrid, then joined Blackburn.",
+    "clue3_ar": "أنا ظهير أيمن إسباني قضيت عشر سنوات في ريال مدريد، ثم انضممت إلى بلاكبيرن.",
+    "status": "draft",
+    "notes": ""
   },
   "7518": {
     "name": "Roberto Carlos",
@@ -1923,6 +2561,39 @@
     "clue3_ar": "أنا لاعب وسط أرجنتيني فزت بثلاثية 2010 مع إنتر.",
     "status": "approved",
     "notes": ""
+  },
+  "7530": {
+    "name": "Guti",
+    "clue1_en": "I came through my club's academy and finished my career in Istanbul.",
+    "clue1_ar": "تخرجت من أكاديمية ناديي، وأنهيت مسيرتي في إسطنبول.",
+    "clue2_en": "I'm known for a famous back-heel assist against Deportivo in 2010.",
+    "clue2_ar": "اشتهرت بتمريرة حاسمة بالكعب أمام ديبورتيفو عام 2010.",
+    "clue3_en": "I'm a Spanish midfielder who spent 15 seasons in Real Madrid's first team.",
+    "clue3_ar": "أنا لاعب وسط إسباني قضيت 15 موسماً مع الفريق الأول لريال مدريد.",
+    "status": "draft",
+    "notes": "verify: back-heel for Benzema v Deportivo January 2010"
+  },
+  "7531": {
+    "name": "Fernando Morientes",
+    "clue1_en": "I started at Albacete and Zaragoza before a club from the capital signed me in 1997.",
+    "clue1_ar": "بدأت مع ألباسيتي وسرقسطة قبل أن يضمني نادٍ من العاصمة عام 1997.",
+    "clue2_en": "On loan at Monaco, I knocked my parent club out of the 2004 Champions League.",
+    "clue2_ar": "أقصيت ناديي الأصلي من دوري الأبطال 2004 وأنا معار إلى موناكو.",
+    "clue3_en": "I'm a Spanish striker who won three Champions Leagues with Real Madrid and later joined Liverpool.",
+    "clue3_ar": "أنا مهاجم إسباني فزت بدوري الأبطال ثلاث مرات مع ريال مدريد، ثم انضممت إلى ليفربول.",
+    "status": "draft",
+    "notes": ""
+  },
+  "7562": {
+    "name": "Santiago Canizares",
+    "clue1_en": "I came through the youth teams of my city's biggest club and was loaned to Elche and Mérida.",
+    "clue1_ar": "تخرجت من فرق ناشئي أكبر نادٍ في مدينتي، وأُعرت إلى إلتشي وميريدا.",
+    "clue2_en": "I missed the 2002 World Cup after dropping a bottle of aftershave on my foot.",
+    "clue2_ar": "غبت عن كأس العالم 2002 بعد أن أسقطت زجاجة عطر على قدمي.",
+    "clue3_en": "I'm a Spanish goalkeeper who played in two Champions League finals with Valencia.",
+    "clue3_ar": "أنا حارس مرمى إسباني لعبت نهائيين في دوري الأبطال مع فالنسيا.",
+    "status": "draft",
+    "notes": "verify: finals 2000 and 2001"
   },
   "7565": {
     "name": "Roberto Ayala",
@@ -2001,6 +2672,17 @@
     "status": "approved",
     "notes": ""
   },
+  "7603": {
+    "name": "Gaizka Mendieta",
+    "clue1_en": "I was born in Bilbao and started my career at Castellón.",
+    "clue1_ar": "وُلدت في بلباو، وبدأت مسيرتي مع كاستيون.",
+    "clue2_en": "I captained my club to two Champions League finals in a row.",
+    "clue2_ar": "قدت ناديي قائداً إلى نهائيين متتاليين في دوري الأبطال.",
+    "clue3_en": "I'm a Spanish midfielder who left Valencia for Lazio in 2001 for €48m.",
+    "clue3_ar": "أنا لاعب وسط إسباني تركت فالنسيا إلى لاتسيو عام 2001 مقابل 48 مليون يورو.",
+    "status": "draft",
+    "notes": "verify: finals 2000 and 2001"
+  },
   "7607": {
     "name": "Xavi",
     "clue1_en": "I joined my club's academy at 11, and years later I coached its first team.",
@@ -2033,6 +2715,17 @@
     "clue3_ar": "أنا جناح إسباني فزت بكأس الملك مجدداً مع بيتيس عام 2022 وأنا في الأربعين.",
     "status": "approved",
     "notes": ""
+  },
+  "7676": {
+    "name": "Miguel Angel Nadal",
+    "clue1_en": "My nephew became a tennis superstar.",
+    "clue1_ar": "أصبح ابن أخي نجماً عالمياً في التنس.",
+    "clue2_en": "I won the 1992 European Cup and played both in midfield and in defence.",
+    "clue2_ar": "فزت بكأس أوروبا للأندية 1992، ولعبت في الوسط والدفاع.",
+    "clue3_en": "I'm a Spanish defender from Mallorca who spent eight years at Barcelona.",
+    "clue3_ar": "أنا مدافع إسباني من مايوركا قضيت ثماني سنوات في برشلونة.",
+    "status": "draft",
+    "notes": "verify: uncle of Rafael Nadal"
   },
   "7717": {
     "name": "Jose Antonio Reyes",
@@ -2155,6 +2848,17 @@
     "status": "draft",
     "notes": "verify: Miroslav Blažević's diploma remark; goals for Yugoslavia 1990 and Croatia 1998"
   },
+  "8016": {
+    "name": "Vitor Baia",
+    "clue1_en": "I grew up on the coast near Porto and made my first-team debut at 19.",
+    "clue1_ar": "نشأت على الساحل قرب بورتو، وخضت أول مباراة مع الفريق الأول في التاسعة عشرة.",
+    "clue2_en": "I'm one of the most decorated players in history, and won the Champions League in 2004.",
+    "clue2_ar": "أنا من أكثر اللاعبين تتويجاً بالألقاب في التاريخ، وفزت بدوري الأبطال عام 2004.",
+    "clue3_en": "I'm a Portuguese goalkeeper who spent most of my career at Porto and also played for Barcelona.",
+    "clue3_ar": "أنا حارس مرمى برتغالي قضيت معظم مسيرتي في بورتو، ولعبت أيضاً لبرشلونة.",
+    "status": "draft",
+    "notes": "verify: debut 1988-89"
+  },
   "8019": {
     "name": "Simao",
     "clue1_en": "I came through Sporting's academy and moved to Barcelona in 1999.",
@@ -2165,6 +2869,17 @@
     "clue3_ar": "أنا جناح برتغالي لعبت لأتلتيكو مدريد وبشكتاش.",
     "status": "approved",
     "notes": ""
+  },
+  "8022": {
+    "name": "Mark Hughes",
+    "clue1_en": "I once played for my country and for my club on the same day, in two different countries.",
+    "clue1_ar": "لعبت ذات مرة لمنتخب بلادي ولناديي في اليوم نفسه، في بلدين مختلفين.",
+    "clue2_en": "I scored both goals in the 1991 Cup Winners' Cup final against my old club.",
+    "clue2_ar": "سجّلت هدفي نهائي كأس الكؤوس الأوروبية 1991 أمام ناديي السابق.",
+    "clue3_en": "I'm a Welsh striker who had two spells at Manchester United, then managed Blackburn and Manchester City.",
+    "clue3_ar": "أنا مهاجم ويلزي لعبت لمانشستر يونايتد على فترتين، ثم دربت بلاكبيرن ومانشستر سيتي.",
+    "status": "draft",
+    "notes": "verify: Wales in Prague and Bayern v Mönchengladbach on 11 November 1987; 2-1 v Barcelona 1991"
   },
   "8023": {
     "name": "Michael Laudrup",
@@ -2187,6 +2902,17 @@
     "clue3_ar": "أنا صانع ألعاب أرجنتيني فزت بلقب الدوري الإيطالي مرتين مع نابولي بعد رحيلي عن برشلونة عام 1984.",
     "status": "draft",
     "notes": "verify: Villa Fiorito; debut 20 Oct 1976 for Argentinos Juniors; Serie A 1987 and 1990"
+  },
+  "8117": {
+    "name": "Andoni Zubizarreta",
+    "clue1_en": "I started at Alavés in my hometown and won two league titles with Athletic Club.",
+    "clue1_ar": "بدأت مع ألافيس في مدينتي، وفزت بالدوري مرتين مع أتلتيك بلباو.",
+    "clue2_en": "I won the 1992 European Cup and played at four World Cups.",
+    "clue2_ar": "فزت بكأس أوروبا للأندية 1992، وشاركت في أربع نسخ من كأس العالم.",
+    "clue3_en": "I'm a Spanish goalkeeper who spent eight years at Barcelona.",
+    "clue3_ar": "أنا حارس مرمى إسباني قضيت ثماني سنوات في برشلونة.",
+    "status": "draft",
+    "notes": "verify: Athletic titles 1983 and 1984; World Cups 1986-1998"
   },
   "8198": {
     "name": "Cristiano Ronaldo",
@@ -2253,6 +2979,17 @@
     "clue3_ar": "أنا مهاجم توغولي لعبت لأرسنال ومانشستر سيتي وريال مدريد وتوتنهام.",
     "status": "approved",
     "notes": ""
+  },
+  "9209": {
+    "name": "Christian Karembeu",
+    "clue1_en": "I was born in New Caledonia and refused to sing the national anthem in protest.",
+    "clue1_ar": "وُلدت في كاليدونيا الجديدة، ورفضت ترديد النشيد الوطني احتجاجاً.",
+    "clue2_en": "I won two Champions Leagues with Real Madrid and the 1998 World Cup.",
+    "clue2_ar": "فزت بدوري الأبطال مرتين مع ريال مدريد، وبكأس العالم 1998.",
+    "clue3_en": "I'm a French midfielder who played for Nantes, Sampdoria, Real Madrid and Middlesbrough.",
+    "clue3_ar": "أنا لاعب وسط فرنسي لعبت لنانت وسامبدوريا وريال مدريد وميدلزبره.",
+    "status": "draft",
+    "notes": "verify: anthem protest over colonial history; Champions League 1998 and 2000"
   },
   "9594": {
     "name": "Vincent Kompany",
@@ -2407,6 +3144,17 @@
     "clue3_ar": "أنا مهاجم ألماني فزت بكأس العالم 1990 ولعبت لفيردر بريمن وروما ومرسيليا.",
     "status": "draft",
     "notes": "verify: 37 goals in 2. Bundesliga 1981-82"
+  },
+  "13806": {
+    "name": "Karl-Heinz Riedle",
+    "clue1_en": "I started at Augsburg and played in Berlin before Werder Bremen.",
+    "clue1_ar": "بدأت مع أوغسبورغ، ولعبت في برلين قبل فيردر بريمن.",
+    "clue2_en": "I scored twice in the 1997 Champions League final.",
+    "clue2_ar": "سجّلت هدفين في نهائي دوري الأبطال 1997.",
+    "clue3_en": "I'm a German striker who won the 1990 World Cup and played for Lazio, Dortmund and Liverpool.",
+    "clue3_ar": "أنا مهاجم ألماني فزت بكأس العالم 1990، ولعبت للاتسيو ودورتموند وليفربول.",
+    "status": "draft",
+    "notes": ""
   },
   "14086": {
     "name": "Ashley Young",
@@ -3046,6 +3794,17 @@
     "status": "approved",
     "notes": ""
   },
+  "24474": {
+    "name": "Bodo Illgner",
+    "clue1_en": "I spent 11 years at Köln and won the World Cup at 23.",
+    "clue1_ar": "قضيت 11 عاماً في كولن، وفزت بكأس العالم في الثالثة والعشرين.",
+    "clue2_en": "I was in goal when Real Madrid won the 1998 Champions League final.",
+    "clue2_ar": "كنت حارس المرمى حين فاز ريال مدريد بنهائي دوري الأبطال 1998.",
+    "clue3_en": "I'm a German goalkeeper who played for 1. FC Köln and Real Madrid.",
+    "clue3_ar": "أنا حارس مرمى ألماني لعبت لكولن وريال مدريد.",
+    "status": "draft",
+    "notes": ""
+  },
   "24481": {
     "name": "Predrag Mijatovic",
     "clue1_en": "I came from Titograd and won the U-20 World Cup with Yugoslavia in 1987.",
@@ -3640,6 +4399,17 @@
     "status": "approved",
     "notes": ""
   },
+  "34524": {
+    "name": "Michel Preud'homme",
+    "clue1_en": "I started at Standard Liège and was banned for a season in a match-fixing case.",
+    "clue1_ar": "بدأت مع ستاندار لييج، وأُوقفت موسماً في قضية تلاعب بنتيجة مباراة.",
+    "clue2_en": "I was named the best goalkeeper of the 1994 World Cup.",
+    "clue2_ar": "اختِرت أفضل حارس مرمى في كأس العالم 1994.",
+    "clue3_en": "I'm a Belgian goalkeeper who played for Mechelen and Benfica.",
+    "clue3_ar": "أنا حارس مرمى بلجيكي لعبت لمخلن وبنفيكا.",
+    "status": "draft",
+    "notes": "verify: Standard-Waterschei case 1984; Yashin Award 1994"
+  },
   "34557": {
     "name": "Nicklas Bendtner",
     "clue1_en": "I was born in Copenhagen and joined Arsenal's academy at 16.",
@@ -3948,6 +4718,17 @@
     "status": "draft",
     "notes": "verify: Scottish player of the year 1995 and 1997"
   },
+  "39670": {
+    "name": "Toni Schumacher",
+    "clue1_en": "I wrote a book that revealed doping in German football, and my club sacked me.",
+    "clue1_ar": "ألّفت كتاباً كشف المنشطات في الكرة الألمانية، فطردني ناديي.",
+    "clue2_en": "I collided brutally with a French player in the 1982 World Cup semi-final.",
+    "clue2_ar": "اصطدمت بقسوة بلاعب فرنسي في نصف نهائي كأس العالم 1982.",
+    "clue3_en": "I'm a German goalkeeper who spent 15 years at Köln and played in two World Cup finals.",
+    "clue3_ar": "أنا حارس مرمى ألماني قضيت 15 عاماً في كولن، ولعبت نهائيين لكأس العالم.",
+    "status": "draft",
+    "notes": "verify: book Anpfiff 1987; Patrick Battiston 1982"
+  },
   "39679": {
     "name": "Marouane Fellaini",
     "clue1_en": "My parents are Moroccan. I won the Belgian league with Standard Liège.",
@@ -4057,6 +4838,17 @@
     "clue3_ar": "أنا مهاجم إيطالي فزت بالدوري الإيطالي مع يوفنتوس وأنهيت مسيرتي في ساسولو.",
     "status": "approved",
     "notes": ""
+  },
+  "41137": {
+    "name": "Slaven Bilic",
+    "clue1_en": "I have a law degree and played in a rock band, and I started at Šibenik and Hajduk Split.",
+    "clue1_ar": "أحمل شهادة في القانون وعزفت في فرقة روك، وبدأت مسيرتي مع شيبينيك وهايدوك سبليت.",
+    "clue2_en": "An opponent was sent off after I went down in the 1998 World Cup semi-final.",
+    "clue2_ar": "طُرد أحد المنافسين بعد سقوطي في نصف نهائي كأس العالم 1998.",
+    "clue3_en": "I'm a Croatian centre-back who played for West Ham and Everton and later managed West Ham.",
+    "clue3_ar": "أنا قلب دفاع كرواتي لعبت لوست هام وإيفرتون، ثم دربت وست هام.",
+    "status": "draft",
+    "notes": "verify: law degree; band Rawbau; Laurent Blanc sent off 1998"
   },
   "41384": {
     "name": "Marko Arnautovic",
@@ -4794,6 +5586,17 @@
     "clue3_ar": "أنا لاعب وسط أرميني لعبت لأرسنال وروما قبل انضمامي إلى إنتر.",
     "status": "approved",
     "notes": ""
+  },
+  "55838": {
+    "name": "Rene Higuita",
+    "clue1_en": "I played up front as a boy in Medellín, and scored over 40 goals in my career as a goalkeeper.",
+    "clue1_ar": "لعبت مهاجماً وأنا صغير في ميديين، وسجّلت أكثر من 40 هدفاً في مسيرتي وأنا حارس مرمى.",
+    "clue2_en": "I made a famous scorpion-kick save at Wembley in 1995.",
+    "clue2_ar": "قمت بتصدٍّ شهير بركلة العقرب في ويمبلي عام 1995.",
+    "clue3_en": "I'm a Colombian goalkeeper famous for dribbling far out of my area.",
+    "clue3_ar": "أنا حارس مرمى كولومبي اشتهرت بالمراوغة بعيداً عن منطقتي.",
+    "status": "draft",
+    "notes": "verify: about 41 career goals"
   },
   "56066": {
     "name": "Enzo Perez",
@@ -5807,6 +6610,17 @@
     "status": "approved",
     "notes": ""
   },
+  "85968": {
+    "name": "Klaus Augenthaler",
+    "clue1_en": "I scored from near the halfway line in 1989, and it was voted my country's goal of the year.",
+    "clue1_ar": "سجّلت هدفاً من قرب منتصف الملعب عام 1989، واختِير هدف العام في بلادي.",
+    "clue2_en": "I won the 1990 World Cup as a sweeper.",
+    "clue2_ar": "فزت بكأس العالم 1990 ليبرو.",
+    "clue3_en": "I'm a German defender who spent my whole career at Bayern Munich and won seven league titles.",
+    "clue3_ar": "أنا مدافع ألماني قضيت مسيرتي كلها في بايرن ميونخ، وفزت معه بالدوري سبع مرات.",
+    "status": "draft",
+    "notes": "verify: Tor des Jahres 1989 v Eintracht Frankfurt; seven titles 1980-1990"
+  },
   "86202": {
     "name": "Antonio Rudiger",
     "clue1_en": "I grew up in Berlin, and my mother is from Sierra Leone. I broke through at Stuttgart.",
@@ -6236,6 +7050,17 @@
     "status": "approved",
     "notes": ""
   },
+  "101044": {
+    "name": "Danny Blind",
+    "clue1_en": "I started at Sparta Rotterdam and joined Ajax at 25.",
+    "clue1_ar": "بدأت مع سبارتا روتردام، وانضممت إلى أياكس في الخامسة والعشرين.",
+    "clue2_en": "I captained my club to the Champions League in 1995, and my son later played for Manchester United.",
+    "clue2_ar": "قدت ناديي قائداً للفوز بدوري الأبطال عام 1995، ولعب ابني لاحقاً لمانشستر يونايتد.",
+    "clue3_en": "I'm a Dutch defender who spent 13 years at Ajax and later coached the Netherlands.",
+    "clue3_ar": "أنا مدافع هولندي قضيت 13 عاماً في أياكس، ثم دربت منتخب هولندا.",
+    "status": "draft",
+    "notes": ""
+  },
   "101045": {
     "name": "Ruud Gullit",
     "clue1_en": "I made my league debut at 16 for a small club near Amsterdam, where I played as a sweeper.",
@@ -6246,6 +7071,28 @@
     "clue3_ar": "أنا لاعب وسط هولندي فزت بكأس أوروبا 1988 وبكأسين أوروبيتين مع ميلان، ثم لعبت لتشيلسي.",
     "status": "draft",
     "notes": "verify: HFC Haarlem debut 1979 aged 16, played sweeper; European Cups 1989 and 1990"
+  },
+  "101109": {
+    "name": "Basile Boli",
+    "clue1_en": "I was born in Abidjan and spent eight years at Auxerre.",
+    "clue1_ar": "وُلدت في أبيدجان، وقضيت ثماني سنوات في أوكسير.",
+    "clue2_en": "I scored the header that won the first Champions League final, in 1993.",
+    "clue2_ar": "سجّلت الرأسية التي حسمت أول نهائي لدوري الأبطال، عام 1993.",
+    "clue3_en": "I'm a French centre-back who played for Marseille and Rangers.",
+    "clue3_ar": "أنا قلب دفاع فرنسي لعبت لمرسيليا ورينجرز.",
+    "status": "draft",
+    "notes": ""
+  },
+  "101317": {
+    "name": "Stuart Pearce",
+    "clue1_en": "I worked as an electrician while playing non-league football.",
+    "clue1_ar": "عملت كهربائياً بينما كنت ألعب في دوري الهواة.",
+    "clue2_en": "I missed a penalty in the 1990 World Cup shootout, then scored one at Euro 96 with a famous roar.",
+    "clue2_ar": "أهدرت ركلة ترجيح في كأس العالم 1990، ثم سجّلت واحدة في كأس أوروبا 1996 مع صرخة شهيرة.",
+    "clue3_en": "I'm an English left-back who spent 12 years at Nottingham Forest.",
+    "clue3_ar": "أنا ظهير أيسر إنجليزي قضيت 12 عاماً في نوتنغهام فورست.",
+    "status": "draft",
+    "notes": "verify: electrician at Wealdstone"
   },
   "101382": {
     "name": "Bryan Robson",
@@ -6291,6 +7138,17 @@
     "status": "approved",
     "notes": ""
   },
+  "102030": {
+    "name": "Peter Beardsley",
+    "clue1_en": "I played in Canada for Vancouver, and once for Manchester United in a cup game.",
+    "clue1_ar": "لعبت في كندا لفانكوفر، ومرة واحدة لمانشستر يونايتد في مباراة كأس.",
+    "clue2_en": "I won two league titles with Liverpool, then crossed the city to Everton.",
+    "clue2_ar": "فزت بالدوري مرتين مع ليفربول، ثم انتقلت إلى جاره إيفرتون.",
+    "clue3_en": "I'm an English forward who had two spells at Newcastle and played at the 1986 World Cup.",
+    "clue3_ar": "أنا مهاجم إنجليزي لعبت لنيوكاسل على فترتين، وشاركت في كأس العالم 1986.",
+    "status": "draft",
+    "notes": "verify: one League Cup game for United 1982; titles 1988 and 1990"
+  },
   "102150": {
     "name": "Faustino Asprilla",
     "clue1_en": "My free kick ended a 58-game unbeaten run of the Italian champions in 1993.",
@@ -6301,6 +7159,17 @@
     "clue3_ar": "أنا مهاجم كولومبي لعبت لبارما ونيوكاسل، وكنت أحتفل بالشقلبات.",
     "status": "draft",
     "notes": "verify: Parma ended AC Milan's 58-match unbeaten run March 1993; hat-trick for Newcastle September 1997"
+  },
+  "102214": {
+    "name": "Oscar Ruggeri",
+    "clue1_en": "I played for both of Buenos Aires' biggest rivals in the 1980s.",
+    "clue1_ar": "لعبت لأكبر غريمين في بوينس آيرس في الثمانينيات.",
+    "clue2_en": "I won the 1986 World Cup and two Copa Américas with my country.",
+    "clue2_ar": "فزت بكأس العالم 1986، وبكوبا أمريكا مرتين مع منتخب بلادي.",
+    "clue3_en": "I'm an Argentine centre-back who played in Spain for Logroñés and Real Madrid.",
+    "clue3_ar": "أنا قلب دفاع أرجنتيني لعبت في إسبانيا للوغرونييس وريال مدريد.",
+    "status": "draft",
+    "notes": "verify: Boca and River; Copa América 1991 and 1993"
   },
   "102226": {
     "name": "Thorgan Hazard",
@@ -6335,6 +7204,28 @@
     "status": "draft",
     "notes": "verify: unused in the 1982 squad; European Cups 1990 and 1994"
   },
+  "102483": {
+    "name": "Mauro Tassotti",
+    "clue1_en": "I was born in Rome and started at a club there before moving north in 1980.",
+    "clue1_ar": "وُلدت في روما، وبدأت مع نادٍ هناك قبل انتقالي شمالاً عام 1980.",
+    "clue2_en": "I broke an opponent's nose with an elbow at the 1994 World Cup.",
+    "clue2_ar": "كسرت أنف أحد المنافسين بضربة مرفق في كأس العالم 1994.",
+    "clue3_en": "I'm an Italian right-back who spent 17 years at AC Milan.",
+    "clue3_ar": "أنا ظهير أيمن إيطالي قضيت 17 عاماً في ميلان.",
+    "status": "draft",
+    "notes": "verify: Lazio 1978-80; elbow on Luis Enrique"
+  },
+  "102485": {
+    "name": "Pierluigi Casiraghi",
+    "clue1_en": "I started at my hometown club Monza, and won the UEFA Cup in 1990 with my new club.",
+    "clue1_ar": "بدأت في نادي مدينتي مونزا، وفزت بكأس الاتحاد الأوروبي عام 1990 مع ناديي الجديد.",
+    "clue2_en": "My career was ended by a knee injury in a collision with a goalkeeper in 1998.",
+    "clue2_ar": "انتهت مسيرتي بإصابة في الركبة إثر اصطدام بحارس مرمى عام 1998.",
+    "clue3_en": "I'm an Italian striker who played for Juventus, Lazio and Chelsea.",
+    "clue3_ar": "أنا مهاجم إيطالي لعبت ليوفنتوس ولاتسيو وتشيلسي.",
+    "status": "draft",
+    "notes": "verify: collision with Shaka Hislop November 1998"
+  },
   "102558": {
     "name": "Marco Verratti",
     "clue1_en": "I won promotion to Serie A with my hometown club, alongside Insigne and Immobile.",
@@ -6367,6 +7258,17 @@
     "clue3_ar": "أنا برازيلي لعبت لباريس سان جيرمان وميلان، ودربت ميلان وإنتر، وأدرت الشؤون الرياضية في باريس سان جيرمان.",
     "status": "draft",
     "notes": "verify: elbow on Tab Ramos; four-match ban"
+  },
+  "102590": {
+    "name": "Branco",
+    "clue1_en": "I'm from the far south of Brazil and played in Italy for Brescia and Genoa.",
+    "clue1_ar": "أنا من أقصى جنوب البرازيل، ولعبت في إيطاليا لبريشيا وجنوى.",
+    "clue2_en": "I scored a long-range free kick against the Netherlands in the 1994 World Cup quarter-final.",
+    "clue2_ar": "سجّلت ركلة حرة بعيدة أمام هولندا في ربع نهائي كأس العالم 1994.",
+    "clue3_en": "I'm a Brazilian left-back who won the 1994 World Cup and later played for Middlesbrough.",
+    "clue3_ar": "أنا ظهير أيسر برازيلي فزت بكأس العالم 1994، ولعبت لاحقاً لميدلزبره.",
+    "status": "draft",
+    "notes": "verify: born in Bagé"
   },
   "102704": {
     "name": "Dragan Stojkovic",
@@ -6443,6 +7345,17 @@
     "clue3_en": "I'm an Italian striker who spent eight years at Lazio and won Euro 2020.",
     "clue3_ar": "أنا مهاجم إيطالي قضيت ثماني سنوات في لاتسيو، وفزت بيورو 2020.",
     "status": "approved",
+    "notes": ""
+  },
+  "106972": {
+    "name": "Jorge Burruchaga",
+    "clue1_en": "I started at Arsenal de Sarandí and moved to Independiente in 1982.",
+    "clue1_ar": "بدأت مع أرسنال دي ساراندي، وانتقلت إلى إندبندينتي عام 1982.",
+    "clue2_en": "I scored the winning goal in the 1986 World Cup final.",
+    "clue2_ar": "سجّلت هدف الفوز في نهائي كأس العالم 1986.",
+    "clue3_en": "I'm an Argentine midfielder who played seven years for Nantes in France.",
+    "clue3_ar": "أنا لاعب وسط أرجنتيني لعبت سبع سنوات لنانت في فرنسا.",
+    "status": "draft",
     "notes": ""
   },
   "106987": {
@@ -6632,6 +7545,28 @@
     "status": "draft",
     "notes": "verify: Reggiolo farm; five Champions Leagues as coach"
   },
+  "116750": {
+    "name": "Pietro Vierchowod",
+    "clue1_en": "My father was a Ukrainian soldier who stayed in Italy after the war.",
+    "clue1_ar": "كان والدي جندياً أوكرانياً بقي في إيطاليا بعد الحرب.",
+    "clue2_en": "I was in the 1982 World Cup squad and won the Champions League in 1996, at 37.",
+    "clue2_ar": "كنت ضمن تشكيلة كأس العالم 1982، وفزت بدوري الأبطال عام 1996 في السابعة والثلاثين.",
+    "clue3_en": "I'm an Italian centre-back who spent 12 years at Sampdoria.",
+    "clue3_ar": "أنا قلب دفاع إيطالي قضيت 12 عاماً في سامبدوريا.",
+    "status": "draft",
+    "notes": "verify: father a Red Army soldier from Ukraine"
+  },
+  "116754": {
+    "name": "Walter Zenga",
+    "clue1_en": "I was born in Milan and played for three lower-league clubs before returning to my club in 1982.",
+    "clue1_ar": "وُلدت في ميلانو، ولعبت لثلاثة أندية في الدرجات الدنيا قبل عودتي إلى ناديي عام 1982.",
+    "clue2_en": "I went a record 517 minutes without conceding at the 1990 World Cup.",
+    "clue2_ar": "بقيت 517 دقيقة دون أن تهتز شباكي في كأس العالم 1990، وهو رقم قياسي.",
+    "clue3_en": "I'm an Italian goalkeeper who spent 12 years at Inter.",
+    "clue3_ar": "أنا حارس مرمى إيطالي قضيت 12 عاماً في إنتر.",
+    "status": "draft",
+    "notes": ""
+  },
   "117193": {
     "name": "Glenn Hoddle",
     "clue1_en": "I had a hit pop song with a teammate in 1987.",
@@ -6643,6 +7578,17 @@
     "status": "draft",
     "notes": "verify: Diamond Lights with Chris Waddle 1987; Arsène Wenger at Monaco"
   },
+  "117501": {
+    "name": "Jean Tigana",
+    "clue1_en": "I was born in Mali and worked in a factory before turning professional at 20.",
+    "clue1_ar": "وُلدت في مالي، وعملت في مصنع قبل أن أحترف في العشرين.",
+    "clue2_en": "I was part of a famous midfield 'magic square' that won Euro 84.",
+    "clue2_ar": "كنت ضمن مربع سحري شهير في خط الوسط فاز بكأس أوروبا 1984.",
+    "clue3_en": "I'm a French midfielder who starred for Bordeaux and later managed Monaco and Fulham.",
+    "clue3_ar": "أنا لاعب وسط فرنسي تألقت مع بوردو، ثم دربت موناكو وفولهام.",
+    "status": "draft",
+    "notes": "verify: worked in a pasta factory in Marseille; carré magique with Platini, Giresse, Fernández"
+  },
   "117598": {
     "name": "Emilio Butragueno",
     "clue1_en": "I came through my club's youth system and finished my career in Mexico.",
@@ -6653,6 +7599,17 @@
     "clue3_ar": "أنا مهاجم إسباني فزت بالدوري خمس مرات متتالية مع ريال مدريد في الثمانينيات.",
     "status": "draft",
     "notes": "verify: Celaya 1995; titles 1986-1990"
+  },
+  "117613": {
+    "name": "Michel",
+    "clue1_en": "I spent my whole career in Spain at one club, then played two seasons in Mexico.",
+    "clue1_ar": "قضيت مسيرتي في إسبانيا مع نادٍ واحد، ثم لعبت موسمين في المكسيك.",
+    "clue2_en": "I scored a hat-trick against South Korea at the 1990 World Cup.",
+    "clue2_ar": "سجّلت ثلاثية أمام كوريا الجنوبية في كأس العالم 1990.",
+    "clue3_en": "I'm a Spanish midfielder who won six league titles with Real Madrid in the 1980s and 1990s.",
+    "clue3_ar": "أنا لاعب وسط إسباني فزت بالدوري ست مرات مع ريال مدريد في الثمانينيات والتسعينيات.",
+    "status": "draft",
+    "notes": "verify: Celaya 1996-97; titles 1986-1990 and 1995"
   },
   "117626": {
     "name": "Careca",
