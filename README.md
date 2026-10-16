@@ -87,21 +87,27 @@ carry the result: the app and the server hold no value lines.
   Transfermarkt has valued players only since late 2004, so `sources/legends/legends.json`
   gives 333 well-known older players an approximate present-day value (Maradona highest,
   €250m). A legend's value is a tier ceiling spread down by Wikipedia fame
-  (`sources/legends/legend_fame.py`); see the Grid README.
+  (`sources/legends/legend_fame.py`); see the Grid README. This raw fame picks who is in the
+  pool (€20m / €10m at the five clubs), is `market_value` in `game_data_v1.json` and the Grid
+  pool's value.
+- **Fame now** (`fame_now`) = the same in today's money, and it sets every tier: peak value ×
+  growth(year of the peak), or the legend value when that is higher (legends are not adjusted:
+  their value is already today's). The peak year is the date Transfermarkt gives with the peak
+  (`marketValueDetails.highest.determined`), else the highest point of the value history, else
+  the highest dataset valuation. Growth = the mean of the 300 highest player values in the
+  latest full year (2025) ÷ the same in the peak year, at most ×2.5 (2012 and earlier hit the
+  cap; 2016 is ×2.02, 2017 ×1.72, 2018 ×1.14, 2023 ×1.08; 2025 on ×1.0). The values are the
+  dataset's valuations (`player_valuations`), complete up to June 2026.
 - **Value now** = the highest Transfermarkt value since 1 July 2023 (the API's market value
   history plus the current value).
 - **Still playing** (`active`) = not retired and alive; a player without a club (or on a career
   break) counts only if his last move was less than a year ago.
 - **Transfer Path and Player Story**: Beginner = still playing and (value now €60m+, or fame
-  €80m+ with value now €15m+); Intermediate = otherwise fame €40m+ (every legend lands here);
-  Expert = fame under €40m. Written as `difficulty` on each player of `game_data_v1.json`;
-  `market_value` there is the fame.
-- **Starting XI**: a starter is a star when his fame in today's money is €40m+. Today's money =
-  fame × growth(match year), growth = the mean of the year's 300 highest player values in the
-  latest full year (2025) ÷ the same in the match year, at most ×2.5 (2012 and earlier hit the
-  cap; 2016 is ×2.02, 2017 ×1.72, 2018 ×1.14, 2023 ×1.08). The values are the dataset's
-  valuations (`player_valuations`), which are complete up to June 2026. Legends are not adjusted. Beginner = 2017 or later
-  with 10+ stars, Intermediate = 5+ stars, Expert = the rest.
+  now €80m+ with value now €15m+); Intermediate = otherwise fame now €40m+ (every legend lands
+  here); Expert = fame now under €40m. Written as `difficulty` on each player of
+  `game_data_v1.json`; `tiers_v1.json` gives each player's `fame_now`, `peak_year` and the rule.
+- **Starting XI**: a starter is a star when his fame now is €40m+; the match year adds nothing
+  on top. Beginner = 2017 or later with 10+ stars, Intermediate = 5+ stars, Expert = the rest.
 
 ### Player names
 

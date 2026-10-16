@@ -44,6 +44,8 @@ from sources.tm_api import TransfermarktAPI
 # late 2004. So each row's value is the player's fame (sources/fame.py): his peak value, raised
 # by his legend value (sources/legends/legends.json) for the well-known players of that era
 # (Maradona highest; also Maldini's late-career €3m). A player with no fame is left out.
+# This is the raw fame, not fame_now in today's money: the Grid's well-known line (€20m, in the
+# app and the functions) and the steals compare raw peaks, so they stay on it.
 
 
 def main():

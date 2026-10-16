@@ -4,14 +4,18 @@ How famous a player is, and the difficulty tiers that follow from it, for every 
 
 - fame(player) = the higher of his Transfermarkt peak value and his legend value. Transfermarkt
   has valued players only since late 2004, so legends.json gives the well-known older ones an
-  approximate present-day value (see legend_values).
+  approximate present-day value (see legend_values). This raw fame picks who is in the game
+  data at all (build_dataset.py), is the game data's market_value and the Grid pool's value.
+- fame_now(player) = the same in today's money: peak value × growth(year of the peak), the
+  higher of that and the legend value (legend values are present-day amounts already, never
+  adjusted). It sets every tier: Transfer Path, Player Story and the Starting XI stars.
 - value_now(player) = his highest Transfermarkt value since VALUE_NOW_FROM.
 - still_playing(...) = not retired, alive, and when without a club, moved in the last year.
-- Transfer Path and Player Story: player_tier(fame, value now, still playing), and
+- Transfer Path and Player Story: player_tier(fame now, value now, still playing), and
   tier_reason() for which rule set it (the `why` of tiers_v1.json; player_tier is read off it,
   so the two never disagree).
-- Starting XI: a starter is a star when his fame in today's money (growth()) is
-  STAR_VALUE or more; lineup_tier(year, stars).
+- Starting XI: a starter is a star when his fame now is STAR_VALUE or more (no match-year
+  factor on top: his value is already in today's money); lineup_tier(year, stars).
 - rules(): these constants as the admin panel sees them (tiers_v1.json, CONTRACTS.md §1).
 
 The app and the functions read the tier from the files (`difficulty` in game_data_v1.json and
@@ -37,6 +41,7 @@ BEGINNER_VALUE_NOW = 60_000_000         # still playing and worth €60m+ since 
 BEGINNER_FAME = 80_000_000              # or fame €80m+ ...
 BEGINNER_FAME_VALUE_NOW = 15_000_000    # ... and still worth €15m+ since VALUE_NOW_FROM
 INTERMEDIATE_FAME = 40_000_000          # otherwise: intermediate from €40m fame, expert below
+# "fame" in these lines is fame_now(): the peak in today's money (growth of its year).
 
 # ── Still playing ──
 RETIRED = 'Retired'
@@ -44,7 +49,7 @@ NO_CLUB = {'Without Club', 'Career break', 'Unknown'}  # still playing if he mov
 NO_CLUB_GRACE = timedelta(days=365)
 
 # ── Starting XI ──
-STAR_VALUE = 40_000_000       # a star: €40m+ fame in today's money
+STAR_VALUE = 40_000_000       # a star: €40m+ fame now (fame_now, today's money)
 GROWTH_TOP = 300              # the index is the mean value of the year's 300 most valuable players
 GROWTH_CAP = 2.5              # no year is scaled up by more than this
 GROWTH_MIN_PLAYERS = 3_000    # a year with fewer valued players (before 2007) takes the cap
@@ -87,8 +92,30 @@ def peak_value(profile):
 
 
 def fame(player_id, profile):
-    """max(Transfermarkt peak value, legend value); 0 when he has neither."""
+    """max(Transfermarkt peak value, legend value); 0 when he has neither. The raw fame: who is
+    in the game data, market_value, the Grid pool. Tiers use fame_now()."""
     return max(peak_value(profile) or 0, legends().get(str(player_id), 0))
+
+
+def peak_year(player_id, profile, history=None):
+    """The year the player reached his peak value: the date Transfermarkt gives with it
+    (API profile), else the date of the highest point of his value history, else of his
+    highest dataset valuation; None when nothing has a date."""
+    determined = (((profile or {}).get('marketValueDetails') or {}).get('highest') or {}).get('determined')
+    if determined:
+        return int(determined[:4])
+    if history:
+        return int(max(history, key=lambda p: (p['value'], p['date']))['date'][:4])
+    return dataset_peak_years().get(int(player_id))
+
+
+def fame_now(player_id, profile, history=None):
+    """(fame in today's money, peak year or None): max(peak value × growth(peak year), legend
+    value). A peak with no date at all is taken as it is."""
+    peak = peak_value(profile) or 0
+    year = peak_year(player_id, profile, history) if peak else None
+    adjusted = peak * growth(year) if year is not None else peak
+    return int(round(max(adjusted, legends().get(str(player_id), 0)))), year
 
 
 def value_now(history, profile=None):
@@ -146,6 +173,20 @@ def player_tier(player_fame, player_value_now, active):
 # ── Today's money (Starting XI) ──
 
 @lru_cache(maxsize=1)
+def _valuations():
+    valuations = pd.read_csv(VALUATIONS_FILE, usecols=['player_id', 'date', 'market_value_in_eur'])
+    valuations['year'] = valuations['date'].str[:4].astype(int)
+    return valuations
+
+
+@lru_cache(maxsize=1)
+def dataset_peak_years():
+    """{player id: year of his highest dataset valuation} (peak_year's last fallback)."""
+    v = _valuations().sort_values(['market_value_in_eur', 'date'])
+    return v.groupby('player_id')['year'].last().to_dict()
+
+
+@lru_cache(maxsize=1)
 def growth_index():
     """({year: mean of the year's GROWTH_TOP highest player values}, latest full year).
 
@@ -153,8 +194,7 @@ def growth_index():
     transfermarkt-datasets valuations (every valuation since 2004, frozen in June 2026); the
     latest full year is the last one with valuations in December.
     """
-    valuations = pd.read_csv(VALUATIONS_FILE, usecols=['player_id', 'date', 'market_value_in_eur'])
-    valuations['year'] = valuations['date'].str[:4].astype(int)
+    valuations = _valuations()
     per_player = valuations.groupby(['year', 'player_id'])['market_value_in_eur'].max()
     index = {}
     for year, values in per_player.groupby(level='year'):
@@ -177,15 +217,10 @@ def growth(year):
     return min(GROWTH_CAP, index[latest_full] / index[year])
 
 
-def todays_money(player_id, profile, year):
-    """A starter's fame in today's money for a match in `year`. Legends are not adjusted:
-    their legend value is already a present-day amount."""
-    value = fame(player_id, profile)
-    return value if is_legend(player_id) else value * growth(year)
-
-
-def is_star(player_id, profile, year):
-    return todays_money(player_id, profile, year) >= STAR_VALUE
+def is_star(player_id, profile):
+    """A Starting XI star: fame now (today's money, from the peak's year) ≥ STAR_VALUE. The
+    match year plays no part: the value is already in today's money."""
+    return fame_now(player_id, profile)[0] >= STAR_VALUE
 
 
 def lineup_tier(year, stars):

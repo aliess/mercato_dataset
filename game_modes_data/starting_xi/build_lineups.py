@@ -12,9 +12,10 @@ famous_matches.json. Each match gives two lineups (home and away).
 Only the eleven starters are included; substitutes are never answers.
 
 Difficulty goes by how many of the eleven are stars (sources/fame.py): a starter is a star
-when his fame in today's money is €40m or more (his fame times the growth of Transfermarkt's
-values since the match year; legends as they are). Beginner = match year 2017 or later with
-10+ stars, Intermediate = 5+ stars, Expert = the rest. The round and the team do not matter.
+when his fame now is €40m or more (his peak value times the growth of Transfermarkt's values
+since the year of that peak; legends as they are). The match year adds nothing on top.
+Beginner = match year 2017 or later with 10+ stars, Intermediate = 5+ stars, Expert = the
+rest. The round and the team do not matter.
 
 The file has the layout the app already reads (Resources/Labs/xi_placeholder.json), with
 extra fields: difficulty, round, leg, opponent, season, famous.
@@ -72,7 +73,7 @@ POSITION_NAMES = {'Sweeper': 'Centre-Back'}  # the app has no sweeper
 
 def difficulty(slots, profiles, year):
     """The lineup's tier from its number of stars (sources/fame.py)."""
-    stars = sum(fame.is_star(slot['player_id'], profiles.get(str(slot['player_id'])), year) for slot in slots)
+    stars = sum(fame.is_star(slot['player_id'], profiles.get(str(slot['player_id']))) for slot in slots)
     return fame.lineup_tier(year, stars), stars
 
 
@@ -232,7 +233,7 @@ def main():
     lines = ',\n'.join(json.dumps(m, ensure_ascii=False, separators=(',', ':')) for m in matches)
     out.write_text('{"version":2,"matches":[\n' + lines + '\n]}\n')
     # Why each lineup has its tier (publish_files.py makes tiers_v1.json from it).
-    stars_file = {'rules': fame.lineup_rules(), 'growth': fame.growth_table(m['year'] for m in matches),
+    stars_file = {'rules': fame.lineup_rules(),
                   'lineups': {m['id']: stars for m, stars in zip(matches, star_counts)}}
     (MODE_DIR / 'output' / 'xi_stars.json').write_text(json.dumps(stars_file, separators=(',', ':')) + '\n')
 

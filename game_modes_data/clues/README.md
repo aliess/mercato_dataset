@@ -23,8 +23,8 @@ python publish_files.py --project dev                                  # dry run
 A player's difficulty is the tier the game data gives him (`difficulty` in
 `player_profiles.csv`, from `sources/fame.py`; rules in `../../README.md` "Fame and difficulty
 tiers" and `../../../CONTRACTS.md` §5). It is copied into `facts.jsonl` and `review.csv`, and
-`by_difficulty` in the published file counts it. `market_value` in the facts is the player's
-fame. After the player pool or the tiers change, run the two commands above again and the
+`by_difficulty` in the published file counts it. `market_value` in the facts is the player's raw
+fame (the tier uses fame now). After the player pool or the tiers change, run the two commands above again and the
 publisher's dry run.
 
 Legends (`sources/legends/legends.json`) are in the pool too, also the one-club ones

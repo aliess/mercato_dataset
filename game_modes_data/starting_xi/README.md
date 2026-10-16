@@ -32,26 +32,25 @@ report URL) to `famous_matches.json` and rebuild. To add a competition, add a ro
 By how many of the eleven starters are stars (`sources/fame.py`, plan §8 item 115). The team
 and the round do not matter.
 
-- A starter is a **star** when his fame in today's money is €40m or more. Fame is his
-  Transfermarkt peak value (from his current API profile), raised to his legend value if he is
-  in `sources/legends/legends.json`. Today's money = fame × the growth of Transfermarkt values
-  between the match year and the latest full year (the mean of the year's 300 highest player
-  values), at most ×2.5: ×1.0 for 2025 on, ×1.14 for 2018, ×1.72 for 2017, ×2.02 for 2016, and
-  the cap for 2012 and earlier. Legends are not adjusted: their value is already today's.
+- A starter is a **star** when his fame now is €40m or more (`fame.fame_now`): his
+  Transfermarkt peak value (from his current API profile) × the growth of Transfermarkt values
+  since the year of that peak, at most ×2.5, or his legend value from
+  `sources/legends/legends.json` when that is higher (legends are not adjusted). The match year
+  adds nothing: the value is already in today's money. Rules and growth table in
+  `../../README.md` "Fame and difficulty tiers".
 - `beginner`: match year 2017 or later with 10+ stars.
 - `intermediate`: 5+ stars, any year.
 - `expert`: the rest.
 
-The build also writes `output/xi_stars.json` (each lineup's star count, the lines and the
-growth by year it used); the publisher turns it into the `lineups` and `growth` of the admin
-panel's `cache/tiers_v1.json`, which the app never downloads.
+The build also writes `output/xi_stars.json` (each lineup's star count and the lines); the
+publisher turns it into the `lineups` of the admin panel's `cache/tiers_v1.json`, which the app never downloads.
 
 Examples: Liverpool in the 2026 quarter-final, England at Euro 2024 and Portugal at the 2022
 World Cup are `beginner`; Belgium 2014–2021, the Netherlands, Croatia 2018 and 2022, Portugal
 at Euro 2016 and Switzerland 2026 (5 stars) are `intermediate`; Russia, Morocco and Greece are
 `expert`.
 
-The current build has 158 `beginner`, 721 `intermediate` and 241 `expert` lineups; the Daily
+The current build has 158 `beginner`, 717 `intermediate` and 245 `expert` lineups; the Daily
 XI pool (famous and not `expert`) is 114. The build prints how many lineups have each number
 of stars. A re-split must keep every lineup id: the dailies already written reference them.
 

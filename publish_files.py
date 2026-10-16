@@ -354,12 +354,20 @@ def build_tiers(game_data, xi):
         entry = entries.get(player['id'])
         if entry is None:
             continue
-        expected = {'now', 'why'} | ({'legend'} if fame.is_legend(player['id']) else set()) \
+        expected = {'now', 'fame_now', 'why'} | ({'peak_year'} if 'peak_year' in entry else set()) \
+            | ({'legend'} if fame.is_legend(player['id']) else set()) \
             | ({'grace'} if entry.get('grace') else set())
+        # fame now is the raw fame (market_value) in today's money: for a player who is not a
+        # legend, exactly market_value × growth(peak year); a legend's is never below his.
+        peak_year = entry.get('peak_year')
+        expected_now = round(player['market_value'] * (fame.growth(peak_year) if peak_year is not None else 1))
         ok = (set(entry) == expected and isinstance(entry['now'], int) and entry['now'] >= 0
+              and isinstance(entry['fame_now'], int)
+              and (entry['fame_now'] >= player['market_value'] if fame.is_legend(player['id'])
+                   else entry['fame_now'] == expected_now)
               and entry['why'] in fame.REASON_TIERS
               and fame.REASON_TIERS[entry['why']] == player['difficulty']
-              and fame.tier_reason(player['market_value'], entry['now'], player['active']) == entry['why']
+              and fame.tier_reason(entry['fame_now'], entry['now'], player['active']) == entry['why']
               and entry.get('legend', True) is True and entry.get('grace', True) is True
               and not (entry.get('grace') and not player['active']))
         if not ok:
@@ -377,9 +385,9 @@ def build_tiers(game_data, xi):
             continue
         if not (isinstance(count, int) and 0 <= count <= 11 and fame.lineup_tier(match['year'], count) == match['difficulty']):
             problems.append(f"lineup {match['id']}: {count} stars in {match['year']} does not give {match['difficulty']}")
-    growth = fame.growth_table(match['year'] for match in xi['matches'])
-    if xi_side['growth'] != growth:
-        problems.append("xi_stars.json's growth by year is not what sources/fame.py gives now: rebuild the lineups")
+    growth = fame.growth_table(entry['peak_year'] for entry in entries.values() if 'peak_year' in entry)
+    if players_side['growth'] != growth:
+        problems.append("player_tiers.json's growth by year is not what sources/fame.py gives now: rebuild the game data")
     if problems:
         sys.exit('tiers_v1.json would not match the data, nothing was written:\n  '
                  + '\n  '.join(problems[:20]) + (f'\n  … (+{len(problems) - 20:,})' if len(problems) > 20 else ''))

@@ -52,6 +52,8 @@ from sources.squads import pool_clubs, squad_spells
 from sources.tm_api import DEFAULT_CACHE_DIR, TransfermarktAPI
 
 # ── Player selection ──
+# Who is in the game data at all goes by the raw fame (fame.fame: Transfermarkt peak, raised by
+# the legend value), not by fame now in today's money: the tiers use that, the pool doesn't.
 # Stars: fame (sources/fame.py) at or above this (Jamie Vardy peaked at exactly 20M).
 STAR_MIN_VALUE = 20_000_000
 # Lesser players are kept if they played for one of these clubs and reached this fame.
@@ -348,6 +350,7 @@ def write_player_tiers(path, why):
     """Why each player has his tier, with the lines this build used (publish_files.py makes
     tiers_v1.json from it). One player per line, by id."""
     head = {'rules': fame.player_rules(),
+            'growth': fame.growth_table(entry['peak_year'] for entry in why.values() if 'peak_year' in entry),
             'pool': {'star_min_value': STAR_MIN_VALUE, 'prestigious_min_value': PRESTIGIOUS_MIN_VALUE,
                      'prestigious_club_ids': sorted(PRESTIGIOUS_CLUB_IDS), 'min_clubs': MIN_CLUBS}}
     compact = lambda value: json.dumps(value, separators=(',', ':'))
@@ -453,14 +456,20 @@ def main():
         status = fame.playing_status(club['name'] if club else None, row['date_of_death'], last_move.get(pid), today)
         active = status != 'stopped'
         now = int(fame.value_now(histories.get(pid), profiles[pid]))
-        reason = fame.tier_reason(player_fame[pid], now, active)
+        # The tier goes by fame in today's money; market_value stays the raw fame (the pool,
+        # the name suggestions and the Daily Transfer's €20m Expert floor read it).
+        fame_now, peak_year = fame.fame_now(pid, profiles[pid], histories.get(pid))
+        reason = fame.tier_reason(fame_now, now, active)
         row['market_value'] = player_fame[pid]
         row['difficulty'] = fame.REASON_TIERS[reason]
         row['active'] = active
         row['story_only'] = True if pid in story_only else None
         rows.append(row)
-        # tiers_v1.json's player entry (CONTRACTS.md §1): value now, the rule, legend, grace.
-        why[str(pid)] = {'now': now, 'why': reason,
+        # tiers_v1.json's player entry (CONTRACTS.md §1): value now, fame now and the year of
+        # the peak it comes from, the rule, legend, grace.
+        why[str(pid)] = {'now': now, 'fame_now': fame_now,
+                         **({'peak_year': peak_year} if peak_year is not None else {}),
+                         'why': reason,
                          **({'legend': True} if pid in legend_ids else {}),
                          **({'grace': True} if status == 'grace' else {})}
     profiles_out = pd.DataFrame(rows, columns=PROFILES_COLUMNS)
