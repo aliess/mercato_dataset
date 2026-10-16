@@ -508,7 +508,7 @@
   "3110": {
     "name": "Alan Shearer",
     "clue1_en": "I left the north-east as a boy to join a club on the south coast, and scored a hat-trick on my full debut at 17.",
-    "clue1_ar": "غادرت منطقتي في الشمال الشرقي صغيراً للانضمام إلى نادٍ على الساحل الجنوبي، وسجّلت ثلاثية في أول مباراة أساسية لي في السابعة عشرة.",
+    "clue1_ar": "غادرت الشمال الشرقي وأنا صغير لألتحق بنادٍ على الساحل الجنوبي، وسجّلت ثلاثية في أول مباراة أساسية لي في السابعة عشرة.",
     "clue2_en": "I won the league with Blackburn in 1995 and was top scorer at Euro 96.",
     "clue2_ar": "فزت بالدوري مع بلاكبيرن عام 1995، وكنت هداف يورو 1996.",
     "clue3_en": "I'm an English striker who joined Newcastle for €18m in 1996 and holds the Premier League scoring record.",
@@ -893,7 +893,7 @@
   "3237": {
     "name": "Christophe Dugarry",
     "clue1_en": "I was born near Bordeaux and came through my local club's youth teams.",
-    "clue1_ar": "وُلدت قرب بوردو، وتدرّجت في فرق ناشئي نادي منطقتي.",
+    "clue1_ar": "وُلدت قرب بوردو، وتدرّجت في فرق الناشئين بنادي منطقتي.",
     "clue2_en": "I won the 1998 World Cup and was a close friend of my country's star playmaker.",
     "clue2_ar": "فزت بكأس العالم 1998، وكنت صديقاً مقرباً لصانع ألعاب منتخب بلادي ونجمه.",
     "clue3_en": "I'm a French striker who played for Bordeaux, AC Milan, Barcelona and Marseille.",
@@ -1124,7 +1124,7 @@
   "3410": {
     "name": "Hernan Crespo",
     "clue1_en": "I won the Copa Libertadores with my first club in 1996, and an Olympic silver medal that summer.",
-    "clue1_ar": "فزت بكأس ليبرتادوريس مع أول نادٍ لي عام 1996، وبالميدالية الفضية في الأولمبياد صيف العام نفسه.",
+    "clue1_ar": "فزت بكأس ليبرتادوريس مع أول نادٍ لي عام 1996، وبفضية الأولمبياد في صيف العام نفسه.",
     "clue2_en": "Lazio paid a world-record fee for me in 2000, and I was Serie A's top scorer the next season.",
     "clue2_ar": "دفع لاتسيو مبلغاً قياسياً عالمياً لضمّي عام 2000، وكنت هداف الدوري الإيطالي في الموسم التالي.",
     "clue3_en": "I'm an Argentine striker who played for Parma, Lazio, Inter, Chelsea and AC Milan.",
@@ -1280,7 +1280,7 @@
     "clue1_en": "I grew up on a farm in Gelderland and started at Go Ahead Eagles.",
     "clue1_ar": "نشأت في مزرعة بإقليم خيلدرلاند، وبدأت مسيرتي مع غو أهيد إيغلز.",
     "clue2_en": "I scored the opening goal of the 1998 FA Cup final as we won the double.",
-    "clue2_ar": "سجّلت الهدف الأول في نهائي كأس الاتحاد الإنجليزي 1998، في موسم فزنا فيه بالثنائية.",
+    "clue2_ar": "سجّلت الهدف الأول في نهائي كأس الاتحاد الإنجليزي 1998، الذي أحرزنا به الثنائية.",
     "clue3_en": "I'm a Dutch winger who joined Barcelona from Arsenal in 2000 for about €29m.",
     "clue3_ar": "أنا جناح هولندي انتقلت من أرسنال إلى برشلونة عام 2000 مقابل نحو 29 مليون يورو.",
     "status": "draft",
@@ -1311,7 +1311,7 @@
   "3516": {
     "name": "Edwin van der Sar",
     "clue1_en": "I started at an amateur club on the Dutch coast, and in 2016 I came out of retirement to play one more game for it.",
-    "clue1_ar": "بدأت مع نادٍ هاوٍ على الساحل الهولندي، وعدت من الاعتزال عام 2016 لألعب له مباراة أخرى.",
+    "clue1_ar": "بدأت مع نادٍ هاوٍ على الساحل الهولندي، وعدت من الاعتزال عام 2016 لألعب له مباراة واحدة أخرى.",
     "clue2_en": "I won the Champions League with Ajax in 1995 and saved the decisive penalty in the 2008 final.",
     "clue2_ar": "فزت بدوري الأبطال مع أياكس عام 1995، وتصديت لركلة الترجيح الحاسمة في نهائي 2008.",
     "clue3_en": "I'm a Dutch goalkeeper who played for Ajax, Juventus, Fulham and Manchester United.",
@@ -1762,7 +1762,7 @@
   "4171": {
     "name": "Alessandro Nesta",
     "clue1_en": "My father supported my club, and I turned down its city rivals as a boy, when I still played up front.",
-    "clue1_ar": "كان والدي يشجع ناديي، ورفضت عرض غريمه في المدينة وأنا صغير، حين كنت لا أزال ألعب في الهجوم.",
+    "clue1_ar": "كان والدي يشجع ناديي، وحين كنت صغيراً ألعب في الهجوم رفضت عرض غريمه في المدينة.",
     "clue2_en": "I captained my club to the league title in 2000, and won the World Cup in 2006 despite injury.",
     "clue2_ar": "كنت قائد ناديي حين توّج بالدوري عام 2000، وفزت بكأس العالم 2006 رغم الإصابة.",
     "clue3_en": "I'm an Italian centre-back who left Lazio for AC Milan in 2002 for €31m.",
@@ -2521,7 +2521,7 @@
   "5959": {
     "name": "Gabriel Batistuta",
     "clue1_en": "As a tall boy, I preferred basketball to football, and I started out in Rosario.",
-    "clue1_ar": "كنت فتى طويل القامة يفضّل كرة السلة على كرة القدم، وبدأت مسيرتي في روساريو.",
+    "clue1_ar": "كنت فتى طويل القامة أفضّل كرة السلة على كرة القدم، وبدأت مسيرتي في روساريو.",
     "clue2_en": "I stayed with my club when it went down to Serie B in 1993 and helped it straight back up.",
     "clue2_ar": "بقيت مع ناديي حين هبط إلى الدرجة الثانية عام 1993، وساعدته على العودة فوراً.",
     "clue3_en": "I'm an Argentine striker who spent nine years at Fiorentina and won the league with Roma in 2001.",
@@ -2576,7 +2576,7 @@
   "5985": {
     "name": "Gianluca Pagliuca",
     "clue1_en": "I came through the youth teams of my hometown club Bologna and won the league with Sampdoria in 1991.",
-    "clue1_ar": "تخرّجت من فرق ناشئي نادي مدينتي بولونيا، وفزت بالدوري مع سامبدوريا عام 1991.",
+    "clue1_ar": "تدرّجت في فرق الناشئين بنادي مدينتي بولونيا، وفزت بالدوري مع سامبدوريا عام 1991.",
     "clue2_en": "I was the first goalkeeper ever sent off at a World Cup, in 1994.",
     "clue2_ar": "كنت أول حارس مرمى يُطرد في كأس العالم، عام 1994.",
     "clue3_en": "I'm an Italian goalkeeper who played for Sampdoria, Inter and Bologna.",
@@ -3126,7 +3126,7 @@
   "8016": {
     "name": "Vitor Baia",
     "clue1_en": "I grew up across the river from Porto and joined my club's youth teams at 13.",
-    "clue1_ar": "نشأت على الضفة المقابلة من النهر قبالة بورتو، وانضممت إلى فرق ناشئي ناديي في الثالثة عشرة.",
+    "clue1_ar": "نشأت على الضفة الأخرى من النهر قبالة بورتو، وانضممت إلى فرق الناشئين في ناديي في الثالثة عشرة.",
     "clue2_en": "I'm one of the most decorated players in history, and won the Champions League in 2004.",
     "clue2_ar": "أنا من أكثر اللاعبين تتويجاً بالألقاب في التاريخ، وفزت بدوري الأبطال عام 2004.",
     "clue3_en": "I'm a Portuguese goalkeeper who spent most of my career at Porto and also played for Barcelona.",
@@ -3379,7 +3379,7 @@
   "10367": {
     "name": "Claudio Caniggia",
     "clue1_en": "I ran the 100 metres before football and moved from Buenos Aires to Verona at 21.",
-    "clue1_ar": "كنت عدّاءً في سباق 100 متر قبل كرة القدم، وانتقلت من بوينس آيرس إلى فيرونا في الحادية والعشرين.",
+    "clue1_ar": "مارست سباق 100 متر قبل كرة القدم، وانتقلت من بوينس آيرس إلى فيرونا في الحادية والعشرين.",
     "clue2_en": "I scored the goal that knocked Brazil out of the 1990 World Cup, then missed the final through suspension.",
     "clue2_ar": "سجّلت الهدف الذي أقصى البرازيل من كأس العالم 1990، ثم غبت عن النهائي بسبب الإيقاف.",
     "clue3_en": "I'm an Argentine winger with long blond hair who played for Atalanta, Roma and Benfica.",
@@ -4448,7 +4448,7 @@
     "clue1_en": "I started at Genk and spent eight years at Anderlecht.",
     "clue1_ar": "بدأت مع خنك، وقضيت ثماني سنوات في أندرلخت.",
     "clue2_en": "A young Brazilian superstar later called me his best ever strike partner, from our time at PSV.",
-    "clue2_ar": "وصفني نجم برازيلي شاب لاحقاً بأنني أفضل شريك هجوم لعب معه على الإطلاق، منذ أيامنا في آيندهوفن.",
+    "clue2_ar": "وصفني لاحقاً نجم برازيلي عملاق زاملته شاباً في آيندهوفن بأنني أفضل شريك هجوم لعب معه على الإطلاق.",
     "clue3_en": "I'm a Belgian striker whose career ended with a broken leg at Aston Villa in 2000.",
     "clue3_ar": "أنا مهاجم بلجيكي انتهت مسيرتي بكسر في الساق مع أستون فيلا عام 2000.",
     "status": "draft",
@@ -7328,7 +7328,7 @@
   "88998": {
     "name": "Carlos Valderrama",
     "clue1_en": "I started at my hometown club in Santa Marta, then played in Europe for Montpellier and Valladolid.",
-    "clue1_ar": "بدأت مع نادي مدينتي سانتا مارتا، ثم لعبت في أوروبا لمونبلييه وبلد الوليد.",
+    "clue1_ar": "بدأت مع نادي مدينتي في سانتا مارتا، ثم لعبت في أوروبا لمونبلييه وبلد الوليد.",
     "clue2_en": "I played at three World Cups and was twice named South American Footballer of the Year.",
     "clue2_ar": "شاركت في ثلاث نسخ من كأس العالم، واختُرت مرتين أفضل لاعب في أمريكا الجنوبية.",
     "clue3_en": "I'm a Colombian playmaker famous for my huge blond curly hair.",
@@ -7671,7 +7671,7 @@
     "clue1_en": "I was born in Nîmes to Spanish parents and spent nine years at Monaco.",
     "clue1_ar": "وُلدت في نيم لأبوين إسبانيين، وقضيت تسع سنوات في موناكو.",
     "clue2_en": "I won Euro 84, and missed the only penalty of the 1991 European Cup final shootout.",
-    "clue2_ar": "فزت بيورو 1984، وكانت ركلتي الوحيدة الضائعة في ركلات ترجيح نهائي كأس أوروبا للأندية 1991.",
+    "clue2_ar": "فزت بيورو 1984، وكنت الوحيد الذي أهدر ركلته في ركلات ترجيح نهائي كأس أوروبا للأندية 1991.",
     "clue3_en": "I'm a French full-back who played for Monaco, Marseille and Lyon.",
     "clue3_ar": "أنا ظهير فرنسي لعبت لموناكو ومرسيليا وليون.",
     "status": "draft",
@@ -7757,7 +7757,7 @@
   "101382": {
     "name": "Bryan Robson",
     "clue1_en": "As a young player, I broke my leg twice and then my ankle in a single season.",
-    "clue1_ar": "وأنا لاعب شاب، كُسرت ساقي مرتين ثم كاحلي في موسم واحد.",
+    "clue1_ar": "في بداياتي، كُسرت ساقي مرتين ثم كاحلي في موسم واحد.",
     "clue2_en": "I scored after 27 seconds against France at the 1982 World Cup.",
     "clue2_ar": "سجّلت بعد 27 ثانية أمام فرنسا في كأس العالم 1982.",
     "clue3_en": "I'm an English midfielder who captained Manchester United for 12 years.",
@@ -7772,7 +7772,7 @@
     "clue2_en": "I was beaten by a goal scored with a hand in the 1986 World Cup quarter-final.",
     "clue2_ar": "اهتزت شباكي بهدف سُجّل باليد في ربع نهائي كأس العالم 1986.",
     "clue3_en": "I'm an English goalkeeper who won two European Cups with Nottingham Forest and is England's joint most-capped player.",
-    "clue3_ar": "أنا حارس مرمى إنجليزي فزت بكأس أوروبا للأندية مرتين مع نوتنغهام فورست، وأتقاسم الرقم القياسي لعدد المباريات الدولية مع إنجلترا.",
+    "clue3_ar": "أنا حارس مرمى إنجليزي فزت بكأس أوروبا للأندية مرتين مع نوتنغهام فورست، وأتقاسم رقم إنجلترا القياسي في عدد المباريات الدولية.",
     "status": "draft",
     "notes": ""
   },
