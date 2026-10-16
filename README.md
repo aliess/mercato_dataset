@@ -91,7 +91,7 @@ carry the result: the app and the server hold no value lines.
   history plus the current value).
 - **Still playing** (`active`) = not retired and alive; a player without a club (or on a career
   break) counts only if his last move was less than a year ago.
-- **Transfer Path and Player Story**: Beginner = still playing and (value now €50m+, or fame
+- **Transfer Path and Player Story**: Beginner = still playing and (value now €60m+, or fame
   €80m+ with value now €15m+); Intermediate = otherwise fame €40m+ (every legend lands here);
   Expert = fame under €40m. Written as `difficulty` on each player of `game_data_v1.json`;
   `market_value` there is the fame.

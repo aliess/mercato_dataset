@@ -30,7 +30,7 @@ TIERS = ('beginner', 'intermediate', 'expert')
 
 # ── Transfer Path and Player Story ──
 VALUE_NOW_FROM = '2023-07-01'
-BEGINNER_VALUE_NOW = 50_000_000         # still playing and worth €50m+ since VALUE_NOW_FROM,
+BEGINNER_VALUE_NOW = 60_000_000         # still playing and worth €60m+ since VALUE_NOW_FROM,
 BEGINNER_FAME = 80_000_000              # or fame €80m+ ...
 BEGINNER_FAME_VALUE_NOW = 15_000_000    # ... and still worth €15m+ since VALUE_NOW_FROM
 INTERMEDIATE_FAME = 40_000_000          # otherwise: intermediate from €40m fame, expert below
