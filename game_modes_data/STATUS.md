@@ -9,6 +9,7 @@ Written by the build and publish scripts from each mode's `LAST_UPDATED.json`; d
 | Three Clues | 2026-10-16 | 1,955 clue sets; 2,211 players in pool | written by hand against facts.jsonl | 2026-10-16 (1,955 clue sets) | 2026-10-16 (1,955 clue sets) |
 | Starting XI | 2026-10-16 | 1,120 lineups; 560 matches; latest match 2026-07-19 | Transfermarkt API | 2026-10-16 (1,120 lineups; 560 matches) | 2026-10-16 (1,120 lineups; 560 matches) |
 | Grid Rush | 2026-10-16 | 45,057 players; 268 clubs; seasons 1990 to 2026 | Transfermarkt API | 2026-10-16 (45,057 players; 268 clubs) | 2026-10-16 (45,057 players; 268 clubs) |
+| Learn | 2026-10-17 | 1 worlds; 11 stops; 88 steps; 227 players; 66 lineups; 27 pairs; 11 draft cards | — | never | never |
 
 "Behind the files" means the files here were rebuilt after the last upload, or hold different
 counts: the app is still getting the older data. "never" means the mode has not been

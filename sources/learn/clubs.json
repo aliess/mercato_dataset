@@ -1,0 +1,79 @@
+[
+ {
+  "club_id": 418,
+  "short": "RMA",
+  "en": "Real Madrid were founded in 1902 in Madrid and play at the Santiago Bernabéu. They are Los Blancos for their all-white kit, and also Los Merengues. They won the first five European Cups, from 1956 to 1960, with Alfredo Di Stéfano, and built the Galácticos sides of the 2000s.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 131,
+  "short": "FCB",
+  "en": "Barcelona were founded in 1899 by Joan Gamper and play at the Camp Nou. Fans call the club Barça or the Blaugrana, after its blue and garnet colours. Johan Cruyff's Dream Team won its first European Cup in 1992, and Pep Guardiola's passing sides with Messi, Xavi and Iniesta ruled from 2008.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 583,
+  "short": "PSG",
+  "en": "Paris Saint-Germain were founded in 1970 and play at the Parc des Princes in Paris. They are Les Parisiens, or Les Rouge et Bleu. Since Qatar Sports Investments bought the club in 2011 they have signed stars such as Ibrahimović, Neymar and Mbappé, and they won their first Champions League in 2025.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 281,
+  "short": "MCI",
+  "en": "Manchester City began in 1880 as St. Mark's (West Gorton) and play at the Etihad Stadium, after many years at Maine Road. They are City, or the Citizens, in sky blue. The 2008 Abu Dhabi takeover changed the club, and Pep Guardiola's side won the treble of league, FA Cup and Champions League in 2023.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 31,
+  "short": "LIV",
+  "en": "Liverpool were founded in 1892 and play at Anfield, where fans sing You'll Never Walk Alone. They are the Reds. Bill Shankly and Bob Paisley built the sides that ruled England and Europe in the 1970s and 80s, and Jürgen Klopp's team won the Champions League in 2019 and the Premier League in 2020.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 27,
+  "short": "BAY",
+  "en": "Bayern Munich were founded in 1900 and play at the Allianz Arena, their home since 2005. They are Die Roten, the Reds. Franz Beckenbauer, Gerd Müller and Sepp Maier won three European Cups in a row from 1974 to 1976, and Bayern won trebles of league, cup and Champions League in 2013 and 2020.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 11,
+  "short": "ARS",
+  "en": "Arsenal began in 1886 as Dial Square, a team of workers at the Royal Arsenal in Woolwich, and now play at the Emirates Stadium in north London, their home since leaving Highbury in 2006. They are the Gunners. Under Arsène Wenger they went a whole league season unbeaten in 2003–04: the Invincibles.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 631,
+  "short": "CHE",
+  "en": "Chelsea were founded in 1905 and play at Stamford Bridge in west London. They are the Blues. After Roman Abramovich bought the club in 2003, José Mourinho's side won the league in 2005 and 2006, and Chelsea won the Champions League in Munich in 2012 and again in Porto in 2021.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 985,
+  "short": "MUN",
+  "en": "Manchester United began in 1878 as Newton Heath and took their name in 1902. They play at Old Trafford, the Theatre of Dreams, and are the Red Devils. Matt Busby's side won the European Cup in 1968, ten years after the Munich air disaster, and Sir Alex Ferguson's won the treble in 1999.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 148,
+  "short": "TOT",
+  "en": "Tottenham Hotspur were founded in 1882 in north London and play at the Tottenham Hotspur Stadium, built on the site of White Hart Lane and opened in 2019. They are Spurs, or the Lilywhites. Their 1960–61 side won the league and FA Cup double, and they reached the Champions League final in 2019.",
+  "ar": "",
+  "status": "draft"
+ },
+ {
+  "club_id": 13,
+  "short": "ATM",
+  "en": "Atlético Madrid were founded in 1903 and play at the Metropolitano, their home since leaving the Vicente Calderón in 2017. They are Los Colchoneros, the mattress makers, after their red and white stripes. Under Diego Simeone, coach since 2011, they won La Liga in 2014 and 2021 and reached two Champions League finals.",
+  "ar": "",
+  "status": "draft"
+ }
+]

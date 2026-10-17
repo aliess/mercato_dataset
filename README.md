@@ -52,6 +52,7 @@ sources/            where the data comes from; shared by every mode
   squads.py           the pool clubs and their squads since 1990/91: the one player list
   fame.py             fame, value now, still playing, and the tiers of every mode
   legends/            legends.json (hand-picked older players and their value) and legend_fame.py
+  learn/              Learn: clubs.json (club cards, draft → approved) and build_learn.py (learn_v1.json)
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
   player_facts.py     a player's nationality, position and date of birth (for the hints)
   country_ids.json    Transfermarkt country id → name, written by the Grid build
@@ -73,6 +74,7 @@ update.sh           refresh the transfer history and run the publisher in one co
 | Starting XI | `game_modes_data/starting_xi/` ([README](game_modes_data/starting_xi/README.md)) | `output/xi_lineups.json` | `cache/xi_v1.json` |
 | Grid Rush | `game_modes_data/grid/` ([README](game_modes_data/grid/README.md)) | `output/grid_pool.json` | `cache/grid_pool_v1.json` |
 | Why each tier (admin panel only) | `transfer_history/`, `starting_xi/` | `output/player_tiers.json`, `output/xi_stars.json` | `cache/tiers_v1.json` |
+| Learn (the journey map) | `sources/learn/` | `clubs.json` + the files above | `cache/learn_v1.json` |
 
 Game data does not pass through Firestore. [Publishing](#publishing-to-the-app) below says how
 the files get to the app; `game_modes_data/STATUS.md` says what has been uploaded where.
@@ -188,7 +190,8 @@ python publish_files.py --project prod --apply
 | `xi_v1.json` | `starting_xi/output/xi_lineups.json` |
 | `grid_pool_v1.json` | `grid/output/grid_pool.json` |
 | `tiers_v1.json` | `transfer_history/output/player_tiers.json` and `starting_xi/output/xi_stars.json`: each player's value now and the `sources/fame.py` rule that set his tier, each lineup's star count, the lines and the growth factors those builds used |
-| `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the five files |
+| `learn_v1.json` | `sources/learn/clubs.json` and the files above, by `sources/learn/build_learn.py`: the Learn worlds, stops and steps. Only stops with an `approved` card; with none, no file |
+| `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the data files |
 
 - **The dry run** downloads the live `manifest.json` by public HTTP and says per file whether it
   is unchanged, changed or new, with sizes and counts. For a file that would change it also
@@ -201,6 +204,16 @@ python publish_files.py --project prod --apply
   same version and the app does not re-download. Keep it that way when changing a builder.
 - **Safety stop**: a file that would be more than 20% smaller than the live one stops the run
   (`--allow-shrink` overrides).
+- **Learn** (`learn_v1.json`, plan `footballquiz/docs/plans/learn_journey.md`): a stop is
+  built only when its club card in `sources/learn/clubs.json` is `approved` (cards are
+  written as `draft`, the user reviews them, the arabic agent adds `ar`). `--include-drafts`
+  builds the drafts too, for dev testing only (the publisher refuses it for prod).
+  `python sources/learn/build_learn.py [--include-drafts]` builds just this file into
+  `publish/`. Rules of World 1: the club's players now (active, last move to this club),
+  Beginner first then by `market_value`, in steps of 6–8 (`stars` ≈ the Beginner ones, then
+  `squad`); its lineups (famous, then finals, then stars and year; up to 2 steps of 3); up to
+  3 pairs with earlier stops that have 3+ answers valued €20m+ in the Grid pool; checkpoint;
+  pointer to the world that teaches its history.
 - **To undo an upload**: check out the commit whose data was live before, and publish again.
 - **`tiers_v1.json` must explain the data**: the publisher stops, writing nothing, when a player
   of the game data or a lineup has no entry, when a player's `why` (recomputed from his fame,

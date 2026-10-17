@@ -10,7 +10,10 @@ Game data never passes through Firestore: this script does not touch it.
   cache/tiers_v1.json       game_modes_data/transfer_history/output/player_tiers.json and
                             starting_xi/output/xi_stars.json: why each player and lineup has its
                             tier, for the admin panel only (the app never downloads it)
-  cache/manifest.json       version (SHA-256), size and last change of the five files
+  cache/learn_v1.json       sources/learn/clubs.json (approved club cards) and the files above:
+                            the Learn journey (sources/learn/build_learn.py). Not built while no
+                            stop has an approved card; --include-drafts (dev only) builds drafts too
+  cache/manifest.json       version (SHA-256), size and last change of the data files
 
 The files hold no build time, so the same inputs always give the same bytes and the same
 version. Shapes are in ../CONTRACTS.md §1.
@@ -51,6 +54,7 @@ from sources.last_updated import record  # noqa: E402
 from sources import fame  # noqa: E402
 from sources.fame import TIERS  # noqa: E402
 from sources.names import alt_names  # noqa: E402
+from sources.learn.build_learn import build_learn  # noqa: E402
 
 PROJECTS = {'dev': 'football-quiz-32eb9', 'prod': 'mercato-6e710'}
 MODES = ROOT / 'game_modes_data'
@@ -420,20 +424,30 @@ FILES = {
     'clues_v1.json': ('clues', ('clue_sets',)),
     'xi_v1.json': ('starting_xi', ('lineups', 'matches')),
     'grid_pool_v1.json': ('grid', ('players', 'clubs')),
+    'learn_v1.json': ('../sources/learn', ('stops', 'players')),
 }
 
 
-def build_all():
-    """{file name: {content, body, gzip, version, counts, notes}} for the five data files."""
+def build_all(include_drafts=False):
+    """{file name: {content, body, gzip, version, counts, notes}} for the data files.
+    learn_v1.json is left out while no Learn stop has a card to publish."""
     game_data, game_counts, game_notes = build_game_data()
     xi = build_xi()
+    grid = build_grid()
+    tiers = build_tiers(game_data, xi[0])
     built = {
         'game_data_v1.json': (game_data, game_counts, game_notes),
         'clues_v1.json': build_clues(game_data),
         'xi_v1.json': xi,
-        'grid_pool_v1.json': build_grid(),
-        'tiers_v1.json': build_tiers(game_data, xi[0]),
+        'grid_pool_v1.json': grid,
+        'tiers_v1.json': tiers,
     }
+    learn = build_learn(game_data, xi[0], grid[0], tiers[0]['lineups'], include_drafts=include_drafts)
+    if learn[0] is not None:
+        built['learn_v1.json'] = learn
+    else:
+        for note in learn[2]:
+            print(f'learn_v1.json not built: {note}')
     files = {}
     for name, (content, counts, notes) in built.items():
         body = encode(content)
@@ -557,6 +571,22 @@ def describe_difference(name, live, new):
                      f"by why: {tally(live['players'])} live → {tally(new['players'])}")
         moved = sum(1 for i, stars in new['lineups'].items() if i in live['lineups'] and live['lineups'][i] != stars)
         lines.append(f"lineups: {len(live['lineups']):,} live → {len(new['lineups']):,}; {moved:,} with a changed star count")
+    elif name == 'learn_v1.json':
+        old_stops, new_stops = live['stops'], new['stops']
+        lines.append(f"stops: {len(old_stops):,} live → {len(new_stops):,}; "
+                     f"added {[i for i in new_stops if i not in old_stops]}, removed {[i for i in old_stops if i not in new_stops]}")
+        taught = lambda stops: {p for stop in stops.values() for step in stop['steps'] for p in step.get('players', [])}
+        old_players, new_players = taught(old_stops), taught(new_stops)
+        lines.append(f"players taught: {len(old_players):,} live → {len(new_players):,}; "
+                     f"{len(new_players - old_players):,} added, {len(old_players - new_players):,} removed")
+        old_steps = {step['id']: step for stop in old_stops.values() for step in stop['steps']}
+        new_steps = {step['id']: step for stop in new_stops.values() for step in stop['steps']}
+        changed = sum(1 for i in new_steps if i in old_steps and old_steps[i] != new_steps[i])
+        lines.append(f"steps: {len(old_steps):,} live → {len(new_steps):,}; {len(set(new_steps) - set(old_steps)):,} added, "
+                     f"{len(set(old_steps) - set(new_steps)):,} removed, {changed:,} changed")
+        cards = sum(1 for i in new_stops if i in old_stops and old_stops[i]['card'] != new_stops[i]['card'])
+        if cards:
+            lines.append(f'  {cards:,} club cards with changed text')
     return lines
 
 
@@ -627,7 +657,12 @@ def parse_args():
                         help="Don't download the live files to describe what changes.")
     parser.add_argument('--allow-shrink', action='store_true',
                         help='Allow a file to lose more than 20%% of its size (safety stop otherwise).')
-    return parser.parse_args()
+    parser.add_argument('--include-drafts', action='store_true',
+                        help='Build Learn stops whose club card is still a draft (dev only, for testing).')
+    args = parser.parse_args()
+    if args.include_drafts and args.project != 'dev':
+        parser.error('--include-drafts is for dev only: prod gets approved club cards only.')
+    return args
 
 
 def main():
@@ -635,13 +670,19 @@ def main():
     project_id = PROJECTS[args.project]
     bucket_id = bucket_name(project_id)
 
-    files = build_all()
+    files = build_all(include_drafts=args.include_drafts)
     PUBLISH_DIR.mkdir(exist_ok=True)
     for name, built in files.items():
         (PUBLISH_DIR / name).write_bytes(built['body'])
+    if 'learn_v1.json' not in files:  # no stale copy next to the built files
+        (PUBLISH_DIR / 'learn_v1.json').unlink(missing_ok=True)
 
     live = live_manifest(bucket_id)
     live_files = (live or {}).get('files', {})
+    dropped = [name for name in live_files if name not in files]
+    if dropped:  # a manifest without a live file's entry would take it away from the app
+        sys.exit(f"Stopping: {', '.join(dropped)} is live but was not built this time "
+                 '(learn_v1.json: no approved club card, or --include-drafts was given before and not now).')
     now = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
     manifest = {'generated_at': now, 'files': {}}
     shrunk = []

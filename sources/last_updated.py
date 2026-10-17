@@ -15,7 +15,8 @@ FILE_NAME = 'LAST_UPDATED.json'
 MODES_DIR = Path(__file__).resolve().parent.parent / 'game_modes_data'
 PROJECTS = {'football-quiz-32eb9': 'Dev', 'mercato-6e710': 'Prod'}
 MODES = {'transfer_history': 'Transfer history', 'clues': 'Three Clues',
-         'starting_xi': 'Starting XI', 'grid': 'Grid Rush'}
+         'starting_xi': 'Starting XI', 'grid': 'Grid Rush',
+         '../sources/learn': 'Learn'}  # Learn's folder is sources/learn, not a game mode folder
 
 
 def record(mode_dir, section, **facts):
