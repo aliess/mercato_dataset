@@ -298,9 +298,17 @@ def fetch_transfers(api, dataset, player_ids):
     return transfers, clubs, last_move, failed
 
 
+RETIRED_CLUB_ID = 123
+DECEASED_CLUB_ID = 4023  # Transfermarkt files players who have died under a club named "---"
+
+
 def current_club(profile):
+    """His current club id. A player who has died gets Retired's id, like any other former player."""
     current = next((a for a in profile.get('clubAssignments') or [] if a.get('type') == 'current'), None)
-    return int(current['clubId']) if current else None
+    if not current:
+        return None
+    club_id = int(current['clubId'])
+    return RETIRED_CLUB_ID if club_id == DECEASED_CLUB_ID else club_id
 
 
 def profile_row(player_id, p, countries, clubs, dataset):

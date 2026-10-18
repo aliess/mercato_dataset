@@ -42,7 +42,8 @@ Endpoints checked by hand (last on 2026-10-09). All ids are Transfermarkt ids.
 | `player/{id}/market-value-history` | Every value a player was given: `history[]` with `marketValue.value` and `determined` (date) | transfer history (value now, for the tiers) |
 
 There is no search endpoint and no `countries` endpoint (404). Retired players work by id
-(Zidane 3111, Henry 3207).
+(Zidane 3111, Henry 3207). A player who has died has the current club "---" (id 4023);
+`build_dataset.py` writes him as Retired (id 123), like any other former player.
 
 ## Layout
 
