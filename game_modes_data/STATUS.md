@@ -5,8 +5,8 @@ Written by the build and publish scripts from each mode's `LAST_UPDATED.json`; d
 
 | Game mode | Last built | What the files hold | Source | Dev (`football-quiz-32eb9`) | Prod (`mercato-6e710`) |
 |---|---|---|---|---|---|
-| Transfer history | 2026-10-16 | 2,211 players; 17,483 transfers; latest transfer 2026-10-14; 141 beginner; 1,042 intermediate; 1,028 expert; 13 story only | Transfermarkt API | 2026-10-16 (2,211 players; 17,483 transfers) | 2026-10-16 (2,211 players; 17,483 transfers) |
-| Three Clues | 2026-10-16 | 1,955 clue sets; 2,211 players in pool | written by hand against facts.jsonl | 2026-10-16 (1,955 clue sets) | 2026-10-16 (1,955 clue sets) |
+| Transfer history | 2026-10-18 | 2,211 players; 17,483 transfers; latest transfer 2026-10-14; 141 beginner; 1,042 intermediate; 1,028 expert; 13 story only | Transfermarkt API | 2026-10-16 (2,211 players; 17,483 transfers) — **behind the files** | 2026-10-16 (2,211 players; 17,483 transfers) — **behind the files** |
+| Three Clues | 2026-10-18 | 1,954 clue sets; 2,211 players in pool | written by hand against facts.jsonl | 2026-10-16 (1,955 clue sets) — **behind the files** | 2026-10-16 (1,955 clue sets) — **behind the files** |
 | Starting XI | 2026-10-16 | 1,120 lineups; 560 matches; latest match 2026-07-19 | Transfermarkt API | 2026-10-16 (1,120 lineups; 560 matches) | 2026-10-16 (1,120 lineups; 560 matches) |
 | Grid Rush | 2026-10-16 | 45,057 players; 268 clubs; seasons 1990 to 2026 | Transfermarkt API | 2026-10-16 (45,057 players; 268 clubs) | 2026-10-16 (45,057 players; 268 clubs) |
 | Learn | 2026-10-17 | 1 worlds; 11 stops; 88 steps; 227 players; 66 lineups; 27 pairs; 11 draft cards | — | never | never |
