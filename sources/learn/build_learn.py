@@ -43,6 +43,9 @@ Other steps (per stop, as the stop has material):
                each with 3+ known answers in the Grid pool, a pair taught once
   checkpoint   one per stop; the Summit has one per world before it
   pointer      World 1: the world where this club's history is taught
+
+Dossiers, anchors and trails (item 140, what the app reads since then) are built from these stops
+by build_dossiers.py; story dossiers come from sources/learn/dossiers.json.
 """
 
 import argparse
@@ -499,6 +502,7 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
     passed = []                 # (world id, club id) of the club stops built so far
     route_index = build_routes(moves)
     left_out, null_cards = [], []
+    stop_lists = {}             # stop id → [(player, era or None for today)], in teaching order
 
     for world in WORLDS:
         stop_ids = []
@@ -566,6 +570,7 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
                                 key=lambda pe: (pe[1], pe[0]['id'] not in legends, -pe[0]['market_value'],
                                                 int(pe[0]['id'])))
                 ordered = [(p, None) for p in today] + former
+                stop_lists[stop_id] = ordered
                 if world['id'] == 'giants':
                     plan_sizes = plan_lessons(len(today), sum(1 for p in today if p['difficulty'] == 'beginner'))
                     if plan_sizes is None:
@@ -706,6 +711,13 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
     hooks = build_hooks(taught_order, players, clues, game_data, moves, notes)
     twins = build_twins(content_order(worlds, stops), players, moves)
     content = {'version': 1, 'worlds': worlds, 'stops': stops, 'hooks': hooks, 'twins': twins}
+    from sources.learn import build_dossiers
+    dossiers, anchors, trails = build_dossiers.build(
+        content, stop_lists, players, xi, grid, lineup_stars, moves, legends, route_index,
+        include_drafts=include_drafts, notes=notes, alt_names=game_data.get('alt_names') or {})
+    for world in worlds:
+        world['dossiers'] = dossiers['order'].get(world['id'], [])
+    content.update(dossiers=dossiers['by_id'], anchors=anchors, trails=trails)
     validate(content, game_data, xi, grid, clues, moves)
 
     if left_out:
@@ -728,6 +740,10 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
               'routes': sum(len(step.get('routes', [])) for step in steps),
               'hooks': len(hooks), 'clue_hooks': sum(1 for h in hooks.values() if 'clue' in h),
               'twins': len(twins)}
+    kinds = Counter(d['kind'] for d in content['dossiers'].values())
+    counts.update({f'dossiers_{kind}': kinds[kind] for kind in build_dossiers.KINDS},
+                  anchored=sum(1 for a in anchors.values() if a), no_anchor=sum(1 for a in anchors.values() if not a),
+                  trails=len(trails))
     return content, counts, notes
 
 
@@ -961,8 +977,10 @@ def validate(content, game_data, xi, grid, clues, moves=None):
     lineups = {m['id'] for m in xi['matches']}
     grid_clubs = {club['id'] for club in grid['clubs']}
     members = grid_members(grid)
-    if list(content) != ['version', 'worlds', 'stops', 'hooks', 'twins'] or content['version'] != 1:
-        problems.append(f'top level {list(content)}, expected version 1, worlds, stops, hooks, twins')
+    if list(content) != ['version', 'worlds', 'stops', 'hooks', 'twins', 'dossiers', 'anchors', 'trails'] \
+            or content['version'] != 1:
+        problems.append(f'top level {list(content)}, expected version 1, worlds, stops, hooks, twins, '
+                        'dossiers, anchors, trails')
     world_ids = [world['id'] for world in content['worlds']]
     listed = [stop_id for world in content['worlds'] for stop_id in world['stops']]
     if sorted(listed) != sorted(content['stops']) or len(set(listed)) != len(listed):
@@ -974,7 +992,7 @@ def validate(content, game_data, xi, grid, clues, moves=None):
     order = []
     passed = []
     for world in content['worlds']:
-        if list(world) != ['id', 'n', 'name', 'tier', 'theme', 'stops'] or world['tier'] not in TIERS \
+        if list(world) != ['id', 'n', 'name', 'tier', 'theme', 'stops', 'dossiers'] or world['tier'] not in TIERS \
                 or list(world['name']) != ['en', 'ar'] or world['theme'] != world['id']:
             problems.append(f"world {world.get('id')}: bad fields")
         for stop_id in world['stops']:
@@ -1109,6 +1127,8 @@ def validate(content, game_data, xi, grid, clues, moves=None):
             seen.add(frozenset(twin[:2]))
         if not ok:
             problems.append(f'twin {twin}')
+    from sources.learn import build_dossiers
+    problems += build_dossiers.validate(content, game_data, xi)
     if problems:
         sys.exit('learn_v1.json breaks the contract, nothing was written:\n  ' + '\n  '.join(problems[:30])
                  + (f'\n  … (+{len(problems) - 30:,})' if len(problems) > 30 else ''))

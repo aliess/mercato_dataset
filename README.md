@@ -54,7 +54,8 @@ sources/            where the data comes from; shared by every mode
   squads.py           the pool clubs and their squads since 1990/91: the one player list
   fame.py             fame, value now, still playing, and the tiers of every mode
   legends/            legends.json (hand-picked older players and their value) and legend_fame.py
-  learn/              Learn: clubs.json (club cards, draft → approved) and build_learn.py (learn_v1.json)
+  learn/              Learn: clubs.json (club cards) and dossiers.json (story dossiers), both draft →
+                      approved; build_learn.py and build_dossiers.py (learn_v1.json)
   download_dataset.py transfermarkt-datasets tables → sources/dataset/
   player_facts.py     a player's nationality, position and date of birth (for the hints)
   country_ids.json    Transfermarkt country id → name, written by the Grid build
@@ -220,6 +221,17 @@ python publish_files.py --project prod --apply
   Hooks lead with clue 1 of the published set unless another clue has more memorable words or
   it holds a word of his name; a player without a usable clue gets a fact. Celtic is named in
   the plan but is not a Grid pool club, so it has no stop.
+  Since item 140 the app reads **dossiers, anchors and trails** (`sources/learn/build_dossiers.py`,
+  rules in its docstring). Squad and era dossiers (8–15 players) are cut from each stop's
+  players; a former player may sit in any decade he spent half a season at the club, a small
+  club's era dossier spans several decades and says so in its title, and a stop of fewer than 8
+  borrows players who spent half a season there. Night, nation and route dossiers come from the
+  stops' steps. Story dossiers are written in `sources/learn/dossiers.json` (`draft` until the
+  user approves; only `approved` ones are published without `--include-drafts`); the build
+  checks their lengths, players and that a teaser never spells out the mystery player's name.
+  Their player lists were drafted from data queries (squads from the API cache, moves, fees,
+  XIs): a season squad from the API also lists players loaned out at the start of that season,
+  so a "that season's team" list keeps only players at the club 120+ days of it.
 - **To undo an upload**: check out the commit whose data was live before, and publish again.
 - **`tiers_v1.json` must explain the data**: the publisher stops, writing nothing, when a player
   of the game data or a lineup has no entry, when a player's `why` (recomputed from his fame,

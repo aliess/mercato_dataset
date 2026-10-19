@@ -1,0 +1,1418 @@
+[
+  {
+    "id": "story_100m_club",
+    "world": "giants",
+    "status": "draft",
+    "title": {
+      "en": "The €100m club",
+      "ar": null
+    },
+    "line": {
+      "en": "Sold for €100m or more in a single deal: the dearest moves in football.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "68290",
+      "teaser": {
+        "en": "Still the record: €222m, from Barcelona to Paris in August 2017.",
+        "ar": null
+      }
+    },
+    "players": [
+      "342229",
+      "68290",
+      "581678",
+      "125781",
+      "349066",
+      "598577",
+      "8198",
+      "288230",
+      "357662",
+      "503743",
+      "567576",
+      "648195",
+      "1390649",
+      "687626",
+      "203460"
+    ]
+  },
+  {
+    "id": "story_born_2005",
+    "world": "giants",
+    "status": "draft",
+    "title": {
+      "en": "Born in 2005 or later",
+      "ar": null
+    },
+    "line": {
+      "en": "The youngest players at the eleven giants today, all born in 2005 or later.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "861410",
+      "teaser": {
+        "en": "Born in Ankara in 2005, he left Fenerbahçe for Madrid for €28m at 18.",
+        "ar": null
+      }
+    },
+    "players": [
+      "914562",
+      "1390649",
+      "861410",
+      "1097139",
+      "1056993",
+      "890290",
+      "1004301",
+      "971570",
+      "923831",
+      "801734",
+      "822959",
+      "895937",
+      "904802",
+      "1138758",
+      "748804"
+    ]
+  },
+  {
+    "id": "story_real_madrid_brazilians",
+    "world": "giants",
+    "status": "draft",
+    "title": {
+      "en": "Real Madrid's Brazilians",
+      "ar": null
+    },
+    "line": {
+      "en": "From Roberto Carlos to Vinícius: the Brazilians who have worn Real Madrid white.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3140",
+      "teaser": {
+        "en": "Real Madrid bought him from Inter in 2002, months after he won the World Cup.",
+        "ar": null
+      }
+    },
+    "players": [
+      "371998",
+      "412363",
+      "16306",
+      "401530",
+      "971570",
+      "3140",
+      "7518",
+      "70",
+      "89",
+      "3366",
+      "44501",
+      "225693",
+      "15511",
+      "122155",
+      "15952"
+    ]
+  },
+  {
+    "id": "story_milan_derby",
+    "world": "serie_a",
+    "status": "draft",
+    "title": {
+      "en": "Both sides of Milan",
+      "ar": null
+    },
+    "line": {
+      "en": "They played for AC Milan and for Inter, the two clubs of the Milan derby.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "5817",
+      "teaser": {
+        "en": "Inter sold him to Milan for €17m in 2001; ten years later he left for Juventus on a free.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3140",
+      "4153",
+      "5817",
+      "3183",
+      "3410",
+      "4168",
+      "5758",
+      "5797",
+      "5940",
+      "5769",
+      "1403",
+      "3455",
+      "39983",
+      "126414",
+      "45146"
+    ]
+  },
+  {
+    "id": "story_atalanta_juventus",
+    "world": "serie_a",
+    "status": "draft",
+    "title": {
+      "en": "Atalanta → Juventus",
+      "ar": null
+    },
+    "line": {
+      "en": "From Bergamo to Turin: the players who moved straight from Atalanta to Juventus.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "360518",
+      "teaser": {
+        "en": "Juventus paid Atalanta €58.4m for him in 2024, the dearest move on this road.",
+        "ar": null
+      }
+    },
+    "players": [
+      "355915",
+      "431755",
+      "5821",
+      "5797",
+      "5747",
+      "360518",
+      "340879",
+      "118689",
+      "197470",
+      "368482"
+    ]
+  },
+  {
+    "id": "story_napoli_2023",
+    "world": "serie_a",
+    "status": "draft",
+    "title": {
+      "en": "Napoli's 2023 Scudetto",
+      "ar": null
+    },
+    "line": {
+      "en": "Napoli's 2022–23 title, their first Serie A crown since the Maradona years.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "502670",
+      "teaser": {
+        "en": "Signed from Dinamo Batumi for €13.3m in 2022, sold to Paris for €80m in January 2025.",
+        "ar": null
+      }
+    },
+    "players": [
+      "502670",
+      "503482",
+      "401923",
+      "450936",
+      "181136",
+      "316889",
+      "192735",
+      "240414",
+      "354361",
+      "405885",
+      "165895",
+      "400489",
+      "169880",
+      "257732",
+      "282388"
+    ]
+  },
+  {
+    "id": "story_inter_treble",
+    "world": "serie_a",
+    "status": "draft",
+    "title": {
+      "en": "Inter's 2010 treble",
+      "ar": null
+    },
+    "line": {
+      "en": "Mourinho's Inter won Serie A, the Coppa Italia and the Champions League in 2009–10.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "4673",
+      "teaser": {
+        "en": "Real Madrid sold him to Inter for €15m in August 2009, two years after buying him from Ajax.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3183",
+      "1161",
+      "3428",
+      "5938",
+      "5769",
+      "4673",
+      "4257",
+      "41384",
+      "18301",
+      "45146",
+      "7520",
+      "22202",
+      "4188",
+      "22412",
+      "77"
+    ]
+  },
+  {
+    "id": "story_como_new_names",
+    "world": "serie_a",
+    "status": "draft",
+    "title": {
+      "en": "Como's new names",
+      "ar": null
+    },
+    "line": {
+      "en": "Back in Serie A in 2024 after 21 years away, Como signed famous names and young talent.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "164770",
+      "teaser": {
+        "en": "A World Cup winner in 2018, he joined Como from Manchester United in 2024 and retired that September.",
+        "ar": null
+      }
+    },
+    "players": [
+      "207929",
+      "164770",
+      "948294",
+      "128223",
+      "85370",
+      "580451",
+      "329145",
+      "167727",
+      "324690",
+      "668547",
+      "1061282",
+      "1190411",
+      "130360",
+      "395237",
+      "523318"
+    ]
+  },
+  {
+    "id": "story_leverkusen_unbeaten",
+    "world": "bundesliga",
+    "status": "draft",
+    "title": {
+      "en": "Leverkusen's unbeaten season",
+      "ar": null
+    },
+    "line": {
+      "en": "Xabi Alonso's Leverkusen won the 2023–24 Bundesliga without losing a league game.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "111455",
+      "teaser": {
+        "en": "After seven seasons at Arsenal, he joined Leverkusen for €15m in 2023.",
+        "ar": null
+      }
+    },
+    "players": [
+      "598577",
+      "111455",
+      "242086",
+      "484547",
+      "659813",
+      "193082",
+      "401578",
+      "564545",
+      "656681",
+      "196357",
+      "483046",
+      "644771",
+      "532776",
+      "278359",
+      "340322"
+    ]
+  },
+  {
+    "id": "story_bayern_2013",
+    "world": "bundesliga",
+    "status": "draft",
+    "title": {
+      "en": "Bayern's 2013 treble",
+      "ar": null
+    },
+    "line": {
+      "en": "Bayern won the Bundesliga, the cup and the Champions League in 2012–13, beating Dortmund at Wembley.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "44017",
+      "teaser": {
+        "en": "Bayern paid Athletic Club €40m for him in August 2012, then a Bundesliga record.",
+        "ar": null
+      }
+    },
+    "players": [
+      "31909",
+      "58358",
+      "59016",
+      "22068",
+      "17259",
+      "26485",
+      "6288",
+      "2514",
+      "4360",
+      "44017",
+      "119296",
+      "2219",
+      "34572",
+      "86792",
+      "10471"
+    ]
+  },
+  {
+    "id": "story_klassiker",
+    "world": "bundesliga",
+    "status": "draft",
+    "title": {
+      "en": "Both sides of Der Klassiker",
+      "ar": null
+    },
+    "line": {
+      "en": "They played for Borussia Dortmund and for Bayern Munich.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "74842",
+      "teaser": {
+        "en": "Dortmund sold him to Bayern for €37m in 2013; Bayern sold him back for €22m in 2016.",
+        "ar": null
+      }
+    },
+    "players": [
+      "38253",
+      "119",
+      "39670",
+      "130",
+      "12405",
+      "39728",
+      "166601",
+      "74842",
+      "42460",
+      "106987",
+      "119296",
+      "170986"
+    ]
+  },
+  {
+    "id": "story_dortmund_school",
+    "world": "bundesliga",
+    "status": "draft",
+    "title": {
+      "en": "Dortmund's finishing school",
+      "ar": null
+    },
+    "line": {
+      "en": "Signed young, polished and sold on: Dortmund's sales of €35m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "418560",
+      "teaser": {
+        "en": "Signed from Salzburg for €20m in January 2020, sold to Manchester City for €60m in 2022.",
+        "ar": null
+      }
+    },
+    "players": [
+      "418560",
+      "581678",
+      "401173",
+      "288230",
+      "58864",
+      "39728",
+      "315779",
+      "74842",
+      "670882",
+      "55735"
+    ]
+  },
+  {
+    "id": "story_leipzig_stepping_stone",
+    "world": "bundesliga",
+    "status": "draft",
+    "title": {
+      "en": "Leipzig's stepping stone",
+      "ar": null
+    },
+    "line": {
+      "en": "RB Leipzig's sales of €50m or more: a club where young players pass through.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "475959",
+      "teaser": {
+        "en": "Leipzig bought him from Dinamo Zagreb for €36.8m and sold him to Manchester City for €90m.",
+        "ar": null
+      }
+    },
+    "players": [
+      "1390649",
+      "451276",
+      "170527",
+      "344381",
+      "475959",
+      "566931",
+      "627442",
+      "293385",
+      "302215"
+    ]
+  },
+  {
+    "id": "story_atletico_2014",
+    "world": "laliga",
+    "status": "draft",
+    "title": {
+      "en": "Atlético's 2014 title",
+      "ar": null
+    },
+    "line": {
+      "en": "Simeone's Atlético won La Liga in 2013–14, ahead of Barcelona and Real Madrid.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "44779",
+      "teaser": {
+        "en": "Born in Lagarto, Brazil, he played for Spain and left Atlético for Chelsea for €38m in 2014.",
+        "ar": null
+      }
+    },
+    "players": [
+      "108390",
+      "250845",
+      "44779",
+      "7980",
+      "42710",
+      "54928",
+      "21369",
+      "4248",
+      "21725",
+      "33357",
+      "16635",
+      "8538",
+      "20137"
+    ]
+  },
+  {
+    "id": "story_madrid_derby",
+    "world": "laliga",
+    "status": "draft",
+    "title": {
+      "en": "Both sides of Madrid",
+      "ar": null
+    },
+    "line": {
+      "en": "They played for Real Madrid and for Atlético, the two clubs of the Madrid derby.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "108390",
+      "teaser": {
+        "en": "Chelsea loaned him to Atlético for three seasons; Real Madrid bought him from Chelsea for €35m in 2018.",
+        "ar": null
+      }
+    },
+    "players": [
+      "282411",
+      "108390",
+      "84528",
+      "128223",
+      "339808",
+      "7717",
+      "282429",
+      "16635",
+      "28261"
+    ]
+  },
+  {
+    "id": "story_valencia_sales",
+    "world": "laliga",
+    "status": "draft",
+    "title": {
+      "en": "Valencia's big sales",
+      "ar": null
+    },
+    "line": {
+      "en": "Valencia have sold one star after another: their sales of €20m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "7603",
+      "teaser": {
+        "en": "Born in Bilbao, he cost Lazio €48m when he left Valencia in 2001.",
+        "ar": null
+      }
+    },
+    "players": [
+      "182712",
+      "7603",
+      "3418",
+      "398184",
+      "7980",
+      "35518",
+      "126716",
+      "131505",
+      "44068",
+      "502676",
+      "225122",
+      "54781",
+      "34870",
+      "88590",
+      "221025"
+    ]
+  },
+  {
+    "id": "story_basque_sales",
+    "world": "laliga",
+    "status": "draft",
+    "title": {
+      "en": "Sold by the Basque clubs",
+      "ar": null
+    },
+    "line": {
+      "en": "Athletic Club and Real Sociedad: their sales of €20m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "192279",
+      "teaser": {
+        "en": "Chelsea paid Athletic Club €80m for him in 2018, then a world record for a goalkeeper.",
+        "ar": null
+      }
+    },
+    "players": [
+      "125781",
+      "349066",
+      "423440",
+      "176553",
+      "192279",
+      "338424",
+      "44017",
+      "351809",
+      "158863",
+      "99343",
+      "280730",
+      "59344",
+      "246291"
+    ]
+  },
+  {
+    "id": "story_leicester",
+    "world": "premier",
+    "status": "draft",
+    "title": {
+      "en": "Leicester: champions, then sellers",
+      "ar": null
+    },
+    "line": {
+      "en": "The 2015–16 champions, 5000-1 outsiders, and the players Leicester later sold for €35m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "225083",
+      "teaser": {
+        "en": "Bought from Caen for €9m in 2015, sold to Chelsea for €35.8m a year later.",
+        "ar": null
+      }
+    },
+    "players": [
+      "294057",
+      "225083",
+      "177907",
+      "475411",
+      "171424",
+      "316125",
+      "475188",
+      "46580",
+      "398065",
+      "292417",
+      "73491",
+      "197838"
+    ]
+  },
+  {
+    "id": "story_brentford_sales",
+    "world": "premier",
+    "status": "draft",
+    "title": {
+      "en": "Brentford sells high",
+      "ar": null
+    },
+    "line": {
+      "en": "Brentford buy cheap and sell dear: their sales of €10m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "413039",
+      "teaser": {
+        "en": "Bought from Troyes for €6.5m in 2019, sold to Manchester United for €75m in 2025.",
+        "ar": null
+      }
+    },
+    "players": [
+      "413039",
+      "324358",
+      "251664",
+      "413403",
+      "388165",
+      "262749",
+      "290532",
+      "217115",
+      "148367"
+    ]
+  },
+  {
+    "id": "story_brighton_sales",
+    "world": "premier",
+    "status": "draft",
+    "title": {
+      "en": "Brighton sells high",
+      "ar": null
+    },
+    "line": {
+      "en": "Brighton's sales of €15m or more, led by a €116m move to Chelsea.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "687626",
+      "teaser": {
+        "en": "Bought from Independiente del Valle in 2021 and loaned to Beerschot before his big move.",
+        "ar": null
+      }
+    },
+    "players": [
+      "687626",
+      "534033",
+      "626724",
+      "973085",
+      "284857",
+      "576314",
+      "335721",
+      "144028",
+      "349599",
+      "410425",
+      "403151",
+      "658536",
+      "339314",
+      "646353",
+      "660860"
+    ]
+  },
+  {
+    "id": "story_palace_fa_cup",
+    "world": "premier",
+    "status": "draft",
+    "title": {
+      "en": "Crystal Palace, FA Cup winners",
+      "ar": null
+    },
+    "line": {
+      "en": "Crystal Palace beat Manchester City 1-0 in the 2025 FA Cup final, the club's first major trophy.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "479999",
+      "teaser": {
+        "en": "Palace bought him from QPR in 2020 and sold him to Arsenal for €69.3m in 2025.",
+        "ar": null
+      }
+    },
+    "players": [
+      "392757",
+      "479999",
+      "434224",
+      "744149",
+      "316125",
+      "410225",
+      "420002",
+      "340324",
+      "543387",
+      "356141",
+      "258919",
+      "578539",
+      "493003",
+      "262980",
+      "85177"
+    ]
+  },
+  {
+    "id": "story_monaco_2017",
+    "world": "ligue1",
+    "status": "draft",
+    "title": {
+      "en": "Monaco's 2017 champions",
+      "ar": null
+    },
+    "line": {
+      "en": "Monaco won Ligue 1 in 2016–17 and reached the Champions League semi-finals, then sold their stars.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "241641",
+      "teaser": {
+        "en": "Benfica sold him to Monaco in 2015; Monaco sold him to Manchester City for €50m in 2017.",
+        "ar": null
+      }
+    },
+    "players": [
+      "342229",
+      "241641",
+      "205562",
+      "225693",
+      "39152",
+      "157495",
+      "182618",
+      "229005",
+      "29364",
+      "161869",
+      "46552"
+    ]
+  },
+  {
+    "id": "story_lille_2021",
+    "world": "ligue1",
+    "status": "draft",
+    "title": {
+      "en": "Lille's 2021 title",
+      "ar": null
+    },
+    "line": {
+      "en": "Lille won Ligue 1 in 2020–21, a point ahead of Paris Saint-Germain.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "182906",
+      "teaser": {
+        "en": "Born in Cayenne, French Guiana, he joined Lille from Paris in 2015 and left for Milan in 2021.",
+        "ar": null
+      }
+    },
+    "players": [
+      "533738",
+      "182906",
+      "361093",
+      "324690",
+      "463600",
+      "258027",
+      "344605",
+      "240692",
+      "292818",
+      "251075",
+      "370846",
+      "386726"
+    ]
+  },
+  {
+    "id": "story_lens_sales",
+    "world": "ligue1",
+    "status": "draft",
+    "title": {
+      "en": "Lens sells high",
+      "ar": null
+    },
+    "line": {
+      "en": "Lens' sales of €20m or more, every one of them since 2022.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "368887",
+      "teaser": {
+        "en": "Lens bought him from Club Brugge in 2022 and sold him to Leipzig for €40m a year later.",
+        "ar": null
+      }
+    },
+    "players": [
+      "368887",
+      "763079",
+      "808348",
+      "659542",
+      "543387",
+      "182893",
+      "711976",
+      "901019",
+      "263236"
+    ]
+  },
+  {
+    "id": "story_marseille_1993",
+    "world": "ligue1",
+    "status": "draft",
+    "title": {
+      "en": "Marseille, champions of Europe 1993",
+      "ar": null
+    },
+    "line": {
+      "en": "Marseille beat Milan 1-0 in Munich, the first French club to win the Champions League.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "101109",
+      "teaser": {
+        "en": "Born in Abidjan, he headed the only goal of the 1993 final against Milan.",
+        "ar": null
+      }
+    },
+    "players": [
+      "75553",
+      "3154",
+      "3289",
+      "13775",
+      "102704",
+      "101109",
+      "6657",
+      "3571",
+      "101108",
+      "79567",
+      "51776",
+      "101119"
+    ]
+  },
+  {
+    "id": "story_lyon_seven",
+    "world": "ligue1",
+    "status": "draft",
+    "title": {
+      "en": "Lyon's seven in a row",
+      "ar": null
+    },
+    "line": {
+      "en": "Lyon won seven Ligue 1 titles in a row, from 2001–02 to 2007–08.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "5588",
+      "teaser": {
+        "en": "Lyon bought him from Bastia in 2003 and sold him to Chelsea for €38m in 2005.",
+        "ar": null
+      }
+    },
+    "players": [
+      "18922",
+      "3188",
+      "3889",
+      "198",
+      "3500",
+      "5588",
+      "5352",
+      "5513",
+      "5283",
+      "5461",
+      "22750",
+      "45121",
+      "5293",
+      "8538",
+      "5343"
+    ]
+  },
+  {
+    "id": "story_ajax_2019",
+    "world": "beyond",
+    "status": "draft",
+    "title": {
+      "en": "Ajax 2019",
+      "ar": null
+    },
+    "line": {
+      "en": "Ajax knocked out Real Madrid and Juventus in 2018–19 and lost the semi-final in its last minute.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "326031",
+      "teaser": {
+        "en": "Ajax sold him to Juventus for €85.5m in July 2019, a month before he turned 20.",
+        "ar": null
+      }
+    },
+    "players": [
+      "326330",
+      "326031",
+      "288255",
+      "217111",
+      "234509",
+      "469822",
+      "131225",
+      "340456",
+      "12282",
+      "36139",
+      "418543",
+      "283196",
+      "4357"
+    ]
+  },
+  {
+    "id": "story_psv_springboard",
+    "world": "beyond",
+    "status": "draft",
+    "title": {
+      "en": "PSV's springboard",
+      "ar": null
+    },
+    "line": {
+      "en": "From Eindhoven to the giants: PSV's sales of €15m or more.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3407",
+      "teaser": {
+        "en": "Bought from Heerenveen in 1998, sold to Manchester United for €28.5m in 2001.",
+        "ar": null
+      }
+    },
+    "players": [
+      "434675",
+      "3140",
+      "3407",
+      "3557",
+      "167850",
+      "326029",
+      "702869",
+      "49499",
+      "503987",
+      "316889",
+      "565424",
+      "4360",
+      "408574",
+      "284165",
+      "375885"
+    ]
+  },
+  {
+    "id": "story_river_sales",
+    "world": "beyond",
+    "status": "draft",
+    "title": {
+      "en": "Sold by River Plate",
+      "ar": null
+    },
+    "line": {
+      "en": "River Plate's sales of €10m or more, from Ortega in 1997 to Mastantuono in 2025.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "648195",
+      "teaser": {
+        "en": "River sold him to Benfica in July 2022; Benfica sold him to Chelsea for €121m six months later.",
+        "ar": null
+      }
+    },
+    "players": [
+      "576024",
+      "648195",
+      "4147",
+      "3415",
+      "39153",
+      "189441",
+      "1057316",
+      "401578",
+      "19981",
+      "111630",
+      "3411",
+      "26244",
+      "7611",
+      "193782",
+      "281405"
+    ]
+  },
+  {
+    "id": "story_benfica_sales",
+    "world": "beyond",
+    "status": "draft",
+    "title": {
+      "en": "Benfica sells high",
+      "ar": null
+    },
+    "line": {
+      "en": "Benfica's sales of €35m or more: a club that raises stars and sells them.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "462250",
+      "teaser": {
+        "en": "Benfica sold him to Atlético for €127.2m in 2019, a few months before he turned 20.",
+        "ar": null
+      }
+    },
+    "players": [
+      "670681",
+      "648195",
+      "462250",
+      "258004",
+      "546543",
+      "811778",
+      "238223",
+      "206040",
+      "550550",
+      "35047",
+      "231572",
+      "184573",
+      "258027",
+      "519184",
+      "668267"
+    ]
+  },
+  {
+    "id": "story_arab_stars",
+    "world": "beyond",
+    "status": "draft",
+    "title": {
+      "en": "Arab stars of Europe",
+      "ar": null
+    },
+    "line": {
+      "en": "Players from Egypt, Morocco and Algeria who made their names at Europe's clubs.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "171424",
+      "teaser": {
+        "en": "Leicester signed him from Le Havre for €0.5m in 2014 and sold him for €67.8m in 2018.",
+        "ar": null
+      }
+    },
+    "players": [
+      "148455",
+      "1097139",
+      "398073",
+      "445939",
+      "171424",
+      "395693",
+      "702869",
+      "217111",
+      "418659",
+      "905011",
+      "314678",
+      "351816",
+      "433049",
+      "578391",
+      "724520"
+    ]
+  },
+  {
+    "id": "story_istanbul_2005",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "Istanbul 2005",
+      "ar": null
+    },
+    "line": {
+      "en": "Milan led Liverpool 3-0 at half-time of the 2005 final; Liverpool won on penalties.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3109",
+      "teaser": {
+        "en": "Liverpool's captain, he headed the first of three goals in six minutes.",
+        "ar": null
+      }
+    },
+    "players": [
+      "5803",
+      "3109",
+      "3522",
+      "5817",
+      "5937",
+      "4171",
+      "3410",
+      "4168",
+      "3597",
+      "5813",
+      "3557",
+      "3366",
+      "7476",
+      "3241",
+      "5800"
+    ]
+  },
+  {
+    "id": "story_invincibles",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "The Invincibles",
+      "ar": null
+    },
+    "line": {
+      "en": "Arsenal won the 2003–04 Premier League without losing a game.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3207",
+      "teaser": {
+        "en": "Arsenal bought him from Juventus in August 1999, after half a season in Turin.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3207",
+      "3187",
+      "3183",
+      "3182",
+      "3185",
+      "3198",
+      "122",
+      "3134",
+      "3133",
+      "3188",
+      "3184",
+      "7717",
+      "3202",
+      "3205",
+      "7449"
+    ]
+  },
+  {
+    "id": "story_galacticos",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "The Galácticos",
+      "ar": null
+    },
+    "line": {
+      "en": "Real Madrid's superstar years, when Figo, Zidane, Ronaldo and Beckham arrived one summer after another.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3446",
+      "teaser": {
+        "en": "Real Madrid paid Barcelona €60m for him in July 2000.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3111",
+      "3140",
+      "3139",
+      "3979",
+      "7518",
+      "7349",
+      "1397",
+      "3446",
+      "7513",
+      "4182",
+      "5938",
+      "7530",
+      "7531",
+      "7515",
+      "24474"
+    ]
+  },
+  {
+    "id": "story_united_1999",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "Manchester United's 1999 treble",
+      "ar": null
+    },
+    "line": {
+      "en": "United won the league, the FA Cup and the Champions League in 1998–99, with two late goals in Barcelona.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3394",
+      "teaser": {
+        "en": "He came off the bench and scored the winner in stoppage time of the 1999 final.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3139",
+      "3406",
+      "3397",
+      "3465",
+      "3396",
+      "3403",
+      "3557",
+      "3394",
+      "3392",
+      "3238",
+      "3223",
+      "3404",
+      "3543",
+      "4280",
+      "3823"
+    ]
+  },
+  {
+    "id": "story_guardiola_barcelona",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "Guardiola's first Barcelona",
+      "ar": null
+    },
+    "line": {
+      "en": "In 2008–09, Guardiola's first season, Barcelona won La Liga, the Copa del Rey and the Champions League.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "13091",
+      "teaser": {
+        "en": "Barcelona bought him from Monaco for €9m in 2007 and sold him to Manchester City for €30m in 2010.",
+        "ar": null
+      }
+    },
+    "players": [
+      "28003",
+      "3207",
+      "7594",
+      "65230",
+      "7600",
+      "7607",
+      "18944",
+      "4257",
+      "13091",
+      "15951",
+      "65278",
+      "5283",
+      "7589",
+      "7968",
+      "597"
+    ]
+  },
+  {
+    "id": "story_chelsea_munich",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "Chelsea in Munich, 2012",
+      "ar": null
+    },
+    "line": {
+      "en": "Chelsea beat Bayern on penalties in Bayern's own stadium to win the 2012 Champions League.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "3924",
+      "teaser": {
+        "en": "He scored the equaliser and the winning penalty in the 2012 final, then left for Shanghai.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3163",
+      "3182",
+      "7767",
+      "44068",
+      "3924",
+      "3160",
+      "46741",
+      "54170",
+      "5658",
+      "36827",
+      "30739",
+      "9813",
+      "27511",
+      "40611",
+      "7971"
+    ]
+  },
+  {
+    "id": "story_el_clasico",
+    "world": "giants_history",
+    "status": "draft",
+    "title": {
+      "en": "Both sides of El Clásico",
+      "ar": null
+    },
+    "line": {
+      "en": "Real Madrid and Barcelona: the few who played for both.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "7601",
+      "teaser": {
+        "en": "He left Real Madrid for Barcelona in 1996 without a fee.",
+        "ar": null
+      }
+    },
+    "players": [
+      "284857",
+      "3140",
+      "3446",
+      "8023",
+      "7601",
+      "7939",
+      "8013",
+      "112515",
+      "4257",
+      "7611"
+    ]
+  },
+  {
+    "id": "story_spain_three",
+    "world": "nations",
+    "status": "draft",
+    "title": {
+      "en": "Spain's three in a row",
+      "ar": null
+    },
+    "line": {
+      "en": "Spain won Euro 2008, the 2010 World Cup and Euro 2012; all of these started at least one of the finals.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "7767",
+      "teaser": {
+        "en": "His goal won the Euro 2008 final against Germany.",
+        "ar": null
+      }
+    },
+    "players": [
+      "3979",
+      "7594",
+      "65230",
+      "7600",
+      "69751",
+      "7607",
+      "8806",
+      "7767",
+      "7980",
+      "18944",
+      "25557",
+      "35518",
+      "7476",
+      "65278",
+      "28260"
+    ]
+  },
+  {
+    "id": "story_born_in_brazil",
+    "world": "nations",
+    "status": "draft",
+    "title": {
+      "en": "Born in Brazil, another flag",
+      "ar": null
+    },
+    "line": {
+      "en": "Born in Brazil, they play or played for another national team.",
+      "ar": null
+    },
+    "mystery": {
+      "player": "8564",
+      "teaser": {
+        "en": "Born in São Bernardo do Campo, he joined Barcelona from Porto for €21m in 2004.",
+        "ar": null
+      }
+    },
+    "players": [
+      "8564",
+      "102017",
+      "44779",
+      "601883",
+      "131505",
+      "231289",
+      "14132",
+      "102740",
+      "181778",
+      "6234",
+      "7602",
+      "24633"
+    ]
+  }
+]

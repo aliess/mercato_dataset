@@ -603,6 +603,18 @@ def describe_difference(name, live, new):
                      f"{len(old_twins - new_twins):,} removed")
         routes = lambda stops: sum(len(step.get('routes', [])) for stop in stops.values() for step in stop['steps'])
         lines.append(f'routes: {routes(old_stops):,} live → {routes(new_stops):,}')
+        old_d, new_d = live.get('dossiers', {}), new.get('dossiers', {})
+        kinds = lambda ds: dict(sorted(Counter(d['kind'] for d in ds.values()).items()))
+        lines.append(f"dossiers: {len(old_d):,} live → {len(new_d):,} {kinds(new_d)}; "
+                     f"{len(set(new_d) - set(old_d)):,} added, {len(set(old_d) - set(new_d)):,} removed, "
+                     f"{sum(1 for i in new_d if i in old_d and old_d[i] != new_d[i]):,} changed")
+        stories = [i for i, d in new_d.items() if d['kind'] == 'story']
+        if stories:
+            lines.append(f'  {len(stories):,} story dossiers: {", ".join(stories)}')
+        old_a, new_a = live.get('anchors', {}), new.get('anchors', {})
+        lines.append(f"anchors: {len(old_a):,} live → {len(new_a):,} players "
+                     f"({sum(1 for a in new_a.values() if not a):,} with none); "
+                     f"trails: {len(live.get('trails', [])):,} live → {len(new.get('trails', [])):,}")
     return lines
 
 
