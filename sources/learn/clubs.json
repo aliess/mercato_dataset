@@ -1,79 +1,604 @@
 [
- {
-  "club_id": 418,
-  "short": "RMA",
-  "en": "Real Madrid were founded in 1902 in Madrid and play at the Santiago Bernabéu. They are Los Blancos for their all-white kit, and also Los Merengues. They won the first five European Cups, from 1956 to 1960, with Alfredo Di Stéfano, and built the Galácticos sides of the 2000s.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 131,
-  "short": "FCB",
-  "en": "Barcelona were founded in 1899 by Joan Gamper and play at the Camp Nou. Fans call the club Barça or the Blaugrana, after its blue and garnet colours. Johan Cruyff's Dream Team won its first European Cup in 1992, and Pep Guardiola's passing sides with Messi, Xavi and Iniesta ruled from 2008.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 583,
-  "short": "PSG",
-  "en": "Paris Saint-Germain were founded in 1970 and play at the Parc des Princes in Paris. They are Les Parisiens, or Les Rouge et Bleu. Since Qatar Sports Investments bought the club in 2011 they have signed stars such as Ibrahimović, Neymar and Mbappé, and they won their first Champions League in 2025.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 281,
-  "short": "MCI",
-  "en": "Manchester City began in 1880 as St. Mark's (West Gorton) and play at the Etihad Stadium, after many years at Maine Road. They are City, or the Citizens, in sky blue. The 2008 Abu Dhabi takeover changed the club, and Pep Guardiola's side won the treble of league, FA Cup and Champions League in 2023.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 31,
-  "short": "LIV",
-  "en": "Liverpool were founded in 1892 and play at Anfield, where fans sing You'll Never Walk Alone. They are the Reds. Bill Shankly and Bob Paisley built the sides that ruled England and Europe in the 1970s and 80s, and Jürgen Klopp's team won the Champions League in 2019 and the Premier League in 2020.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 27,
-  "short": "BAY",
-  "en": "Bayern Munich were founded in 1900 and play at the Allianz Arena, their home since 2005. They are Die Roten, the Reds. Franz Beckenbauer, Gerd Müller and Sepp Maier won three European Cups in a row from 1974 to 1976, and Bayern won trebles of league, cup and Champions League in 2013 and 2020.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 11,
-  "short": "ARS",
-  "en": "Arsenal began in 1886 as Dial Square, a team of workers at the Royal Arsenal in Woolwich, and now play at the Emirates Stadium in north London, their home since leaving Highbury in 2006. They are the Gunners. Under Arsène Wenger they went a whole league season unbeaten in 2003–04: the Invincibles.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 631,
-  "short": "CHE",
-  "en": "Chelsea were founded in 1905 and play at Stamford Bridge in west London. They are the Blues. After Roman Abramovich bought the club in 2003, José Mourinho's side won the league in 2005 and 2006, and Chelsea won the Champions League in Munich in 2012 and again in Porto in 2021.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 985,
-  "short": "MUN",
-  "en": "Manchester United began in 1878 as Newton Heath and took their name in 1902. They play at Old Trafford, the Theatre of Dreams, and are the Red Devils. Matt Busby's side won the European Cup in 1968, ten years after the Munich air disaster, and Sir Alex Ferguson's won the treble in 1999.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 148,
-  "short": "TOT",
-  "en": "Tottenham Hotspur were founded in 1882 in north London and play at the Tottenham Hotspur Stadium, built on the site of White Hart Lane and opened in 2019. They are Spurs, or the Lilywhites. Their 1960–61 side won the league and FA Cup double, and they reached the Champions League final in 2019.",
-  "ar": "",
-  "status": "draft"
- },
- {
-  "club_id": 13,
-  "short": "ATM",
-  "en": "Atlético Madrid were founded in 1903 and play at the Metropolitano, their home since leaving the Vicente Calderón in 2017. They are Los Colchoneros, the mattress makers, after their red and white stripes. Under Diego Simeone, coach since 2011, they won La Liga in 2014 and 2021 and reached two Champions League finals.",
-  "ar": "",
-  "status": "draft"
- }
+  {
+    "club_id": 418,
+    "short": "RMA",
+    "en": "Real Madrid were founded in 1902 in Madrid and play at the Santiago Bernabéu. They are Los Blancos for their all-white kit, and also Los Merengues. They won the first five European Cups, from 1956 to 1960, with Alfredo Di Stéfano, and built the Galácticos sides of the 2000s.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 131,
+    "short": "FCB",
+    "en": "Barcelona were founded in 1899 by Joan Gamper and play at the Camp Nou. Fans call the club Barça or the Blaugrana, after its blue and garnet colours. Johan Cruyff's Dream Team won its first European Cup in 1992, and Pep Guardiola's passing sides with Messi, Xavi and Iniesta ruled from 2008.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 583,
+    "short": "PSG",
+    "en": "Paris Saint-Germain were founded in 1970 and play at the Parc des Princes in Paris. They are Les Parisiens, or Les Rouge et Bleu. Since Qatar Sports Investments bought the club in 2011 they have signed stars such as Ibrahimović, Neymar and Mbappé, and they won their first Champions League in 2025.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 281,
+    "short": "MCI",
+    "en": "Manchester City began in 1880 as St. Mark's (West Gorton) and play at the Etihad Stadium, after many years at Maine Road. They are City, or the Citizens, in sky blue. The 2008 Abu Dhabi takeover changed the club, and Pep Guardiola's side won the treble of league, FA Cup and Champions League in 2023.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 31,
+    "short": "LIV",
+    "en": "Liverpool were founded in 1892 and play at Anfield, where fans sing You'll Never Walk Alone. They are the Reds. Bill Shankly and Bob Paisley built the sides that ruled England and Europe in the 1970s and 80s, and Jürgen Klopp's team won the Champions League in 2019 and the Premier League in 2020.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 27,
+    "short": "BAY",
+    "en": "Bayern Munich were founded in 1900 and play at the Allianz Arena, their home since 2005. They are Die Roten, the Reds. Franz Beckenbauer, Gerd Müller and Sepp Maier won three European Cups in a row from 1974 to 1976, and Bayern won trebles of league, cup and Champions League in 2013 and 2020.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 11,
+    "short": "ARS",
+    "en": "Arsenal began in 1886 as Dial Square, a team of workers at the Royal Arsenal in Woolwich, and now play at the Emirates Stadium in north London, their home since leaving Highbury in 2006. They are the Gunners. Under Arsène Wenger they went a whole league season unbeaten in 2003–04: the Invincibles.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 631,
+    "short": "CHE",
+    "en": "Chelsea were founded in 1905 and play at Stamford Bridge in west London. They are the Blues. After Roman Abramovich bought the club in 2003, José Mourinho's side won the league in 2005 and 2006, and Chelsea won the Champions League in Munich in 2012 and again in Porto in 2021.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 985,
+    "short": "MUN",
+    "en": "Manchester United began in 1878 as Newton Heath and took their name in 1902. They play at Old Trafford, the Theatre of Dreams, and are the Red Devils. Matt Busby's side won the European Cup in 1968, ten years after the Munich air disaster, and Sir Alex Ferguson's won the treble in 1999.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 148,
+    "short": "TOT",
+    "en": "Tottenham Hotspur were founded in 1882 in north London and play at the Tottenham Hotspur Stadium, built on the site of White Hart Lane and opened in 2019. They are Spurs, or the Lilywhites. Their 1960–61 side won the league and FA Cup double, and they reached the Champions League final in 2019.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 13,
+    "short": "ATM",
+    "en": "Atlético Madrid were founded in 1903 and play at the Metropolitano, their home since leaving the Vicente Calderón in 2017. They are Los Colchoneros, the mattress makers, after their red and white stripes. Under Diego Simeone, coach since 2011, they won La Liga in 2014 and 2021 and reached two Champions League finals.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 506,
+    "short": "JUV",
+    "en": "Juventus were founded in 1897 by students in Turin and play at the Allianz Stadium, opened in 2011. They are the Old Lady, or the Bianconeri, after the black and white stripes they took from Notts County. They won the European Cup in 1985 and 1996, and nine Serie A titles in a row from 2012 to 2020.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 5,
+    "short": "MIL",
+    "en": "AC Milan were founded in 1899 by Englishmen Herbert Kilpin and Alfred Edwards and play at San Siro, which they share with Inter. They are the Rossoneri, the red and blacks. Arrigo Sacchi's side with Gullit, Van Basten and Rijkaard won the European Cup in 1989 and 1990, and Milan have won it seven times.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 46,
+    "short": "INT",
+    "en": "Inter were founded in 1908 by members who broke away from Milan, and share San Siro with their rivals. They are the Nerazzurri, the black and blues. Helenio Herrera's Grande Inter won the European Cup in 1964 and 1965, and José Mourinho's side won the first treble by an Italian club in 2010.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 12,
+    "short": "ROM",
+    "en": "Roma were founded in 1927 from a merger of three Rome clubs and play at the Stadio Olimpico, which they share with Lazio. They are the Giallorossi, for their yellow and red, and the Wolves. They won Serie A in 1942, 1983 and 2001, the last with Francesco Totti as captain, and the first Conference League in 2022.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 6195,
+    "short": "NAP",
+    "en": "Napoli were founded in 1926 and play at the Stadio Diego Armando Maradona, named after him in 2020. They are the Azzurri, or the Partenopei. Maradona led them to Serie A titles in 1987 and 1990 and the UEFA Cup in 1989. Reborn in Serie C after going bankrupt in 2004, they won the league again in 2023 and 2025.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 430,
+    "short": "FIO",
+    "en": "Fiorentina were founded in 1926 in Florence and play at the Stadio Artemio Franchi. They are La Viola, after their purple shirts. They won Serie A in 1956 and 1969 and the Cup Winners' Cup in 1961. After going bankrupt in 2002 they restarted in the fourth tier and were back in Serie A by 2004.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 800,
+    "short": "ATA",
+    "en": "Atalanta were founded in 1907 in Bergamo, near Milan, and play at the Gewiss Stadium. They are La Dea, the Goddess, or the Nerazzurri, in black and blue. Known for one of Italy's best youth academies, they rose under coach Gian Piero Gasperini from 2016 and won the Europa League in 2024.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 398,
+    "short": "LAZ",
+    "en": "Lazio were founded in 1900, the older of Rome's two big clubs. They share the Stadio Olimpico with Roma and are the Biancocelesti, for their sky blue and white, and the Eagles. They won Serie A in 1974 and 2000, the second under Sven-Göran Eriksson, who also won them the Cup Winners' Cup in 1999.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1025,
+    "short": "BOL",
+    "en": "Bologna were founded in 1909 and play at the Stadio Renato Dall'Ara. They are the Rossoblù, for their red and blue. In the 1930s they were the team that shook the world, and they have won seven Serie A titles, the last in 1964. In 2025 they won the Coppa Italia, their first since 1974.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1047,
+    "short": "COM",
+    "en": "Como were founded in 1907 and play at the Stadio Giuseppe Sinigaglia, on the shore of Lake Como. They are the Lariani, after the lake's Latin name. Bought in 2019 by Indonesia's Hartono brothers, they climbed from Serie C to Serie A in 2024, back after 21 years, and Cesc Fàbregas became their coach.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 410,
+    "short": "UDI",
+    "en": "Udinese were founded in 1896 in Udine, in Italy's north-east, and play at the Stadio Friuli, now called the Bluenergy Stadium. They are the Zebrette, the little zebras, for their black and white stripes. Owned by the Pozzo family since 1986, they are famous for scouting players all over the world.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 130,
+    "short": "PAR",
+    "en": "Parma were founded in 1913 and play at the Stadio Ennio Tardini. They are the Crociati, after the cross on their badge, and the Gialloblù. Backed by Parmalat in the 1990s, they won the Cup Winners' Cup in 1993 and the UEFA Cup in 1995 and 1999. Bankrupt in 2015, they rose from Serie D back to Serie A by 2018.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 252,
+    "short": "GEN",
+    "en": "Genoa were founded in 1893 by Englishmen as the Genoa Cricket and Athletic Club, and are Italy's oldest football club. They play at the Stadio Luigi Ferraris, shared with Sampdoria, and are the Grifone, the griffin, or the Rossoblù. They won nine Italian titles, the last of them in 1924.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 416,
+    "short": "TOR",
+    "en": "Torino were founded in 1906 and play at the Stadio Olimpico Grande Torino. They are Il Toro, the Bull, or the Granata, for their maroon. The Grande Torino side won five titles in a row in the 1940s before the whole team died in the Superga air crash in 1949. Their last title came in 1976.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1038,
+    "short": "SAM",
+    "en": "Sampdoria were formed in 1946 by the merger of Sampierdarenese and Andrea Doria, and share the Stadio Luigi Ferraris in Genoa with Genoa. They are the Blucerchiati, for the hoops on their blue shirts. Gianluca Vialli and Roberto Mancini led them to the Serie A title in 1991 and the European Cup final in 1992.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 276,
+    "short": "VER",
+    "en": "Hellas Verona were founded in 1903 by students, who took the name Hellas, Greek for Greece, at a teacher's suggestion. They play at the Stadio Marcantonio Bentegodi and are the Gialloblù, for their yellow and blue. Under coach Osvaldo Bagnoli they won a surprise Serie A title in 1985.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 16,
+    "short": "BVB",
+    "en": "Borussia Dortmund were founded in 1909 and play at the Westfalenstadion, now Signal Iduna Park, whose south stand is the Yellow Wall. They are BVB, or the Schwarzgelben, in black and yellow. They won the Champions League in 1997, and Jürgen Klopp's side won the Bundesliga in 2011 and 2012.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 15,
+    "short": "LEV",
+    "en": "Bayer Leverkusen were founded in 1904 by workers of the Bayer chemical company and play at the BayArena. They are Die Werkself, the factory team. They won the UEFA Cup in 1988, and under Xabi Alonso they won their first Bundesliga in 2024 without losing a league game, along with the German Cup.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 23826,
+    "short": "RBL",
+    "en": "RB Leipzig were founded in 2009 by Red Bull, who took over the place of fifth-tier SSV Markranstädt. They play at the Red Bull Arena, built inside Leipzig's old Zentralstadion, and are Die Roten Bullen, the Red Bulls. They reached the Bundesliga in 2016 and won the German Cup in 2022 and 2023.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 79,
+    "short": "VFB",
+    "en": "VfB Stuttgart trace their roots to 1893 and play at the MHPArena, the old Neckarstadion. They are Die Schwaben, the Swabians, in white with a red band across the chest. They have been German champions five times, the last in 2007, and won the German Cup in 2025, a year after finishing second in the Bundesliga.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 3,
+    "short": "KOE",
+    "en": "1. FC Köln were founded in 1948 by a merger of two Cologne clubs and play at the RheinEnergieStadion. They are Die Geissböcke, the Billy Goats, after their live goat mascot, Hennes. They won the first Bundesliga title in 1964 and the double of league and German Cup in 1978.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 533,
+    "short": "HOF",
+    "en": "Hoffenheim trace their roots to 1899 in a village of about 3,000 people near Heidelberg, and play at the PreZero Arena in nearby Sinsheim. They are the Kraichgauer, after their region. Backed by SAP co-founder Dietmar Hopp, a former youth player there, they climbed from the amateur leagues to the Bundesliga in 2008.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 33,
+    "short": "SCH",
+    "en": "Schalke 04 were founded in 1904 in Gelsenkirchen, in the coal-mining Ruhr, and play at the Veltins-Arena. They are Die Königsblauen, the Royal Blues, or Die Knappen, the Miners. They won six of their seven German titles from 1934 to 1942, and their Eurofighters won the UEFA Cup in 1997.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 24,
+    "short": "SGE",
+    "en": "Eintracht Frankfurt were founded in 1899 and play at the Waldstadion, now Deutsche Bank Park. They are Die Adler, the Eagles. German champions in 1959, they lost the 1960 European Cup final 7–3 to Real Madrid at Hampden Park, and won the UEFA Cup in 1980 and the Europa League in 2022.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 82,
+    "short": "WOB",
+    "en": "VfL Wolfsburg were founded in 1945 in the Volkswagen factory town and play at the Volkswagen Arena. They are Die Wölfe, the Wolves, and the car maker still owns the club. Under Felix Magath they won their only Bundesliga title in 2009, and they won the German Cup in 2015.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 41,
+    "short": "HSV",
+    "en": "Hamburger SV trace their roots to 1887 and play at the Volksparkstadion. They are Die Rothosen, the Red Shorts, and Der Dino, the one club in every Bundesliga season until they went down in 2018. Ernst Happel's side won the European Cup in 1983, and they returned to the Bundesliga in 2025.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 60,
+    "short": "SCF",
+    "en": "SC Freiburg were founded in 1904 and play at the Europa-Park Stadion, their home since 2021 after the Dreisamstadion. They are known for loyal coaches: Volker Finke from 1991 to 2007 and Christian Streich from 2011 to 2024. They reached their first German Cup final in 2022.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 677,
+    "short": "IPS",
+    "en": "Ipswich Town were founded in 1878 and play at Portman Road. They are the Tractor Boys, or the Blues. Alf Ramsey's side won the league title in 1962, in their first season in the top flight, and Bobby Robson's side won the FA Cup in 1978 and the UEFA Cup in 1981.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1049,
+    "short": "VAL",
+    "en": "Valencia were founded in 1919 and play at Mestalla, their home since 1923. They are Los Che, or Los Murciélagos, after the bat on their crest. They lost two Champions League finals in a row, in 2000 and 2001, then Rafa Benítez's side won La Liga in 2002 and 2004 and the UEFA Cup in 2004.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 150,
+    "short": "BET",
+    "en": "Real Betis were founded in Seville in 1907. Their stadium is the Benito Villamarín, now being rebuilt while they play at La Cartuja. They are Los Verdiblancos, after their green and white stripes, and their fans sing Viva el Betis manque pierda: long live Betis, even when they lose. They won La Liga once, in 1935.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 681,
+    "short": "RSO",
+    "en": "Real Sociedad were founded in 1909 in San Sebastián and play at Anoeta, also called the Reale Arena. They are La Real, or the Txuri-urdin, Basque for white and blue. They won La Liga two years running, in 1981 and 1982, and beat Basque rivals Athletic Club in the 2020 Copa del Rey final, played in 2021.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1050,
+    "short": "VIL",
+    "en": "Villarreal were founded in 1923 in a small town near Castellón, and play at the Estadio de la Cerámica, once El Madrigal. They are the Yellow Submarine. They reached Champions League semi-finals in 2006 and 2022, and Unai Emery's side beat Manchester United on penalties to win the 2021 Europa League.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 368,
+    "short": "SEV",
+    "en": "Sevilla were founded in 1890 and play at the Ramón Sánchez-Pizjuán, in the Nervión district of Seville. They are Los Nervionenses, after that district. Their only La Liga title came in 1946, but the Europa League is theirs like no one else's: seven wins, the first two in 2006 and 2007 and the last in 2023.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 897,
+    "short": "DEP",
+    "en": "Deportivo de La Coruña were founded in 1906 and play at Riazor, by the sea in A Coruña, Galicia. They are Dépor, and the Super Dépor of the 1990s. They won La Liga in 2000, beat Real Madrid in the 2002 Copa del Rey final at the Bernabéu on Madrid's 100th birthday, and reached the Champions League semi-finals in 2004.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 940,
+    "short": "CEV",
+    "en": "Celta were founded in Vigo in 1923, when Real Vigo Sporting and Real Fortuna merged, and play at Balaídos. They are Os Celestes, after their sky blue shirts. Their best years came around 2000, with UEFA Cup runs and an Intertoto Cup win, and in 2017 they reached the Europa League semi-finals against Manchester United.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 621,
+    "short": "ATH",
+    "en": "Athletic Club were founded in Bilbao in 1898 and play at San Mamés, rebuilt beside the old ground in 2013. They are Los Leones, the Lions, and field only players from or raised in the Basque Country. Like Real Madrid and Barcelona they have never been relegated, and in 2024 they won their first Copa del Rey since 1984.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 3709,
+    "short": "GET",
+    "en": "Getafe were founded in 1983 in Getafe, a city just south of Madrid, and play at the Coliseum. They are Los Azulones, after their deep blue shirts. They reached La Liga for the first time in 2004, played Copa del Rey finals in 2007 and 2008 and reached the UEFA Cup quarter-finals in 2008, losing to Bayern Munich.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 873,
+    "short": "CRY",
+    "en": "Crystal Palace were formed in 1905 and have played at Selhurst Park in south London since 1924. They are the Eagles, and long ago were the Glaziers, after the glass palace the club is named after. They lost FA Cup finals in 1990 and 2016, then beat Manchester City 1–0 in 2025 for their first major trophy.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 29,
+    "short": "EVE",
+    "en": "Everton began in 1878 as St Domingo's, a church team in Liverpool. They played at Goodison Park from 1892 until 2025, when they moved to a new stadium at Bramley-Moore Dock on the river Mersey. They are the Toffees. Howard Kendall's side won the league in 1985 and 1987 and the Cup Winners' Cup in 1985.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 762,
+    "short": "NEW",
+    "en": "Newcastle United were formed in 1892 and play at St James' Park, in the heart of the city. They are the Magpies, after their black and white stripes, or the Toon. Kevin Keegan's 1990s Entertainers came close to the title, and in 2025 they beat Liverpool to win the League Cup, their first domestic trophy since 1955.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 405,
+    "short": "AVL",
+    "en": "Aston Villa were founded in 1874 in Birmingham and have played at Villa Park since 1897. They are the Villans, in claret and blue. One of the twelve founders of the Football League in 1888, they won the league in 1981 and the European Cup a year later, beating Bayern Munich 1–0 in Rotterdam.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1148,
+    "short": "BRF",
+    "en": "Brentford were founded in 1889 in west London and play at the Gtech Community Stadium, their home since leaving Griffin Park in 2020. They are the Bees. They reached the Premier League in 2021, their first top-flight season since 1947, and are known for finding players with the help of data.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1237,
+    "short": "BHA",
+    "en": "Brighton & Hove Albion were founded in 1901 and play at the Amex Stadium in Falmer, their home since 2011. They are the Seagulls. After leaving the Goldstone Ground in 1997 they played at Gillingham and then an athletics track, before reaching the Premier League in 2017 and playing in Europe for the first time in 2023.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 989,
+    "short": "BOU",
+    "en": "AFC Bournemouth were founded in 1899 as Boscombe FC and play at Dean Court, known as the Vitality Stadium. They are the Cherries, in red and black stripes. Under Eddie Howe they rose from the fourth tier, where they nearly fell out of the Football League in 2009, to the Premier League in 2015.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 703,
+    "short": "NFO",
+    "en": "Nottingham Forest were founded in 1865 and have played at the City Ground, by the River Trent, since 1898. They are the Reds, or Forest. Brian Clough and Peter Taylor took them up to the top flight in 1977, won the league in 1978 and then won the European Cup twice, in 1979 and 1980.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 379,
+    "short": "WHU",
+    "en": "West Ham United began in 1895 as Thames Ironworks and play at the London Stadium, their home since leaving Upton Park in 2016. They are the Hammers, or the Irons. Their Bobby Moore, Geoff Hurst and Martin Peters won the 1966 World Cup with England, and the club won the Conference League in 2023.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 931,
+    "short": "FUL",
+    "en": "Fulham were founded in 1879 and are London's oldest professional club. They play at Craven Cottage, on the banks of the Thames, and are the Cottagers. Roy Hodgson's side beat Juventus on the way to the 2010 Europa League final, which they lost to Atlético Madrid after extra time.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 399,
+    "short": "LEE",
+    "en": "Leeds United were founded in 1919 and play at Elland Road. They are the Whites, after the all-white kit Don Revie gave them. Revie's side won the league in 1969 and 1974, Howard Wilkinson's won the last title before the Premier League began, in 1992, and Leeds reached a Champions League semi-final in 2001.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 289,
+    "short": "SUN",
+    "en": "Sunderland were founded in 1879 by a schoolteacher and play at the Stadium of Light, their home since leaving Roker Park in 1997. They are the Black Cats. They won six league titles, the last in 1936, and as a second-tier side they beat Leeds 1–0 in the 1973 FA Cup final.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 543,
+    "short": "WLV",
+    "en": "Wolverhampton Wanderers were founded in 1877 as St Luke's and have played at Molineux since 1889. They are Wolves, in old gold and black. Stan Cullis's side won three league titles in the 1950s, and their floodlit wins over clubs such as Honvéd helped inspire the European Cup.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1041,
+    "short": "LYO",
+    "en": "Olympique Lyonnais were founded in 1950 and play at the Groupama Stadium, their home since leaving the Stade de Gerland in 2016. They are OL, or Les Gones, local slang for the kids of Lyon. Under president Jean-Michel Aulas they won seven French titles in a row, from 2002 to 2008.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 162,
+    "short": "ASM",
+    "en": "AS Monaco were founded in 1924 and play at the Stade Louis II in the Principality of Monaco, yet they compete in the French league. They are Les Monégasques, in red and white. Arsène Wenger's side won the league in 1988, and Didier Deschamps' team reached the Champions League final in 2004.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 244,
+    "short": "MAR",
+    "en": "Olympique de Marseille were founded in 1899 and play at the Stade Vélodrome. They are OM, or Les Phocéens, after the Greek sailors from Phocaea who founded the city. In 1993 they beat AC Milan in Munich to become the first French club to win the Champions League.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1082,
+    "short": "LIL",
+    "en": "Lille OSC were formed in 1944 from a merger of Olympique Lillois and SC Fives, and play at the Stade Pierre-Mauroy, opened in 2012. They are Les Dogues, the Mastiffs. They were champions in 1946 and 1954, won the league and cup double in 2011, and took the title again in 2021.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 667,
+    "short": "STR",
+    "en": "RC Strasbourg Alsace were founded in 1906 and play at the Stade de la Meinau. They are Le Racing, in blue and white. Gilbert Gress's side won the French title in 1979. The club went into liquidation in 2011, restarted in the fifth tier, and climbed back to Ligue 1 by 2017.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 826,
+    "short": "LEN",
+    "en": "RC Lens were founded in 1906 in the old coal-mining country of northern France and play at the Stade Bollaert-Delelis, known for one of the loudest crowds in France. They are Les Sang et Or, the Blood and Gold. Daniel Leclercq's side won their only French title in 1998.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 273,
+    "short": "REN",
+    "en": "Stade Rennais were founded in 1901 in Rennes, the capital of Brittany, and play at Roazhon Park. They are Les Rouge et Noir, the Red and Blacks. The Pinault family has owned the club since 1998. They have never won the league, but they lifted the Coupe de France in 1965, 1971 and 2019.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 417,
+    "short": "NIC",
+    "en": "OGC Nice were founded in 1904 on the French Riviera and play at the Allianz Riviera, their home since 2013. They are Les Aiglons, the Eaglets, in red and black. Their golden era was the 1950s, when they won the French title four times, in 1951, 1952, 1956 and 1959.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 995,
+    "short": "NAN",
+    "en": "FC Nantes were founded in 1943 and play at the Stade de la Beaujoire, opened in 1984. They are Les Canaris, the Canaries, for their yellow shirts. Famous for a quick passing style called le jeu à la nantaise, they have won the French title eight times, the last in 2001.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 40,
+    "short": "BOR",
+    "en": "Girondins de Bordeaux were founded in 1881 and play at the Matmut Atlantique, their home since 2015 after the Parc Lescure. They wear navy and white. They won six French titles, three of them in the 1980s and the last in 2009 under Laurent Blanc, before money troubles sent them down the leagues in 2024.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 720,
+    "short": "FCP",
+    "en": "FC Porto were founded in 1893 and play at the Estádio do Dragão, their home since 2003. They are the Dragões, the Dragons, in blue and white. They won the European Cup in 1987, and José Mourinho's side won the UEFA Cup in 2003 and the Champions League in 2004.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 294,
+    "short": "SLB",
+    "en": "Benfica were founded in 1904 in Lisbon and play at the Estádio da Luz, rebuilt in 2003. They are As Águias, the Eagles, or the Encarnados, the Reds. Coached by Béla Guttmann, they won the European Cup in 1961 and again in 1962, with Eusébio scoring twice in the final against Real Madrid.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 336,
+    "short": "SCP",
+    "en": "Sporting CP were founded in 1906 in Lisbon and play at the Estádio José Alvalade, opened in 2003. They are Os Leões, the Lions, in green and white hoops. They won the Cup Winners' Cup in 1964, and their academy is one of Europe's best: Luís Figo came through it. The 2021 title ended a 19-year wait.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 610,
+    "short": "AJA",
+    "en": "Ajax were founded in 1900 in Amsterdam and play at the Johan Cruyff Arena, opened in 1996. Their academy is one of the most famous in the world. With Cruyff and Total Football they won three European Cups in a row, from 1971 to 1973, and Louis van Gaal's young side won the Champions League in 1995.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 383,
+    "short": "PSV",
+    "en": "PSV were founded in 1913 as the sports club of the Philips electronics company in Eindhoven, and play at the Philips Stadion. They are the Boeren, the Farmers, in red and white. They won the UEFA Cup in 1978, and Guus Hiddink's side won the treble of league, cup and European Cup in 1988.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 234,
+    "short": "FEY",
+    "en": "Feyenoord were founded in 1908 in Rotterdam and play at De Kuip, the Tub, opened in 1937. Ernst Happel's side beat Celtic in 1970 to become the first Dutch club to win the European Cup. They also won the UEFA Cup in 1974 and again in 2002, with the final played in their own stadium.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 141,
+    "short": "GAL",
+    "en": "Galatasaray were founded in 1905 by Ali Sami Yen and fellow pupils of Galatasaray High School in Istanbul, and play at Rams Park, opened in 2011. They are Cimbom, or the Lions, in yellow and red. Fatih Terim's side won the UEFA Cup and the Super Cup in 2000, the first European trophies for a Turkish club.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 36,
+    "short": "FEN",
+    "en": "Fenerbahçe were founded in 1907 in Kadıköy, on the Asian side of Istanbul, and play at the Şükrü Saracoğlu Stadium. They are the Sarı Kanaryalar, the Yellow Canaries, in yellow and navy. They are one of Turkey's big three with Galatasaray and Beşiktaş, and reached the Champions League quarter-finals in 2008.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 114,
+    "short": "BJK",
+    "en": "Beşiktaş were founded in 1903 in Istanbul and play at a stadium on the shore of the Bosphorus, built on the site of the old İnönü Stadium and opened in 2016. They are the Kara Kartallar, the Black Eagles, in black and white. In 1992 they won the Turkish league without losing a game.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 449,
+    "short": "TRA",
+    "en": "Trabzonspor were founded in 1967 in Trabzon, on Turkey's Black Sea coast, and play at a stadium named after Şenol Güneş, their former goalkeeper and coach. They wear claret and blue. In 1976 they became the first club from outside Istanbul to win the Turkish league, and took six titles by 1984.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 614,
+    "short": "FLA",
+    "en": "Flamengo began as a rowing club in Rio de Janeiro in 1895 and started playing football in 1911. They play at the Maracanã and are the Mengão, or the Rubro-Negro, for their red and black. Zico led them to the Copa Libertadores and the Intercontinental Cup in 1981, and they won the Libertadores again in 2019 and 2022.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 585,
+    "short": "SAO",
+    "en": "São Paulo were founded in 1930 and play at the Morumbi, one of Brazil's biggest stadiums. They are the Tricolor, for their red, white and black. Telê Santana's side won the Copa Libertadores and the Intercontinental Cup in 1992 and 1993, and they beat Liverpool to win the Club World Cup in 2005.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 209,
+    "short": "RIV",
+    "en": "River Plate were founded in 1901 in Buenos Aires and play at the Estadio Monumental, the biggest stadium in South America. They are Los Millonarios, the Millionaires. Their 1940s forward line was called La Máquina, the Machine, and they beat Boca Juniors in the 2018 Copa Libertadores final, played in Madrid.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 1023,
+    "short": "PAL",
+    "en": "Palmeiras were founded in 1914 by Italian immigrants in São Paulo as Palestra Itália and took their present name in 1942. They play at the Allianz Parque, opened in 2014, and are the Verdão, the Big Green. They won the Copa Libertadores in 1999, and twice in a row in 2020 and 2021.",
+    "ar": "",
+    "status": "draft"
+  },
+  {
+    "club_id": 371,
+    "short": "CLT",
+    "en": "Celtic were founded in 1887 in Glasgow by Brother Walfrid, a Marist brother, to raise money for the poor of the city's East End. They play at Celtic Park and are the Bhoys, or the Hoops, for their green and white shirts. In 1967 Jock Stein's Lisbon Lions became the first British club to win the European Cup.",
+    "ar": "",
+    "status": "draft"
+  }
 ]
