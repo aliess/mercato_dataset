@@ -50,6 +50,7 @@ There is no search endpoint and no `countries` endpoint (404). Retired players w
 ```
 sources/            where the data comes from; shared by every mode
   tm_api.py           Transfermarkt API client (cached, throttled, retries)
+  club_types.py       which API clubs are youth or reserve sides (transfer history, Learn routes)
   squads.py           the pool clubs and their squads since 1990/91: the one player list
   fame.py             fame, value now, still playing, and the tiers of every mode
   legends/            legends.json (hand-picked older players and their value) and legend_fame.py
@@ -191,7 +192,7 @@ python publish_files.py --project prod --apply
 | `xi_v1.json` | `starting_xi/output/xi_lineups.json` |
 | `grid_pool_v1.json` | `grid/output/grid_pool.json` |
 | `tiers_v1.json` | `transfer_history/output/player_tiers.json` and `starting_xi/output/xi_stars.json`: each player's value now and the `sources/fame.py` rule that set his tier, each lineup's star count, the lines and the growth factors those builds used |
-| `learn_v1.json` | `sources/learn/clubs.json` and the files above, by `sources/learn/build_learn.py`: the Learn worlds, stops and steps. Only stops with an `approved` card; with none, no file |
+| `learn_v1.json` | `sources/learn/clubs.json`, the files above and the API cache (loans, club types), by `sources/learn/build_learn.py`: the Learn worlds, stops, steps, hooks and twins. Only club stops with an `approved` card; with none, no file |
 | `manifest.json` | version (SHA-256 of the bytes), size, gzip size and last change of the data files |
 
 - **The dry run** downloads the live `manifest.json` by public HTTP and says per file whether it
@@ -205,16 +206,20 @@ python publish_files.py --project prod --apply
   same version and the app does not re-download. Keep it that way when changing a builder.
 - **Safety stop**: a file that would be more than 20% smaller than the live one stops the run
   (`--allow-shrink` overrides).
-- **Learn** (`learn_v1.json`, plan `footballquiz/docs/plans/learn_journey.md`): a stop is
-  built only when its club card in `sources/learn/clubs.json` is `approved` (cards are
-  written as `draft`, the user reviews them, the arabic agent adds `ar`). `--include-drafts`
-  builds the drafts too, for dev testing only (the publisher refuses it for prod).
-  `python sources/learn/build_learn.py [--include-drafts]` builds just this file into
-  `publish/`. Rules of World 1: the club's players now (active, last move to this club),
-  Beginner first then by `market_value`, in steps of 6–8 (`stars` ≈ the Beginner ones, then
-  `squad`); its lineups (famous, then finals, then stars and year; up to 2 steps of 3); up to
-  3 pairs with earlier stops that have 3+ answers valued €20m+ in the Grid pool; checkpoint;
-  pointer to the world that teaches its history.
+- **Learn** (`learn_v1.json`, plan `footballquiz/docs/plans/learn_journey.md`): all ten
+  worlds. A club stop is built only when its card in `sources/learn/clubs.json` is `approved`
+  (cards are written as `draft`, the user reviews them, the arabic agent adds `ar`).
+  `--include-drafts` (dev only; the publisher refuses it for prod) builds every club stop, with
+  its draft card or `card: null`. `python sources/learn/build_learn.py [--include-drafts]`
+  builds just this file into `publish/`. The rules are in the script's docstring: every player
+  has one home (current Grid pool club while he plays, else the pool club where he spent the
+  most time; 10 have none and go to `beyond_free`); lessons of 6–8, with 5 or 9 only when a
+  count can't be cut (10 → 5 + 5); routes count permanent moves between senior teams, so the
+  build reads the loan flag and the club types from the API cache (`sources/club_types.py`,
+  shared with the transfer-history build), and needs no request while that cache is there.
+  Hooks lead with clue 1 of the published set unless another clue has more memorable words or
+  it holds a word of his name; a player without a usable clue gets a fact. Celtic is named in
+  the plan but is not a Grid pool club, so it has no stop.
 - **To undo an upload**: check out the commit whose data was live before, and publish again.
 - **`tiers_v1.json` must explain the data**: the publisher stops, writing nothing, when a player
   of the game data or a lineup has no entry, when a player's `why` (recomputed from his fame,

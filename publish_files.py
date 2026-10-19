@@ -12,7 +12,8 @@ Game data never passes through Firestore: this script does not touch it.
                             tier, for the admin panel only (the app never downloads it)
   cache/learn_v1.json       sources/learn/clubs.json (approved club cards) and the files above:
                             the Learn journey (sources/learn/build_learn.py). Not built while no
-                            stop has an approved card; --include-drafts (dev only) builds drafts too
+                            club stop has an approved card; --include-drafts (dev only) builds every
+                            club stop, with its draft card or card: null
   cache/manifest.json       version (SHA-256), size and last change of the data files
 
 The files hold no build time, so the same inputs always give the same bytes and the same
@@ -435,14 +436,15 @@ def build_all(include_drafts=False):
     xi = build_xi()
     grid = build_grid()
     tiers = build_tiers(game_data, xi[0])
+    clues = build_clues(game_data)
     built = {
         'game_data_v1.json': (game_data, game_counts, game_notes),
-        'clues_v1.json': build_clues(game_data),
+        'clues_v1.json': clues,
         'xi_v1.json': xi,
         'grid_pool_v1.json': grid,
         'tiers_v1.json': tiers,
     }
-    learn = build_learn(game_data, xi[0], grid[0], tiers[0]['lineups'], include_drafts=include_drafts)
+    learn = build_learn(game_data, xi[0], grid[0], tiers[0]['lineups'], clues[0], include_drafts=include_drafts)
     if learn[0] is not None:
         built['learn_v1.json'] = learn
     else:
@@ -587,6 +589,20 @@ def describe_difference(name, live, new):
         cards = sum(1 for i in new_stops if i in old_stops and old_stops[i]['card'] != new_stops[i]['card'])
         if cards:
             lines.append(f'  {cards:,} club cards with changed text')
+        no_card = [stop['short'] for stop in new_stops.values() if stop.get('club_id') is not None and stop['card'] is None]
+        if no_card:
+            lines.append(f'  {len(no_card):,} club stops without a card: {", ".join(no_card)}')
+        old_hooks, new_hooks = live.get('hooks', {}), new.get('hooks', {})
+        lines.append(f"hooks: {len(old_hooks):,} live → {len(new_hooks):,} "
+                     f"({sum(1 for h in new_hooks.values() if 'clue' in h):,} clues, "
+                     f"{sum(1 for h in new_hooks.values() if 'fact' in h):,} facts); "
+                     f"{sum(1 for i in new_hooks if i in old_hooks and old_hooks[i] != new_hooks[i]):,} changed")
+        old_twins = {frozenset(t[:2]) for t in live.get('twins', [])}
+        new_twins = {frozenset(t[:2]) for t in new.get('twins', [])}
+        lines.append(f"twins: {len(old_twins):,} live → {len(new_twins):,}; {len(new_twins - old_twins):,} added, "
+                     f"{len(old_twins - new_twins):,} removed")
+        routes = lambda stops: sum(len(step.get('routes', [])) for stop in stops.values() for step in stop['steps'])
+        lines.append(f'routes: {routes(old_stops):,} live → {routes(new_stops):,}')
     return lines
 
 
