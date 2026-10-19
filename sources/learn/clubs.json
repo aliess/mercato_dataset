@@ -3,602 +3,602 @@
     "club_id": 418,
     "short": "RMA",
     "en": "Real Madrid were founded in 1902 in Madrid and play at the Santiago Bernabéu. They are Los Blancos for their all-white kit, and also Los Merengues. They won the first five European Cups, from 1956 to 1960, with Alfredo Di Stéfano, and built the Galácticos sides of the 2000s.",
-    "ar": "",
+    "ar": "تأسس ريال مدريد عام 1902 في مدريد، ويلعب على ملعب سانتياغو برنابيو. يُلقَّب بلوس بلانكوس، أي البيض، لقميصه الأبيض بالكامل، وبالميرينغي أيضاً. فاز بأول خمس نسخ من كأس أوروبا للأندية، من 1956 إلى 1960، مع ألفريدو دي ستيفانو، وبنى فرق الغلاكتيكوس في العقد الأول من الألفية.",
     "status": "draft"
   },
   {
     "club_id": 131,
     "short": "FCB",
     "en": "Barcelona were founded in 1899 by Joan Gamper and play at the Camp Nou. Fans call the club Barça or the Blaugrana, after its blue and garnet colours. Johan Cruyff's Dream Team won its first European Cup in 1992, and Pep Guardiola's passing sides with Messi, Xavi and Iniesta ruled from 2008.",
-    "ar": "",
+    "ar": "تأسس برشلونة عام 1899 على يد خوان غامبر، ويلعب على ملعب كامب نو. يسميه جمهوره البارسا أو البلوغرانا، نسبة إلى لونيه الأزرق والعنابي. فاز فريق الأحلام بقيادة يوهان كرويف بأول كأس أوروبا للنادي عام 1992، ومن 2008 سادت فرق بيب غوارديولا بتمريراتها مع ميسي وتشافي وإنييستا.",
     "status": "draft"
   },
   {
     "club_id": 583,
     "short": "PSG",
     "en": "Paris Saint-Germain were founded in 1970 and play at the Parc des Princes in Paris. They are Les Parisiens, or Les Rouge et Bleu. Since Qatar Sports Investments bought the club in 2011 they have signed stars such as Ibrahimović, Neymar and Mbappé, and they won their first Champions League in 2025.",
-    "ar": "",
+    "ar": "تأسس باريس سان جيرمان عام 1970، ويلعب على ملعب حديقة الأمراء في باريس. يُلقَّب بالباريسيين، أو بالأحمر والأزرق. منذ أن اشترت قطر للاستثمارات الرياضية النادي عام 2011 تعاقد مع نجوم مثل إبراهيموفيتش ونيمار ومبابي، وفاز بأول لقب له في دوري أبطال أوروبا عام 2025.",
     "status": "draft"
   },
   {
     "club_id": 281,
     "short": "MCI",
     "en": "Manchester City began in 1880 as St. Mark's (West Gorton) and play at the Etihad Stadium, after many years at Maine Road. They are City, or the Citizens, in sky blue. The 2008 Abu Dhabi takeover changed the club, and Pep Guardiola's side won the treble of league, FA Cup and Champions League in 2023.",
-    "ar": "",
+    "ar": "بدأ مانشستر سيتي عام 1880 باسم سانت ماركس (ويست غورتون)، ويلعب على ملعب الاتحاد بعد سنوات طويلة في مين رود. يُعرف بالسيتي، أو السيتيزنز، بلونه الأزرق السماوي. غيّر استحواذ أبوظبي عام 2008 النادي، وفاز فريق بيب غوارديولا بالثلاثية عام 2023: الدوري وكأس الاتحاد الإنجليزي ودوري الأبطال.",
     "status": "draft"
   },
   {
     "club_id": 31,
     "short": "LIV",
     "en": "Liverpool were founded in 1892 and play at Anfield, where fans sing You'll Never Walk Alone. They are the Reds. Bill Shankly and Bob Paisley built the sides that ruled England and Europe in the 1970s and 80s, and Jürgen Klopp's team won the Champions League in 2019 and the Premier League in 2020.",
-    "ar": "",
+    "ar": "تأسس ليفربول عام 1892، ويلعب على ملعب أنفيلد حيث يغني الجمهور أغنية لن تسير وحدك أبداً. يُلقَّب بالحمر. بنى بيل شانكلي وبوب بيزلي الفرق التي سادت إنجلترا وأوروبا في السبعينيات والثمانينيات، وفاز فريق يورغن كلوب بدوري الأبطال عام 2019 وبالدوري الإنجليزي الممتاز عام 2020.",
     "status": "draft"
   },
   {
     "club_id": 27,
     "short": "BAY",
     "en": "Bayern Munich were founded in 1900 and play at the Allianz Arena, their home since 2005. They are Die Roten, the Reds. Franz Beckenbauer, Gerd Müller and Sepp Maier won three European Cups in a row from 1974 to 1976, and Bayern won trebles of league, cup and Champions League in 2013 and 2020.",
-    "ar": "",
+    "ar": "تأسس بايرن ميونخ عام 1900، ويلعب على ملعب أليانز أرينا، بيته منذ 2005. يُلقَّب بالحمر. فاز فرانز بكنباور وغيرد مولر وسيب ماير بثلاث نسخ متتالية من كأس أوروبا للأندية من 1974 إلى 1976، وحقق بايرن الثلاثية، الدوري والكأس ودوري الأبطال، عامي 2013 و2020.",
     "status": "draft"
   },
   {
     "club_id": 11,
     "short": "ARS",
     "en": "Arsenal began in 1886 as Dial Square, a team of workers at the Royal Arsenal in Woolwich, and now play at the Emirates Stadium in north London, their home since leaving Highbury in 2006. They are the Gunners. Under Arsène Wenger they went a whole league season unbeaten in 2003–04: the Invincibles.",
-    "ar": "",
+    "ar": "بدأ أرسنال عام 1886 باسم دايال سكوير، فريقاً لعمال مصنع الأسلحة الملكي في وولويتش، ويلعب اليوم على ملعب الإمارات في شمال لندن، بيته منذ أن غادر هايبري عام 2006. يُلقَّب بالمدفعجية. مع أرسين فينغر أكمل موسم 2003-2004 في الدوري كاملاً دون هزيمة: فريق الذين لا يُقهرون.",
     "status": "draft"
   },
   {
     "club_id": 631,
     "short": "CHE",
     "en": "Chelsea were founded in 1905 and play at Stamford Bridge in west London. They are the Blues. After Roman Abramovich bought the club in 2003, José Mourinho's side won the league in 2005 and 2006, and Chelsea won the Champions League in Munich in 2012 and again in Porto in 2021.",
-    "ar": "",
+    "ar": "تأسس تشيلسي عام 1905، ويلعب على ملعب ستامفورد بريدج في غرب لندن. يُلقَّب بالبلوز. بعد أن اشترى رومان أبراموفيتش النادي عام 2003، فاز فريق جوزيه مورينيو بالدوري عامي 2005 و2006، وتوّج تشيلسي بدوري الأبطال في ميونخ عام 2012 ثم في بورتو عام 2021.",
     "status": "draft"
   },
   {
     "club_id": 985,
     "short": "MUN",
     "en": "Manchester United began in 1878 as Newton Heath and took their name in 1902. They play at Old Trafford, the Theatre of Dreams, and are the Red Devils. Matt Busby's side won the European Cup in 1968, ten years after the Munich air disaster, and Sir Alex Ferguson's won the treble in 1999.",
-    "ar": "",
+    "ar": "بدأ مانشستر يونايتد عام 1878 باسم نيوتن هيث، واتخذ اسمه الحالي عام 1902. يلعب على ملعب أولد ترافورد، مسرح الأحلام، ويُلقَّب بالشياطين الحمر. فاز فريق مات باسبي بكأس أوروبا للأندية عام 1968، بعد عشر سنوات من كارثة ميونخ الجوية، وحقق فريق السير أليكس فيرغسون الثلاثية عام 1999.",
     "status": "draft"
   },
   {
     "club_id": 148,
     "short": "TOT",
     "en": "Tottenham Hotspur were founded in 1882 in north London and play at the Tottenham Hotspur Stadium, built on the site of White Hart Lane and opened in 2019. They are Spurs, or the Lilywhites. Their 1960–61 side won the league and FA Cup double, and they reached the Champions League final in 2019.",
-    "ar": "",
+    "ar": "تأسس توتنهام هوتسبير عام 1882 في شمال لندن، ويلعب على ملعب توتنهام هوتسبير الذي بُني مكان وايت هارت لين وافتُتح عام 2019. يُلقَّب بالسبيرز، أو الليلي وايتس. حقق فريق موسم 1960-1961 ثنائية الدوري وكأس الاتحاد الإنجليزي، وبلغ النادي نهائي دوري الأبطال عام 2019.",
     "status": "draft"
   },
   {
     "club_id": 13,
     "short": "ATM",
     "en": "Atlético Madrid were founded in 1903 and play at the Metropolitano, their home since leaving the Vicente Calderón in 2017. They are Los Colchoneros, the mattress makers, after their red and white stripes. Under Diego Simeone, coach since 2011, they won La Liga in 2014 and 2021 and reached two Champions League finals.",
-    "ar": "",
+    "ar": "تأسس أتلتيكو مدريد عام 1903، ويلعب على ملعب ميتروبوليتانو، بيته منذ أن غادر فيسنتي كالديرون عام 2017. يُلقَّب بالكولتشونيروس، أي صنّاع المراتب، بسبب خطوطه الحمراء والبيضاء. مع دييغو سيميوني، مدربه منذ 2011، فاز بالدوري الإسباني عامي 2014 و2021 وبلغ نهائيين في دوري الأبطال.",
     "status": "draft"
   },
   {
     "club_id": 506,
     "short": "JUV",
     "en": "Juventus were founded in 1897 by students in Turin and play at the Allianz Stadium, opened in 2011. They are the Old Lady, or the Bianconeri, after the black and white stripes they took from Notts County. They won the European Cup in 1985 and 1996, and nine Serie A titles in a row from 2012 to 2020.",
-    "ar": "",
+    "ar": "تأسس يوفنتوس عام 1897 على يد طلاب في تورينو، ويلعب على ملعب أليانز الذي افتُتح عام 2011. يُلقَّب بالسيدة العجوز، أو البيانكونيري، نسبة إلى الخطوط السوداء والبيضاء التي أخذها عن نوتس كاونتي. فاز بكأس أوروبا للأندية عامي 1985 و1996، وبتسعة ألقاب متتالية في الدوري الإيطالي من 2012 إلى 2020.",
     "status": "draft"
   },
   {
     "club_id": 5,
     "short": "MIL",
     "en": "AC Milan were founded in 1899 by Englishmen Herbert Kilpin and Alfred Edwards and play at San Siro, which they share with Inter. They are the Rossoneri, the red and blacks. Arrigo Sacchi's side with Gullit, Van Basten and Rijkaard won the European Cup in 1989 and 1990, and Milan have won it seven times.",
-    "ar": "",
+    "ar": "تأسس ميلان عام 1899 على يد الإنجليزيين هربرت كيلبين وألفريد إدواردز، ويلعب على ملعب سان سيرو الذي يتقاسمه مع إنتر. يُلقَّب بالروسونيري، أي الأحمر والأسود. فاز فريق أريغو ساكي مع خوليت وفان باستن وريكارد بكأس أوروبا للأندية عامي 1989 و1990، وفاز بها ميلان سبع مرات.",
     "status": "draft"
   },
   {
     "club_id": 46,
     "short": "INT",
     "en": "Inter were founded in 1908 by members who broke away from Milan, and share San Siro with their rivals. They are the Nerazzurri, the black and blues. Helenio Herrera's Grande Inter won the European Cup in 1964 and 1965, and José Mourinho's side won the first treble by an Italian club in 2010.",
-    "ar": "",
+    "ar": "تأسس إنتر عام 1908 على يد أعضاء انشقّوا عن ميلان، ويتقاسم ملعب سان سيرو مع غريمه. يُلقَّب بالنيراتزوري، أي الأسود والأزرق. فاز إنتر العظيم بقيادة إيلينيو هيريرا بكأس أوروبا للأندية عامي 1964 و1965، وحقق فريق جوزيه مورينيو أول ثلاثية لنادٍ إيطالي عام 2010.",
     "status": "draft"
   },
   {
     "club_id": 12,
     "short": "ROM",
     "en": "Roma were founded in 1927 from a merger of three Rome clubs and play at the Stadio Olimpico, which they share with Lazio. They are the Giallorossi, for their yellow and red, and the Wolves. They won Serie A in 1942, 1983 and 2001, the last with Francesco Totti as captain, and the first Conference League in 2022.",
-    "ar": "",
+    "ar": "تأسس روما عام 1927 من اندماج ثلاثة أندية من العاصمة، ويلعب على الملعب الأولمبي الذي يتقاسمه مع لاتسيو. يُلقَّب بالجالوروسي، نسبة إلى الأصفر والأحمر، وبالذئاب. فاز بالدوري الإيطالي أعوام 1942 و1983 و2001، آخرها مع القائد فرانشيسكو توتي، وبأول نسخة من دوري المؤتمر الأوروبي عام 2022.",
     "status": "draft"
   },
   {
     "club_id": 6195,
     "short": "NAP",
     "en": "Napoli were founded in 1926 and play at the Stadio Diego Armando Maradona, named after him in 2020. They are the Azzurri, or the Partenopei. Maradona led them to Serie A titles in 1987 and 1990 and the UEFA Cup in 1989. Reborn in Serie C after going bankrupt in 2004, they won the league again in 2023 and 2025.",
-    "ar": "",
+    "ar": "تأسس نابولي عام 1926، ويلعب على ملعب دييغو أرماندو مارادونا الذي حمل اسمه عام 2020. يُلقَّب بالأزوري، أو البارتينوبي. قاده مارادونا إلى لقبي الدوري الإيطالي عامي 1987 و1990 وكأس الاتحاد الأوروبي عام 1989. بعد إفلاسه عام 2004 وُلد من جديد في الدرجة الثالثة، ثم عاد بطلاً للدوري عامي 2023 و2025.",
     "status": "draft"
   },
   {
     "club_id": 430,
     "short": "FIO",
     "en": "Fiorentina were founded in 1926 in Florence and play at the Stadio Artemio Franchi. They are La Viola, after their purple shirts. They won Serie A in 1956 and 1969 and the Cup Winners' Cup in 1961. After going bankrupt in 2002 they restarted in the fourth tier and were back in Serie A by 2004.",
-    "ar": "",
+    "ar": "تأسس فيورنتينا عام 1926 في فلورنسا، ويلعب على ملعب أرتيميو فرانكي. يُلقَّب بالفيولا، أي البنفسجي، نسبة إلى قمصانه البنفسجية. فاز بالدوري الإيطالي عامي 1956 و1969 وبكأس الكؤوس الأوروبية عام 1961. بعد إفلاسه عام 2002 بدأ من جديد في الدرجة الرابعة، وعاد إلى الدوري الإيطالي بحلول 2004.",
     "status": "draft"
   },
   {
     "club_id": 800,
     "short": "ATA",
     "en": "Atalanta were founded in 1907 in Bergamo, near Milan, and play at the Gewiss Stadium. They are La Dea, the Goddess, or the Nerazzurri, in black and blue. Known for one of Italy's best youth academies, they rose under coach Gian Piero Gasperini from 2016 and won the Europa League in 2024.",
-    "ar": "",
+    "ar": "تأسس أتالانتا عام 1907 في بيرغامو قرب ميلانو، ويلعب على ملعب جيويس. يُلقَّب بالإلهة، أو بالنيراتزوري بلونيه الأسود والأزرق. يشتهر بواحدة من أفضل أكاديميات الناشئين في إيطاليا، وصعد نجمه مع المدرب جان بييرو غاسبريني منذ 2016 وفاز بالدوري الأوروبي عام 2024.",
     "status": "draft"
   },
   {
     "club_id": 398,
     "short": "LAZ",
     "en": "Lazio were founded in 1900, the older of Rome's two big clubs. They share the Stadio Olimpico with Roma and are the Biancocelesti, for their sky blue and white, and the Eagles. They won Serie A in 1974 and 2000, the second under Sven-Göran Eriksson, who also won them the Cup Winners' Cup in 1999.",
-    "ar": "",
+    "ar": "تأسس لاتسيو عام 1900، وهو الأقدم بين ناديي روما الكبيرين. يتقاسم الملعب الأولمبي مع روما، ويُلقَّب بالبيانكوتشيليستي، نسبة إلى الأزرق السماوي والأبيض، وبالنسور. فاز بالدوري الإيطالي عامي 1974 و2000، والثاني مع سفين غوران إريكسون الذي منحه أيضاً كأس الكؤوس الأوروبية عام 1999.",
     "status": "draft"
   },
   {
     "club_id": 1025,
     "short": "BOL",
     "en": "Bologna were founded in 1909 and play at the Stadio Renato Dall'Ara. They are the Rossoblù, for their red and blue. In the 1930s they were the team that shook the world, and they have won seven Serie A titles, the last in 1964. In 2025 they won the Coppa Italia, their first since 1974.",
-    "ar": "",
+    "ar": "تأسس بولونيا عام 1909، ويلعب على ملعب ريناتو دالارا. يُلقَّب بالروسوبلو، نسبة إلى الأحمر والأزرق. في الثلاثينيات كان الفريق الذي هزّ العالم، وفاز بسبعة ألقاب في الدوري الإيطالي آخرها عام 1964. وفي 2025 فاز بكأس إيطاليا، الأولى له منذ 1974.",
     "status": "draft"
   },
   {
     "club_id": 1047,
     "short": "COM",
     "en": "Como were founded in 1907 and play at the Stadio Giuseppe Sinigaglia, on the shore of Lake Como. They are the Lariani, after the lake's Latin name. Bought in 2019 by Indonesia's Hartono brothers, they climbed from Serie C to Serie A in 2024, back after 21 years, and Cesc Fàbregas became their coach.",
-    "ar": "",
+    "ar": "تأسس كومو عام 1907، ويلعب على ملعب جوزيبي سينيغاليا على ضفاف بحيرة كومو. يُلقَّب باللارياني، نسبة إلى اسم البحيرة اللاتيني. اشتراه الأخوان الإندونيسيان هارتونو عام 2019، فصعد من الدرجة الثالثة إلى الدوري الإيطالي عام 2024 عائداً بعد 21 عاماً، وأصبح سيسك فابريغاس مدربه.",
     "status": "draft"
   },
   {
     "club_id": 410,
     "short": "UDI",
     "en": "Udinese were founded in 1896 in Udine, in Italy's north-east, and play at the Stadio Friuli, now called the Bluenergy Stadium. They are the Zebrette, the little zebras, for their black and white stripes. Owned by the Pozzo family since 1986, they are famous for scouting players all over the world.",
-    "ar": "",
+    "ar": "تأسس أودينيزي عام 1896 في أوديني شمال شرق إيطاليا، ويلعب على ملعب فريولي الذي يُسمى اليوم ملعب بلوإنرجي. يُلقَّب بالزيبريتي، أي الحمير الوحشية الصغيرة، نسبة إلى خطوطه السوداء والبيضاء. تملكه عائلة بوتسو منذ 1986، ويشتهر باكتشاف اللاعبين في كل أنحاء العالم.",
     "status": "draft"
   },
   {
     "club_id": 130,
     "short": "PAR",
     "en": "Parma were founded in 1913 and play at the Stadio Ennio Tardini. They are the Crociati, after the cross on their badge, and the Gialloblù. Backed by Parmalat in the 1990s, they won the Cup Winners' Cup in 1993 and the UEFA Cup in 1995 and 1999. Bankrupt in 2015, they rose from Serie D back to Serie A by 2018.",
-    "ar": "",
+    "ar": "تأسس بارما عام 1913، ويلعب على ملعب إنيو تارديني. يُلقَّب بالكروتشياتي، نسبة إلى الصليب على شعاره، وبالجالوبلو. بدعم من بارمالات في التسعينيات فاز بكأس الكؤوس الأوروبية عام 1993 وبكأس الاتحاد الأوروبي عامي 1995 و1999. أفلس عام 2015، ثم صعد من الدرجة الرابعة إلى الدوري الإيطالي بحلول 2018.",
     "status": "draft"
   },
   {
     "club_id": 252,
     "short": "GEN",
     "en": "Genoa were founded in 1893 by Englishmen as the Genoa Cricket and Athletic Club, and are Italy's oldest football club. They play at the Stadio Luigi Ferraris, shared with Sampdoria, and are the Grifone, the griffin, or the Rossoblù. They won nine Italian titles, the last of them in 1924.",
-    "ar": "",
+    "ar": "تأسس جنوى عام 1893 على يد إنجليز باسم نادي جنوى للكريكيت وألعاب القوى، وهو أقدم نادي كرة قدم في إيطاليا. يلعب على ملعب لويجي فيراريس الذي يتقاسمه مع سامبدوريا، ويُلقَّب بالغريفوني، أي الغريفين، أو بالروسوبلو. فاز بتسعة ألقاب إيطالية، آخرها عام 1924.",
     "status": "draft"
   },
   {
     "club_id": 416,
     "short": "TOR",
     "en": "Torino were founded in 1906 and play at the Stadio Olimpico Grande Torino. They are Il Toro, the Bull, or the Granata, for their maroon. The Grande Torino side won five titles in a row in the 1940s before the whole team died in the Superga air crash in 1949. Their last title came in 1976.",
-    "ar": "",
+    "ar": "تأسس تورينو عام 1906، ويلعب على الملعب الأولمبي غراندي تورينو. يُلقَّب بالثور، أو الغراناتا، نسبة إلى لونه العنابي. فاز فريق غراندي تورينو بخمسة ألقاب متتالية في الأربعينيات قبل أن يلقى الفريق كله حتفه في كارثة سوبيرغا الجوية عام 1949. وجاء آخر ألقابه عام 1976.",
     "status": "draft"
   },
   {
     "club_id": 1038,
     "short": "SAM",
     "en": "Sampdoria were formed in 1946 by the merger of Sampierdarenese and Andrea Doria, and share the Stadio Luigi Ferraris in Genoa with Genoa. They are the Blucerchiati, for the hoops on their blue shirts. Gianluca Vialli and Roberto Mancini led them to the Serie A title in 1991 and the European Cup final in 1992.",
-    "ar": "",
+    "ar": "تأسس سامبدوريا عام 1946 من اندماج سامبييرداريينيزي وأندريا دوريا، ويتقاسم ملعب لويجي فيراريس في جنوى مع نادي جنوى. يُلقَّب بالبلوتشيركياتي، نسبة إلى الأطواق على قمصانه الزرقاء. قاده جانلوكا فيالي وروبرتو مانشيني إلى لقب الدوري الإيطالي عام 1991 ونهائي كأس أوروبا للأندية عام 1992.",
     "status": "draft"
   },
   {
     "club_id": 276,
     "short": "VER",
     "en": "Hellas Verona were founded in 1903 by students, who took the name Hellas, Greek for Greece, at a teacher's suggestion. They play at the Stadio Marcantonio Bentegodi and are the Gialloblù, for their yellow and blue. Under coach Osvaldo Bagnoli they won a surprise Serie A title in 1985.",
-    "ar": "",
+    "ar": "تأسس هيلاس فيرونا عام 1903 على يد طلاب اختاروا اسم هيلاس، أي اليونان باليونانية، باقتراح من أحد المعلمين. يلعب على ملعب ماركانتونيو بنتيغودي، ويُلقَّب بالجالوبلو، نسبة إلى الأصفر والأزرق. مع المدرب أوسفالدو بانيولي فاز بلقب مفاجئ في الدوري الإيطالي عام 1985.",
     "status": "draft"
   },
   {
     "club_id": 16,
     "short": "BVB",
     "en": "Borussia Dortmund were founded in 1909 and play at the Westfalenstadion, now Signal Iduna Park, whose south stand is the Yellow Wall. They are BVB, or the Schwarzgelben, in black and yellow. They won the Champions League in 1997, and Jürgen Klopp's side won the Bundesliga in 2011 and 2012.",
-    "ar": "",
+    "ar": "تأسس بوروسيا دورتموند عام 1909، ويلعب على ملعب فستفالن شتاديون، واسمه اليوم سيغنال إيدونا بارك، ومدرّجه الجنوبي هو الجدار الأصفر. يُعرف ببي في بي، أو بالأسود والأصفر. فاز بدوري الأبطال عام 1997، وفاز فريق يورغن كلوب بالبوندسليغا عامي 2011 و2012.",
     "status": "draft"
   },
   {
     "club_id": 15,
     "short": "LEV",
     "en": "Bayer Leverkusen were founded in 1904 by workers of the Bayer chemical company and play at the BayArena. They are Die Werkself, the factory team. They won the UEFA Cup in 1988, and under Xabi Alonso they won their first Bundesliga in 2024 without losing a league game, along with the German Cup.",
-    "ar": "",
+    "ar": "تأسس باير ليفركوزن عام 1904 على يد عمال شركة باير للكيماويات، ويلعب على ملعب باي أرينا. يُلقَّب بفريق المصنع. فاز بكأس الاتحاد الأوروبي عام 1988، ومع تشابي ألونسو فاز بأول لقب له في البوندسليغا عام 2024 دون أي هزيمة في الدوري، وأضاف إليه كأس ألمانيا.",
     "status": "draft"
   },
   {
     "club_id": 23826,
     "short": "RBL",
     "en": "RB Leipzig were founded in 2009 by Red Bull, who took over the place of fifth-tier SSV Markranstädt. They play at the Red Bull Arena, built inside Leipzig's old Zentralstadion, and are Die Roten Bullen, the Red Bulls. They reached the Bundesliga in 2016 and won the German Cup in 2022 and 2023.",
-    "ar": "",
+    "ar": "تأسس لايبزيغ عام 2009 على يد شركة ريد بول، التي أخذت مكان نادي ماركرانشتيت في الدرجة الخامسة. يلعب على ملعب ريد بول أرينا المبني داخل الملعب المركزي القديم في المدينة، ويُلقَّب بالثيران الحمر. وصل إلى البوندسليغا عام 2016، وفاز بكأس ألمانيا عامي 2022 و2023.",
     "status": "draft"
   },
   {
     "club_id": 79,
     "short": "VFB",
     "en": "VfB Stuttgart trace their roots to 1893 and play at the MHPArena, the old Neckarstadion. They are Die Schwaben, the Swabians, in white with a red band across the chest. They have been German champions five times, the last in 2007, and won the German Cup in 2025, a year after finishing second in the Bundesliga.",
-    "ar": "",
+    "ar": "تعود جذور شتوتغارت إلى عام 1893، ويلعب على ملعب إم إتش بي أرينا، ملعب نيكار القديم. يُلقَّب بالشوابيين، ويرتدي الأبيض مع شريط أحمر على الصدر. توّج بطلاً لألمانيا خمس مرات آخرها عام 2007، وفاز بكأس ألمانيا عام 2025، بعد عام من احتلاله المركز الثاني في البوندسليغا.",
     "status": "draft"
   },
   {
     "club_id": 3,
     "short": "KOE",
     "en": "1. FC Köln were founded in 1948 by a merger of two Cologne clubs and play at the RheinEnergieStadion. They are Die Geissböcke, the Billy Goats, after their live goat mascot, Hennes. They won the first Bundesliga title in 1964 and the double of league and German Cup in 1978.",
-    "ar": "",
+    "ar": "تأسس كولن عام 1948 من اندماج ناديين من المدينة، ويلعب على ملعب راين إنرجي. يُلقَّب بالتيوس، نسبة إلى تميمته، التيس الحي هينيس. فاز بأول لقب في تاريخ البوندسليغا عام 1964، وبثنائية الدوري وكأس ألمانيا عام 1978.",
     "status": "draft"
   },
   {
     "club_id": 533,
     "short": "HOF",
     "en": "Hoffenheim trace their roots to 1899 in a village of about 3,000 people near Heidelberg, and play at the PreZero Arena in nearby Sinsheim. They are the Kraichgauer, after their region. Backed by SAP co-founder Dietmar Hopp, a former youth player there, they climbed from the amateur leagues to the Bundesliga in 2008.",
-    "ar": "",
+    "ar": "تعود جذور هوفنهايم إلى عام 1899 في قرية يسكنها نحو 3000 نسمة قرب هايدلبرغ، ويلعب على ملعب بريزيرو أرينا في زينسهايم المجاورة. يُلقَّب بالكرايشغاويين، نسبة إلى منطقته. بدعم من ديتمار هوب، أحد مؤسسي شركة ساب ولاعب سابق في ناشئي النادي، صعد من دوريات الهواة إلى البوندسليغا عام 2008.",
     "status": "draft"
   },
   {
     "club_id": 33,
     "short": "SCH",
     "en": "Schalke 04 were founded in 1904 in Gelsenkirchen, in the coal-mining Ruhr, and play at the Veltins-Arena. They are Die Königsblauen, the Royal Blues, or Die Knappen, the Miners. They won six of their seven German titles from 1934 to 1942, and their Eurofighters won the UEFA Cup in 1997.",
-    "ar": "",
+    "ar": "تأسس شالكه 04 عام 1904 في غيلسنكيرشن، في منطقة الرور المعروفة بمناجم الفحم، ويلعب على ملعب فيلتنس أرينا. يُلقَّب بالأزرق الملكي، أو بعمال المناجم. فاز بستة من ألقابه السبعة في الدوري الألماني بين 1934 و1942، وفاز فريقه الملقّب بيوروفايترز بكأس الاتحاد الأوروبي عام 1997.",
     "status": "draft"
   },
   {
     "club_id": 24,
     "short": "SGE",
     "en": "Eintracht Frankfurt were founded in 1899 and play at the Waldstadion, now Deutsche Bank Park. They are Die Adler, the Eagles. German champions in 1959, they lost the 1960 European Cup final 7–3 to Real Madrid at Hampden Park, and won the UEFA Cup in 1980 and the Europa League in 2022.",
-    "ar": "",
+    "ar": "تأسس آينتراخت فرانكفورت عام 1899، ويلعب على ملعب فالدشتاديون، واسمه اليوم دويتشه بنك بارك. يُلقَّب بالنسور. توّج بطلاً لألمانيا عام 1959، وخسر نهائي كأس أوروبا للأندية عام 1960 أمام ريال مدريد 7-3 على ملعب هامبدن بارك، وفاز بكأس الاتحاد الأوروبي عام 1980 وبالدوري الأوروبي عام 2022.",
     "status": "draft"
   },
   {
     "club_id": 82,
     "short": "WOB",
     "en": "VfL Wolfsburg were founded in 1945 in the Volkswagen factory town and play at the Volkswagen Arena. They are Die Wölfe, the Wolves, and the car maker still owns the club. Under Felix Magath they won their only Bundesliga title in 2009, and they won the German Cup in 2015.",
-    "ar": "",
+    "ar": "تأسس فولفسبورغ عام 1945 في مدينة مصنع فولكسفاغن، ويلعب على ملعب فولكسفاغن أرينا. يُلقَّب بالذئاب، ولا تزال شركة السيارات تملك النادي. مع فيليكس ماغات فاز بلقبه الوحيد في البوندسليغا عام 2009، وفاز بكأس ألمانيا عام 2015.",
     "status": "draft"
   },
   {
     "club_id": 41,
     "short": "HSV",
     "en": "Hamburger SV trace their roots to 1887 and play at the Volksparkstadion. They are Die Rothosen, the Red Shorts, and Der Dino, the one club in every Bundesliga season until they went down in 2018. Ernst Happel's side won the European Cup in 1983, and they returned to the Bundesliga in 2025.",
-    "ar": "",
+    "ar": "تعود جذور هامبورغ إلى عام 1887، ويلعب على ملعب فولكسبارك شتاديون. يُلقَّب بأصحاب السراويل الحمراء، وبالديناصور، فهو النادي الوحيد الذي لعب كل مواسم البوندسليغا حتى هبوطه عام 2018. فاز فريق إرنست هابل بكأس أوروبا للأندية عام 1983، وعاد إلى البوندسليغا عام 2025.",
     "status": "draft"
   },
   {
     "club_id": 60,
     "short": "SCF",
     "en": "SC Freiburg were founded in 1904 and play at the Europa-Park Stadion, their home since 2021 after the Dreisamstadion. They are known for loyal coaches: Volker Finke from 1991 to 2007 and Christian Streich from 2011 to 2024. They reached their first German Cup final in 2022.",
-    "ar": "",
+    "ar": "تأسس فرايبورغ عام 1904، ويلعب على ملعب يوروبا بارك، بيته منذ 2021 بعد ملعب درايزام. يشتهر بوفائه لمدربيه: فولكر فينكه من 1991 إلى 2007، وكريستيان شترايش من 2011 إلى 2024. بلغ أول نهائي له في كأس ألمانيا عام 2022.",
     "status": "draft"
   },
   {
     "club_id": 677,
     "short": "IPS",
     "en": "Ipswich Town were founded in 1878 and play at Portman Road. They are the Tractor Boys, or the Blues. Alf Ramsey's side won the league title in 1962, in their first season in the top flight, and Bobby Robson's side won the FA Cup in 1978 and the UEFA Cup in 1981.",
-    "ar": "",
+    "ar": "تأسس إيبسويتش تاون عام 1878، ويلعب على ملعب بورتمان رود. يُلقَّب بفتيان الجرارات، أو بالبلوز. فاز فريق ألف رامزي بلقب الدوري عام 1962 في أول موسم له في الدرجة الأولى، وفاز فريق بوبي روبسون بكأس الاتحاد الإنجليزي عام 1978 وبكأس الاتحاد الأوروبي عام 1981.",
     "status": "draft"
   },
   {
     "club_id": 1049,
     "short": "VAL",
     "en": "Valencia were founded in 1919 and play at Mestalla, their home since 1923. They are Los Che, or Los Murciélagos, after the bat on their crest. They lost two Champions League finals in a row, in 2000 and 2001, then Rafa Benítez's side won La Liga in 2002 and 2004 and the UEFA Cup in 2004.",
-    "ar": "",
+    "ar": "تأسس فالنسيا عام 1919، ويلعب على ملعب ميستايا، بيته منذ 1923. يُلقَّب بالتشي، أو بالخفافيش، نسبة إلى الخفاش على شعاره. خسر نهائيين متتاليين في دوري الأبطال عامي 2000 و2001، ثم فاز فريق رافا بينيتيز بالدوري الإسباني عامي 2002 و2004 وبكأس الاتحاد الأوروبي عام 2004.",
     "status": "draft"
   },
   {
     "club_id": 150,
     "short": "BET",
     "en": "Real Betis were founded in Seville in 1907. Their stadium is the Benito Villamarín, now being rebuilt while they play at La Cartuja. They are Los Verdiblancos, after their green and white stripes, and their fans sing Viva el Betis manque pierda: long live Betis, even when they lose. They won La Liga once, in 1935.",
-    "ar": "",
+    "ar": "تأسس ريال بيتيس في إشبيلية عام 1907. ملعبه بينيتو فيامارين يُعاد بناؤه حالياً بينما يلعب على ملعب لا كارتوخا. يُلقَّب بالأخضر والأبيض، نسبة إلى خطوطه الخضراء والبيضاء، ويغني جمهوره: يحيا بيتيس وإن خسر. فاز بالدوري الإسباني مرة واحدة، عام 1935.",
     "status": "draft"
   },
   {
     "club_id": 681,
     "short": "RSO",
     "en": "Real Sociedad were founded in 1909 in San Sebastián and play at Anoeta, also called the Reale Arena. They are La Real, or the Txuri-urdin, Basque for white and blue. They won La Liga two years running, in 1981 and 1982, and beat Basque rivals Athletic Club in the 2020 Copa del Rey final, played in 2021.",
-    "ar": "",
+    "ar": "تأسس ريال سوسيداد عام 1909 في سان سيباستيان، ويلعب على ملعب أنويتا، المعروف أيضاً باسم رياله أرينا. يُلقَّب بلا ريال، أو بالتشوري أوردين، أي الأبيض والأزرق بلغة الباسك. فاز بالدوري الإسباني عامين متتاليين، 1981 و1982، وهزم جاره الباسكي أتلتيك بلباو في نهائي كأس ملك إسبانيا 2020 الذي أُقيم عام 2021.",
     "status": "draft"
   },
   {
     "club_id": 1050,
     "short": "VIL",
     "en": "Villarreal were founded in 1923 in a small town near Castellón, and play at the Estadio de la Cerámica, once El Madrigal. They are the Yellow Submarine. They reached Champions League semi-finals in 2006 and 2022, and Unai Emery's side beat Manchester United on penalties to win the 2021 Europa League.",
-    "ar": "",
+    "ar": "تأسس فياريال عام 1923 في بلدة صغيرة قرب كاستيون، ويلعب على ملعب لا سيراميكا، المادريغال سابقاً. يُلقَّب بالغواصة الصفراء. بلغ نصف نهائي دوري الأبطال عامي 2006 و2022، وهزم فريق أوناي إيمري مانشستر يونايتد بركلات الترجيح ليفوز بالدوري الأوروبي عام 2021.",
     "status": "draft"
   },
   {
     "club_id": 368,
     "short": "SEV",
     "en": "Sevilla were founded in 1890 and play at the Ramón Sánchez-Pizjuán, in the Nervión district of Seville. They are Los Nervionenses, after that district. Their only La Liga title came in 1946, but the Europa League is theirs like no one else's: seven wins, the first two in 2006 and 2007 and the last in 2023.",
-    "ar": "",
+    "ar": "تأسس إشبيلية عام 1890، ويلعب على ملعب رامون سانشيز بيزخوان في حي نيرفيون بالمدينة. يُلقَّب بالنيرفيونيين، نسبة إلى ذلك الحي. لقبه الوحيد في الدوري الإسباني جاء عام 1946، لكن لا أحد يملك الدوري الأوروبي كما يملكه: سبعة ألقاب، أول اثنين منها عامي 2006 و2007 وآخرها عام 2023.",
     "status": "draft"
   },
   {
     "club_id": 897,
     "short": "DEP",
     "en": "Deportivo de La Coruña were founded in 1906 and play at Riazor, by the sea in A Coruña, Galicia. They are Dépor, and the Super Dépor of the 1990s. They won La Liga in 2000, beat Real Madrid in the 2002 Copa del Rey final at the Bernabéu on Madrid's 100th birthday, and reached the Champions League semi-finals in 2004.",
-    "ar": "",
+    "ar": "تأسس ديبورتيفو لا كورونيا عام 1906، ويلعب على ملعب رياثور المطل على البحر في لا كورونيا بإقليم غاليسيا. يُلقَّب بالديبور، وعُرف في التسعينيات بالسوبر ديبور. فاز بالدوري الإسباني عام 2000، وهزم ريال مدريد في نهائي كأس ملك إسبانيا 2002 على ملعب برنابيو يوم الذكرى المئوية لمدريد، وبلغ نصف نهائي دوري الأبطال عام 2004.",
     "status": "draft"
   },
   {
     "club_id": 940,
     "short": "CEV",
     "en": "Celta were founded in Vigo in 1923, when Real Vigo Sporting and Real Fortuna merged, and play at Balaídos. They are Os Celestes, after their sky blue shirts. Their best years came around 2000, with UEFA Cup runs and an Intertoto Cup win, and in 2017 they reached the Europa League semi-finals against Manchester United.",
-    "ar": "",
+    "ar": "تأسس سيلتا في فيغو عام 1923 من اندماج ريال فيغو سبورتينغ وريال فورتونا، ويلعب على ملعب بالايدوس. يُلقَّب بالسماويين، نسبة إلى قمصانه الزرقاء السماوية. جاءت أفضل سنواته حول عام 2000، مع مشاركات قوية في كأس الاتحاد الأوروبي ولقب في كأس إنترتوتو، وفي 2017 بلغ نصف نهائي الدوري الأوروبي أمام مانشستر يونايتد.",
     "status": "draft"
   },
   {
     "club_id": 621,
     "short": "ATH",
     "en": "Athletic Club were founded in Bilbao in 1898 and play at San Mamés, rebuilt beside the old ground in 2013. They are Los Leones, the Lions, and field only players from or raised in the Basque Country. Like Real Madrid and Barcelona they have never been relegated, and in 2024 they won their first Copa del Rey since 1984.",
-    "ar": "",
+    "ar": "تأسس أتلتيك بلباو في بلباو عام 1898، ويلعب على ملعب سان ماميس الذي أُعيد بناؤه بجوار الملعب القديم عام 2013. يُلقَّب بالأسود، ولا يُشرك إلا لاعبين من إقليم الباسك أو نشأوا فيه. مثل ريال مدريد وبرشلونة لم يهبط قط، وفي 2024 فاز بأول كأس ملك إسبانيا له منذ 1984.",
     "status": "draft"
   },
   {
     "club_id": 3709,
     "short": "GET",
     "en": "Getafe were founded in 1983 in Getafe, a city just south of Madrid, and play at the Coliseum. They are Los Azulones, after their deep blue shirts. They reached La Liga for the first time in 2004, played Copa del Rey finals in 2007 and 2008 and reached the UEFA Cup quarter-finals in 2008, losing to Bayern Munich.",
-    "ar": "",
+    "ar": "تأسس خيتافي عام 1983 في خيتافي، المدينة الواقعة جنوب مدريد مباشرة، ويلعب على ملعب كوليسيوم. يُلقَّب بالأثولونيس، نسبة إلى قمصانه الزرقاء الداكنة. وصل إلى الدوري الإسباني لأول مرة عام 2004، ولعب نهائي كأس ملك إسبانيا عامي 2007 و2008، وبلغ ربع نهائي كأس الاتحاد الأوروبي عام 2008 حيث خسر أمام بايرن ميونخ.",
     "status": "draft"
   },
   {
     "club_id": 873,
     "short": "CRY",
     "en": "Crystal Palace were formed in 1905 and have played at Selhurst Park in south London since 1924. They are the Eagles, and long ago were the Glaziers, after the glass palace the club is named after. They lost FA Cup finals in 1990 and 2016, then beat Manchester City 1–0 in 2025 for their first major trophy.",
-    "ar": "",
+    "ar": "تأسس كريستال بالاس عام 1905، ويلعب على ملعب سيلهرست بارك في جنوب لندن منذ 1924. يُلقَّب بالنسور، وكان قديماً يُلقَّب بالزجّاجين، نسبة إلى القصر الزجاجي الذي يحمل النادي اسمه. خسر نهائي كأس الاتحاد الإنجليزي عامي 1990 و2016، ثم هزم مانشستر سيتي 1-0 عام 2025 ليحرز أول لقب كبير في تاريخه.",
     "status": "draft"
   },
   {
     "club_id": 29,
     "short": "EVE",
     "en": "Everton began in 1878 as St Domingo's, a church team in Liverpool. They played at Goodison Park from 1892 until 2025, when they moved to a new stadium at Bramley-Moore Dock on the river Mersey. They are the Toffees. Howard Kendall's side won the league in 1985 and 1987 and the Cup Winners' Cup in 1985.",
-    "ar": "",
+    "ar": "بدأ إيفرتون عام 1878 باسم سانت دومينغو، فريقاً لكنيسة في ليفربول. لعب على ملعب غوديسون بارك من 1892 حتى 2025، حين انتقل إلى ملعب جديد على رصيف براملي مور على نهر ميرسي. يُلقَّب بالتوفيز. فاز فريق هوارد كيندال بالدوري عامي 1985 و1987 وبكأس الكؤوس الأوروبية عام 1985.",
     "status": "draft"
   },
   {
     "club_id": 762,
     "short": "NEW",
     "en": "Newcastle United were formed in 1892 and play at St James' Park, in the heart of the city. They are the Magpies, after their black and white stripes, or the Toon. Kevin Keegan's 1990s Entertainers came close to the title, and in 2025 they beat Liverpool to win the League Cup, their first domestic trophy since 1955.",
-    "ar": "",
+    "ar": "تأسس نيوكاسل يونايتد عام 1892، ويلعب على ملعب سانت جيمس بارك في قلب المدينة. يُلقَّب بالعقعق، نسبة إلى خطوطه السوداء والبيضاء، أو بالتون. اقترب فريق كيفن كيغان في التسعينيات، الملقّب بالممتعين، من اللقب، وفي 2025 هزم ليفربول ليفوز بكأس الرابطة، أول لقب محلي له منذ 1955.",
     "status": "draft"
   },
   {
     "club_id": 405,
     "short": "AVL",
     "en": "Aston Villa were founded in 1874 in Birmingham and have played at Villa Park since 1897. They are the Villans, in claret and blue. One of the twelve founders of the Football League in 1888, they won the league in 1981 and the European Cup a year later, beating Bayern Munich 1–0 in Rotterdam.",
-    "ar": "",
+    "ar": "تأسس أستون فيلا عام 1874 في برمنغهام، ويلعب على ملعب فيلا بارك منذ 1897. يُلقَّب بالفيلانز، ويرتدي العنابي والأزرق. كان أحد الأندية الاثني عشر المؤسسة لرابطة كرة القدم عام 1888، وفاز بالدوري عام 1981 وبكأس أوروبا للأندية بعد عام، بفوزه على بايرن ميونخ 1-0 في روتردام.",
     "status": "draft"
   },
   {
     "club_id": 1148,
     "short": "BRF",
     "en": "Brentford were founded in 1889 in west London and play at the Gtech Community Stadium, their home since leaving Griffin Park in 2020. They are the Bees. They reached the Premier League in 2021, their first top-flight season since 1947, and are known for finding players with the help of data.",
-    "ar": "",
+    "ar": "تأسس برينتفورد عام 1889 في غرب لندن، ويلعب على ملعب جي تك كوميونيتي، بيته منذ أن غادر غريفين بارك عام 2020. يُلقَّب بالنحل. وصل إلى الدوري الإنجليزي الممتاز عام 2021، في أول موسم له في الدرجة الأولى منذ 1947، ويشتهر باكتشاف اللاعبين بمساعدة البيانات.",
     "status": "draft"
   },
   {
     "club_id": 1237,
     "short": "BHA",
     "en": "Brighton & Hove Albion were founded in 1901 and play at the Amex Stadium in Falmer, their home since 2011. They are the Seagulls. After leaving the Goldstone Ground in 1997 they played at Gillingham and then an athletics track, before reaching the Premier League in 2017 and playing in Europe for the first time in 2023.",
-    "ar": "",
+    "ar": "تأسس برايتون آند هوف ألبيون عام 1901، ويلعب على ملعب أمكس في فالمر، بيته منذ 2011. يُلقَّب بالنوارس. بعد أن غادر ملعب غولدستون عام 1997 لعب في جيلينغهام ثم على مضمار لألعاب القوى، قبل أن يصل إلى الدوري الإنجليزي الممتاز عام 2017 ويلعب في أوروبا لأول مرة عام 2023.",
     "status": "draft"
   },
   {
     "club_id": 989,
     "short": "BOU",
     "en": "AFC Bournemouth were founded in 1899 as Boscombe FC and play at Dean Court, known as the Vitality Stadium. They are the Cherries, in red and black stripes. Under Eddie Howe they rose from the fourth tier, where they nearly fell out of the Football League in 2009, to the Premier League in 2015.",
-    "ar": "",
+    "ar": "تأسس بورنموث عام 1899 باسم بوسكومب، ويلعب على ملعب دين كورت المعروف باسم ملعب فيتاليتي. يُلقَّب بالكرز، ويرتدي قميصاً بخطوط حمراء وسوداء. مع إيدي هاو صعد من الدرجة الرابعة، حيث كاد يخرج من رابطة كرة القدم عام 2009، إلى الدوري الإنجليزي الممتاز عام 2015.",
     "status": "draft"
   },
   {
     "club_id": 703,
     "short": "NFO",
     "en": "Nottingham Forest were founded in 1865 and have played at the City Ground, by the River Trent, since 1898. They are the Reds, or Forest. Brian Clough and Peter Taylor took them up to the top flight in 1977, won the league in 1978 and then won the European Cup twice, in 1979 and 1980.",
-    "ar": "",
+    "ar": "تأسس نوتنغهام فورست عام 1865، ويلعب على ملعب سيتي غراوند على ضفاف نهر ترنت منذ 1898. يُلقَّب بالحمر، أو بفورست. صعد به براين كلوف وبيتر تايلور إلى الدرجة الأولى عام 1977، ففاز بالدوري عام 1978 ثم بكأس أوروبا للأندية مرتين، عامي 1979 و1980.",
     "status": "draft"
   },
   {
     "club_id": 379,
     "short": "WHU",
     "en": "West Ham United began in 1895 as Thames Ironworks and play at the London Stadium, their home since leaving Upton Park in 2016. They are the Hammers, or the Irons. Their Bobby Moore, Geoff Hurst and Martin Peters won the 1966 World Cup with England, and the club won the Conference League in 2023.",
-    "ar": "",
+    "ar": "بدأ وست هام يونايتد عام 1895 باسم تيمز آيرون ووركس، ويلعب على ملعب لندن، بيته منذ أن غادر أبتون بارك عام 2016. يُلقَّب بالمطارق، أو بالآيرونز. فاز لاعبوه بوبي مور وجيف هيرست ومارتن بيترز بكأس العالم 1966 مع إنجلترا، وفاز النادي بدوري المؤتمر الأوروبي عام 2023.",
     "status": "draft"
   },
   {
     "club_id": 931,
     "short": "FUL",
     "en": "Fulham were founded in 1879 and are London's oldest professional club. They play at Craven Cottage, on the banks of the Thames, and are the Cottagers. Roy Hodgson's side beat Juventus on the way to the 2010 Europa League final, which they lost to Atlético Madrid after extra time.",
-    "ar": "",
+    "ar": "تأسس فولهام عام 1879، وهو أقدم نادٍ محترف في لندن. يلعب على ملعب كرافن كوتيدج على ضفاف نهر التايمز، ويُلقَّب بالكوتيجرز. هزم فريق روي هودجسون يوفنتوس في طريقه إلى نهائي الدوري الأوروبي عام 2010، الذي خسره أمام أتلتيكو مدريد بعد الوقت الإضافي.",
     "status": "draft"
   },
   {
     "club_id": 399,
     "short": "LEE",
     "en": "Leeds United were founded in 1919 and play at Elland Road. They are the Whites, after the all-white kit Don Revie gave them. Revie's side won the league in 1969 and 1974, Howard Wilkinson's won the last title before the Premier League began, in 1992, and Leeds reached a Champions League semi-final in 2001.",
-    "ar": "",
+    "ar": "تأسس ليدز يونايتد عام 1919، ويلعب على ملعب إيلاند رود. يُلقَّب بالبيض، نسبة إلى الزي الأبيض بالكامل الذي اختاره له دون ريفي. فاز فريق ريفي بالدوري عامي 1969 و1974، وفاز فريق هوارد ويلكنسون بآخر لقب قبل انطلاق الدوري الإنجليزي الممتاز، عام 1992، وبلغ ليدز نصف نهائي دوري الأبطال عام 2001.",
     "status": "draft"
   },
   {
     "club_id": 289,
     "short": "SUN",
     "en": "Sunderland were founded in 1879 by a schoolteacher and play at the Stadium of Light, their home since leaving Roker Park in 1997. They are the Black Cats. They won six league titles, the last in 1936, and as a second-tier side they beat Leeds 1–0 in the 1973 FA Cup final.",
-    "ar": "",
+    "ar": "تأسس سندرلاند عام 1879 على يد معلم مدرسة، ويلعب على ملعب النور، بيته منذ أن غادر روكر بارك عام 1997. يُلقَّب بالقطط السوداء. فاز بستة ألقاب في الدوري آخرها عام 1936، وهزم ليدز 1-0 في نهائي كأس الاتحاد الإنجليزي عام 1973 وهو في الدرجة الثانية.",
     "status": "draft"
   },
   {
     "club_id": 543,
     "short": "WLV",
     "en": "Wolverhampton Wanderers were founded in 1877 as St Luke's and have played at Molineux since 1889. They are Wolves, in old gold and black. Stan Cullis's side won three league titles in the 1950s, and their floodlit wins over clubs such as Honvéd helped inspire the European Cup.",
-    "ar": "",
+    "ar": "تأسس ولفرهامبتون واندررز عام 1877 باسم سانت لوكس، ويلعب على ملعب مولينو منذ 1889. يُلقَّب بالذئاب، ويرتدي الذهبي القديم والأسود. فاز فريق ستان كوليس بثلاثة ألقاب في الدوري في الخمسينيات، وساهمت انتصاراته تحت الأضواء الكاشفة على أندية مثل هونفيد في ولادة فكرة كأس أوروبا للأندية.",
     "status": "draft"
   },
   {
     "club_id": 1041,
     "short": "LYO",
     "en": "Olympique Lyonnais were founded in 1950 and play at the Groupama Stadium, their home since leaving the Stade de Gerland in 2016. They are OL, or Les Gones, local slang for the kids of Lyon. Under president Jean-Michel Aulas they won seven French titles in a row, from 2002 to 2008.",
-    "ar": "",
+    "ar": "تأسس أولمبيك ليون عام 1950، ويلعب على ملعب غروباما، بيته منذ أن غادر ملعب جيرلان عام 2016. يُعرف بأو إل، أو بالغون، وهي كلمة محلية تعني أطفال ليون. في عهد الرئيس جان ميشيل أولاس فاز بسبعة ألقاب متتالية في الدوري الفرنسي، من 2002 إلى 2008.",
     "status": "draft"
   },
   {
     "club_id": 162,
     "short": "ASM",
     "en": "AS Monaco were founded in 1924 and play at the Stade Louis II in the Principality of Monaco, yet they compete in the French league. They are Les Monégasques, in red and white. Arsène Wenger's side won the league in 1988, and Didier Deschamps' team reached the Champions League final in 2004.",
-    "ar": "",
+    "ar": "تأسس موناكو عام 1924، ويلعب على ملعب لويس الثاني في إمارة موناكو، لكنه يشارك في الدوري الفرنسي. يُلقَّب بالمونيغاسك، ويرتدي الأحمر والأبيض. فاز فريق أرسين فينغر بالدوري عام 1988، وبلغ فريق ديدييه ديشان نهائي دوري الأبطال عام 2004.",
     "status": "draft"
   },
   {
     "club_id": 244,
     "short": "MAR",
     "en": "Olympique de Marseille were founded in 1899 and play at the Stade Vélodrome. They are OM, or Les Phocéens, after the Greek sailors from Phocaea who founded the city. In 1993 they beat AC Milan in Munich to become the first French club to win the Champions League.",
-    "ar": "",
+    "ar": "تأسس أولمبيك مرسيليا عام 1899، ويلعب على ملعب فيلودروم. يُعرف بأو إم، أو بالفوسيين، نسبة إلى البحارة الإغريق القادمين من فوكيا الذين أسسوا المدينة. في 1993 هزم ميلان في ميونخ ليصبح أول نادٍ فرنسي يفوز بدوري الأبطال.",
     "status": "draft"
   },
   {
     "club_id": 1082,
     "short": "LIL",
     "en": "Lille OSC were formed in 1944 from a merger of Olympique Lillois and SC Fives, and play at the Stade Pierre-Mauroy, opened in 2012. They are Les Dogues, the Mastiffs. They were champions in 1946 and 1954, won the league and cup double in 2011, and took the title again in 2021.",
-    "ar": "",
+    "ar": "تأسس ليل عام 1944 من اندماج أولمبيك ليلوا وإس سي فيف، ويلعب على ملعب بيار موروا الذي افتُتح عام 2012. يُلقَّب بالدوغ، أي كلاب الدرواس. توّج بطلاً عامي 1946 و1954، وحقق ثنائية الدوري والكأس عام 2011، ثم عاد إلى اللقب عام 2021.",
     "status": "draft"
   },
   {
     "club_id": 667,
     "short": "STR",
     "en": "RC Strasbourg Alsace were founded in 1906 and play at the Stade de la Meinau. They are Le Racing, in blue and white. Gilbert Gress's side won the French title in 1979. The club went into liquidation in 2011, restarted in the fifth tier, and climbed back to Ligue 1 by 2017.",
-    "ar": "",
+    "ar": "تأسس ستراسبورغ عام 1906، ويلعب على ملعب لا مينو. يُلقَّب بلو راسينغ، ويرتدي الأزرق والأبيض. فاز فريق جيلبير غريس بلقب الدوري الفرنسي عام 1979. صُفّي النادي عام 2011 فبدأ من جديد في الدرجة الخامسة، وعاد إلى الدوري الفرنسي الأول بحلول 2017.",
     "status": "draft"
   },
   {
     "club_id": 826,
     "short": "LEN",
     "en": "RC Lens were founded in 1906 in the old coal-mining country of northern France and play at the Stade Bollaert-Delelis, known for one of the loudest crowds in France. They are Les Sang et Or, the Blood and Gold. Daniel Leclercq's side won their only French title in 1998.",
-    "ar": "",
+    "ar": "تأسس لانس عام 1906 في منطقة مناجم الفحم القديمة شمال فرنسا، ويلعب على ملعب بولار ديليليس، وجمهوره من الأعلى صوتاً في فرنسا. يُلقَّب بالدم والذهب. فاز فريق دانيال لوكليرك بلقبه الوحيد في الدوري الفرنسي عام 1998.",
     "status": "draft"
   },
   {
     "club_id": 273,
     "short": "REN",
     "en": "Stade Rennais were founded in 1901 in Rennes, the capital of Brittany, and play at Roazhon Park. They are Les Rouge et Noir, the Red and Blacks. The Pinault family has owned the club since 1998. They have never won the league, but they lifted the Coupe de France in 1965, 1971 and 2019.",
-    "ar": "",
+    "ar": "تأسس رين عام 1901 في رين، عاصمة بريتاني، ويلعب على ملعب روازون بارك. يُلقَّب بالأحمر والأسود. تملك عائلة بينو النادي منذ 1998. لم يفز بالدوري قط، لكنه رفع كأس فرنسا أعوام 1965 و1971 و2019.",
     "status": "draft"
   },
   {
     "club_id": 417,
     "short": "NIC",
     "en": "OGC Nice were founded in 1904 on the French Riviera and play at the Allianz Riviera, their home since 2013. They are Les Aiglons, the Eaglets, in red and black. Their golden era was the 1950s, when they won the French title four times, in 1951, 1952, 1956 and 1959.",
-    "ar": "",
+    "ar": "تأسس نيس عام 1904 على الريفييرا الفرنسية، ويلعب على ملعب أليانز ريفييرا، بيته منذ 2013. يُلقَّب بالنسور الصغيرة، ويرتدي الأحمر والأسود. عصره الذهبي كان في الخمسينيات، حين فاز بلقب الدوري الفرنسي أربع مرات، أعوام 1951 و1952 و1956 و1959.",
     "status": "draft"
   },
   {
     "club_id": 995,
     "short": "NAN",
     "en": "FC Nantes were founded in 1943 and play at the Stade de la Beaujoire, opened in 1984. They are Les Canaris, the Canaries, for their yellow shirts. Famous for a quick passing style called le jeu à la nantaise, they have won the French title eight times, the last in 2001.",
-    "ar": "",
+    "ar": "تأسس نانت عام 1943، ويلعب على ملعب لا بوجوار الذي افتُتح عام 1984. يُلقَّب بالكناري، نسبة إلى قمصانه الصفراء. يشتهر بأسلوب تمرير سريع يُعرف باللعب على طريقة نانت، وفاز بلقب الدوري الفرنسي ثماني مرات آخرها عام 2001.",
     "status": "draft"
   },
   {
     "club_id": 40,
     "short": "BOR",
     "en": "Girondins de Bordeaux were founded in 1881 and play at the Matmut Atlantique, their home since 2015 after the Parc Lescure. They wear navy and white. They won six French titles, three of them in the 1980s and the last in 2009 under Laurent Blanc, before money troubles sent them down the leagues in 2024.",
-    "ar": "",
+    "ar": "تأسس بوردو عام 1881، ويلعب على ملعب ماتموت أتلانتيك، بيته منذ 2015 بعد بارك ليسكور. يرتدي الكحلي والأبيض. فاز بستة ألقاب في الدوري الفرنسي، ثلاثة منها في الثمانينيات وآخرها عام 2009 مع لوران بلان، قبل أن تهبط به أزماته المالية إلى الدرجات الدنيا عام 2024.",
     "status": "draft"
   },
   {
     "club_id": 720,
     "short": "FCP",
     "en": "FC Porto were founded in 1893 and play at the Estádio do Dragão, their home since 2003. They are the Dragões, the Dragons, in blue and white. They won the European Cup in 1987, and José Mourinho's side won the UEFA Cup in 2003 and the Champions League in 2004.",
-    "ar": "",
+    "ar": "تأسس بورتو عام 1893، ويلعب على ملعب دراغاو، بيته منذ 2003. يُلقَّب بالتنانين، ويرتدي الأزرق والأبيض. فاز بكأس أوروبا للأندية عام 1987، وفاز فريق جوزيه مورينيو بكأس الاتحاد الأوروبي عام 2003 وبدوري الأبطال عام 2004.",
     "status": "draft"
   },
   {
     "club_id": 294,
     "short": "SLB",
     "en": "Benfica were founded in 1904 in Lisbon and play at the Estádio da Luz, rebuilt in 2003. They are As Águias, the Eagles, or the Encarnados, the Reds. Coached by Béla Guttmann, they won the European Cup in 1961 and again in 1962, with Eusébio scoring twice in the final against Real Madrid.",
-    "ar": "",
+    "ar": "تأسس بنفيكا عام 1904 في لشبونة، ويلعب على ملعب النور الذي أُعيد بناؤه عام 2003. يُلقَّب بالنسور، أو بالحمر. بقيادة المدرب بيلا غوتمان فاز بكأس أوروبا للأندية عام 1961 ثم عام 1962، وسجّل أوزيبيو هدفين في النهائي أمام ريال مدريد.",
     "status": "draft"
   },
   {
     "club_id": 336,
     "short": "SCP",
     "en": "Sporting CP were founded in 1906 in Lisbon and play at the Estádio José Alvalade, opened in 2003. They are Os Leões, the Lions, in green and white hoops. They won the Cup Winners' Cup in 1964, and their academy is one of Europe's best: Luís Figo came through it. The 2021 title ended a 19-year wait.",
-    "ar": "",
+    "ar": "تأسس سبورتينغ عام 1906 في لشبونة، ويلعب على ملعب جوزيه ألفالادي الذي افتُتح عام 2003. يُلقَّب بالأسود، ويرتدي أطواقاً خضراء وبيضاء. فاز بكأس الكؤوس الأوروبية عام 1964، وأكاديميته من الأفضل في أوروبا: منها تخرّج لويس فيغو. وأنهى لقب 2021 انتظاراً دام 19 عاماً.",
     "status": "draft"
   },
   {
     "club_id": 610,
     "short": "AJA",
     "en": "Ajax were founded in 1900 in Amsterdam and play at the Johan Cruyff Arena, opened in 1996. Their academy is one of the most famous in the world. With Cruyff and Total Football they won three European Cups in a row, from 1971 to 1973, and Louis van Gaal's young side won the Champions League in 1995.",
-    "ar": "",
+    "ar": "تأسس أياكس عام 1900 في أمستردام، ويلعب على ملعب يوهان كرويف أرينا الذي افتُتح عام 1996. أكاديميته من أشهر الأكاديميات في العالم. مع كرويف والكرة الشاملة فاز بثلاث نسخ متتالية من كأس أوروبا للأندية، من 1971 إلى 1973، وفاز فريق لويس فان غال الشاب بدوري الأبطال عام 1995.",
     "status": "draft"
   },
   {
     "club_id": 383,
     "short": "PSV",
     "en": "PSV were founded in 1913 as the sports club of the Philips electronics company in Eindhoven, and play at the Philips Stadion. They are the Boeren, the Farmers, in red and white. They won the UEFA Cup in 1978, and Guus Hiddink's side won the treble of league, cup and European Cup in 1988.",
-    "ar": "",
+    "ar": "تأسس آيندهوفن عام 1913 نادياً رياضياً لشركة فيليبس للإلكترونيات في آيندهوفن، ويلعب على ملعب فيليبس. يُلقَّب بالمزارعين، ويرتدي الأحمر والأبيض. فاز بكأس الاتحاد الأوروبي عام 1978، وحقق فريق غوس هيدينك ثلاثية الدوري والكأس وكأس أوروبا للأندية عام 1988.",
     "status": "draft"
   },
   {
     "club_id": 234,
     "short": "FEY",
     "en": "Feyenoord were founded in 1908 in Rotterdam and play at De Kuip, the Tub, opened in 1937. Ernst Happel's side beat Celtic in 1970 to become the first Dutch club to win the European Cup. They also won the UEFA Cup in 1974 and again in 2002, with the final played in their own stadium.",
-    "ar": "",
+    "ar": "تأسس فينورد عام 1908 في روتردام، ويلعب على ملعب دي كويب، أي الحوض، الذي افتُتح عام 1937. هزم فريق إرنست هابل سلتيك عام 1970 ليصبح أول نادٍ هولندي يفوز بكأس أوروبا للأندية. وفاز أيضاً بكأس الاتحاد الأوروبي عام 1974 ثم عام 2002، في نهائي أُقيم على ملعبه.",
     "status": "draft"
   },
   {
     "club_id": 141,
     "short": "GAL",
     "en": "Galatasaray were founded in 1905 by Ali Sami Yen and fellow pupils of Galatasaray High School in Istanbul, and play at Rams Park, opened in 2011. They are Cimbom, or the Lions, in yellow and red. Fatih Terim's side won the UEFA Cup and the Super Cup in 2000, the first European trophies for a Turkish club.",
-    "ar": "",
+    "ar": "تأسس غلطة سراي عام 1905 على يد علي سامي يان وزملائه من طلاب ثانوية غلطة سراي في إسطنبول، ويلعب على ملعب رامز بارك الذي افتُتح عام 2011. يُلقَّب بجيمبوم، أو بالأسود، ويرتدي الأصفر والأحمر. فاز فريق فاتح تيريم بكأس الاتحاد الأوروبي وكأس السوبر الأوروبي عام 2000، أول لقبين أوروبيين لنادٍ تركي.",
     "status": "draft"
   },
   {
     "club_id": 36,
     "short": "FEN",
     "en": "Fenerbahçe were founded in 1907 in Kadıköy, on the Asian side of Istanbul, and play at the Şükrü Saracoğlu Stadium. They are the Sarı Kanaryalar, the Yellow Canaries, in yellow and navy. They are one of Turkey's big three with Galatasaray and Beşiktaş, and reached the Champions League quarter-finals in 2008.",
-    "ar": "",
+    "ar": "تأسس فنربخشة عام 1907 في قاضي كوي، على الجانب الآسيوي من إسطنبول، ويلعب على ملعب شكري سراج أوغلو. يُلقَّب بالكناري الأصفر، ويرتدي الأصفر والكحلي. هو أحد الثلاثة الكبار في تركيا مع غلطة سراي وبشكتاش، وبلغ ربع نهائي دوري الأبطال عام 2008.",
     "status": "draft"
   },
   {
     "club_id": 114,
     "short": "BJK",
     "en": "Beşiktaş were founded in 1903 in Istanbul and play at a stadium on the shore of the Bosphorus, built on the site of the old İnönü Stadium and opened in 2016. They are the Kara Kartallar, the Black Eagles, in black and white. In 1992 they won the Turkish league without losing a game.",
-    "ar": "",
+    "ar": "تأسس بشكتاش عام 1903 في إسطنبول، ويلعب على ملعب على ضفاف البوسفور بُني مكان ملعب إينونو القديم وافتُتح عام 2016. يُلقَّب بالنسور السوداء، ويرتدي الأسود والأبيض. في 1992 فاز بالدوري التركي دون أن يخسر أي مباراة.",
     "status": "draft"
   },
   {
     "club_id": 449,
     "short": "TRA",
     "en": "Trabzonspor were founded in 1967 in Trabzon, on Turkey's Black Sea coast, and play at a stadium named after Şenol Güneş, their former goalkeeper and coach. They wear claret and blue. In 1976 they became the first club from outside Istanbul to win the Turkish league, and took six titles by 1984.",
-    "ar": "",
+    "ar": "تأسس طرابزون سبور عام 1967 في طرابزون على ساحل البحر الأسود في تركيا، ويلعب على ملعب يحمل اسم شنول غونيش، حارسه ومدربه السابق. يرتدي العنابي والأزرق. في 1976 أصبح أول نادٍ من خارج إسطنبول يفوز بالدوري التركي، وأحرز ستة ألقاب بحلول 1984.",
     "status": "draft"
   },
   {
     "club_id": 614,
     "short": "FLA",
     "en": "Flamengo began as a rowing club in Rio de Janeiro in 1895 and started playing football in 1911. They play at the Maracanã and are the Mengão, or the Rubro-Negro, for their red and black. Zico led them to the Copa Libertadores and the Intercontinental Cup in 1981, and they won the Libertadores again in 2019 and 2022.",
-    "ar": "",
+    "ar": "بدأ فلامنغو نادياً للتجديف في ريو دي جانيرو عام 1895، وبدأ يلعب كرة القدم عام 1911. يلعب على ملعب ماراكانا، ويُلقَّب بالمينغاو، أو بالأحمر والأسود. قاده زيكو إلى كأس ليبرتادوريس وكأس الإنتركونتيننتال عام 1981، وعاد ليفوز بليبرتادوريس عامي 2019 و2022.",
     "status": "draft"
   },
   {
     "club_id": 585,
     "short": "SAO",
     "en": "São Paulo were founded in 1930 and play at the Morumbi, one of Brazil's biggest stadiums. They are the Tricolor, for their red, white and black. Telê Santana's side won the Copa Libertadores and the Intercontinental Cup in 1992 and 1993, and they beat Liverpool to win the Club World Cup in 2005.",
-    "ar": "",
+    "ar": "تأسس ساو باولو عام 1930، ويلعب على ملعب مورومبي، أحد أكبر ملاعب البرازيل. يُلقَّب بثلاثي الألوان، نسبة إلى الأحمر والأبيض والأسود. فاز فريق تيلي سانتانا بكأس ليبرتادوريس وكأس الإنتركونتيننتال عامي 1992 و1993، وهزم ليفربول ليفوز بكأس العالم للأندية عام 2005.",
     "status": "draft"
   },
   {
     "club_id": 209,
     "short": "RIV",
     "en": "River Plate were founded in 1901 in Buenos Aires and play at the Estadio Monumental, the biggest stadium in South America. They are Los Millonarios, the Millionaires. Their 1940s forward line was called La Máquina, the Machine, and they beat Boca Juniors in the 2018 Copa Libertadores final, played in Madrid.",
-    "ar": "",
+    "ar": "تأسس ريفر بليت عام 1901 في بوينس آيرس، ويلعب على ملعب المونومنتال، أكبر ملعب في أمريكا الجنوبية. يُلقَّب بالمليونيرات. لُقّب خط هجومه في الأربعينيات بالآلة، وهزم بوكا جونيورز في نهائي كأس ليبرتادوريس 2018 الذي أُقيم في مدريد.",
     "status": "draft"
   },
   {
     "club_id": 1023,
     "short": "PAL",
     "en": "Palmeiras were founded in 1914 by Italian immigrants in São Paulo as Palestra Itália and took their present name in 1942. They play at the Allianz Parque, opened in 2014, and are the Verdão, the Big Green. They won the Copa Libertadores in 1999, and twice in a row in 2020 and 2021.",
-    "ar": "",
+    "ar": "تأسس بالميراس عام 1914 في ساو باولو على يد مهاجرين إيطاليين باسم باليسترا إيطاليا، واتخذ اسمه الحالي عام 1942. يلعب على ملعب أليانز بارك الذي افتُتح عام 2014، ويُلقَّب بالفيرداو، أي الأخضر الكبير. فاز بكأس ليبرتادوريس عام 1999، ومرتين متتاليتين عامي 2020 و2021.",
     "status": "draft"
   },
   {
     "club_id": 371,
     "short": "CLT",
     "en": "Celtic were founded in 1887 in Glasgow by Brother Walfrid, a Marist brother, to raise money for the poor of the city's East End. They play at Celtic Park and are the Bhoys, or the Hoops, for their green and white shirts. In 1967 Jock Stein's Lisbon Lions became the first British club to win the European Cup.",
-    "ar": "",
+    "ar": "تأسس سلتيك عام 1887 في غلاسكو على يد الأخ والفريد، الراهب الماريستي، لجمع المال لفقراء الطرف الشرقي من المدينة. يلعب على ملعب سلتيك بارك، ويُلقَّب بالبويز، أو بالهوبس، نسبة إلى قمصانه بأطواقها الخضراء والبيضاء. في 1967 أصبح أسود لشبونة بقيادة جوك ستاين أول نادٍ بريطاني يفوز بكأس أوروبا للأندية.",
     "status": "draft"
   }
 ]

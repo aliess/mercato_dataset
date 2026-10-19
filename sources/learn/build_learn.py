@@ -94,41 +94,42 @@ GIANTS = [418, 131, 583, 281, 31, 27, 11, 631, 985, 148, 13]
 # with a `league` also has a "rest of" stop for its other clubs. `history` (World 1) names the
 # world that teaches a giant's former players.
 WORLDS = [
-    {'id': 'giants', 'n': 1, 'name': {'en': 'The Giants', 'ar': ''}, 'tier': 'beginner',
+    {'id': 'giants', 'n': 1, 'name': {'en': 'The Giants', 'ar': 'العمالقة'}, 'tier': 'beginner',
      # Real Madrid, Barcelona, PSG, Man City, Liverpool, Bayern, Arsenal, Chelsea, Man Utd, Tottenham, Atlético
      'clubs': GIANTS, 'free': 418,
      'history': {27: 'bundesliga', 13: 'laliga', 583: 'ligue1'}, 'history_default': 'giants_history'},
-    {'id': 'serie_a', 'n': 2, 'name': {'en': 'Serie A', 'ar': ''}, 'league': 'IT1', 'short': 'ITA',
+    {'id': 'serie_a', 'n': 2, 'name': {'en': 'Serie A', 'ar': 'الدوري الإيطالي'}, 'league': 'IT1', 'short': 'ITA',
      # Juventus, Milan, Inter, Roma, Napoli, Fiorentina, Atalanta, Lazio, Bologna, Como
      'clubs': [506, 5, 46, 12, 6195, 430, 800, 398, 1025, 1047]},
-    {'id': 'bundesliga', 'n': 3, 'name': {'en': 'Bundesliga', 'ar': ''}, 'league': 'L1', 'short': 'GER',
+    {'id': 'bundesliga', 'n': 3, 'name': {'en': 'Bundesliga', 'ar': 'الدوري الألماني'}, 'league': 'L1', 'short': 'GER',
      # Bayern (history), Dortmund, Leverkusen, Leipzig, Stuttgart, Köln, Hoffenheim, Schalke,
      # Frankfurt, Wolfsburg, Hamburg, Freiburg
      'clubs': [27, 16, 15, 23826, 79, 3, 533, 33, 24, 82, 41, 60]},
-    {'id': 'laliga', 'n': 4, 'name': {'en': 'La Liga', 'ar': ''}, 'league': 'ES1', 'short': 'ESP',
+    {'id': 'laliga', 'n': 4, 'name': {'en': 'La Liga', 'ar': 'الدوري الإسباني'}, 'league': 'ES1', 'short': 'ESP',
      # Atlético (history), Valencia, Betis, Real Sociedad, Villarreal, Sevilla, Deportivo, Celta,
      # Athletic Club, Getafe
      'clubs': [13, 1049, 150, 681, 1050, 368, 897, 940, 621, 3709]},
-    {'id': 'premier', 'n': 5, 'name': {'en': 'Premier League', 'ar': ''}, 'league': 'GB1', 'short': 'ENG',
+    {'id': 'premier', 'n': 5, 'name': {'en': 'Premier League', 'ar': 'الدوري الإنجليزي الممتاز'}, 'league': 'GB1', 'short': 'ENG',
      # Crystal Palace, Everton, Newcastle, Aston Villa, Brentford, Brighton, Bournemouth,
      # Nott'm Forest, West Ham, Fulham, Leeds, Sunderland, Wolves
      'clubs': [873, 29, 762, 405, 1148, 1237, 989, 703, 379, 931, 399, 289, 543]},
-    {'id': 'ligue1', 'n': 6, 'name': {'en': 'Ligue 1', 'ar': ''}, 'league': 'FR1', 'short': 'FRA',
+    {'id': 'ligue1', 'n': 6, 'name': {'en': 'Ligue 1', 'ar': 'الدوري الفرنسي'}, 'league': 'FR1', 'short': 'FRA',
      # PSG (history), Lyon, Monaco, Marseille, Lille, Strasbourg, Lens, Rennes, Nice, Nantes, Bordeaux
      'clubs': [583, 1041, 162, 244, 1082, 667, 826, 273, 417, 995, 40]},
-    {'id': 'beyond', 'n': 7, 'name': {'en': 'Beyond the Top Five', 'ar': ''}, 'league': None, 'short': 'WLD',
+    {'id': 'beyond', 'n': 7, 'name': {'en': 'Beyond the Top Five', 'ar': 'خارج الدوريات الخمس الكبرى'}, 'league': None, 'short': 'WLD',
      # Porto, Benfica, Sporting; Ajax, PSV, Feyenoord; Galatasaray, Fenerbahçe, Beşiktaş,
      # Trabzonspor; Flamengo, São Paulo, River Plate, Palmeiras. (Celtic, named in the plan, is
      # not a Grid pool club, so no player has his home there.)
      'clubs': [720, 294, 336, 610, 383, 234, 141, 36, 114, 449, 614, 585, 209, 1023],
-     'rest_name': 'The rest of the world', 'free_stop': True},
-    {'id': 'giants_history', 'n': 8, 'name': {'en': "The Giants' History", 'ar': ''}, 'tier': 'intermediate',
+     'rest_name': 'The rest of the world', 'rest_name_ar': 'بقية أندية العالم', 'free_stop': True},
+    {'id': 'giants_history', 'n': 8, 'name': {'en': "The Giants' History", 'ar': 'تاريخ العمالقة'}, 'tier': 'intermediate',
      # Real Madrid, Barcelona, Man Utd, Chelsea, Arsenal, Liverpool, Tottenham, Man City
      'clubs': [418, 131, 985, 631, 11, 31, 148, 281]},
-    {'id': 'nations', 'n': 9, 'name': {'en': 'Nations and Tournaments', 'ar': ''},
-     'nations': [('GER', 'Germany'), ('FRA', 'France'), ('ESP', 'Spain'), ('ITA', 'Italy'), ('ENG', 'England'),
-                 ('NED', 'Netherlands'), ('ARG', 'Argentina'), ('BRA', 'Brazil'), ('POR', 'Portugal')]},
-    {'id': 'summit', 'n': 10, 'name': {'en': 'The Summit', 'ar': ''}, 'tier': 'expert', 'summit': True},
+    {'id': 'nations', 'n': 9, 'name': {'en': 'Nations and Tournaments', 'ar': 'المنتخبات والبطولات'},
+     'nations': [('GER', 'Germany', 'ألمانيا'), ('FRA', 'France', 'فرنسا'), ('ESP', 'Spain', 'إسبانيا'),
+                 ('ITA', 'Italy', 'إيطاليا'), ('ENG', 'England', 'إنجلترا'), ('NED', 'Netherlands', 'هولندا'),
+                 ('ARG', 'Argentina', 'الأرجنتين'), ('BRA', 'Brazil', 'البرازيل'), ('POR', 'Portugal', 'البرتغال')]},
+    {'id': 'summit', 'n': 10, 'name': {'en': 'The Summit', 'ar': 'القمة'}, 'tier': 'expert', 'summit': True},
 ]
 TOURNAMENTS = ('World Cup', 'Euro')
 
@@ -512,11 +513,11 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
             steps, add = new_stop('summit_top', None)
             for _ in range(len(worlds)):
                 add('checkpoint')
-            stops['summit_top'] = {'club_id': None, 'short': 'TOP', 'name': {'en': 'The Summit', 'ar': ''},
+            stops['summit_top'] = {'club_id': None, 'short': 'TOP', 'name': {'en': 'The Summit', 'ar': 'القمة'},
                                    'country': None, 'free': False, 'card': None, 'steps': steps}
             stop_ids.append('summit_top')
         elif 'nations' in world:
-            for short, nation in world['nations']:
+            for short, nation, nation_ar in world['nations']:
                 stop_id = f'nations_{short}'
                 steps, add = new_stop(stop_id, None)
                 lineups = [m for m in xi['matches'] if m['team'] == nation
@@ -534,7 +535,7 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
                     notes.append(f'{stop_id}: no lineups, stop left out')
                     continue
                 add('checkpoint')
-                stops[stop_id] = {'club_id': None, 'short': short, 'name': {'en': nation, 'ar': ''},
+                stops[stop_id] = {'club_id': None, 'short': short, 'name': {'en': nation, 'ar': nation_ar},
                                   'country': nation, 'nation': nation, 'free': False, 'card': None, 'steps': steps}
                 stop_ids.append(stop_id)
         else:
@@ -663,7 +664,7 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
                                       'card': card_out, 'steps': steps}
                     passed.append((world['id'], club_id))
                 elif stop_id == 'beyond_free':
-                    stops[stop_id] = {'club_id': None, 'short': 'FRE', 'name': {'en': 'Free agents', 'ar': ''},
+                    stops[stop_id] = {'club_id': None, 'short': 'FRE', 'name': {'en': 'Free agents', 'ar': 'اللاعبون الأحرار'},
                                       'country': None, 'free': False, 'card': None, 'steps': steps}
                 else:
                     league = world['league']
@@ -671,7 +672,7 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
                         .most_common(1)[0][0] if league else None
                     stops[stop_id] = {'club_id': None, 'short': world['short'],
                                       'name': {'en': world.get('rest_name', f"The rest of {world['name']['en']}"),
-                                               'ar': ''},
+                                               'ar': world.get('rest_name_ar', f"بقية أندية {world['name']['ar']}")},
                                       'country': country, 'free': False, 'card': None, 'steps': steps}
                 stop_ids.append(stop_id)
 
