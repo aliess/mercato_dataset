@@ -102,6 +102,7 @@ WORLDS = [
      # Juventus, Milan, Inter, Roma, Napoli, Fiorentina, Atalanta, Lazio, Bologna, Como
      'clubs': [506, 5, 46, 12, 6195, 430, 800, 398, 1025, 1047]},
     {'id': 'bundesliga', 'n': 3, 'name': {'en': 'Bundesliga', 'ar': 'الدوري الألماني'}, 'league': 'L1', 'short': 'GER',
+     'rest_name': 'The rest of the Bundesliga',
      # Bayern (history), Dortmund, Leverkusen, Leipzig, Stuttgart, Köln, Hoffenheim, Schalke,
      # Frankfurt, Wolfsburg, Hamburg, Freiburg
      'clubs': [27, 16, 15, 23826, 79, 3, 533, 33, 24, 82, 41, 60]},
@@ -110,6 +111,7 @@ WORLDS = [
      # Athletic Club, Getafe
      'clubs': [13, 1049, 150, 681, 1050, 368, 897, 940, 621, 3709]},
     {'id': 'premier', 'n': 5, 'name': {'en': 'Premier League', 'ar': 'الدوري الإنجليزي الممتاز'}, 'league': 'GB1', 'short': 'ENG',
+     'rest_name': 'The rest of the Premier League',
      # Crystal Palace, Everton, Newcastle, Aston Villa, Brentford, Brighton, Bournemouth,
      # Nott'm Forest, West Ham, Fulham, Leeds, Sunderland, Wolves
      'clubs': [873, 29, 762, 405, 1148, 1237, 989, 703, 379, 931, 399, 289, 543]},
