@@ -1,0 +1,524 @@
+{
+  "about": "Arabic for the generated Learn dossier titles in learn_v1.json. clubs: by Transfermarkt club id (every club stop, every club card, every route end). teams: by the English team name exactly as xi_v1.json writes it in team, opponent and score. parts: the pieces of a title; compose them in the order of the 'compose' lines, in logical (typing) order. The arrow is U+2190 and the score dash is U+2013 on purpose: do not swap them for → or a hyphen.",
+  "compose": [
+    "squad: {stop} · {todays_stars | todays_squad | todays_squad_part}   e.g. ريال مدريد · النجوم الحاليون",
+    "era: {stop} · {decade} for one decade, {stop} · {decade_span} for a span; {start}, {first}, {last} are the decade's first year (1990s -> 1990)   e.g. نابولي · عقود 1980–2020",
+    "route: {route} · {route_moved[plural form of n]}   e.g. أرسنال ← برشلونة · انتقل 11 لاعباً",
+    "night: {score}[ {aet} | {pens}] · {competition, or first_leg/second_leg around it} {year}   e.g. ليفربول 0–1 ريال مدريد · نهائي دوري أبطال أوروبا 2022",
+    "nation: {nation} · {world_cup | euro}   e.g. ألمانيا · كأس العالم 2014",
+    "{stop} is clubs[club_id].ar for a club stop, else the stop's own name.ar; {nation} is the nations stop's name.ar.",
+    "Plural form of n (Arabic CLDR): 0 zero, 1 one, 2 two, n%100 in 3..10 few, n%100 in 11..99 many, else other."
+  ],
+  "clubs": {
+    "3": {
+      "en": "1.FC Köln",
+      "ar": "كولن"
+    },
+    "5": {
+      "en": "AC Milan",
+      "ar": "ميلان"
+    },
+    "11": {
+      "en": "Arsenal",
+      "ar": "أرسنال"
+    },
+    "12": {
+      "en": "Roma",
+      "ar": "روما"
+    },
+    "13": {
+      "en": "Atlético",
+      "ar": "أتلتيكو مدريد"
+    },
+    "15": {
+      "en": "Leverkusen",
+      "ar": "ليفركوزن"
+    },
+    "16": {
+      "en": "Dortmund",
+      "ar": "دورتموند"
+    },
+    "24": {
+      "en": "Frankfurt",
+      "ar": "فرانكفورت"
+    },
+    "27": {
+      "en": "Bayern Munich",
+      "ar": "بايرن ميونخ"
+    },
+    "29": {
+      "en": "Everton",
+      "ar": "إيفرتون"
+    },
+    "31": {
+      "en": "Liverpool",
+      "ar": "ليفربول"
+    },
+    "33": {
+      "en": "FC Schalke 04",
+      "ar": "شالكه"
+    },
+    "36": {
+      "en": "Fenerbahçe",
+      "ar": "فنربخشة"
+    },
+    "40": {
+      "en": "G. Bordeaux",
+      "ar": "بوردو"
+    },
+    "41": {
+      "en": "Hamburg",
+      "ar": "هامبورغ"
+    },
+    "46": {
+      "en": "Inter",
+      "ar": "إنتر"
+    },
+    "60": {
+      "en": "Freiburg",
+      "ar": "فرايبورغ"
+    },
+    "79": {
+      "en": "Stuttgart",
+      "ar": "شتوتغارت"
+    },
+    "82": {
+      "en": "Wolfsburg",
+      "ar": "فولفسبورغ"
+    },
+    "114": {
+      "en": "Beşiktaş",
+      "ar": "بشكتاش"
+    },
+    "130": {
+      "en": "Parma",
+      "ar": "بارما"
+    },
+    "131": {
+      "en": "Barcelona",
+      "ar": "برشلونة"
+    },
+    "141": {
+      "en": "Galatasaray",
+      "ar": "غلطة سراي"
+    },
+    "148": {
+      "en": "Tottenham",
+      "ar": "توتنهام"
+    },
+    "150": {
+      "en": "Real Betis",
+      "ar": "ريال بيتيس"
+    },
+    "162": {
+      "en": "Monaco",
+      "ar": "موناكو"
+    },
+    "180": {
+      "en": "Southampton",
+      "ar": "ساوثهامبتون"
+    },
+    "200": {
+      "en": "Utrecht",
+      "ar": "أوتريخت"
+    },
+    "209": {
+      "en": "River Plate",
+      "ar": "ريفر بليت"
+    },
+    "210": {
+      "en": "Grêmio",
+      "ar": "غريميو"
+    },
+    "234": {
+      "en": "Feyenoord",
+      "ar": "فينورد"
+    },
+    "244": {
+      "en": "Marseille",
+      "ar": "مرسيليا"
+    },
+    "252": {
+      "en": "Genoa",
+      "ar": "جنوى"
+    },
+    "273": {
+      "en": "Rennes",
+      "ar": "رين"
+    },
+    "276": {
+      "en": "Hellas Verona",
+      "ar": "هيلاس فيرونا"
+    },
+    "281": {
+      "en": "Man City",
+      "ar": "مانشستر سيتي"
+    },
+    "289": {
+      "en": "Sunderland",
+      "ar": "سندرلاند"
+    },
+    "294": {
+      "en": "Benfica",
+      "ar": "بنفيكا"
+    },
+    "306": {
+      "en": "Heerenveen",
+      "ar": "هيرنفين"
+    },
+    "336": {
+      "en": "Sporting",
+      "ar": "سبورتينغ لشبونة"
+    },
+    "368": {
+      "en": "Sevilla FC",
+      "ar": "إشبيلية"
+    },
+    "371": {
+      "en": "Celtic",
+      "ar": "سلتيك"
+    },
+    "379": {
+      "en": "West Ham",
+      "ar": "وست هام"
+    },
+    "383": {
+      "en": "PSV",
+      "ar": "آيندهوفن"
+    },
+    "398": {
+      "en": "Lazio",
+      "ar": "لاتسيو"
+    },
+    "399": {
+      "en": "Leeds",
+      "ar": "ليدز"
+    },
+    "405": {
+      "en": "Aston Villa",
+      "ar": "أستون فيلا"
+    },
+    "409": {
+      "en": "Salzburg",
+      "ar": "سالزبورغ"
+    },
+    "410": {
+      "en": "Udinese",
+      "ar": "أودينيزي"
+    },
+    "416": {
+      "en": "Torino",
+      "ar": "تورينو"
+    },
+    "417": {
+      "en": "Nice",
+      "ar": "نيس"
+    },
+    "418": {
+      "en": "Real Madrid",
+      "ar": "ريال مدريد"
+    },
+    "430": {
+      "en": "Fiorentina",
+      "ar": "فيورنتينا"
+    },
+    "449": {
+      "en": "Trabzonspor",
+      "ar": "طرابزون سبور"
+    },
+    "506": {
+      "en": "Juventus",
+      "ar": "يوفنتوس"
+    },
+    "533": {
+      "en": "Hoffenheim",
+      "ar": "هوفنهايم"
+    },
+    "543": {
+      "en": "Wolves",
+      "ar": "وولفرهامبتون"
+    },
+    "583": {
+      "en": "PSG",
+      "ar": "باريس سان جيرمان"
+    },
+    "585": {
+      "en": "São Paulo",
+      "ar": "ساو باولو"
+    },
+    "610": {
+      "en": "Ajax",
+      "ar": "أياكس"
+    },
+    "614": {
+      "en": "Flamengo",
+      "ar": "فلامنغو"
+    },
+    "621": {
+      "en": "Athletic Club",
+      "ar": "أتلتيك بلباو"
+    },
+    "631": {
+      "en": "Chelsea",
+      "ar": "تشيلسي"
+    },
+    "667": {
+      "en": "R. Strasbourg",
+      "ar": "ستراسبورغ"
+    },
+    "677": {
+      "en": "Ipswich",
+      "ar": "إيبسويتش"
+    },
+    "681": {
+      "en": "Real Sociedad",
+      "ar": "ريال سوسيداد"
+    },
+    "698": {
+      "en": "Bristol City",
+      "ar": "بريستول سيتي"
+    },
+    "703": {
+      "en": "Nott'm Forest",
+      "ar": "نوتنغهام فورست"
+    },
+    "720": {
+      "en": "Porto",
+      "ar": "بورتو"
+    },
+    "762": {
+      "en": "Newcastle",
+      "ar": "نيوكاسل"
+    },
+    "800": {
+      "en": "Atalanta",
+      "ar": "أتالانتا"
+    },
+    "826": {
+      "en": "Lens",
+      "ar": "لانس"
+    },
+    "873": {
+      "en": "Crystal Palace",
+      "ar": "كريستال بالاس"
+    },
+    "897": {
+      "en": "Dep. A Coruña",
+      "ar": "ديبورتيفو لا كورونيا"
+    },
+    "931": {
+      "en": "Fulham",
+      "ar": "فولهام"
+    },
+    "940": {
+      "en": "Celta",
+      "ar": "سيلتا فيغو"
+    },
+    "985": {
+      "en": "Man Utd",
+      "ar": "مانشستر يونايتد"
+    },
+    "989": {
+      "en": "Bournemouth",
+      "ar": "بورنموث"
+    },
+    "995": {
+      "en": "FC Nantes",
+      "ar": "نانت"
+    },
+    "1003": {
+      "en": "Leicester",
+      "ar": "ليستر"
+    },
+    "1023": {
+      "en": "Palmeiras",
+      "ar": "بالميراس"
+    },
+    "1025": {
+      "en": "Bologna",
+      "ar": "بولونيا"
+    },
+    "1038": {
+      "en": "Sampdoria",
+      "ar": "سامبدوريا"
+    },
+    "1041": {
+      "en": "Lyon",
+      "ar": "ليون"
+    },
+    "1047": {
+      "en": "Como",
+      "ar": "كومو"
+    },
+    "1049": {
+      "en": "Valencia",
+      "ar": "فالنسيا"
+    },
+    "1050": {
+      "en": "Villarreal",
+      "ar": "فياريال"
+    },
+    "1082": {
+      "en": "Lille",
+      "ar": "ليل"
+    },
+    "1148": {
+      "en": "Brentford",
+      "ar": "برينتفورد"
+    },
+    "1237": {
+      "en": "Brighton",
+      "ar": "برايتون"
+    },
+    "3709": {
+      "en": "Getafe",
+      "ar": "خيتافي"
+    },
+    "6195": {
+      "en": "Napoli",
+      "ar": "نابولي"
+    },
+    "23826": {
+      "en": "Leipzig",
+      "ar": "لايبزيغ"
+    }
+  },
+  "teams": {
+    "1.FC K'lautern": "كايزرسلاوترن",
+    "AC Milan": "ميلان",
+    "AJ Auxerre": "أوكسير",
+    "APOEL Nicosia": "أبويل نيقوسيا",
+    "Ajax": "أياكس",
+    "Argentina": "الأرجنتين",
+    "Arsenal": "أرسنال",
+    "Aston Villa": "أستون فيلا",
+    "Atalanta": "أتالانتا",
+    "Atlético": "أتلتيكو مدريد",
+    "Barcelona": "برشلونة",
+    "Bayern Munich": "بايرن ميونخ",
+    "Belgium": "بلجيكا",
+    "Benfica": "بنفيكا",
+    "Brazil": "البرازيل",
+    "Bulgaria": "بلغاريا",
+    "CSKA Moscow": "سسكا موسكو",
+    "Cameroon": "الكاميرون",
+    "Chelsea": "تشيلسي",
+    "Colombia": "كولومبيا",
+    "Costa Rica": "كوستاريكا",
+    "Croatia": "كرواتيا",
+    "Czechia": "التشيك",
+    "Denmark": "الدنمارك",
+    "Dep. A Coruña": "ديبورتيفو لا كورونيا",
+    "Dortmund": "دورتموند",
+    "Dynamo Kyiv": "دينامو كييف",
+    "England": "إنجلترا",
+    "FC Nantes": "نانت",
+    "FC Schalke 04": "شالكه",
+    "Fenerbahçe": "فنربخشة",
+    "France": "فرنسا",
+    "G. Bordeaux": "بوردو",
+    "Galatasaray": "غلطة سراي",
+    "Germany": "ألمانيا",
+    "Ghana": "غانا",
+    "Greece": "اليونان",
+    "Hajduk Split": "هايدوك سبليت",
+    "IFK Göteborg": "غوتنبرغ",
+    "Iceland": "آيسلندا",
+    "Inter": "إنتر",
+    "Ireland": "أيرلندا",
+    "Italy": "إيطاليا",
+    "Juventus": "يوفنتوس",
+    "Lazio": "لاتسيو",
+    "Leeds": "ليدز",
+    "Legia Warszawa": "ليغيا وارسو",
+    "Leicester": "ليستر",
+    "Leipzig": "لايبزيغ",
+    "Leverkusen": "ليفركوزن",
+    "Liverpool": "ليفربول",
+    "Lyon": "ليون",
+    "Man City": "مانشستر سيتي",
+    "Man Utd": "مانشستر يونايتد",
+    "Marseille": "مرسيليا",
+    "Mexico": "المكسيك",
+    "Monaco": "موناكو",
+    "Morocco": "المغرب",
+    "Málaga CF": "ملقة",
+    "Napoli": "نابولي",
+    "Netherlands": "هولندا",
+    "Norway": "النرويج",
+    "Olympiacos": "أولمبياكوس",
+    "PSG": "باريس سان جيرمان",
+    "PSV": "آيندهوفن",
+    "Panathinaikos": "باناثينايكوس",
+    "Paraguay": "باراغواي",
+    "Poland": "بولندا",
+    "Porto": "بورتو",
+    "Portugal": "البرتغال",
+    "Real Madrid": "ريال مدريد",
+    "Roma": "روما",
+    "Romania": "رومانيا",
+    "Rosenborg BK": "روزنبورغ",
+    "Russia": "روسيا",
+    "Senegal": "السنغال",
+    "Sevilla FC": "إشبيلية",
+    "Shakhtar D.": "شاختار دونيتسك",
+    "South Korea": "كوريا الجنوبية",
+    "Spain": "إسبانيا",
+    "Spartak Moscow": "سبارتاك موسكو",
+    "Sporting": "سبورتينغ لشبونة",
+    "Sweden": "السويد",
+    "Switzerland": "سويسرا",
+    "Tottenham": "توتنهام",
+    "Turkiye": "تركيا",
+    "USA": "الولايات المتحدة",
+    "USSR": "الاتحاد السوفيتي",
+    "Ukraine": "أوكرانيا",
+    "Uruguay": "الأوروغواي",
+    "Valencia": "فالنسيا",
+    "Villarreal": "فياريال",
+    "Wales": "ويلز",
+    "Wolfsburg": "فولفسبورغ",
+    "Yugoslavia": "يوغوسلافيا",
+    "ČSSR": "تشيكوسلوفاكيا"
+  },
+  "parts": {
+    "sep": " · ",
+    "todays_stars": "النجوم الحاليون",
+    "todays_squad": "اللاعبون الحاليون",
+    "todays_squad_part": "اللاعبون الحاليون، الجزء {n}",
+    "decade": "عقد {start}",
+    "decade_span": "عقود {first}–{last}",
+    "route": "{from} ← {to}",
+    "route_moved": {
+      "zero": "لم ينتقل أحد",
+      "one": "انتقل لاعب واحد",
+      "two": "انتقل لاعبان",
+      "few": "انتقل {n} لاعبين",
+      "many": "انتقل {n} لاعباً",
+      "other": "انتقل {n} لاعب"
+    },
+    "nights": "ليالي {club}",
+    "famous_nights": "ليالٍ شهيرة",
+    "score": "{home} {home_goals}–{away_goals} {away}",
+    "aet": "(بعد التمديد)",
+    "pens": "(ركلات الترجيح {home_pens}–{away_pens})",
+    "first_leg": "ذهاب {competition}",
+    "second_leg": "إياب {competition}",
+    "competitions": {
+      "Champions League final": "نهائي دوري أبطال أوروبا",
+      "Champions League semi-final": "نصف نهائي دوري الأبطال",
+      "Champions League quarter-final": "ربع نهائي دوري الأبطال",
+      "Champions League round of 16": "ثمن نهائي دوري الأبطال",
+      "Champions League group stage": "دور المجموعات بدوري الأبطال",
+      "Europa League final": "نهائي الدوري الأوروبي",
+      "World Cup final": "نهائي كأس العالم",
+      "World Cup semi-final": "نصف نهائي كأس العالم",
+      "World Cup quarter-final": "ربع نهائي كأس العالم",
+      "Euro final": "نهائي اليورو",
+      "Euro semi-final": "نصف نهائي اليورو",
+      "Euro quarter-final": "ربع نهائي اليورو"
+    },
+    "world_cup": "كأس العالم {year}",
+    "euro": "يورو {year}"
+  }
+}
