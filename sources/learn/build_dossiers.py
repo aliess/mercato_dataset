@@ -25,6 +25,9 @@ Map order inside a world: per stop, its squad, era, route and night dossiers, th
 drawn after it: a story follows the club of its world that most of its players played for (Grid
 pool spells), else the stop most of them call home; with neither it closes the world.
 
+Titles: English from the data, Arabic composed from club_names_ar.json (its `compose` rules), so
+every generated dossier has `title.ar`; a club, team or competition missing there stops the build.
+
 Anchors: for every player of a dossier, up to 5 teammates of game_data_v1.json, best known first,
 with the club and the overlapping seasons of their Grid pool spells (first and last season, as
 grid_pool_v1.json writes them: 2016 is 2016/17).
@@ -43,6 +46,7 @@ from pathlib import Path
 
 LEARN_DIR = Path(__file__).resolve().parent
 STORY_FILE = LEARN_DIR / 'dossiers.json'
+ARABIC_FILE = LEARN_DIR / 'club_names_ar.json'
 
 KINDS = ('squad', 'era', 'night', 'route', 'nation', 'story')
 PLAYER_KINDS = ('squad', 'era', 'route', 'story')
@@ -318,13 +322,108 @@ def load_stories(players, world_ids, alt_names):
     return stories
 
 
+# ── Arabic titles ──
+# Composed from club_names_ar.json, in logical (typing) order, by its `compose` rules. The route
+# arrow is ← (U+2190) and the score dash – (U+2013): right to left, "A ← B" reads A to B.
+
+def load_arabic():
+    arabic = json.loads(ARABIC_FILE.read_text(encoding='utf-8'))
+    for key in ('clubs', 'teams', 'parts'):
+        if not isinstance(arabic.get(key), dict):
+            sys.exit(f'learn: {ARABIC_FILE.name} has no {key!r}')
+    return arabic
+
+
+def plural_form(n):
+    """Arabic CLDR plural category of n."""
+    if n in (0, 1, 2):
+        return ('zero', 'one', 'two')[n]
+    if 3 <= n % 100 <= 10:
+        return 'few'
+    if 11 <= n % 100 <= 99:
+        return 'many'
+    return 'other'
+
+
+class ArabicTitles:
+    def __init__(self, arabic, stops):
+        self.clubs, self.teams, self.parts, self.stops = arabic['clubs'], arabic['teams'], arabic['parts'], stops
+        self.missing = []
+
+    def _club(self, club_id, en):
+        entry = self.clubs.get(str(club_id))
+        if entry is None or not entry.get('ar'):
+            self.missing.append(f'club {club_id} {en}')
+            return None
+        return entry['ar']
+
+    def _team(self, en):
+        if not self.teams.get(en):
+            self.missing.append(f'team {en}')
+            return None
+        return self.teams[en]
+
+    def _done(self, *pieces):
+        return None if any(p is None for p in pieces) else self.parts['sep'].join(pieces)
+
+    def squad(self, stop_id, n, parts):
+        p = self.parts
+        part = p['todays_squad'] if parts == 1 else p['todays_stars'] if n == 1 else \
+            p['todays_squad'] if parts == 2 else p['todays_squad_part'].format(n=n - 1)
+        return self._done(self.stops[stop_id]['name']['ar'], part)
+
+    def era(self, stop_id, first, last):
+        start = lambda decade: decade[:-1]          # '1990s' → '1990'
+        part = self.parts['decade'].format(start=start(first)) if first == last else \
+            self.parts['decade_span'].format(first=start(first), last=start(last))
+        return self._done(self.stops[stop_id]['name']['ar'], part)
+
+    def route(self, route, count):
+        a, b = self._club(route['from'], route['from_name']), self._club(route['to'], route['to_name'])
+        if a is None or b is None:
+            return None
+        moved = self.parts['route_moved'][plural_form(count)].format(n=count)
+        return self._done(self.parts['route'].format(**{'from': a, 'to': b}), moved)
+
+    def night(self, match):
+        home_side = match['id'].endswith('-home')
+        home, away = (match['team'], match['opponent']) if home_side else (match['opponent'], match['team'])
+        found = re.fullmatch(re.escape(home) + r' (\d+)–(\d+) ' + re.escape(away)
+                             + r'(?: \((a\.e\.t\.|(\d+)–(\d+) pens)\))?', match['score'])
+        if found is None:
+            self.missing.append(f"score {match['id']} {match['score']!r}")
+            return None
+        home_ar, away_ar = self._team(home), self._team(away)
+        competition = self.parts['competitions'].get(match['competition'])
+        if competition is None:
+            self.missing.append(f"competition {match['competition']}")
+        if None in (home_ar, away_ar, competition):
+            return None
+        score = self.parts['score'].format(home=home_ar, away=away_ar,
+                                           home_goals=found.group(1), away_goals=found.group(2))
+        if found.group(3) == 'a.e.t.':
+            score += ' ' + self.parts['aet']
+        elif found.group(3):
+            score += ' ' + self.parts['pens'].format(home_pens=found.group(4), away_pens=found.group(5))
+        if match['leg'] == 1:
+            competition = self.parts['first_leg'].format(competition=competition)
+        elif match['leg'] == 2:
+            competition = self.parts['second_leg'].format(competition=competition)
+        return self._done(score, f"{competition} {match['year']}")
+
+    def nation(self, stop_id, code, year):
+        part = self.parts['world_cup' if code == 'wc' else 'euro'].format(year=year)
+        return self._done(self.stops[stop_id]['name']['ar'], part)
+
+
 # ── Building ──
 
 def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, route_index,
-          include_drafts=False, notes=None, alt_names=None):
+          include_drafts=False, notes=None, alt_names=None, arabic=None):
     """({'by_id': dossiers, 'order': {world id: [dossier id]}}, anchors, trails)."""
     notes = notes if notes is not None else []
     worlds, stops, hooks = content['worlds'], content['stops'], content['hooks']
+    ar = ArabicTitles(arabic or load_arabic(), stops)
     grid_names = {club['id']: club['name'] for club in grid['clubs']}
     matches = {m['id']: m for m in xi['matches']}
     by_id, order = {}, {}
@@ -396,7 +495,7 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
                     subject = "Today's squad" if parts == 1 else "Today's stars" if n == 1 else \
                         "Today's squad" if parts == 2 else f"Today's squad, part {n - 1}"
                     add(f'squad_{stop_id}_{n}', wid, stop_id, kind='squad', world=wid,
-                        title={'en': f'{stop_name} · {subject}', 'ar': None}, line=None,
+                        title={'en': f'{stop_name} · {subject}', 'ar': ar.squad(stop_id, n, parts)}, line=None,
                         mystery={'player': mystery_of(part), 'teaser': None}, players=part,
                         stop=stop_id, free=bool(stop['free']))
                 # Each member's decade: the dossier's when he was at the club then, else his own
@@ -421,7 +520,7 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
                     span = first if first == last else f'{first}–{last}'
                     ids = sorted(by_decade[decade], key=lambda p: era_key(players[p], legends))
                     add(f'era_{stop_id}_{main}', wid, stop_id, kind='era', world=wid,
-                        title={'en': f'{stop_name} · {span}', 'ar': None}, line=None,
+                        title={'en': f'{stop_name} · {span}', 'ar': ar.era(stop_id, first, last)}, line=None,
                         mystery={'player': mystery_of(ids), 'teaser': None}, players=ids,
                         stop=stop_id, free=False)
 
@@ -436,7 +535,8 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
                         ids = sorted(full['players'], key=lambda p: fame_key(players[p]))[:DOSSIER[1]]
                         add(dossier_id, wid, stop_id, kind='route', world=wid,
                             title={'en': f"{route['from_name']} → {route['to_name']} · "
-                                         f"{len(full['players'])} made the move", 'ar': None},
+                                         f"{len(full['players'])} made the move",
+                                   'ar': ar.route(route, len(full['players']))},
                             line=None, mystery={'player': mystery_of(ids), 'teaser': None}, players=ids,
                             stop=None, free=False)
                 elif step['kind'] == 'nights' and wid != 'nations':
@@ -454,7 +554,7 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
                         leg = {1: ', first leg', 2: ', second leg'}.get(match['leg'], '')
                         add(f'night_{lineup}', wid, stop_id, kind='night', world=wid,
                             title={'en': f"{match['score']} · {match['competition']}{leg} {match['year']}",
-                                   'ar': None},
+                                   'ar': ar.night(match)},
                             line=None, mystery={'player': mystery_of(known), 'teaser': None}, lineups=sides,
                             stop=None, free=False)
 
@@ -478,11 +578,15 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
                                                      ROUND_RANK.get(matches[i]['round'], 3)))[:LINEUPS[1]]
                     ids = sorted(ids, key=lambda i: (matches[i]['date'], i))
                     known = lineup_players(ids)
-                    name = 'Euro 2020' if prefix == 'Euro' and year == 2021 else f'{prefix} {year}'
+                    shown = 2020 if prefix == 'Euro' and year == 2021 else year
                     add(f"nation_{stop['short']}_{code}", wid, stop_id, kind='nation', world=wid,
-                        title={'en': f"{stop['nation']} · {name}", 'ar': None}, line=None,
+                        title={'en': f"{stop['nation']} · {prefix} {shown}", 'ar': ar.nation(stop_id, code, shown)},
+                        line=None,
                         mystery={'player': mystery_of(known), 'teaser': None}, lineups=ids,
                         stop=None, free=False)
+
+    if ar.missing:
+        sys.exit(f'learn: no Arabic in {ARABIC_FILE.name} for the titles of: ' + ', '.join(sorted(set(ar.missing))))
 
     # Stories, after the stop where most of their players are taught
     world_ids = [w['id'] for w in worlds]
@@ -635,6 +739,13 @@ def validate(content, game_data, xi):
             problems.append(f"{d_id}: world {d['world']} but listed in {world_of.get(d_id)}")
         if list(d['title']) != ['en', 'ar'] or not d['title']['en']:
             problems.append(f'{d_id}: title')
+        else:
+            title_ar = d['title']['ar']
+            if kind != 'story' and title_ar is None:
+                problems.append(f'{d_id}: a generated title needs its Arabic')
+            elif title_ar is not None and (not isinstance(title_ar, str) or not title_ar
+                                           or re.search(r'[{}→]|\d-\d', title_ar)):
+                problems.append(f'{d_id}: Arabic title {title_ar!r} (unfilled part, → or a hyphen in a score)')
         if kind == 'story' and (not isinstance(d['line'], dict) or not d['line'].get('en')):
             problems.append(f'{d_id}: a story needs a line')
         if d['line'] is not None and list(d['line']) != ['en', 'ar']:

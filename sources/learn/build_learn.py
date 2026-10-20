@@ -451,7 +451,9 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
     `lineup_stars`: xi match id → star count (tiers_v1.json's `lineups`); `clues`: clues_v1.json.
     `api_facts`: (clubs, histories) from the API, read from the cache when not given."""
     from sources import fame
+    from sources.learn import build_dossiers
     cards = load_cards()
+    arabic = build_dossiers.load_arabic()
     statuses = ('approved', 'draft') if include_drafts else ('approved',)
     notes = []
     grid_clubs = {club['id']: club for club in grid['clubs']}
@@ -665,8 +667,13 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
                     add('pointer', world=world['history'].get(club_id, world['history_default']))
 
                 if club_id is not None:
+                    if str(club_id) not in arabic['clubs']:
+                        sys.exit(f'learn: club {club_id} {grid_clubs[club_id]["name"]} has no Arabic name in '
+                                 f'{build_dossiers.ARABIC_FILE.name}')
                     stops[stop_id] = {'club_id': club_id, 'short': cards[club_id]['short'] if club_id in cards
                                       else short_label(grid_clubs[club_id]['name']),
+                                      'name': {'en': grid_clubs[club_id]['name'],
+                                               'ar': arabic['clubs'][str(club_id)]['ar']},
                                       'country': countries[club_id], 'free': club_id == world.get('free'),
                                       'card': card_out, 'steps': steps}
                     passed.append((world['id'], club_id))
@@ -711,10 +718,10 @@ def build_learn(game_data, xi, grid, lineup_stars, clues, include_drafts=False, 
     hooks = build_hooks(taught_order, players, clues, game_data, moves, notes)
     twins = build_twins(content_order(worlds, stops), players, moves)
     content = {'version': 1, 'worlds': worlds, 'stops': stops, 'hooks': hooks, 'twins': twins}
-    from sources.learn import build_dossiers
     dossiers, anchors, trails = build_dossiers.build(
         content, stop_lists, players, xi, grid, lineup_stars, moves, legends, route_index,
-        include_drafts=include_drafts, notes=notes, alt_names=game_data.get('alt_names') or {})
+        include_drafts=include_drafts, notes=notes, alt_names=game_data.get('alt_names') or {},
+        arabic=arabic)
     for world in worlds:
         world['dossiers'] = dossiers['order'].get(world['id'], [])
     content.update(dossiers=dossiers['by_id'], anchors=anchors, trails=trails)
@@ -976,6 +983,7 @@ def validate(content, game_data, xi, grid, clues, moves=None):
     transfer_ids = {pid: {m['id'] for m in ms} for pid, ms in game_data['transfers'].items()}
     lineups = {m['id'] for m in xi['matches']}
     grid_clubs = {club['id'] for club in grid['clubs']}
+    grid_names = {club['id']: club['name'] for club in grid['clubs']}
     members = grid_members(grid)
     if list(content) != ['version', 'worlds', 'stops', 'hooks', 'twins', 'dossiers', 'anchors', 'trails'] \
             or content['version'] != 1:
@@ -1001,9 +1009,15 @@ def validate(content, game_data, xi, grid, clues, moves=None):
                 continue
             where = f'stop {stop_id}'
             card_ok = stop['card'] is None or (list(stop['card']) == ['en', 'ar'] and bool(stop['card']['en']))
+            name = stop.get('name')
+            name_ok = (isinstance(name, dict) and list(name) == ['en', 'ar']
+                       and all(isinstance(name[k], str) and name[k] for k in ('en', 'ar')))
+            if not name_ok:
+                problems.append(f'{where}: name must be {{en, ar}}, both filled')
             if stop.get('club_id') is not None:
-                ok = (list(stop) == ['club_id', 'short', 'country', 'free', 'card', 'steps']
-                      and stop_id == f"{world['id']}_{stop['club_id']}" and stop['club_id'] in grid_clubs)
+                ok = (list(stop) == ['club_id', 'short', 'name', 'country', 'free', 'card', 'steps']
+                      and stop_id == f"{world['id']}_{stop['club_id']}" and stop['club_id'] in grid_clubs
+                      and name_ok and name['en'] == grid_names[stop['club_id']])
             else:
                 expected = ['club_id', 'short', 'name', 'country'] + (['nation'] if world['id'] == 'nations' else []) \
                     + ['free', 'card', 'steps']
