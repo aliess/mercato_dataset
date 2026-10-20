@@ -51,7 +51,8 @@ at Euro 2016 and Switzerland 2026 (5 stars) are `intermediate`; Russia, Morocco 
 `expert`.
 
 The current build has 158 `beginner`, 717 `intermediate` and 245 `expert` lineups; the Daily
-XI pool (famous and not `expert`) is 114. The build prints how many lineups have each number
+XI pool (famous and not `expert`) is 143: the matches of `famous_matches.json`, every final, and
+the Beginner semi-finals (one leg per tie, the second). The build prints how many lineups have each number
 of stars. A re-split must keep every lineup id: the dailies already written reference them.
 
 ## File layout

@@ -9,6 +9,8 @@ Build the Starting XI lineups from the Transfermarkt API (see sources/tm_api.py)
 Matches: every quarter-final, semi-final and final of the Champions League (since 1992/93),
 the World Cup (since 1986) and the Euros (since 1988), plus the matches listed in
 famous_matches.json. Each match gives two lineups (home and away).
+The Daily XI draws from the lineups marked famous: those of famous_matches.json, every final,
+and the Beginner semi-finals (one leg per tie, the second).
 Only the eleven starters are included; substitutes are never answers.
 
 Difficulty goes by how many of the eleven are stars (sources/fame.py): a starter is a star
@@ -212,16 +214,20 @@ def main():
                 skipped['not exactly one goalkeeper'] += 1
                 skipped_matches.append(f'{match_date} {competition} {short_name(club)} {game_id}')
                 continue
-            famous = picked[game_id] or round_name == 'final'
             formation, slots = place(starters, (game[f'{side}Club'].get('tactic') or {}).get('tactic'))
             for slot in slots:
                 slot['nation'], slot['born'] = facts.nation(slot['player_id']), facts.born(slot['player_id'])
             tier, stars = difficulty(slots, players, int(match_date[:4]))
+            leg = 1 if group.get('isFirstLeg') else 2 if group.get('isSecondLeg') else None
+            # Daily XI pool: the picked matches, every final, and the Beginner semi-finals (one
+            # leg per tie, the second, so a team's two near-identical lineups don't both go in).
+            famous = picked[game_id] or round_name == 'final' \
+                or (round_name == 'semi-final' and tier == 'beginner' and leg != 1)
             star_counts.append(stars)
             matches.append({
                 'id': f'{game_id}-{side}', 'team': short_name(club), 'opponent': short_name(other),
                 'competition': f'{competition} {round_name}', 'round': round_name,
-                'leg': 1 if group.get('isFirstLeg') else 2 if group.get('isSecondLeg') else None,
+                'leg': leg,
                 'season': base['season']['display'], 'year': int(match_date[:4]), 'date': match_date,
                 'score': score, 'formation': formation,
                 'difficulty': tier,
