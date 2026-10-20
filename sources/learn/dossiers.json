@@ -2,6 +2,7 @@
   {
     "id": "story_100m_club",
     "world": "giants",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "The €100m club",
@@ -39,6 +40,7 @@
   {
     "id": "story_born_2005",
     "world": "giants",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "Born in 2005 or later",
@@ -76,6 +78,7 @@
   {
     "id": "story_real_madrid_brazilians",
     "world": "giants",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "Real Madrid's Brazilians",
@@ -113,6 +116,7 @@
   {
     "id": "story_milan_derby",
     "world": "serie_a",
+    "theme": "rivals",
     "status": "draft",
     "title": {
       "en": "Both sides of Milan",
@@ -150,6 +154,7 @@
   {
     "id": "story_atalanta_juventus",
     "world": "serie_a",
+    "theme": "rivals",
     "status": "draft",
     "title": {
       "en": "Atalanta → Juventus",
@@ -182,6 +187,7 @@
   {
     "id": "story_napoli_2023",
     "world": "serie_a",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Napoli's 2023 Scudetto",
@@ -219,6 +225,7 @@
   {
     "id": "story_inter_treble",
     "world": "serie_a",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Inter's 2010 treble",
@@ -256,6 +263,7 @@
   {
     "id": "story_como_new_names",
     "world": "serie_a",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "Como's new names",
@@ -293,6 +301,7 @@
   {
     "id": "story_leverkusen_unbeaten",
     "world": "bundesliga",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Leverkusen's unbeaten season",
@@ -330,6 +339,7 @@
   {
     "id": "story_bayern_2013",
     "world": "bundesliga",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Bayern's 2013 treble",
@@ -367,6 +377,7 @@
   {
     "id": "story_klassiker",
     "world": "bundesliga",
+    "theme": "rivals",
     "status": "draft",
     "title": {
       "en": "Both sides of Der Klassiker",
@@ -401,6 +412,7 @@
   {
     "id": "story_dortmund_school",
     "world": "bundesliga",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Dortmund's finishing school",
@@ -433,6 +445,7 @@
   {
     "id": "story_leipzig_stepping_stone",
     "world": "bundesliga",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Leipzig's stepping stone",
@@ -464,6 +477,7 @@
   {
     "id": "story_atletico_2014",
     "world": "laliga",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Atlético's 2014 title",
@@ -499,6 +513,7 @@
   {
     "id": "story_madrid_derby",
     "world": "laliga",
+    "theme": "rivals",
     "status": "draft",
     "title": {
       "en": "Both sides of Madrid",
@@ -530,6 +545,7 @@
   {
     "id": "story_valencia_sales",
     "world": "laliga",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Valencia's big sales",
@@ -567,6 +583,7 @@
   {
     "id": "story_basque_sales",
     "world": "laliga",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Sold by the Basque clubs",
@@ -602,6 +619,7 @@
   {
     "id": "story_leicester",
     "world": "premier",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Leicester: champions, then sellers",
@@ -636,6 +654,7 @@
   {
     "id": "story_brentford_sales",
     "world": "premier",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Brentford sells high",
@@ -667,6 +686,7 @@
   {
     "id": "story_brighton_sales",
     "world": "premier",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Brighton sells high",
@@ -704,6 +724,7 @@
   {
     "id": "story_palace_fa_cup",
     "world": "premier",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Crystal Palace, FA Cup winners",
@@ -741,6 +762,7 @@
   {
     "id": "story_monaco_2017",
     "world": "ligue1",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Monaco's 2017 champions",
@@ -774,6 +796,7 @@
   {
     "id": "story_lille_2021",
     "world": "ligue1",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Lille's 2021 title",
@@ -808,6 +831,7 @@
   {
     "id": "story_lens_sales",
     "world": "ligue1",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Lens sells high",
@@ -839,6 +863,7 @@
   {
     "id": "story_marseille_1993",
     "world": "ligue1",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Marseille, champions of Europe 1993",
@@ -873,6 +898,7 @@
   {
     "id": "story_lyon_seven",
     "world": "ligue1",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Lyon's seven in a row",
@@ -910,6 +936,7 @@
   {
     "id": "story_ajax_2019",
     "world": "beyond",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Ajax 2019",
@@ -945,6 +972,7 @@
   {
     "id": "story_psv_springboard",
     "world": "beyond",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "PSV's springboard",
@@ -982,6 +1010,7 @@
   {
     "id": "story_river_sales",
     "world": "beyond",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Sold by River Plate",
@@ -1019,6 +1048,7 @@
   {
     "id": "story_benfica_sales",
     "world": "beyond",
+    "theme": "sellers",
     "status": "draft",
     "title": {
       "en": "Benfica sells high",
@@ -1056,6 +1086,7 @@
   {
     "id": "story_arab_stars",
     "world": "beyond",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "Arab stars of Europe",
@@ -1093,6 +1124,7 @@
   {
     "id": "story_istanbul_2005",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Istanbul 2005",
@@ -1130,6 +1162,7 @@
   {
     "id": "story_invincibles",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "The Invincibles",
@@ -1167,6 +1200,7 @@
   {
     "id": "story_galacticos",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "The Galácticos",
@@ -1204,6 +1238,7 @@
   {
     "id": "story_united_1999",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Manchester United's 1999 treble",
@@ -1241,6 +1276,7 @@
   {
     "id": "story_guardiola_barcelona",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Guardiola's first Barcelona",
@@ -1278,6 +1314,7 @@
   {
     "id": "story_chelsea_munich",
     "world": "giants_history",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Chelsea in Munich, 2012",
@@ -1315,6 +1352,7 @@
   {
     "id": "story_el_clasico",
     "world": "giants_history",
+    "theme": "rivals",
     "status": "draft",
     "title": {
       "en": "Both sides of El Clásico",
@@ -1347,6 +1385,7 @@
   {
     "id": "story_spain_three",
     "world": "nations",
+    "theme": "history",
     "status": "draft",
     "title": {
       "en": "Spain's three in a row",
@@ -1384,6 +1423,7 @@
   {
     "id": "story_born_in_brazil",
     "world": "nations",
+    "theme": "players",
     "status": "draft",
     "title": {
       "en": "Born in Brazil, another flag",

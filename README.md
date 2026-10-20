@@ -229,6 +229,10 @@ python publish_files.py --project prod --apply
   stops' steps. Story dossiers are written in `sources/learn/dossiers.json` (`draft` until the
   user approves; only `approved` ones are published without `--include-drafts`); the build
   checks their lengths, players and that a teaser never spells out the mystery player's name.
+  Each story has a `theme` the app groups the Stories page by (item 145): `history` (teams and
+  nights that made history), `sellers` (clubs that sell high), `rivals` (both sides of a derby
+  or a move between two clubs) or `players` (players with something in common); the build
+  refuses any other value and passes it to the story's dossier in `learn_v1.json`.
   Their player lists were drafted from data queries (squads from the API cache, moves, fees,
   XIs): a season squad from the API also lists players loaned out at the start of that season,
   so a "that season's team" list keeps only players at the club 120+ days of it.

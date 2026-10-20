@@ -19,7 +19,8 @@ Dossiers (8-15 players, or 1-3 lineups, with a reason to learn them):
   nation  a nation's best World Cup or Euro run in the `nations` world: up to 3 lineups of one
           tournament (famous first, then the deepest rounds)
   route   a route of a `routes` step that 8+ players took (up to 15 of them, best known first)
-  story   written, from sources/learn/dossiers.json; `approved` only unless --include-drafts
+  story   written, from sources/learn/dossiers.json; `approved` only unless --include-drafts. Each
+          has a `theme` (STORY_THEMES), which the app groups the Stories page by
 
 Map order inside a world: per stop, its squad, era, route and night dossiers, then the stories
 drawn after it: a story follows the club of its world that most of its players played for (Grid
@@ -59,8 +60,9 @@ TRAIL_MIN_LINKS = 3
 DECADE_MIN_DAYS = 182
 TODAY = '2020s'
 FIELDS = ['kind', 'world', 'title', 'line', 'mystery', '{list}', 'stop', 'free']
-STORY_FIELDS = ['id', 'world', 'status', 'title', 'line', 'mystery', 'players']
+STORY_FIELDS = ['id', 'world', 'theme', 'status', 'title', 'line', 'mystery', 'players']
 STORY_STATUSES = ('draft', 'approved')
+STORY_THEMES = ('history', 'sellers', 'rivals', 'players')   # CONTRACTS.md §1, plan §8 item 145
 STORY_LENGTH = {'title': (6, 40), 'line': (40, 150), 'teaser': (25, 130)}
 TIERS = ('beginner', 'intermediate', 'expert')
 ROUND_RANK = {'final': 0, 'semi-final': 1, 'quarter-final': 2}
@@ -272,8 +274,8 @@ def names_in(text, words):
 
 
 def load_stories(players, world_ids, alt_names):
-    """The story dossiers of dossiers.json, checked: fields, ids, status, lengths, 8-15 players of
-    the game data, the mystery among them and his name nowhere in his teaser."""
+    """The story dossiers of dossiers.json, checked: fields, ids, status, theme, lengths, 8-15
+    players of the game data, the mystery among them and his name nowhere in his teaser."""
     if not STORY_FILE.exists():
         return []
     stories = json.loads(STORY_FILE.read_text(encoding='utf-8'))
@@ -288,6 +290,8 @@ def load_stories(players, world_ids, alt_names):
         seen.add(story['id'])
         if story['status'] not in STORY_STATUSES:
             problems.append(f"{label}: status {story['status']!r}")
+        if story['theme'] not in STORY_THEMES:
+            problems.append(f"{label}: theme {story['theme']!r}, expected one of {', '.join(STORY_THEMES)}")
         if story['world'] not in world_ids or story['world'] == 'summit':
             problems.append(f"{label}: world {story['world']!r} is not a world of the map (nor the Summit)")
         mystery = story['mystery']
@@ -615,7 +619,7 @@ def build(content, stop_lists, players, xi, grid, lineup_stars, moves, legends, 
         stop_id = min(here, key=lambda s: (-here[s], rank[s])) if here and max(here.values()) else None
         by_id[story['id']] = {'kind': 'story', 'world': story['world'], 'title': story['title'],
                               'line': story['line'], 'mystery': story['mystery'], 'players': story['players'],
-                              'stop': None, 'free': False}
+                              'stop': None, 'free': False, 'theme': story['theme']}
         placed_at[story['id']] = stop_id
         world_order = order[story['world']]
         if stop_id is None:
@@ -732,9 +736,13 @@ def validate(content, game_data, xi):
             continue
         listing = 'players' if kind in PLAYER_KINDS else 'lineups'
         expected = [f if f != '{list}' else listing for f in FIELDS]
+        if kind == 'story' and 'theme' in d:   # optional in the contract; every story here has one
+            expected.append('theme')
         if list(d) != expected:
             problems.append(f'{d_id}: fields {list(d)}, expected {expected}')
             continue
+        if 'theme' in d and d['theme'] not in STORY_THEMES:
+            problems.append(f"{d_id}: theme {d['theme']!r}, expected one of {', '.join(STORY_THEMES)}")
         if d['world'] != world_of.get(d_id):
             problems.append(f"{d_id}: world {d['world']} but listed in {world_of.get(d_id)}")
         if list(d['title']) != ['en', 'ar'] or not d['title']['en']:

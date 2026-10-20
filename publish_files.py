@@ -610,7 +610,8 @@ def describe_difference(name, live, new):
                      f"{sum(1 for i in new_d if i in old_d and old_d[i] != new_d[i]):,} changed")
         stories = [i for i, d in new_d.items() if d['kind'] == 'story']
         if stories:
-            lines.append(f'  {len(stories):,} story dossiers: {", ".join(stories)}')
+            themes = dict(sorted(Counter(new_d[i].get('theme') for i in stories).items(), key=lambda kv: str(kv[0])))
+            lines.append(f'  {len(stories):,} story dossiers {themes}: {", ".join(stories)}')
         old_a, new_a = live.get('anchors', {}), new.get('anchors', {})
         lines.append(f"anchors: {len(old_a):,} live → {len(new_a):,} players "
                      f"({sum(1 for a in new_a.values() if not a):,} with none); "
