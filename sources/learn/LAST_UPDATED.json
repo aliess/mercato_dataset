@@ -1,12 +1,33 @@
 {
   "built": {
-    "date": "2026-10-17",
-    "worlds": 1,
-    "stops": 11,
-    "steps": 88,
-    "players": 227,
-    "lineups": 66,
-    "pairs": 27,
-    "draft_cards": 11
+    "date": "2026-10-22",
+    "worlds": 10,
+    "stops": 106,
+    "steps": 781,
+    "players": 2211,
+    "lineups": 451,
+    "pairs": 258,
+    "routes": 189,
+    "hooks": 2211,
+    "clue_hooks": 1954,
+    "twins": 396,
+    "dossiers_squad": 79,
+    "dossiers_era": 140,
+    "dossiers_night": 192,
+    "dossiers_route": 8,
+    "dossiers_nation": 16,
+    "dossiers_story": 40,
+    "anchored": 2197,
+    "no_anchor": 14,
+    "trails": 827,
+    "draft_cards": 89,
+    "no_card": 0
+  },
+  "synced": {
+    "football-quiz-32eb9": {
+      "date": "2026-10-22",
+      "stops": 106,
+      "players": 2211
+    }
   }
 }
