@@ -10,7 +10,7 @@
     "club_id": 131,
     "short": "FCB",
     "en": "Barcelona were founded in 1899 by Joan Gamper and play at the Camp Nou. Fans call the club Barça or the Blaugrana, after its blue and garnet colours. Johan Cruyff's Dream Team won its first European Cup in 1992, and Pep Guardiola's passing sides with Messi, Xavi and Iniesta ruled from 2008.",
-    "ar": "تأسس برشلونة عام 1899 على يد خوان غامبر، ويلعب على ملعب كامب نو. يسميه جمهوره البارسا أو البلوغرانا، نسبة إلى لونيه الأزرق والعنابي. فاز فريق الأحلام بقيادة يوهان كرويف بأول كأس أوروبا للنادي عام 1992، ومن 2008 سادت فرق بيب غوارديولا بتمريراتها مع ميسي وتشافي وإنييستا.",
+    "ar": "تأسس برشلونة عام 1899 على يد خوان غامبر، ويلعب على ملعب كامب نو. يسميه جمهوره البارسا أو البلوغرانا، نسبة إلى لونيه الأزرق والعنابي. فاز فريق الأحلام بقيادة يوهان كرويف بأول كأس أوروبا للأندية في تاريخه عام 1992، ومن 2008 سادت فرق بيب غوارديولا بتمريراتها مع ميسي وتشافي وإنييستا.",
     "status": "draft"
   },
   {
@@ -45,7 +45,7 @@
     "club_id": 11,
     "short": "ARS",
     "en": "Arsenal began in 1886 as Dial Square, a team of workers at the Royal Arsenal in Woolwich, and now play at the Emirates Stadium in north London, their home since leaving Highbury in 2006. They are the Gunners. Under Arsène Wenger they went a whole league season unbeaten in 2003–04: the Invincibles.",
-    "ar": "بدأ أرسنال عام 1886 باسم دايال سكوير، فريقاً لعمال مصنع الأسلحة الملكي في وولويتش، ويلعب اليوم على ملعب الإمارات في شمال لندن، بيته منذ أن غادر هايبري عام 2006. يُلقَّب بالمدفعجية. مع أرسين فينغر أكمل موسم 2003-2004 في الدوري كاملاً دون هزيمة: فريق الذين لا يُقهرون.",
+    "ar": "بدأ أرسنال عام 1886 باسم دايال سكوير، فريقاً لعمال مصنع الأسلحة الملكي في وولويتش، ويلعب اليوم على ملعب الإمارات في شمال لندن، بيته منذ أن غادر هايبري عام 2006. يُلقَّب بالمدفعجية. مع أرسين فينغر أكمل موسم 2003-2004 في الدوري كاملاً دون هزيمة: فريق اللامهزومين.",
     "status": "draft"
   },
   {
@@ -227,7 +227,7 @@
     "club_id": 533,
     "short": "HOF",
     "en": "Hoffenheim trace their roots to 1899 in a village of about 3,000 people near Heidelberg, and play at the PreZero Arena in nearby Sinsheim. They are the Kraichgauer, after their region. Backed by SAP co-founder Dietmar Hopp, a former youth player there, they climbed from the amateur leagues to the Bundesliga in 2008.",
-    "ar": "تعود جذور هوفنهايم إلى عام 1899 في قرية يسكنها نحو 3000 نسمة قرب هايدلبرغ، ويلعب على ملعب بريزيرو أرينا في زينسهايم المجاورة. يُلقَّب بالكرايشغاويين، نسبة إلى منطقته. بدعم من ديتمار هوب، أحد مؤسسي شركة ساب ولاعب سابق في ناشئي النادي، صعد من دوريات الهواة إلى البوندسليغا عام 2008.",
+    "ar": "تعود جذور هوفنهايم إلى عام 1899 في قرية يسكنها نحو 3000 نسمة قرب هايدلبرغ، ويلعب على ملعب بريزيرو أرينا في زينسهايم المجاورة. يُلقَّب بالكرايشغاويين، نسبة إلى منطقته. بدعم من ديتمار هوب، أحد مؤسسي شركة ساب، الذي لعب في فرق الناشئين بالنادي، صعد من دوريات الهواة إلى البوندسليغا عام 2008.",
     "status": "draft"
   },
   {
@@ -241,7 +241,7 @@
     "club_id": 24,
     "short": "SGE",
     "en": "Eintracht Frankfurt were founded in 1899 and play at the Waldstadion, now Deutsche Bank Park. They are Die Adler, the Eagles. German champions in 1959, they lost the 1960 European Cup final 7–3 to Real Madrid at Hampden Park, and won the UEFA Cup in 1980 and the Europa League in 2022.",
-    "ar": "تأسس آينتراخت فرانكفورت عام 1899، ويلعب على ملعب فالدشتاديون، واسمه اليوم دويتشه بنك بارك. يُلقَّب بالنسور. توّج بطلاً لألمانيا عام 1959، وخسر نهائي كأس أوروبا للأندية عام 1960 أمام ريال مدريد 7-3 على ملعب هامبدن بارك، وفاز بكأس الاتحاد الأوروبي عام 1980 وبالدوري الأوروبي عام 2022.",
+    "ar": "تأسس آينتراخت فرانكفورت عام 1899، ويلعب على ملعب فالدشتاديون، واسمه اليوم دويتشه بنك بارك. يُلقَّب بالنسور. توّج بطلاً لألمانيا عام 1959، وخسر نهائي كأس أوروبا للأندية عام 1960 أمام ريال مدريد بسبعة أهداف مقابل ثلاثة على ملعب هامبدن بارك، وفاز بكأس الاتحاد الأوروبي عام 1980 وبالدوري الأوروبي عام 2022.",
     "status": "draft"
   },
   {
@@ -339,7 +339,7 @@
     "club_id": 873,
     "short": "CRY",
     "en": "Crystal Palace were formed in 1905 and have played at Selhurst Park in south London since 1924. They are the Eagles, and long ago were the Glaziers, after the glass palace the club is named after. They lost FA Cup finals in 1990 and 2016, then beat Manchester City 1–0 in 2025 for their first major trophy.",
-    "ar": "تأسس كريستال بالاس عام 1905، ويلعب على ملعب سيلهرست بارك في جنوب لندن منذ 1924. يُلقَّب بالنسور، وكان قديماً يُلقَّب بالزجّاجين، نسبة إلى القصر الزجاجي الذي يحمل النادي اسمه. خسر نهائي كأس الاتحاد الإنجليزي عامي 1990 و2016، ثم هزم مانشستر سيتي 1-0 عام 2025 ليحرز أول لقب كبير في تاريخه.",
+    "ar": "تأسس كريستال بالاس عام 1905، ويلعب على ملعب سيلهرست بارك في جنوب لندن منذ 1924. يُلقَّب بالنسور، وكان قديماً يُلقَّب بالزجّاجين، نسبة إلى القصر الزجاجي الذي يحمل النادي اسمه. خسر نهائي كأس الاتحاد الإنجليزي عامي 1990 و2016، ثم هزم مانشستر سيتي بهدف دون رد عام 2025 ليحرز أول لقب كبير في تاريخه.",
     "status": "draft"
   },
   {
@@ -360,7 +360,7 @@
     "club_id": 405,
     "short": "AVL",
     "en": "Aston Villa were founded in 1874 in Birmingham and have played at Villa Park since 1897. They are the Villans, in claret and blue. One of the twelve founders of the Football League in 1888, they won the league in 1981 and the European Cup a year later, beating Bayern Munich 1–0 in Rotterdam.",
-    "ar": "تأسس أستون فيلا عام 1874 في برمنغهام، ويلعب على ملعب فيلا بارك منذ 1897. يُلقَّب بالفيلانز، ويرتدي العنابي والأزرق. كان أحد الأندية الاثني عشر المؤسسة لرابطة كرة القدم عام 1888، وفاز بالدوري عام 1981 وبكأس أوروبا للأندية بعد عام، بفوزه على بايرن ميونخ 1-0 في روتردام.",
+    "ar": "تأسس أستون فيلا عام 1874 في برمنغهام، ويلعب على ملعب فيلا بارك منذ 1897. يُلقَّب بالفيلانز، ويرتدي العنابي والأزرق. كان أحد الأندية الاثني عشر المؤسسة لرابطة كرة القدم عام 1888، وفاز بالدوري عام 1981 وبكأس أوروبا للأندية بعد عام، بفوزه على بايرن ميونخ بهدف دون رد في روتردام.",
     "status": "draft"
   },
   {
@@ -416,7 +416,7 @@
     "club_id": 289,
     "short": "SUN",
     "en": "Sunderland were founded in 1879 by a schoolteacher and play at the Stadium of Light, their home since leaving Roker Park in 1997. They are the Black Cats. They won six league titles, the last in 1936, and as a second-tier side they beat Leeds 1–0 in the 1973 FA Cup final.",
-    "ar": "تأسس سندرلاند عام 1879 على يد معلم مدرسة، ويلعب على ملعب النور، بيته منذ أن غادر روكر بارك عام 1997. يُلقَّب بالقطط السوداء. فاز بستة ألقاب في الدوري آخرها عام 1936، وهزم ليدز 1-0 في نهائي كأس الاتحاد الإنجليزي عام 1973 وهو في الدرجة الثانية.",
+    "ar": "تأسس سندرلاند عام 1879 على يد معلم مدرسة، ويلعب على ملعب النور، بيته منذ أن غادر روكر بارك عام 1997. يُلقَّب بالقطط السوداء. فاز بستة ألقاب في الدوري آخرها عام 1936، وهزم ليدز بهدف دون رد في نهائي كأس الاتحاد الإنجليزي عام 1973 وهو في الدرجة الثانية.",
     "status": "draft"
   },
   {
@@ -514,7 +514,7 @@
     "club_id": 336,
     "short": "SCP",
     "en": "Sporting CP were founded in 1906 in Lisbon and play at the Estádio José Alvalade, opened in 2003. They are Os Leões, the Lions, in green and white hoops. They won the Cup Winners' Cup in 1964, and their academy is one of Europe's best: Luís Figo came through it. The 2021 title ended a 19-year wait.",
-    "ar": "تأسس سبورتينغ عام 1906 في لشبونة، ويلعب على ملعب جوزيه ألفالادي الذي افتُتح عام 2003. يُلقَّب بالأسود، ويرتدي أطواقاً خضراء وبيضاء. فاز بكأس الكؤوس الأوروبية عام 1964، وأكاديميته من الأفضل في أوروبا: منها تخرّج لويس فيغو. وأنهى لقب 2021 انتظاراً دام 19 عاماً.",
+    "ar": "تأسس سبورتينغ عام 1906 في لشبونة، ويلعب على ملعب جوزيه ألفالادي الذي افتُتح عام 2003. يُلقَّب بالأسود، ويرتدي قميصاً بخطوط أفقية خضراء وبيضاء. فاز بكأس الكؤوس الأوروبية عام 1964، وأكاديميته من الأفضل في أوروبا: منها تخرّج لويس فيغو. وأنهى لقب 2021 انتظاراً دام 19 عاماً.",
     "status": "draft"
   },
   {
